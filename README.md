@@ -12,7 +12,7 @@ L’application permet une prise de notes rapide et facile des informations esse
 ### Présentation de l'équipe : 
 
 **Chef de projet** : Christophe Garcia
---> _J'ai 18 ans et je suis étudiant en DUT Informatique à l'IUT de Vannes. Dans ce projet, je faciliterai la communication entre l'équipe, le maître d'œuvre et le client. J'animerai le groupe et signalerai ses difficultés. Je suis chargé de veiller au bon fonctionnement du projet dans tous ses aspects. Je pense que nous allons beaucoup apprendre sur le travail en équipe ainsi que sur le cadre méthodologique agile Scrum._
+--> _J'ai 19 ans et je suis étudiant en DUT Informatique à l'IUT de Vannes. Dans ce projet, je faciliterai la communication entre l'équipe, le maître d'œuvre et le client. J'animerai le groupe et signalerai ses difficultés. Je suis chargé de veiller au bon fonctionnement du projet dans tous ses aspects. Je pense que nous allons beaucoup apprendre sur le travail en équipe ainsi que sur le cadre méthodologique agile Scrum._
 
 **Responsable communication** : Alice Gontard
 --> _J’ai 19 ans et je suis étudiante en DUT informatique à l’IUT de Vannes. Dans ce projet, je suis chargé de communication et je dois maintenir le site Web du groupe de projet ainsi que rédiger les comptes-rendus. Je trouve que ce projet est intéressant au niveau de la communication dans le groupe d’étudiants et vis-à-vis du client qui a des attentes définies._
