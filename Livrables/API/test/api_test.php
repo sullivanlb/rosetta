@@ -32,7 +32,7 @@
 	#TEST2 : update de question
 	echo $question1;
 	
-	$question1->_set($nom, "question updated");
+	$question1->_set($nomQuestion, "question updated");
 	$questionDAO->update($question1);
 
 	foreach ($questionDAO->findAll() as $str){
@@ -86,7 +86,7 @@
 	#TEST2 : update de devis
 	echo $devis1;
 	
-	$devis1->_set($nom, "devis updated");
+	$devis1->_set($nomDevis, "devis updated");
 	$devisDAO->update($devis1);
 
 	foreach ($devisDAO->findAll() as $str){
@@ -113,7 +113,7 @@
 	#TEST2 : update de pack
 	echo $pack1;
 	
-	$pack1->_set($nom, "pack updated");
+	$pack1->_set($nomPack, "pack updated");
 	$packDAO->update($pack1);
 
 	foreach ($packDAO->findAll() as $str){
@@ -140,7 +140,7 @@
 	#TEST2 : update de composant
 	echo $composant1;
 	
-	$composant1->_set($prix, 100);
+	$composant1->_set($prixComposant, 100);
 	$composantDAO->update($composant1);
 
 	foreach ($composantDAO->findAll() as $str){
@@ -167,7 +167,7 @@
 	#TEST2 : update de scenario
 	echo $scenario1;
 	
-	$scenario1->_set($nom, "scenario updated");
+	$scenario1->_set($nomScenario, "scenario updated");
 	$scenarioDAO->update($scenario1);
 
 	foreach ($scenarioDAO->findAll() as $str){
