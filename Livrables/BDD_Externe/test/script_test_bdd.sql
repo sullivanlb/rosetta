@@ -34,28 +34,6 @@ DELETE FROM Composant;
 DELETE FROM Scenario;
 DELETE FROM Client;
 
-------------------------------------	
--- Réinitialisation des séquences --
-------------------------------------
-	
-DROP SEQUENCE seq_Question;
-CREATE SEQUENCE seq_Question;
-
-DROP SEQUENCE seq_Devis;
-CREATE SEQUENCE seq_Devis;
-
-DROP SEQUENCE seq_Pack;
-CREATE SEQUENCE seq_Pack;
-
-DROP SEQUENCE seq_Composant;
-CREATE SEQUENCE seq_Composant;
-
-DROP SEQUENCE seq_Scenario;
-CREATE SEQUENCE seq_Scenario;
-
-DROP SEQUENCE seq_Client;
-CREATE SEQUENCE seq_Client;
-
 -------------------------
 -- Insertion de Client --
 -------------------------
