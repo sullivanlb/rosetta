@@ -32,7 +32,7 @@ class ComposantDAO {
             $query = "INSERT INTO Composant(idComposant, nomComposant, uniteComposant, prixComposant) VALUES (:id, :nom, :unite, :prix)";
             $stmt = $dbc->prepare($query);
 
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idComposant'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomComposant'], PDO::PARAM_STR);
             $stmt->bindValue(':unite', $request['uniteComposant'], PDO::PARAM_STR);
@@ -66,7 +66,7 @@ class ComposantDAO {
             $query = "UPDATE Composant SET idComposant=:id, nomComposant=:nom, uniteComposant=:unite, prixComposant=:prix WHERE idComposant = '" . $idComposant . "'";
             $stmt = $dbc->prepare($query);
         
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idComposant'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomComposant'], PDO::PARAM_STR);
             $stmt->bindValue(':unite', $request['uniteComposant'], PDO::PARAM_STR);

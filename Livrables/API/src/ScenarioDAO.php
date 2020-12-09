@@ -32,7 +32,7 @@ class ScenarioDAO {
             $query = "INSERT INTO Scenario(idScenario, nomScenario) VALUES (:id, :nom)";
             $stmt = $dbc->prepare($query);
 
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idScenario'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomScenario'], PDO::PARAM_STR);
             
@@ -64,7 +64,7 @@ class ScenarioDAO {
             $query = "UPDATE Scenario SET idScenario=:id, nomScenario=:nom WHERE idScenario = '" . $idScenario . "'";
             $stmt = $dbc->prepare($query);
         
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idScenario'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomScenario'], PDO::PARAM_STR);
           

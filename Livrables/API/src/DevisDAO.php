@@ -32,7 +32,7 @@ class DevisDAO {
             $query = "INSERT INTO Devis(idDevis, nomDevis) VALUES (:id, :nom)";
             $stmt = $dbc->prepare($query);
 
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idDevis'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomDevis'], PDO::PARAM_STR);
             
@@ -64,7 +64,7 @@ class DevisDAO {
             $query = "UPDATE Devis SET idDevis=:id, nomDevis=:nom WHERE idDevis = '" . $idDevis . "'";
             $stmt = $dbc->prepare($query);
         
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idDevis'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomDevis'], PDO::PARAM_STR);
           

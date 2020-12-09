@@ -32,7 +32,7 @@ class PackDAO {
             $query = "INSERT INTO Pack(idPack, nomPack) VALUES (:id, :nom)";
             $stmt = $dbc->prepare($query);
 
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idPack'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomPack'], PDO::PARAM_STR);
             
@@ -64,7 +64,7 @@ class PackDAO {
             $query = "UPDATE Pack SET idPack=:id, nomPack=:nom WHERE idPack = '" . $idPack . "'";
             $stmt = $dbc->prepare($query);
         
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idPack'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomPack'], PDO::PARAM_STR);
           

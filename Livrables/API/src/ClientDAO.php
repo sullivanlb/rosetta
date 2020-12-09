@@ -24,6 +24,14 @@ class ClientDAO {
         return $results;
     }
 
+    public final function find($id) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $query = "SELECT * FROM Client WHERE idClient = '" . $id . "'";
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Client'); // fetchAll ? fetch ? .toArray() ? jspppp : tests.
+        return $results;
+    }
+
     public final function insert($request) {
         if ($request instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
@@ -32,7 +40,7 @@ class ClientDAO {
             $query = "INSERT INTO Client(idClient, nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) VALUES (:id, :nom, :prenom, :adresse, :email, :tel, :sexe)";
             $stmt = $dbc->prepare($query);
 
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idClient'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomClient'], PDO::PARAM_STR);
             $stmt->bindValue(':prenom', $request['prenomClient'], PDO::PARAM_STR);
@@ -69,7 +77,7 @@ class ClientDAO {
             $query = "UPDATE Client SET idClient=:id, nomClient=:nom, prenomClient=:prenom, adresseClient=:adresse, emailClient=:email, telClient=:tel, sexeClient=:sexe WHERE idClient = '" . $idClient . "'";
             $stmt = $dbc->prepare($query);
         
-            // lie les paramètres
+            // Lie les paramètres
             $stmt->bindValue(':id', $request['idClient'], PDO::PARAM_STR);
             $stmt->bindValue(':nom', $request['nomClient'], PDO::PARAM_STR);
             $stmt->bindValue(':prenom', $request['prenomClient'], PDO::PARAM_STR);
