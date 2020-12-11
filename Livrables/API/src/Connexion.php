@@ -52,7 +52,7 @@ class Connexion {
     /**
      * Méthode magique __get()
      * 
-     * Retourne la valeur de la propriété du connexion
+     * Retourne la valeur de la propriété de la connexion
      * 
      * @param string $propriete
      * @return string
@@ -71,7 +71,7 @@ class Connexion {
     /**
      * Méthode magique __set()
      * 
-     * Fixe la valeur de la propriété appelée au connexion
+     * Fixe la valeur de la propriété appelée à la connexion
      * 
      * @param string $propriete
      * @param mixed $valeur
