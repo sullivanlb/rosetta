@@ -2,13 +2,43 @@
 
 require_once('BDD_Externe_Connexion.php');
 
+/** 
+ * ClientDAO est une classe de gestion de Client.
+ * 
+ * ClientDAO est une classe permettant de :
+ * - Retourner tous les clients,
+ * - De retourner un client suivant son identifiant,
+ * - D'insérer un nouveau client,
+ * - De supprimer un client,
+ * - De modifier les données d'un client.
+ * Une seule instance de cette classe est possible.
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class ClientDAO {
 
+    /**
+     * Objet d'accès aux données
+     * 
+     * @access private
+     */
     private static $dao;
 
+    /**
+     * Méthode magique __construct()
+     * 
+     * Permet de créer le ClientDAO
+     */
     public function __construct() {
     }
 
+    /**
+     * Méthode d'accès à l'unique instance getInstance()
+     * 
+     * Crée une instance si elle n'existe déjà pas, et retourne celle-ci
+     */
     public final static function getInstance() {
         if (!isset(self::$dao)) {
             self::$dao = new ClientDAO();
@@ -16,7 +46,12 @@ class ClientDAO {
         return self::$dao;
     }
 
-    public final function findAll() {
+    /**
+     * Méthode d'accès à l'ensemble des clients tousLesElements()
+     * 
+     * Retourne tous les clients de la base de données
+     */
+    public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
         $query = "SELECT * FROM Client";
         $stmt = $dbc->query($query);
@@ -24,7 +59,14 @@ class ClientDAO {
         return $results;
     }
 
-    public final function find($id) {
+    /**
+     * Méthode d'accès à un unique client unElement()
+     * 
+     * Retourne le client dont l'identifiant est passé en paramètre
+     * 
+     * @param $id
+     */
+    public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
         $query = "SELECT * FROM Client WHERE idClient = '" . $id . "'";
         $stmt = $dbc->query($query);
@@ -32,7 +74,14 @@ class ClientDAO {
         return $results;
     }
 
-    public final function insert($request) {
+    /**
+     * Méthode d'insertion insertion()
+     * 
+     * Insère un nouveau client dans la base de données
+     * 
+     * @param $request
+     */
+    public final function insertion($request) {
         if ($request instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
@@ -54,7 +103,14 @@ class ClientDAO {
         }
     }
 
-    public function delete($request) { 
+    /**
+     * Méthode de suppression suppression()
+     * 
+     * Supprime un client de la base de données
+     * 
+     * @param $request
+     */
+    public function suppression($request) { 
         if ($request instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idClient = $request['idClient'];
@@ -68,7 +124,14 @@ class ClientDAO {
         }
     }
 
-    public function update($request) {
+    /**
+     * Méthode de modification suppression()
+     * 
+     * Modifie les données d'un client
+     * 
+     * @param $request
+     */
+    public function modification($request) {
         if ($request instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idClient = $request['idClient'];

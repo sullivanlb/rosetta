@@ -2,13 +2,43 @@
 
 require_once('BDD_Externe_Connexion.php');
 
+/** 
+ * QuestionDAO est une classe de gestion de Question.
+ * 
+ * ComposantDAO est une classe permettant de :
+ * - Retourner toutes les questions,
+ * - De retourner une question suivant son identifiant,
+ * - D'insérer une nouvelle question,
+ * - De supprimer une question,
+ * - De modifier les données d'une question.
+ * Une seule instance de cette classe est possible.
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class QuestionDAO {
 
+    /**
+     * Objet d'accès aux données
+     * 
+     * @access private
+     */
     private static $dao;
 
+    /**
+     * Méthode magique __construct()
+     * 
+     * Permet de créer le QuestionDAO
+     */
     public function __construct() {
     }
 
+    /**
+     * Méthode d'accès à l'unique instance getInstance()
+     * 
+     * Crée une instance si elle n'existe déjà pas, et retourne celle-ci
+     */
     public final static function getInstance() {
         if (!isset(self::$dao)) {
             self::$dao = new QuestionDAO();
@@ -16,7 +46,12 @@ class QuestionDAO {
         return self::$dao;
     }
 
-    public final function findAll() {
+    /**
+     * Méthode d'accès à l'ensemble des questions tousLesElements()
+     * 
+     * Retourne toutes les questions de la base de données
+     */
+    public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
         $query = "SELECT * FROM Question";
         $stmt = $dbc->query($query);
@@ -24,7 +59,14 @@ class QuestionDAO {
         return $results;
     }
 
-    public final function insert($request) {
+    /**
+     * Méthode d'insertion insertion()
+     * 
+     * Insère une nouvelle question dans la base de données
+     * 
+     * @param $request
+     */
+    public final function insertion($request) {
         if ($request instanceof Question) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
@@ -41,7 +83,14 @@ class QuestionDAO {
         }
     }
 
-    public function delete($request) { 
+    /**
+     * Méthode de suppression suppression()
+     * 
+     * Supprime une question de la base de données
+     * 
+     * @param $request
+     */
+    public function suppression($request) { 
         if ($request instanceof Question) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idQuestion = $request['idQuestion'];
@@ -55,7 +104,14 @@ class QuestionDAO {
         }
     }
 
-    public function update($request) {
+     /**
+     * Méthode de modification suppression()
+     * 
+     * Modifie les données d'une question
+     * 
+     * @param $request
+     */
+    public function modification($request) {
         if ($request instanceof Question) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idQuestion = $request['idQuestion'];

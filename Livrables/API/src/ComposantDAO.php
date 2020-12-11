@@ -2,13 +2,43 @@
 
 require_once('BDD_Externe_Connexion.php');
 
+/** 
+ * ComposantDAO est une classe de gestion de Composant.
+ * 
+ * ComposantDAO est une classe permettant de :
+ * - Retourner tous les composants,
+ * - De retourner un composant suivant son identifiant,
+ * - D'insérer un nouveau composant,
+ * - De supprimer un composant,
+ * - De modifier les données d'un composant.
+ * Une seule instance de cette classe est possible.
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class ComposantDAO {
 
+    /**
+     * Objet d'accès aux données
+     * 
+     * @access private
+     */
     private static $dao;
 
+    /**
+     * Méthode magique __construct()
+     * 
+     * Permet de créer le ComposantDAO
+     */
     public function __construct() {
     }
 
+    /**
+     * Méthode d'accès à l'unique instance getInstance()
+     * 
+     * Crée une instance si elle n'existe déjà pas, et retourne celle-ci
+     */
     public final static function getInstance() {
         if (!isset(self::$dao)) {
             self::$dao = new ComposantDAO();
@@ -16,7 +46,12 @@ class ComposantDAO {
         return self::$dao;
     }
 
-    public final function findAll() {
+    /**
+     * Méthode d'accès à l'ensemble des composants tousLesElements()
+     * 
+     * Retourne tous les composants de la base de données
+     */
+    public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
         $query = "SELECT * FROM Composant";
         $stmt = $dbc->query($query);
@@ -24,7 +59,14 @@ class ComposantDAO {
         return $results;
     }
 
-    public final function insert($request) {
+    /**
+     * Méthode d'insertion insertion()
+     * 
+     * Insère un nouveau composant dans la base de données
+     * 
+     * @param $request
+     */
+    public final function insertion($request) {
         if ($request instanceof Composant) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
@@ -43,7 +85,14 @@ class ComposantDAO {
         }
     }
 
-    public function delete($request) { 
+    /**
+     * Méthode de suppression suppression()
+     * 
+     * Supprime un composant de la base de données
+     * 
+     * @param $request
+     */
+    public function suppression($request) { 
         if ($request instanceof Composant) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idComposant = $request['idComposant'];
@@ -57,7 +106,14 @@ class ComposantDAO {
         }
     }
 
-    public function update($request) {
+    /**
+     * Méthode de modification suppression()
+     * 
+     * Modifie les données d'un composant
+     * 
+     * @param $request
+     */
+    public function modification($request) {
         if ($request instanceof Composant) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idComposant = $request['idComposant'];

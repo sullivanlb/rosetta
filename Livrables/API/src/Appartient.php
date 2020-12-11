@@ -1,5 +1,23 @@
 <?php
 
+/** 
+ * Appartient est une classe de liaison d'objets.
+ * 
+ * Appartient est une classe permettant de lier 2 objets : un contenant
+ * avec son contenu (et éventuellement la quantité du contenu). 
+ * Voici les liaisons possibles :
+ * - Contenant : Client   / Contenu : Devis,
+ * - Contenant : Devis    / Contenu : Pack      + Quantité du pack,
+ * - Contenant : Devis    / Contenu : Composant + Quantité du composant,
+ * - Contenant : Pack     / Contenu : Composant + Quantité du composant,
+ * - Contenant : Scenario / Contenu : Pack      + Quantité du pack,
+ * - Contenant : Scenario / Contenu : Composant + Quantité du composant,
+ * - Contenant : Scenario / Contenu : Question.
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Appartient {
     
     /**

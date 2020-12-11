@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Pack est une classe de représentant la table Pack de la base de données.
+ * 
+ * Pack est une classe permettant de renseigner et obtenir les informations
+ * d'un pack (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Pack {
     
     /**
@@ -8,7 +18,7 @@ class Pack {
      * @var int
      * @access private
      */
-    private int $idPack;
+    private $idPack;
 
     /**
      * Nom du pack
@@ -16,7 +26,7 @@ class Pack {
      * @var string
      * @access private
      */
-    private string $nomPack;
+    private $nomPack;
 
     /**
      * Méthode magique __construct()
@@ -68,9 +78,9 @@ class Pack {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id') {
+        if ($propriete === 'id' && is_int($valeur)) {
             $this->idPack = $valeur;
-        } else if ($propriete === 'nom') {
+        } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomPack = $valeur;
         } else {
             throw new Exception('Pack: __set(string, mixed): propriété ou valeur invalide.');

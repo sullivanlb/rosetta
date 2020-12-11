@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Scenario est une classe de représentant la table Scenario de la base de données.
+ * 
+ * Scenario est une classe permettant de renseigner et obtenir les informations
+ * d'un scenario (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Scenario {
     
     /**
@@ -8,7 +18,7 @@ class Scenario {
      * @var int
      * @access private
      */
-    private int $idScenario;
+    private $idScenario;
 
     /**
      * Nom du scenario
@@ -16,7 +26,7 @@ class Scenario {
      * @var string
      * @access private
      */
-    private string $nomScenario;
+    private $nomScenario;
 
     /**
      * Méthode magique __construct()
@@ -68,9 +78,9 @@ class Scenario {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id') {
+        if ($propriete === 'id' && is_int($valeur)) {
             $this->idScenario = $valeur;
-        } else if ($propriete === 'nom') {
+        } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomScenario = $valeur;
         } else {
             throw new Exception('Scenario: __set(string, mixed): propriété ou valeur invalide.');
