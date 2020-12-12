@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Question est une classe de représentant la table Question de la base de données.
+ * 
+ * Question est une classe permettant de renseigner et obtenir les informations
+ * d'une question (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Question {
     
     /**
@@ -8,7 +18,7 @@ class Question {
      * @var int
      * @access private
      */
-    private int $idQuestion;
+    private $idQuestion;
 
     /**
      * Nom de la question
@@ -16,7 +26,7 @@ class Question {
      * @var string
      * @access private
      */
-    private string $nomQuestion;
+    private $nomQuestion;
 
     /**
      * Méthode magique __construct()
@@ -70,7 +80,7 @@ class Question {
     public function __set($propriete, $valeur) {
         if ($propriete === 'id') {
             $this->idQuestion = $valeur;
-        } else if ($propriete === 'nom') {
+        } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomQuestion = $valeur;
         } else {
             throw new Exception('Question: __set(string, mixed): propriété ou valeur invalide.');
@@ -85,7 +95,7 @@ class Question {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomQuestion . "<br/>";
+        return "Nom : " . $this->nomQuestion . "\r\n";
 	}
 
 }

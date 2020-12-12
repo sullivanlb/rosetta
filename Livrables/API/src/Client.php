@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Client est une classe de représentant la table Client de la base de données.
+ * 
+ * Client est une classe permettant de renseigner et obtenir les informations
+ * d'un client (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Client {
     
     /**
@@ -8,7 +18,7 @@ class Client {
      * @var int
      * @access private
      */
-    private int $idClient;
+    private $idClient;
 
     /**
      * Nom du client
@@ -16,7 +26,7 @@ class Client {
      * @var string
      * @access private
      */
-    private string $nomClient;
+    private $nomClient;
     
     /**
      * Prenom du client
@@ -24,7 +34,7 @@ class Client {
      * @var string
      * @access private
      */
-    private string $prenomClient;
+    private $prenomClient;
     
     /**
      * Adresse du client
@@ -32,7 +42,7 @@ class Client {
      * @var string
      * @access private
      */
-    private string $adresseClient;
+    private $adresseClient;
     
     /**
      * Email du client
@@ -40,7 +50,7 @@ class Client {
      * @var string
      * @access private
      */
-    private string $emailClient;
+    private $emailClient;
     
     /**
      * Numéro de téléphone du client
@@ -48,7 +58,7 @@ class Client {
      * @var int
      * @access private
      */
-    private int $telClient;
+    private $telClient;
     
     /**
      * Sexe du client (homme ou femme)
@@ -56,7 +66,7 @@ class Client {
      * @var string
      * @access private
      */
-    private string $sexeClient;
+    private $sexeClient;
 
     /**
      * Méthode magique __construct()
@@ -130,17 +140,17 @@ class Client {
     public function __set($propriete, $valeur) {
         if ($propriete === 'id') {
             $this->idClient = $valeur;
-        } else if ($propriete === 'nom') {
+        } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomClient = $valeur;
-        } else if ($propriete === 'prenom') {
+        } else if ($propriete === 'prenom' && is_string($valeur)) {
             $this->prenomClient = $valeur;
-        } else if ($propriete === 'adresse') {
+        } else if ($propriete === 'adresse' && is_string($valeur)) {
             $this->adresseClient = $valeur;
-        } else if ($propriete === 'email') {
+        } else if ($propriete === 'email' && is_string($valeur)) {
             $this->emailClient = $valeur;
-        } else if ($propriete === 'tel') {
+        } else if ($propriete === 'tel' && is_int($valeur)) {
             $this->telClient = $valeur;
-        } else if ($propriete === 'sexe') {
+        } else if ($propriete === 'sexe' && is_string($valeur)) {
             $this->sexeClient = $valeur;
         } else {
             throw new Exception('Client: __set(string, mixed): propriété ou valeur invalide.');
@@ -155,12 +165,12 @@ class Client {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomClient . "<br/>" .
-            "Prenom : " . $this->prenomClient . "<br/>" .
-            "Adresse : " . $this->adresseClient . "<br/>" .
-            "Email : " . $this->emailClient . "<br/>" . 
-            "Tel : " . $this->telClient . "<br/>" .
-            "Sexe : " . $this->sexeClient . "<br/>";
+        return "Nom : " . $this->nomClient . "\r\r" .
+            "Prenom : " . $this->prenomClient . "\r\r" .
+            "Adresse : " . $this->adresseClient . "\r\r" .
+            "Email : " . $this->emailClient . "\r\r" . 
+            "Tel : " . $this->telClient . "\r\r" .
+            "Sexe : " . $this->sexeClient . "\r\r";
 	}
 
 }
