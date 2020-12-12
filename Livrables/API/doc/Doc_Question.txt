@@ -1,0 +1,78 @@
+Classe : Question
+/** 
+ * Question est une classe de représentant la table Question de la base de données.
+ * 
+ * Question est une classe permettant de renseigner et obtenir les informations
+ * d'une question (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
+_____________________________________________________________________
+Attributs : 
+/**
+  * Identifiant de la question
+  * 
+  * @var int
+  * @access private
+  */
+idQuestion
+
+/**
+  * Nom de la question
+  * 
+  * @var string
+  * @access private
+  */
+nomQuestion
+_____________________________________________________________________
+Méthodes :
+/**
+  * Méthode magique __construct()
+  * 
+  * Permet de créer une nouvelle question
+  */
+public function __construct ()
+
+/**
+  * Méthode d'initialisation init()
+  * 
+  * Iniatilise les données de la question
+  * 
+  * @param int $id
+  * @param string $nom
+  */
+public function init ($id, $nom)
+
+/**
+  * Méthode magique __get()
+  * 
+  * Retourne la valeur de la propriété de la question
+  * 
+  * @param string $propriete
+  * @return int|string
+  * @throws Exception
+  */
+public function __get($propriete)
+
+/**
+  * Méthode magique __set()
+  * 
+  * Fixe la valeur de la propriété appelée à la question
+  * 
+  * @param string $propriete
+  * @param mixed $valeur
+  * @throws Exception
+  */
+public function __set($propriete, $valeur)
+
+/**
+  * Méthode magique __toString()
+  * 
+  * Retourne le nom de la question
+  * 
+  * @return string
+  */
+public function __toString()
+_____________________________________________________________________
