@@ -70,7 +70,7 @@ class ClientDAO {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
         $query = "SELECT * FROM Client WHERE idClient = '" . $id . "'";
         $stmt = $dbc->query($query);
-        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Client'); // fetchAll ? fetch ? .toArray() ? jspppp : tests.
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Client');
         return $results;
     }
 
@@ -79,10 +79,10 @@ class ClientDAO {
      * 
      * Insère un nouveau client dans la base de données
      * 
-     * @param $request
+     * @param $client
      */
-    public final function insertion($request) {
-        if ($request instanceof Client) {
+    public final function insertion($client) {
+        if ($client instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
@@ -90,16 +90,22 @@ class ClientDAO {
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':prenom', $request['prenomClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':adresse', $request['adresseClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':email', $request['emailClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':tel', $request['telClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':sexe', $request['sexeClient'], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $client->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $client->__get("nom"), PDO::PARAM_STR);
+            $stmt->bindValue(':prenom', $client->__get("prenom"), PDO::PARAM_STR);
+            $stmt->bindValue(':adresse', $client->__get("adresse"), PDO::PARAM_STR);
+            $stmt->bindValue(':email', $client->__get("email"), PDO::PARAM_STR);
+            $stmt->bindValue(':tel', $client->__get("tel"), PDO::PARAM_STR);
+            $stmt->bindValue(':sexe', $client->__get("sexe"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
+
+            // Fixe l'id attribué à l'objet
+            $lastid = $dbc->lastInsertId();
+            $client->__set("id", $lastid);
+        } else {
+            throw new Exception('ClientDAO: insertion(): n est pas une instance de Client.');
         }
     }
 
@@ -108,12 +114,12 @@ class ClientDAO {
      * 
      * Supprime un client de la base de données
      * 
-     * @param $request
+     * @param $client
      */
-    public function suppression($request) { 
-        if ($request instanceof Client) {
+    public function suppression($client) { 
+        if ($client instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idClient = $request['idClient'];
+            $idClient = $client->__get("id");
 
             // Prépare la déclaration SQL
             $query = "DELETE FROM Client WHERE idClient = '" . $idClient . "'";
@@ -121,6 +127,8 @@ class ClientDAO {
 
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('ClientDAO: suppression(): n est pas une instance de Client.');
         }
     }
 
@@ -129,28 +137,29 @@ class ClientDAO {
      * 
      * Modifie les données d'un client
      * 
-     * @param $request
+     * @param $client
      */
-    public function modification($request) {
-        if ($request instanceof Client) {
+    public function modification($client) {
+        if ($client instanceof Client) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idClient = $request['idClient'];
+            $idClient = $client->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Client SET idClient=:id, nomClient=:nom, prenomClient=:prenom, adresseClient=:adresse, emailClient=:email, telClient=:tel, sexeClient=:sexe WHERE idClient = '" . $idClient . "'";
+            $query = "UPDATE Client SET nomClient=:nom, prenomClient=:prenom, adresseClient=:adresse, emailClient=:email, telClient=:tel, sexeClient=:sexe WHERE idClient = '" . $idClient . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':prenom', $request['prenomClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':adresse', $request['adresseClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':email', $request['emailClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':tel', $request['telClient'], PDO::PARAM_STR);
-            $stmt->bindValue(':sexe', $request['sexeClient'], PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $client->__get("nom"), PDO::PARAM_STR);
+            $stmt->bindValue(':prenom', $client->__get("prenom"), PDO::PARAM_STR);
+            $stmt->bindValue(':adresse', $client->__get("adresse"), PDO::PARAM_STR);
+            $stmt->bindValue(':email', $client->__get("email"), PDO::PARAM_STR);
+            $stmt->bindValue(':tel', $client->__get("tel"), PDO::PARAM_STR);
+            $stmt->bindValue(':sexe', $client->__get("sexe"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('ClientDAO: modification(): n est pas une instance de Client.');
         } 
     }
 }

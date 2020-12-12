@@ -138,7 +138,7 @@ class Client {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id' && is_int($valeur)) {
+        if ($propriete === 'id') {
             $this->idClient = $valeur;
         } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomClient = $valeur;
@@ -165,12 +165,12 @@ class Client {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomClient . "<br/>" .
-            "Prenom : " . $this->prenomClient . "<br/>" .
-            "Adresse : " . $this->adresseClient . "<br/>" .
-            "Email : " . $this->emailClient . "<br/>" . 
-            "Tel : " . $this->telClient . "<br/>" .
-            "Sexe : " . $this->sexeClient . "<br/>";
+        return "Nom : " . $this->nomClient . "\r\r" .
+            "Prenom : " . $this->prenomClient . "\r\r" .
+            "Adresse : " . $this->adresseClient . "\r\r" .
+            "Email : " . $this->emailClient . "\r\r" . 
+            "Tel : " . $this->telClient . "\r\r" .
+            "Sexe : " . $this->sexeClient . "\r\r";
 	}
 
 }

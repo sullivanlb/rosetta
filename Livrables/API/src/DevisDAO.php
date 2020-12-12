@@ -60,14 +60,29 @@ class DevisDAO {
     }
 
     /**
+     * Méthode d'accès à un unique devis unElement()
+     * 
+     * Retourne le devis dont l'identifiant est passé en paramètre
+     * 
+     * @param $id
+     */
+    public final function unElement($id) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $query = "SELECT * FROM Devis WHERE idDevis = '" . $id . "'";
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Devis');
+        return $results;
+    }
+
+    /**
      * Méthode d'insertion insertion()
      * 
      * Insère un nouveau devis dans la base de données
      * 
-     * @param $request
+     * @param $devis
      */
-    public final function insertion($request) {
-        if ($request instanceof Devis) {
+    public final function insertion($devis) {
+        if ($devis instanceof Devis) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
@@ -75,11 +90,17 @@ class DevisDAO {
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idDevis'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomDevis'], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $devis->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $devis->__get("nom"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
+
+            // Fixe l'id attribué à l'objet
+            $lastid = $dbc->lastInsertId();
+            $devis->__set("id", $lastid);
+        } else {
+            throw new Exception('DevisDAO: insertion(): n est pas une instance de Devis.');
         }
     }
 
@@ -88,12 +109,12 @@ class DevisDAO {
      * 
      * Supprime un devis de la base de données
      * 
-     * @param $request
+     * @param $devis
      */
-    public function suppression($request) { 
-        if ($request instanceof Devis) {
+    public function suppression($devis) { 
+        if ($devis instanceof Devis) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idDevis = $request['idDevis'];
+            $idDevis = $devis->__get("id");
 
             // Prépare la déclaration SQL
             $query = "DELETE FROM Devis WHERE idDevis = '" . $idDevis . "'";
@@ -101,6 +122,8 @@ class DevisDAO {
 
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('DevisDAO: suppression(): n est pas une instance de Devis.');
         }
     }
 
@@ -109,23 +132,24 @@ class DevisDAO {
      * 
      * Modifie les données d'un devis
      * 
-     * @param $request
+     * @param $devis
      */
-    public function modification($request) {
-        if ($request instanceof Devis) {
+    public function modification($devis) {
+        if ($devis instanceof Devis) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idDevis = $request['idDevis'];
+            $idDevis = $devis->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Devis SET idDevis=:id, nomDevis=:nom WHERE idDevis = '" . $idDevis . "'";
+            $query = "UPDATE Devis SET nomDevis=:nom WHERE idDevis = '" . $idDevis . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idDevis'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomDevis'], PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $devis->__get("nom"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('DevisDAO: modification(): n est pas une instance de Devis.');
         } 
     }
 }

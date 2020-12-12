@@ -78,6 +78,80 @@ class AppartientDAO {
     }
 
     /**
+     * Méthode d'accès à des liaisons précises unElement()
+     * 
+     * Retourne les liaisons dont un élément clé est passé en paramètre
+     * 
+     * @param $cle
+     * @param $initiales
+     */
+    public final function unElement($cle, $initiales) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        if (strtoupper($initiales) === 'CD') {
+            if ($cle instanceof Client) {
+                $query = "SELECT * FROM AppartientCD WHERE unClient = '" . $cle . "'";
+            } else if ($cle instanceof Devis) {
+                $query = "SELECT * FROM AppartientCD WHERE unDevis = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Client et != Devis.');
+            }
+        } else if (strtoupper($initiales) === 'DP') {
+            if ($cle instanceof Devis) {
+                $query = "SELECT * FROM AppartientDP WHERE unDevis = '" . $cle . "'";
+            } else if ($cle instanceof Pack) {
+                $query = "SELECT * FROM AppartientDP WHERE unPack = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Devis et != Pack.');
+            }
+        } else if (strtoupper($initiales) === 'DC') {
+            if ($cle instanceof Devis) {
+                $query = "SELECT * FROM AppartientDC WHERE unDevis = '" . $cle . "'";
+            } else if ($cle instanceof Composant) {
+                $query = "SELECT * FROM AppartientDC WHERE unComposant = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Devis et != Composant.');
+            }
+        } else if (strtoupper($initiales) === 'PC') {
+            if ($cle instanceof Pack) {
+                $query = "SELECT * FROM AppartientPC WHERE unPack = '" . $cle . "'";
+            } else if ($cle instanceof Composant) {
+                $query = "SELECT * FROM AppartientPC WHERE unComposant = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Pack et != Composant.');
+            }
+        } else if (strtoupper($initiales) === 'SP') {
+            if ($cle instanceof Scenario) {
+                $query = "SELECT * FROM AppartientSP WHERE unScenario = '" . $cle . "'";
+            } else if ($cle instanceof Pack) {
+                $query = "SELECT * FROM AppartientSP WHERE unPack = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Scenario et != Pack.');
+            }
+        } else if (strtoupper($initiales) === 'SC') {
+            if ($cle instanceof Scenario) {
+                $query = "SELECT * FROM AppartientSC WHERE unScenario = '" . $cle . "'";
+            } else if ($cle instanceof Composant) {
+                $query = "SELECT * FROM AppartientSC WHERE unComposant = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Scenario et != Composant.');
+            }
+        } else if (strtoupper($initiales) === 'SQ') {
+            if ($cle instanceof Scenario) {
+                $query = "SELECT * FROM AppartientSQ WHERE unScenario = '" . $cle . "'";
+            } else if ($cle instanceof Question) {
+                $query = "SELECT * FROM AppartientSQ WHERE uneQuestion = '" . $cle . "'";
+            } else {
+                throw new Exception('AppartientDAO: unElement(): parametre != Scenario et != Question.');
+            }
+        } else {
+            throw new Exception('AppartientDAO: tousLesElements(): initiales inconnues.');
+        }
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Client'); // fetchAll ? fetch ? .toArray() ? jspppp : tests.
+        return $results;
+    }
+
+    /**
      * Méthode d'insertion insertion()
      * 
      * Insère une nouvelle liaison dans la base de données

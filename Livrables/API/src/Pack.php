@@ -78,7 +78,7 @@ class Pack {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id' && is_int($valeur)) {
+        if ($propriete === 'id') {
             $this->idPack = $valeur;
         } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomPack = $valeur;
@@ -95,7 +95,7 @@ class Pack {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomPack . "<br/>";
+        return "Nom : " . $this->nomPack . "\r\n";
 	}
 
 }

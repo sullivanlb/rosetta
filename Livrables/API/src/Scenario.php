@@ -78,7 +78,7 @@ class Scenario {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id' && is_int($valeur)) {
+        if ($propriete === 'id') {
             $this->idScenario = $valeur;
         } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomScenario = $valeur;
@@ -95,7 +95,7 @@ class Scenario {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomScenario . "<br/>";
+        return "Nom : " . $this->nomScenario . "\r\n";
 	}
 
 }

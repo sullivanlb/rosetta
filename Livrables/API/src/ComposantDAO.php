@@ -60,14 +60,29 @@ class ComposantDAO {
     }
 
     /**
+     * Méthode d'accès à un unique composant unElement()
+     * 
+     * Retourne le composant dont l'identifiant est passé en paramètre
+     * 
+     * @param $id
+     */
+    public final function unElement($id) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $query = "SELECT * FROM Composant WHERE idComposant = '" . $id . "'";
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Composant');
+        return $results;
+    }
+
+    /**
      * Méthode d'insertion insertion()
      * 
      * Insère un nouveau composant dans la base de données
      * 
-     * @param $request
+     * @param $composant
      */
-    public final function insertion($request) {
-        if ($request instanceof Composant) {
+    public final function insertion($composant) {
+        if ($composant instanceof Composant) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
@@ -75,13 +90,19 @@ class ComposantDAO {
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idComposant'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomComposant'], PDO::PARAM_STR);
-            $stmt->bindValue(':unite', $request['uniteComposant'], PDO::PARAM_STR);
-            $stmt->bindValue(':prix', $request['prixComposant'], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $composant->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $composant->__get("nom"), PDO::PARAM_STR);
+            $stmt->bindValue(':unite', $composant->__get("unite"), PDO::PARAM_STR);
+            $stmt->bindValue(':prix', $composant->__get("prix"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
+
+            // Fixe l'id attribué à l'objet
+            $lastid = $dbc->lastInsertId();
+            $composant->__set("id", $lastid);
+        } else {
+            throw new Exception('ComposantDAO: insertion(): n est pas une instance de Composant.');
         }
     }
 
@@ -90,12 +111,12 @@ class ComposantDAO {
      * 
      * Supprime un composant de la base de données
      * 
-     * @param $request
+     * @param $composant
      */
-    public function suppression($request) { 
-        if ($request instanceof Composant) {
+    public function suppression($composant) { 
+        if ($composant instanceof Composant) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idComposant = $request['idComposant'];
+            $idComposant = $composant->__get("id");
 
             // Prépare la déclaration SQL
             $query = "DELETE FROM Composant WHERE idComposant = '" . $idComposant . "'";
@@ -103,6 +124,8 @@ class ComposantDAO {
 
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('ComposantDAO: suppression(): n est pas une instance de Composant.');
         }
     }
 
@@ -111,25 +134,26 @@ class ComposantDAO {
      * 
      * Modifie les données d'un composant
      * 
-     * @param $request
+     * @param $composant
      */
-    public function modification($request) {
-        if ($request instanceof Composant) {
+    public function modification($composant) {
+        if ($composant instanceof Composant) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idComposant = $request['idComposant'];
+            $idComposant = $composant->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Composant SET idComposant=:id, nomComposant=:nom, uniteComposant=:unite, prixComposant=:prix WHERE idComposant = '" . $idComposant . "'";
+            $query = "UPDATE Composant SET nomComposant=:nom, uniteComposant=:unite, prixComposant=:prix WHERE idComposant = '" . $idComposant . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idComposant'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomComposant'], PDO::PARAM_STR);
-            $stmt->bindValue(':unite', $request['uniteComposant'], PDO::PARAM_STR);
-            $stmt->bindValue(':prix', $request['prixComposant'], PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $composant->__get("nom"), PDO::PARAM_STR);
+            $stmt->bindValue(':unite', $composant->__get("unite"), PDO::PARAM_STR);
+            $stmt->bindValue(':prix', $composant->__get("prix"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('ComposantDAO: modification(): n est pas une instance de Composant.');
         } 
     }
 }

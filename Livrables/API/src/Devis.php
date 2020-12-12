@@ -78,7 +78,7 @@ class Devis {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id' && is_int($valeur)) {
+        if ($propriete === 'id') {
             $this->idDevis = $valeur;
         } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomDevis = $valeur;
@@ -95,7 +95,7 @@ class Devis {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomDevis . "<br/>";
+        return "Nom : " . $this->nomDevis . "\r\n";
 	}
 
 }

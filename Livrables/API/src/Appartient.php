@@ -84,13 +84,33 @@ class Appartient {
     }
 
     /**
+     * Méthode magique __get()
+     * 
+     * Retourne la valeur de la propriété de la liaison
+     * 
+     * @param string $propriete
+     * @return mixed
+     * @throws Exception
+     */
+    public function __get($propriete) {
+        if ($propriete === 'contenant') {
+            return $this->contenant;
+        } else if ($propriete === 'contenu') {
+            return $this->contenu;
+        } else if ($propriete === 'quantite') {
+            return $this->quantite;
+        } else {
+            throw new Exception('Devis: __get(string): propriété invalide.');
+        }
+    }
+
+    /**
      * Méthode magique __set()
      * 
      * Associe le conteneur avec le contenu
      * 
      * @param $conteneur
      * @param $contenu
-     * @throws Exception
      */
     public function __set($conteneur, $contenu) {
         $this->conteneur = $conteneur;

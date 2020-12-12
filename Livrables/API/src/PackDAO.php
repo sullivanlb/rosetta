@@ -60,14 +60,29 @@ class PackDAO {
     }
 
     /**
+     * Méthode d'accès à un unique pack unElement()
+     * 
+     * Retourne le pack dont l'identifiant est passé en paramètre
+     * 
+     * @param $id
+     */
+    public final function unElement($id) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $query = "SELECT * FROM Pack WHERE idPack = '" . $id . "'";
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Pack');
+        return $results;
+    }
+
+    /**
      * Méthode d'insertion insertion()
      * 
      * Insère un nouveau pack dans la base de données
      * 
-     * @param $request
+     * @param $pack
      */
-    public final function insertion($request) {
-        if ($request instanceof Pack) {
+    public final function insertion($pack) {
+        if ($pack instanceof Pack) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
@@ -75,11 +90,17 @@ class PackDAO {
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idPack'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomPack'], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $pack->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $pack->__get("nom"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
+
+            // Fixe l'id attribué à l'objet
+            $lastid = $dbc->lastInsertId();
+            $pack->__set("id", $lastid);
+        } else {
+            throw new Exception('PackDAO: insertion(): n est pas une instance de Pack.');
         }
     }
 
@@ -88,12 +109,12 @@ class PackDAO {
      * 
      * Supprime un pack de la base de données
      * 
-     * @param $request
+     * @param $pack
      */
-    public function suppression($request) { 
+    public function suppression($pack) { 
         if ($request instanceof Pack) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idPack = $request['idPack'];
+            $idPack = $pack->__get("id");
 
             // Prépare la déclaration SQL
             $query = "DELETE FROM Pack WHERE idPack = '" . $idPack . "'";
@@ -101,6 +122,8 @@ class PackDAO {
 
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('PackDAO: suppression(): n est pas une instance de Pack.');
         }
     }
 
@@ -109,23 +132,24 @@ class PackDAO {
      * 
      * Modifie les données d'un pack
      * 
-     * @param $request
+     * @param $pack
      */
-    public function modification($request) {
-        if ($request instanceof Pack) {
+    public function modification($pack) {
+        if ($pack instanceof Pack) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idPack = $request['idPack'];
+            $idPack = $pack->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Pack SET idPack=:id, nomPack=:nom WHERE idPack = '" . $idPack . "'";
+            $query = "UPDATE Pack SET nomPack=:nom WHERE idPack = '" . $idPack . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idPack'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomPack'], PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $pack->__get("nom"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('PackDAO: modification(): n est pas une instance de Pack.');
         } 
     }
 }

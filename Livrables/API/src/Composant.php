@@ -102,7 +102,7 @@ class Composant {
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'id' && is_int($valeur)) {
+        if ($propriete === 'id') {
             $this->idComposant = $valeur;
         } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomComposant = $valeur;
@@ -123,9 +123,9 @@ class Composant {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomComposant . "<br/>" .
-            "Unite : " . $this->uniteComposant . "<br/>" .
-            "Prix : " . $this->prixComposant . "<br/>";
+        return "Nom : " . $this->nomComposant . "\r\n" .
+            "Unite : " . $this->uniteComposant . "\r\n" .
+            "Prix : " . $this->prixComposant . "\r\n";
 	}
 
 }

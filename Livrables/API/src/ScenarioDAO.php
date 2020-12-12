@@ -60,14 +60,29 @@ class ScenarioDAO {
     }
 
     /**
+     * Méthode d'accès à un unique scenario unElement()
+     * 
+     * Retourne le scenario dont l'identifiant est passé en paramètre
+     * 
+     * @param $id
+     */
+    public final function unElement($id) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $query = "SELECT * FROM Scenario WHERE idScenario = '" . $id . "'";
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Scenario');
+        return $results;
+    }
+
+    /**
      * Méthode d'insertion insertion()
      * 
      * Insère un nouveau scenario dans la base de données
      * 
-     * @param $request
+     * @param $scenario
      */
-    public final function insertion($request) {
-        if ($request instanceof Scenario) {
+    public final function insertion($scenario) {
+        if ($scenario instanceof Scenario) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
@@ -75,11 +90,17 @@ class ScenarioDAO {
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idScenario'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomScenario'], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $scenario->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $scenario->__get("nom"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
+
+            // Fixe l'id attribué à l'objet
+            $lastid = $dbc->lastInsertId();
+            $scenario->__set("id", $lastid);
+        } else {
+            throw new Exception('ScenarioDAO: insertion(): n est pas une instance de Scenario.');
         }
     }
 
@@ -88,12 +109,12 @@ class ScenarioDAO {
      * 
      * Supprime un scenario de la base de données
      * 
-     * @param $request
+     * @param $scenario
      */
-    public function suppression($request) { 
-        if ($request instanceof Scenario) {
+    public function suppression($scenario) { 
+        if ($scenario instanceof Scenario) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idScenario = $request['idScenario'];
+            $idScenario = $scenario->__get("id");
 
             // Prépare la déclaration SQL
             $query = "DELETE FROM Scenario WHERE idScenario = '" . $idScenario . "'";
@@ -101,6 +122,8 @@ class ScenarioDAO {
 
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('ScenarioDAO: suppression(): n est pas une instance de Scenario.');
         }
     }
 
@@ -109,23 +132,24 @@ class ScenarioDAO {
      * 
      * Modifie les données d'un scenario
      * 
-     * @param $request
+     * @param $scenario
      */
-    public function modification($request) {
-        if ($request instanceof Scenario) {
+    public function modification($scenario) {
+        if ($scenario instanceof Scenario) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idScenario = $request['idScenario'];
+            $idScenario = $scenario->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Scenario SET idScenario=:id, nomScenario=:nom WHERE idScenario = '" . $idScenario . "'";
+            $query = "UPDATE Scenario SET nomScenario=:nom WHERE idScenario = '" . $idScenario . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idScenario'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomScenario'], PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $scenario->__get("nom"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('ScenarioDAO: modification(): n est pas une instance de Scenario.');
         } 
     }
 }

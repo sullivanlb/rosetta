@@ -60,14 +60,29 @@ class QuestionDAO {
     }
 
     /**
+     * Méthode d'accès à une unique question unElement()
+     * 
+     * Retourne la question dont l'identifiant est passé en paramètre
+     * 
+     * @param $id
+     */
+    public final function unElement($id) {
+        $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $query = "SELECT * FROM Question WHERE idQuestion = '" . $id . "'";
+        $stmt = $dbc->query($query);
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Question');
+        return $results;
+    }
+
+    /**
      * Méthode d'insertion insertion()
      * 
      * Insère une nouvelle question dans la base de données
      * 
-     * @param $request
+     * @param $question
      */
-    public final function insertion($request) {
-        if ($request instanceof Question) {
+    public final function insertion($question) {
+        if ($question instanceof Question) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
@@ -75,11 +90,17 @@ class QuestionDAO {
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idQuestion'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomQuestion'], PDO::PARAM_STR);
+            $stmt->bindValue(':id', $question->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $question->__get("nom"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
+
+            // Fixe l'id attribué à l'objet
+            $lastid = $dbc->lastInsertId();
+            $question->__set("id", $lastid);
+        } else {
+            throw new Exception('QuestionDAO: insertion(): n est pas une instance de Question.');
         }
     }
 
@@ -88,12 +109,12 @@ class QuestionDAO {
      * 
      * Supprime une question de la base de données
      * 
-     * @param $request
+     * @param $question
      */
-    public function suppression($request) { 
-        if ($request instanceof Question) {
+    public function suppression($question) { 
+        if ($question instanceof Question) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idQuestion = $request['idQuestion'];
+            $idQuestion = $question->__get("id");
 
             // Prépare la déclaration SQL
             $query = "DELETE FROM Question WHERE idQuestion = '" . $idQuestion . "'";
@@ -101,6 +122,8 @@ class QuestionDAO {
 
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('QuestionDAO: suppression(): n est pas une instance de Question.');
         }
     }
 
@@ -109,23 +132,24 @@ class QuestionDAO {
      * 
      * Modifie les données d'une question
      * 
-     * @param $request
+     * @param $question
      */
-    public function modification($request) {
-        if ($request instanceof Question) {
+    public function modification($question) {
+        if ($question instanceof Question) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $idQuestion = $request['idQuestion'];
+            $idQuestion = $question->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Question SET idQuestion=:id, nomQuestion=:nom WHERE idQuestion = '" . $idQuestion . "'";
+            $query = "UPDATE Question SET nomQuestion=:nom WHERE idQuestion = '" . $idQuestion . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
-            $stmt->bindValue(':id', $request['idQuestion'], PDO::PARAM_STR);
-            $stmt->bindValue(':nom', $request['nomQuestion'], PDO::PARAM_STR);
+            $stmt->bindValue(':nom', $question->__get("nom"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();
+        } else {
+            throw new Exception('QuestionDAO: modification(): n est pas une instance de Question.');
         } 
     }
 }
