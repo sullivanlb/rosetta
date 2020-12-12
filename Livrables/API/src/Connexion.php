@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Connexion est une classe de représentant la table Connexion de la base de données.
+ * 
+ * Connexion est une classe permettant de renseigner et obtenir les informations
+ * de la connexion (l'unique élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Connexion {
     
     /**
@@ -8,7 +18,7 @@ class Connexion {
      * @var string
      * @access private
      */
-    private int $login;
+    private $login;
 
     /**
      * Mot de passe de l'utilisateur
@@ -16,7 +26,7 @@ class Connexion {
      * @var string
      * @access private
      */
-    private string $mdp;
+    private $mdp;
 
     /**
      * Méthode magique __construct()
@@ -42,7 +52,7 @@ class Connexion {
     /**
      * Méthode magique __get()
      * 
-     * Retourne la valeur de la propriété du connexion
+     * Retourne la valeur de la propriété de la connexion
      * 
      * @param string $propriete
      * @return string
@@ -61,16 +71,16 @@ class Connexion {
     /**
      * Méthode magique __set()
      * 
-     * Fixe la valeur de la propriété appelée au connexion
+     * Fixe la valeur de la propriété appelée à la connexion
      * 
      * @param string $propriete
      * @param mixed $valeur
      * @throws Exception
      */
     public function __set($propriete, $valeur) {
-        if ($propriete === 'login') {
+        if ($propriete === 'login' && is_string($valeur)) {
             $this->login = $valeur;
-        } else if ($propriete === 'mdp') {
+        } else if ($propriete === 'mdp' && is_string($valeur)) {
             $this->mdp = $valeur;
         } else {
             throw new Exception('Connexion: __set(string, mixed): propriété ou valeur invalide.');

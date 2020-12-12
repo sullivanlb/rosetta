@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Devis est une classe de représentant la table Devis de la base de données.
+ * 
+ * Devis est une classe permettant de renseigner et obtenir les informations
+ * d'un devis (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Devis {
     
     /**
@@ -8,7 +18,7 @@ class Devis {
      * @var int
      * @access private
      */
-    private int $idDevis;
+    private $idDevis;
 
     /**
      * Nom du devis
@@ -16,7 +26,7 @@ class Devis {
      * @var string
      * @access private
      */
-    private string $nomDevis;
+    private $nomDevis;
 
     /**
      * Méthode magique __construct()
@@ -70,7 +80,7 @@ class Devis {
     public function __set($propriete, $valeur) {
         if ($propriete === 'id') {
             $this->idDevis = $valeur;
-        } else if ($propriete === 'nom') {
+        } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomDevis = $valeur;
         } else {
             throw new Exception('Devis: __set(string, mixed): propriété ou valeur invalide.');
@@ -85,7 +95,7 @@ class Devis {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomDevis . "<br/>";
+        return "Nom : " . $this->nomDevis . "\r\n";
 	}
 
 }

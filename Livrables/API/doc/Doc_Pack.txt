@@ -1,0 +1,78 @@
+Classe : Pack
+/** 
+ * Pack est une classe de représentant la table Pack de la base de données.
+ * 
+ * Pack est une classe permettant de renseigner et obtenir les informations
+ * d'un pack (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
+_____________________________________________________________________
+Attributs : 
+/**
+  * Identifiant du pack
+  * 
+  * @var int
+  * @access private
+  */
+idPack
+
+/**
+  * Nom du pack
+  * 
+  * @var string
+  * @access private
+  */
+nomPack
+_____________________________________________________________________
+Méthodes :
+/**
+  * Méthode magique __construct()
+  * 
+  * Permet de créer un nouveau pack
+  */
+public function __construct ()
+
+/**
+  * Méthode d'initialisation init()
+  * 
+  * Iniatilise les données du pack
+  * 
+  * @param int $id
+  * @param string $nom
+  */
+public function init ($id, $nom)
+
+/**
+  * Méthode magique __get()
+  * 
+  * Retourne la valeur de la propriété du pack
+  * 
+  * @param string $propriete
+  * @return int|string
+  * @throws Exception
+  */
+public function __get($propriete)
+
+/**
+  * Méthode magique __set()
+  * 
+  * Fixe la valeur de la propriété appelée au pack
+  * 
+  * @param string $propriete
+  * @param mixed $valeur
+  * @throws Exception
+  */
+public function __set($propriete, $valeur)
+
+/**
+  * Méthode magique __toString()
+  * 
+  * Retourne le nom du pack
+  * 
+  * @return string
+  */
+public function __toString()
+_____________________________________________________________________

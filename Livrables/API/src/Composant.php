@@ -1,5 +1,15 @@
 <?php
 
+/** 
+ * Composant est une classe de représentant la table Composant de la base de données.
+ * 
+ * Composant est une classe permettant de renseigner et obtenir les informations
+ * d'un composant (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
 class Composant {
     
     /**
@@ -8,7 +18,7 @@ class Composant {
      * @var int
      * @access private
      */
-    private int $idComposant;
+    private $idComposant;
 
     /**
      * Nom du composant
@@ -16,7 +26,7 @@ class Composant {
      * @var string
      * @access private
      */
-    private string $nomComposant;
+    private $nomComposant;
     
     /**
      * Unité du composant
@@ -24,7 +34,7 @@ class Composant {
      * @var string
      * @access private
      */
-    private string $uniteComposant;
+    private $uniteComposant;
     
     /**
      * Prix du composant
@@ -32,7 +42,7 @@ class Composant {
      * @var float
      * @access private
      */
-    private float $prixComposant;
+    private $prixComposant;
 
     /**
      * Méthode magique __construct()
@@ -94,11 +104,11 @@ class Composant {
     public function __set($propriete, $valeur) {
         if ($propriete === 'id') {
             $this->idComposant = $valeur;
-        } else if ($propriete === 'nom') {
+        } else if ($propriete === 'nom' && is_string($valeur)) {
             $this->nomComposant = $valeur;
-        } else if ($propriete === 'unite') {
+        } else if ($propriete === 'unite' && is_string($valeur)) {
             $this->uniteComposant = $valeur;
-        } else if ($propriete === 'prix') {
+        } else if ($propriete === 'prix' && is_float($valeur)) {
             $this->prixComposant = $valeur;
         } else {
             throw new Exception('Composant: __set(string, mixed): propriété ou valeur invalide.');
@@ -113,9 +123,9 @@ class Composant {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomComposant . "<br/>" .
-            "Unite : " . $this->uniteComposant . "<br/>" .
-            "Prix : " . $this->prixComposant . "<br/>";
+        return "Nom : " . $this->nomComposant . "\r\n" .
+            "Unite : " . $this->uniteComposant . "\r\n" .
+            "Prix : " . $this->prixComposant . "\r\n";
 	}
 
 }

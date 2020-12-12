@@ -1,0 +1,83 @@
+Classe : ComposantDAO 
+/** 
+ * ComposantDAO est une classe de gestion de Composant.
+ * 
+ * ComposantDAO est une classe permettant de :
+ * - Retourner tous les composants,
+ * - De retourner un composant suivant son identifiant,
+ * - D'insérer un nouveau composant,
+ * - De supprimer un composant,
+ * - De modifier les données d'un composant.
+ * Une seule instance de cette classe est possible.
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
+_____________________________________________________________________
+Attributs : 
+/**
+  * Objet d'accès aux données
+  * 
+  * @access private
+  */
+dao
+_____________________________________________________________________
+Méthodes :
+/**
+  * Méthode magique __construct()
+  * 
+  * Permet de créer le ComposantDAO
+  */
+public function __construct ()
+
+/**
+  * Méthode d'accès à l'unique instance getInstance()
+  * 
+  * Crée une instance si elle n'existe déjà pas, et retourne celle-ci
+  */
+public final static function getInstance()
+
+/**
+  * Méthode d'accès à l'ensemble des composants tousLesElements()
+  * 
+  * Retourne tous les composants de la base de données
+  */
+public final function tousLesElements()
+
+/**
+  * Méthode d'accès à un unique composant unElement()
+  * 
+  * Retourne le composant dont l'identifiant est passé en paramètre
+  * 
+  * @param $id
+  */
+public final function unElement($id)
+
+/**
+  * Méthode d'insertion insertion()
+  * 
+  * Insère un nouveau composant dans la base de données
+  * 
+  * @param $composant
+  */
+public final function insertion($composant)
+
+/**
+  * Méthode de suppression suppression()
+  * 
+  * Supprime un composant de la base de données
+  * 
+  * @param $composant
+  */
+public function suppression($composant)
+
+/**
+  * Méthode de modification suppression()
+  * 
+  * Modifie les données d'un composant
+  * 
+  * @param $composant
+  */
+public function modification($composant)
+_____________________________________________________________________
