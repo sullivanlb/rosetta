@@ -73,7 +73,7 @@ class AppartientDAO {
             throw new Exception('AppartientDAO: tousLesElements(): initiales inconnues.');
         }
         $stmt = $dbc->query($query);
-        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Appartient');
+        $results = $stmt->fetch(PDO::FETCH_CLASS, 'Appartient');
         return $results;
     }
 
@@ -166,12 +166,14 @@ class AppartientDAO {
             // Prépare la déclaration SQL
             if (strtoupper($initiales) === 'CD') {
                 $query = "INSERT INTO AppartientCD(unClient, unDevis) VALUES (:unClient, :unDevis)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unClient', $appartient->__get("contenant"), PDO::PARAM_STR);
                 $stmt->bindValue(':unDevis', $appartient->__get("contenu"), PDO::PARAM_STR);
             } else if (strtoupper($initiales) === 'DP') {
                 $query = "INSERT INTO AppartientDP(unDevis, unPack, quantite) VALUES (:unDevis, :unPack, :quantite)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unDevis', $appartient->__get("contenant"), PDO::PARAM_STR);
@@ -179,6 +181,7 @@ class AppartientDAO {
                 $stmt->bindValue(':quantite', $appartient->__get("quantite"), PDO::PARAM_STR);
             } else if (strtoupper($initiales) === 'DC') {
                 $query = "INSERT INTO AppartientDC(unDevis, unComposant, quantite) VALUES (:unDevis, :unComposant, :quantite)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unDevis', $appartient->__get("contenant"), PDO::PARAM_STR);
@@ -186,6 +189,7 @@ class AppartientDAO {
                 $stmt->bindValue(':quantite', $appartient->__get("quantite"), PDO::PARAM_STR);
             } else if (strtoupper($initiales) === 'PC') {
                 $query = "INSERT INTO AppartientDP(unPack, unComposant, quantite) VALUES (:unPack, :unComposant, :quantite)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unPack', $appartient->__get("contenant"), PDO::PARAM_STR);
@@ -193,6 +197,7 @@ class AppartientDAO {
                 $stmt->bindValue(':quantite', $appartient->__get("quantite"), PDO::PARAM_STR);
             } else if (strtoupper($initiales) === 'SP') {
                 $query = "INSERT INTO AppartientSP(unScenario, unPack, quantite) VALUES (:unScenario, :unPack, :quantite)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unScenario', $appartient->__get("contenant"), PDO::PARAM_STR);
@@ -200,6 +205,7 @@ class AppartientDAO {
                 $stmt->bindValue(':quantite', $appartient->__get("quantite"), PDO::PARAM_STR);
             } else if (strtoupper($initiales) === 'SC') {
                 $query = "INSERT INTO AppartientDP(unScenario, unComposant, quantite) VALUES (:unScenario, :unComposant, :quantite)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unScenario', $appartient->__get("contenant"), PDO::PARAM_STR);
@@ -207,6 +213,7 @@ class AppartientDAO {
                 $stmt->bindValue(':quantite', $appartient->__get("quantite"), PDO::PARAM_STR);
             } else if (strtoupper($initiales) === 'SQ') {
                 $query = "INSERT INTO AppartientSQ(unScenario, uneQuestion) VALUES (:unScenario, :uneQuestion)";
+                $stmt = $dbc->prepare($query);
 
                 // Lie les paramètres
                 $stmt->bindValue(':unScenario', $appartient->__get("contenant"), PDO::PARAM_STR);
@@ -214,7 +221,6 @@ class AppartientDAO {
             } else {
                 throw new Exception('AppartientDAO: insertion(): initiales inconnues.');
             }
-            $stmt = $dbc->prepare($query);
             
             // Exécute la déclaration SQL
             $stmt->execute();
@@ -231,7 +237,7 @@ class AppartientDAO {
      * @param $appartient
      * @param $initiales
      */
-    public function suppression($appartient, $initiles) { 
+    public function suppression($appartient, $initiales) { 
         if ($appartient instanceof Appartient) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $contenant = $appartient->__get("contenant");
@@ -282,15 +288,15 @@ class AppartientDAO {
 
             // Prépare la déclaration SQL
             if (strtoupper($initiales) === 'DP') {
-                $query = "UPDATE AppartientDP SET quantite = '" . $quantite . "' WHERE unClient = '" . $contenant . "' AND unDevis = '" . $contenu . "'";
+                $query = "UPDATE AppartientDP SET quantite = '" . $quantite . "' WHERE unDevis = '" . $contenant . "' AND unPack = '" . $contenu . "'";
             } else if (strtoupper($initiales) === 'DC') {
-                $query = "UPDATE AppartientDC SET quantite = '" . $quantite . "' WHERE unClient = '" . $contenant . "' AND unDevis = '" . $contenu . "'";
+                $query = "UPDATE AppartientDC SET quantite = '" . $quantite . "' WHERE unDevis = '" . $contenant . "' AND unComposant = '" . $contenu . "'";
             } else if (strtoupper($initiales) === 'PC') {
-                $query = "UPDATE AppartientPC SET quantite = '" . $quantite . "' WHERE unClient = '" . $contenant . "' AND unDevis = '" . $contenu . "'";
+                $query = "UPDATE AppartientPC SET quantite = '" . $quantite . "' WHERE unPack = '" . $contenant . "' AND unComposant = '" . $contenu . "'";
             } else if (strtoupper($initiales) === 'SP') {
-                $query = "UPDATE AppartientSP SET quantite = '" . $quantite . "' WHERE unClient = '" . $contenant . "' AND unDevis = '" . $contenu . "'";
+                $query = "UPDATE AppartientSP SET quantite = '" . $quantite . "' WHERE unScenario = '" . $contenant . "' AND unPack = '" . $contenu . "'";
             } else if (strtoupper($initiales) === 'SC') {
-                $query = "UPDATE AppartientSC SET quantite = '" . $quantite . "' WHERE unClient = '" . $contenant . "' AND unDevis = '" . $contenu . "'";
+                $query = "UPDATE AppartientSC SET quantite = '" . $quantite . "' WHERE unScenario = '" . $contenant . "' AND unComposant = '" . $contenu . "'";
             } else {
                 throw new Exception('AppartientDAO: modification(): initiales inconnues.');
             }

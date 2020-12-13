@@ -144,11 +144,11 @@ class Client {
             $this->nomClient = $valeur;
         } else if ($propriete === 'prenom' && is_string($valeur)) {
             $this->prenomClient = $valeur;
-        } else if ($propriete === 'adresse' && is_string($valeur)) {
+        } else if ($propriete === 'adresse' && (is_string($valeur) || is_null($valeur))) {
             $this->adresseClient = $valeur;
         } else if ($propriete === 'email' && is_string($valeur)) {
             $this->emailClient = $valeur;
-        } else if ($propriete === 'tel' && is_int($valeur)) {
+        } else if ($propriete === 'tel' && (is_int($valeur) || is_null($valeur))) {
             $this->telClient = $valeur;
         } else if ($propriete === 'sexe' && is_string($valeur)) {
             $this->sexeClient = $valeur;
@@ -165,12 +165,13 @@ class Client {
      * @return string
      */
 	public function __toString() {
-        return "Nom : " . $this->nomClient . "\r\r" .
-            "Prenom : " . $this->prenomClient . "\r\r" .
-            "Adresse : " . $this->adresseClient . "\r\r" .
-            "Email : " . $this->emailClient . "\r\r" . 
-            "Tel : " . $this->telClient . "\r\r" .
-            "Sexe : " . $this->sexeClient . "\r\r";
+        $str = "Id : " . $this->idClient . " | Nom : " . $this->nomClient . "\r\n" .
+                "Prenom : " . $this->prenomClient . " | Email : " . $this->emailClient . "\r\n" .
+                "Sexe : " . $this->sexeClient . "\r\n";
+        
+        if(!is_null($this->telClient)) $str = $str . "Tel : " . $this->telClient . "\r\n";
+        if(!is_null($this->adresseClient)) $str = $str . "Adresse : " . $this->adresseClient . "\r\n";
+        return $str;
 	}
 
 }

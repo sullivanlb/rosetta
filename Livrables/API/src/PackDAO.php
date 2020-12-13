@@ -112,7 +112,7 @@ class PackDAO {
      * @param $pack
      */
     public function suppression($pack) { 
-        if ($request instanceof Pack) {
+        if ($pack instanceof Pack) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
             $idPack = $pack->__get("id");
 

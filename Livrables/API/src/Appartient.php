@@ -52,32 +52,32 @@ class Appartient {
     /**
      * Méthode d'initialisation init()
      * 
-     * Iniatilise l'association du conteneur avec le contenu et sa quantite si nécessaire
+     * Iniatilise l'association du contenant avec le contenu et sa quantite si nécessaire
      * 
-     * @param $conteneur
+     * @param $contenant
      * @param $contenu
      * @param $quantite
      */
-	public function init ($conteneur, $contenu, $quantite) {
-        if ($conteneur instanceof Client && $contenu instanceof Devis) {
-            $this->__set($conteneur, $contenu);
-        } else if ($propriete instanceof Devis && $contenu instanceof Pack) {
-            $this->__set($conteneur, $conteneur);
+	public function init ($contenant, $contenu, $quantite) {
+        if ($contenant instanceof Client && $contenu instanceof Devis) {
+            $this->__set($contenant, $contenu);
+        } else if ($contenant instanceof Devis && $contenu instanceof Pack) {
+            $this->__set($contenant, $contenu);
             $this->setQuantite($quantite);
-        } else if ($propriete instanceof Devis && $contenu instanceof Composant) {
-            $this->__set($conteneur, $contenu);
+        } else if ($contenant instanceof Devis && $contenu instanceof Composant) {
+            $this->__set($contenant, $contenu);
             $this->setQuantite($quantite);
-        } else if ($propriete instanceof Pack && $contenu instanceof Composant) {
-            $this->__set($conteneur, $contenu);
+        } else if ($contenant instanceof Pack && $contenu instanceof Composant) {
+            $this->__set($contenant, $contenu);
             $this->setQuantite($quantite);
-        } else if ($propriete instanceof Scenario && $contenu instanceof Pack) {
-            $this->__set($conteneur, $contenu);
+        } else if ($contenant instanceof Scenario && $contenu instanceof Pack) {
+            $this->__set($contenant, $contenu);
             $this->setQuantite($quantite);
-        } else if ($propriete instanceof Scenario && $contenu instanceof Composant) {
-            $this->__set($conteneur, $contenu);
+        } else if ($contenant instanceof Scenario && $contenu instanceof Composant) {
+            $this->__set($contenant, $contenu);
             $this->setQuantite($quantite);
-        } else if ($propriete instanceof Scenario && $contenu instanceof Question) {
-            $this->__set($conteneur, $contenu);
+        } else if ($contenant instanceof Scenario && $contenu instanceof Question) {
+            $this->__set($contenant, $contenu);
         } else {
             throw new Exception('Appartient: init(): propriété ou valeur invalide.');
         }
@@ -107,13 +107,13 @@ class Appartient {
     /**
      * Méthode magique __set()
      * 
-     * Associe le conteneur avec le contenu
+     * Associe le contenant avec le contenu
      * 
-     * @param $conteneur
+     * @param $contenant
      * @param $contenu
      */
-    public function __set($conteneur, $contenu) {
-        $this->conteneur = $conteneur;
+    public function __set($contenant, $contenu) {
+        $this->contenant = $contenant;
         $this->contenu = $contenu;
     }
 
@@ -127,6 +127,23 @@ class Appartient {
     public function setQuantite($quantite) {
         $this->quantite = $quantite;
     }
+
+    /**
+     * Méthode magique __toString()
+     * 
+     * Retourne un affichage des données de la liaison
+     * 
+     * @return string
+     */
+	public function __toString() {
+        $str = "Contenant : " . $this->contenant . "\r\n" .
+               "Contenu : " . $this->contenu . "\r\n";
+        
+        if(!is_null($this->quantite)){
+            $str = $str . "Quantite : " . $this->quantite . "\r\n";
+        }
+        return $str;
+	}
 
 }
 
