@@ -14,12 +14,24 @@
 	include("../src/ScenarioDAO.php");
 	include("../src/Client.php");
 	include("../src/ClientDAO.php");
-	include("../src/Appartient.php");
-	include("../src/AppartientDAO.php");
+	include("../src/AppartientCD.php");
+	include("../src/AppartientCDDAO.php");
+	include("../src/AppartientDC.php");
+	include("../src/AppartientDCDAO.php");
+	include("../src/AppartientDP.php");
+	include("../src/AppartientDPDAO.php");
+	include("../src/AppartientPC.php");
+	include("../src/AppartientPCDAO.php");
+	include("../src/AppartientSC.php");
+	include("../src/AppartientSCDAO.php");
+	include("../src/AppartientSP.php");
+	include("../src/AppartientSPDAO.php");
+	include("../src/AppartientSQ.php");
+	include("../src/AppartientSQDAO.php");
 	
 	$connexion = new BDD_Externe_Connexion();
 	echo "Connexion réussie\r\n";
-/*
+
 	// Question
 	echo "\r\n======TEST QUESTION======";
 
@@ -272,74 +284,321 @@
 	}
 
 	echo "\r\n======FIN TEST CLIENT======\r\n";
-*/
 
-	// Appartient
-	echo "\r\n======TEST APPARTIENT======\r\n";
+	// AppartientCD
+	echo "\r\n======TEST APPARTIENTCD======\r\n";
 	$client1 = new Client();
-	$clientDAO = new ClientDAO();
 	$client1->init(NULL, "nom1", "prenom1", "adresse1", "email1", NULL, "H");
+	$clientDAO = new ClientDAO();
 
 	$devis1 = new Devis();
-	$devisDAO = new DevisDAO();
 	$devis1->init(NULL, "devis1");
+	$devisDAO = new DevisDAO();
 
-	$pack1 = new Pack();
-	$packDAO = new PackDAO();
-	$pack1->init(NULL, "pack1");
-
-	$appartientDAO = new AppartientDAO();
-	$appartient1 = new Appartient();
+	$appartient1 = new AppartientCD();
 	$appartient1->init($client1, $devis1, null);
-	$appartient2 = new Appartient();
-	$appartient2->init($devis1, $pack1, 12);
+	$appartientCDDAO = new AppartientCDDAO();
 	
-	#TEST 1 : insertion des 2 liaisons Appartient
-	echo "\r\nInsertion des 2 liaisons ainsi que leur contenant et contenu\r\n";
+	#TEST 1 : insertion des 2 liaisons AppartientCD
+	echo "\r\nInsertion des 2 liaisons ainsi que le client et son devis\r\n";
 
 	$clientDAO->insertion($client1);
 	$devisDAO->insertion($devis1);
-	$packDAO->insertion($pack1);
-	$appartientDAO->insertion($appartient1, "CD");
-	$appartientDAO->insertion($appartient2, "DP");
+	$appartientCDDAO->insertion($appartient1);
 
-	echo "\r\nAffichage des liaisons avant modif\r\n";
-	foreach ($appartientDAO->tousLesElements("CD") as $str){
+	echo "\r\nAffichage des liaisons insérées\r\n";
+	foreach ($appartientCDDAO->tousLesElements() as $str){
 		echo $str;
 	}
-	foreach ($appartientDAO->tousLesElements("DP") as $str){
-		echo $str;
-	}
-
-	/*
-	#TEST2 : modification des liaisons
-	echo "\r\nModification de la quantite de appartient2\r\n";
-	$appartient2->setQuantite(200);
-	$appartientDAO->modification($appartient2, "DP");
-
-	echo "\r\nAffichage des questions après modif\r\n";	
-	foreach ($appartientDAO->tousLesElements("CD") as $str){
-		echo $str;
-	}
-	foreach ($appartientDAO->tousLesElements("DP") as $str){
-		echo $str;
-	}
-    */
-	#TEST3 : suppression des liaisons
-	$appartientDAO->suppression($appartient1, "CD");
-	$appartientDAO->suppression($appartient2, "DP");
+    
+	#TEST2 : suppression des liaisons
+	$appartientCDDAO->suppression($appartient1);
 	$clientDAO->suppression($client1);
 	$devisDAO->suppression($devis1);
+
+	echo "\r\nContenu après suppression\r\n";	
+	foreach ($appartientCDDAO->tousLesElements() as $str){
+		echo $str;
+	}
+	
+	echo "\r\n======FIN TEST APPARTIENTCD======\r\n";
+
+	// AppartientDC
+	echo "\r\n======TEST APPARTIENTDC======\r\n";
+	$devis1 = new Devis();
+	$devis1->init(NULL, "devis1");
+	$devisDAO = new DevisDAO();
+
+	$composant1 = new Composant();
+	$composant1->init(NULL, "composant1", "metre1", 19.99);
+	$composantDAO = new ComposantDAO();
+
+	$appartient1 = new AppartientDC();
+	$appartient1->init($devis1, $composant1, 5);
+	$appartientDCDAO = new AppartientDCDAO();
+	
+	#TEST 1 : insertion des 2 liaisons AppartientDC
+	echo "\r\nInsertion des 2 liaisons ainsi que le devis et ses composants\r\n";
+
+	$devisDAO->insertion($devis1);
+	$composantDAO->insertion($composant1);
+	$appartientDCDAO->insertion($appartient1);
+
+	echo "\r\nAffichage des liaisons avant modif\r\n";
+	foreach ($appartientDCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+
+	
+	#TEST2 : modification des liaisons
+	echo "\r\nModification de la quantite de appartient1\r\n";
+	$appartient1->setQuantite(200);
+	$appartientDCDAO->modification($appartient1);
+
+	echo "\r\nAffichage des liaisons après modif\r\n";	
+	foreach ($appartientDCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+    
+	#TEST3 : suppression des liaisons
+	$appartientDCDAO->suppression($appartient1);
+	$composantDAO->suppression($composant1);
+	$devisDAO->suppression($devis1);
+
+	echo "\r\nContenu après suppression\r\n";	
+	foreach ($appartientDCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+	
+	echo "\r\n======FIN TEST APPARTIENTDC======\r\n";
+
+	// AppartientDP
+	echo "\r\n======TEST APPARTIENTDP======\r\n";
+	$devis1 = new Devis();
+	$devis1->init(NULL, "devis1");
+	$devisDAO = new DevisDAO();
+
+	$pack1 = new Pack();
+	$pack1->init(NULL, "pack1");
+	$packDAO = new PackDAO();
+
+	$appartient1 = new AppartientDP();
+	$appartient1->init($devis1, $pack1, 15);
+	$appartientDPDAO = new AppartientDPDAO();
+	
+	#TEST 1 : insertion des 2 liaisons AppartientDP
+	echo "\r\nInsertion des 2 liaisons ainsi que le devis et ses packs\r\n";
+
+	$devisDAO->insertion($devis1);
+	$packDAO->insertion($pack1);
+	$appartientDPDAO->insertion($appartient1);
+
+	echo "\r\nAffichage des liaisons avant modif\r\n";
+	foreach ($appartientDPDAO->tousLesElements() as $str){
+		echo $str;
+	}
+
+	#TEST2 : modification des liaisons
+	echo "\r\nModification de la quantite de appartient1\r\n";
+	$appartient1->setQuantite(45);
+	$appartientDPDAO->modification($appartient1);
+
+	echo "\r\nAffichage des liaisons après modif\r\n";	
+	foreach ($appartientDPDAO->tousLesElements() as $str){
+		echo $str;
+	}
+    
+	#TEST3 : suppression des liaisons
+	$appartientDPDAO->suppression($appartient1);
+	$packDAO->suppression($pack1);
+	$devisDAO->suppression($devis1);
+
+	echo "\r\nContenu après suppression\r\n";	
+	foreach ($appartientDPDAO->tousLesElements() as $str){
+		echo $str;
+	}
+	
+	echo "\r\n======FIN TEST APPARTIENTDC======\r\n";
+	
+	// AppartientPC
+	echo "\r\n======TEST APPARTIENTPC======\r\n";
+	$pack1 = new Pack();
+	$pack1->init(NULL, "pack1");
+	$packDAO = new PackDAO();
+
+	$composant1 = new Composant();
+	$composant1->init(NULL, "composant1", "metre1", 19.99);
+	$composantDAO = new ComposantDAO();
+
+	$appartient1 = new AppartientPC();
+	$appartient1->init($pack1, $composant1, 3);
+	$appartientPCDAO = new AppartientPCDAO();
+	
+	#TEST 1 : insertion des 2 liaisons appartientPC
+	echo "\r\nInsertion des 2 liaisons ainsi que le pack et ses composants\r\n";
+
+	$packDAO->insertion($pack1);
+	$composantDAO->insertion($composant1);
+	$appartientPCDAO->insertion($appartient1);
+
+	echo "\r\nAffichage des liaisons avant modif\r\n";
+	foreach ($appartientPCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+
+	#TEST2 : modification des liaisons
+	echo "\r\nModification de la quantite de appartient1\r\n";
+	$appartient1->setQuantite(30);
+	$appartientPCDAO->modification($appartient1);
+
+	echo "\r\nAffichage des liaisons après modif\r\n";	
+	foreach ($appartientPCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+    
+	#TEST3 : suppression des liaisons
+	$appartientPCDAO->suppression($appartient1);
+	$packDAO->suppression($pack1);
+	$composantDAO->suppression($composant1);
+
+	echo "\r\nContenu après suppression\r\n";	
+	foreach ($appartientPCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+	
+	echo "\r\n======FIN TEST APPARTIENTPC======\r\n";
+
+	// AppartientSC
+	echo "\r\n======TEST APPARTIENTSC======\r\n";
+	$scenario1 = new Scenario();
+	$scenario1->init(NULL, "scenario1");
+	$scenarioDAO = new ScenarioDAO();
+
+	$composant1 = new Composant();
+	$composant1->init(NULL, "composant1", "metre1", 0.99);
+	$composantDAO = new ComposantDAO();
+
+	$appartient1 = new AppartientSC();
+	$appartient1->init($scenario1, $composant1, 3);
+	$appartientSCDAO = new AppartientSCDAO();
+	
+	#TEST 1 : insertion des 2 liaisons appartientSC
+	echo "\r\nInsertion des 2 liaisons ainsi que le scénario et ses composants\r\n";
+
+	$scenarioDAO->insertion($scenario1);
+	$composantDAO->insertion($composant1);
+	$appartientSCDAO->insertion($appartient1);
+
+	echo "\r\nAffichage des liaisons avant modif\r\n";
+	foreach ($appartientSCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+
+	#TEST2 : modification des liaisons
+	echo "\r\nModification de la quantite de appartient1\r\n";
+	$appartient1->setQuantite(14);
+	$appartientSCDAO->modification($appartient1);
+
+	echo "\r\nAffichage des liaisons après modif\r\n";	
+	foreach ($appartientSCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+    
+	#TEST3 : suppression des liaisons
+	$appartientSCDAO->suppression($appartient1);
+	$scenarioDAO->suppression($scenario1);
+	$composantDAO->suppression($composant1);
+
+	echo "\r\nContenu après suppression\r\n";	
+	foreach ($appartientSCDAO->tousLesElements() as $str){
+		echo $str;
+	}
+	
+	echo "\r\n======FIN TEST APPARTIENTSC======\r\n";
+
+	// AppartientSP
+	echo "\r\n======TEST APPARTIENTSP======\r\n";
+	$scenario1 = new Scenario();
+	$scenario1->init(NULL, "scenario1");
+	$scenarioDAO = new ScenarioDAO();
+
+	$pack1 = new Pack();
+	$pack1->init(NULL, "pack1");
+	$packDAO = new PackDAO();
+
+	$appartient1 = new AppartientSP();
+	$appartient1->init($scenario1, $pack1, 100);
+	$appartientSPDAO = new AppartientSPDAO();
+	
+	#TEST 1 : insertion des 2 liaisons appartientSP
+	echo "\r\nInsertion des 2 liaisons ainsi que le scénario et ses packs\r\n";
+
+	$scenarioDAO->insertion($scenario1);
+	$packDAO->insertion($pack1);
+	$appartientSPDAO->insertion($appartient1);
+
+	echo "\r\nAffichage des liaisons avant modif\r\n";
+	foreach ($appartientSPDAO->tousLesElements() as $str){
+		echo $str;
+	}
+
+	#TEST2 : modification des liaisons
+	echo "\r\nModification de la quantite de appartient1\r\n";
+	$appartient1->setQuantite(7);
+	$appartientSPDAO->modification($appartient1);
+
+	echo "\r\nAffichage des liaisons après modif\r\n";	
+	foreach ($appartientSPDAO->tousLesElements() as $str){
+		echo $str;
+	}
+    
+	#TEST3 : suppression des liaisons
+	$appartientSPDAO->suppression($appartient1);
+	$scenarioDAO->suppression($scenario1);
 	$packDAO->suppression($pack1);
 
 	echo "\r\nContenu après suppression\r\n";	
-	foreach ($appartientDAO->tousLesElements("CD") as $str){
-		echo $str;
-	}
-	foreach ($appartientDAO->tousLesElements("DP") as $str){
+	foreach ($appartientSPDAO->tousLesElements() as $str){
 		echo $str;
 	}
 	
-	echo "\r\n======FIN TEST APPARTIENT======\r\n";
+	echo "\r\n======FIN TEST APPARTIENTPC======\r\n";
+
+	// AppartientSQ
+	echo "\r\n======TEST APPARTIENTSQ======\r\n";
+	$scenario1 = new Scenario();
+	$scenario1->init(NULL, "scenario1");
+	$scenarioDAO = new ScenarioDAO();
+
+	$question1 = new Question();
+	$question1->init(NULL, "question1");
+	$questionDAO = new QuestionDAO();
+
+	$appartient1 = new AppartientSQ();
+	$appartient1->init($scenario1, $question1, null);
+	$appartientSQDAO = new AppartientSQDAO();
 	
+	#TEST 1 : insertion des 2 liaisons AppartientSQ
+	echo "\r\nInsertion des 2 liaisons ainsi que le scénario et ses questions\r\n";
+
+	$scenarioDAO->insertion($scenario1);
+	$questionDAO->insertion($question1);
+	$appartientSQDAO->insertion($appartient1);
+
+	echo "\r\nAffichage des liaisons insérées\r\n";
+	foreach ($appartientSQDAO->tousLesElements() as $str){
+		echo $str;
+	}
+    
+	#TEST2 : suppression des liaisons
+	$appartientSQDAO->suppression($appartient1);
+	$questionDAO->suppression($question1);
+	$scenarioDAO->suppression($scenario1);
+
+	echo "Contenu après suppression\r\n";	
+	foreach ($appartientSQDAO->tousLesElements() as $str){
+		echo $str;
+	}
+	
+	echo "\r\n======FIN TEST APPARTIENTSQ======\r\n";
 ?>

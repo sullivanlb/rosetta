@@ -86,7 +86,7 @@ class Composant {
         } else if ($propriete === 'unite') {
             return $this->uniteComposant;
         } else if ($propriete === 'prix') {
-            return $this->prixClient;
+            return $this->prixComposant;
         } else {
             throw new Exception('Composant: __get(int|string|float): propriété invalide.');
         }

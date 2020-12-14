@@ -165,8 +165,8 @@ class Client {
      * @return string
      */
 	public function __toString() {
-        $str = "Id : " . $this->idClient . " | Nom : " . $this->nomClient . "\r\n" .
-                "Prenom : " . $this->prenomClient . " | Email : " . $this->emailClient . "\r\n" .
+        $str = "Id : " . $this->idClient . "\r\nNom : " . $this->nomClient . "\r\n" .
+                "Prenom : " . $this->prenomClient . "\r\nEmail : " . $this->emailClient . "\r\n" .
                 "Sexe : " . $this->sexeClient . "\r\n";
         
         if(!is_null($this->telClient)) $str = $str . "Tel : " . $this->telClient . "\r\n";
