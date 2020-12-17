@@ -1,0 +1,95 @@
+Classe : AppartientPC 
+/** 
+ * AppartientPC est une classe représentant la table AppartientPC de la base de données.
+ * 
+ * AppartientPC est une classe permettant de renseigner et obtenir les informations
+ * d'une liaison.
+ * 
+ * @author Leboeuf Sullivan
+ * @version $Revision: 1.0 $
+ * @access public
+ */
+_____________________________________________________________________
+Attributs : 
+/**
+  * Premiere cle
+  * 
+  * @var Pack
+  * @access private
+  */
+unPack
+
+/**
+  * Seconde cle
+  * 
+  * @var Composant
+  * @access private
+  */
+unComposant
+
+/**
+  * La quantite
+  * 
+  * @var int
+  * @access private
+  */
+quantite
+_____________________________________________________________________
+Méthodes :
+/**
+  * Méthode magique __construct()
+  * 
+  * Permet de créer une nouvelle liaison
+  */
+public function __construct ()
+
+/**
+  * Méthode d'initialisation init()
+  * 
+  * Initialise les données de la liaison
+  * 
+  * @param Pack $unPack
+  * @param Composant $unComposant
+  * @param int $quantite
+  */
+public function init ($unPack, $unComposant, $quantite)
+
+/**
+  * Méthode magique __get()
+  * 
+  * Retourne la valeur de la propriété de la liaison
+  * 
+  * @param string $propriete
+  * @return mixed
+  * @throws Exception
+  */
+public function __get($propriete)
+
+/**
+  * Méthode magique __set()
+  * 
+  * Fixe la valeur de la propriété de la liaison
+  * 
+  * @param string $propriete
+  * @param mixed $valeur
+  * @throws Exception
+  */
+public function __set($propriete, $valeur)
+
+/**
+  * Définis une nouvelle quantite
+  * 
+  * @param int $valeur
+  * @throws Exception
+  */
+public function setQuantite($valeur)
+
+/**
+  * Méthode magique __toString()
+  * 
+  * Retourne un affichage des données de la liaison
+  * 
+  * @return string
+  */
+public function __toString()
+_____________________________________________________________________

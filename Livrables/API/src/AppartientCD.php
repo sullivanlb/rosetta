@@ -13,7 +13,7 @@
 class AppartientCD {
     
     /**
-     * Identifiant de la liaison
+     * Premiere cle
      * 
      * @var Client
      * @access private
@@ -21,7 +21,7 @@ class AppartientCD {
     private $unClient;
 
     /**
-     * Nom de la liaison
+     * Seconde cle
      * 
      * @var Devis
      * @access private

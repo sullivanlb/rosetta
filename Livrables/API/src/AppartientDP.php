@@ -13,7 +13,7 @@
 class AppartientDP {
     
     /**
-     * Identifiant de la liaison
+     * Premiere cle
      * 
      * @var Devis
      * @access private
@@ -21,7 +21,7 @@ class AppartientDP {
     private $unDevis;
 
     /**
-     * Nom de la liaison
+     * Seconde cle
      * 
      * @var Pack
      * @access private

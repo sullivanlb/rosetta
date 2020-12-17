@@ -13,7 +13,7 @@
 class AppartientSC {
     
     /**
-     * Identifiant de la liaison
+     * Premiere cle
      * 
      * @var Scenario
      * @access private
@@ -21,7 +21,7 @@ class AppartientSC {
     private $unScenario;
 
     /**
-     * Nom de la liaison
+     * Seconde cle
      * 
      * @var Composant
      * @access private
