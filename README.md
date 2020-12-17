@@ -3,10 +3,10 @@
 ### Présentation du projet : 
 
 M. Hourdier souhaite avoir une application Android sur tablette pour l’aider à ne rien oublier lorsqu’il rédige le devis de son client. En fonction de la demande du client, M. Hourdier ne doit négliger aucun détail, tel que la quantité nécessaire de tuyaux pour réaliser l’installation d’un radiateur ou s’il est possible de traverser le mur.
-L’objectif de l’application est de permettre à M. Hourdier de faire une saisie rapide des éléments qui doit vérifier, ainsi que des matériaux nécessaires pour le type d’intervention à réaliser. 
+L’objectif de l’application est de permettre à M. Hourdier de faire une saisie rapide de devis, de consulter rapidement les questions à ne pas oublier, ainsi que préparer des scénarios certains types d’intervention à réaliser. 
 Cette application doit être simple, intuitive et fonctionnelle. Elle doit permettre d’ajouter des types d’intervention ainsi que des nouveaux éléments ou matériaux. 
 L'appareil utilisé pour le fonctionnement de l'application est une tablette pour des raisons de praticité et de mobilité. Lorsque la tablette est connectée à internet, elle doit pouvoir téléverser les données enregistrées sur un site web qui permet la consultation de ces données. 
-Le site web permet de présenter les activités de M. Hourdier aux internautes mais doit également permettre à M. Hourdier de se connecter pour compléter, modifier ou ajouter des éléments au devis réaliser plus tôt dans la journée. 
+Le site web permet de présenter les activités de M. Hourdier aux internautes mais doit également permettre à M. Hourdier de se connecter pour compléter, modifier ou ajouter des éléments au devis réalisé plus tôt dans la journée. 
 L’application permet une prise de notes rapide et facile des informations essentielles à savoir pour réaliser le devis. Tandis que le site web permet la mise en forme du devis. 
 
 ### Présentation de l'équipe : 
