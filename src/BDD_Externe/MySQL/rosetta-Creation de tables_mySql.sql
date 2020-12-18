@@ -50,7 +50,7 @@ CREATE TABLE Client
 
     adresseClient TEXT(100),
 
-    emailClient TEXT(100) NOT NULL,
+    emailClient TEXT(100),
 
     telClient INT(10),
 
