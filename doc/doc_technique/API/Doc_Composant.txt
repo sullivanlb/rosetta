@@ -1,0 +1,96 @@
+Classe : Composant
+/** 
+ * Composant est une classe de représentant la table Composant de la base de données.
+ * 
+ * Composant est une classe permettant de renseigner et obtenir les informations
+ * d'un composant (un élément de la Table).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
+_____________________________________________________________________
+Attributs : 
+/**
+  * Identifiant du composant
+  * 
+  * @var int
+  * @access private
+  */
+idComposant
+
+/**
+  * Nom du composant
+  * 
+  * @var string
+  * @access private
+  */
+nomComposant
+    
+/**
+  * Unité du composant
+  * 
+  * @var string
+  * @access private
+  */
+uniteComposant
+    
+/**
+  * Prix du composant
+  * 
+  * @var float
+  * @access private
+  */
+prixComposant
+_____________________________________________________________________
+Méthodes :
+/**
+  * Méthode magique __construct()
+  * 
+  * Permet de créer un nouveau composant
+  */
+public function __construct ()
+
+/**
+  * Méthode d'initialisation init()
+  * 
+  * Iniatilise les données du composant
+  * 
+  * @param int $id
+  * @param string $nom
+  * @param string $unite
+  * @param float $prix
+  */
+public function init ($id, $nom, $unite, $prix)
+
+/**
+  * Méthode magique __get()
+  * 
+  * Retourne la valeur de la propriété du composant
+  * 
+  * @param string $propriete
+  * @return int|string|float
+  * @throws Exception
+  */
+public function __get($propriete)
+
+/**
+  * Méthode magique __set()
+  * 
+  * Fixe la valeur de la propriété appelée au composant
+  * 
+  * @param string $propriete
+  * @param mixed $valeur
+  * @throws Exception
+  */
+public function __set($propriete, $valeur)
+
+/**
+  * Méthode magique __toString()
+  * 
+  * Retourne un affichage des données du composant
+  * 
+  * @return string
+  */
+public function __toString()
+_____________________________________________________________________
