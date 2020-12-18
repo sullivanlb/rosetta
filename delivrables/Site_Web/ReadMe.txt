@@ -8,4 +8,10 @@ Vous n'avez qu'à accepter/passer les étapes.
 - Continuez.
 - Appuyez sur "Start site" en haut à droite, puis "OPEN SITE" juste en-dessous. Voici la première impression du site !
 
+-Pour vous connecté sur le site : 
+Login : Visiteur
+mdp : Azerty123
+
+-Pour avoir accès à la Page privée veuillez saisir le mot de passe suivant : Rosetta56
+
 --> La vidéo de présentation présente également la procédure d'installation et de visualisation du site.
