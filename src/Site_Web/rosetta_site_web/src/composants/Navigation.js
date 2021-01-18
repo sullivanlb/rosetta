@@ -29,8 +29,6 @@ export class Navigation extends Component {
                 </ul>
             </div>
             </Nav>
-            
-
         )
     }
 }
