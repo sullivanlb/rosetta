@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import "../node_modules/bootstrap-css-only/css/bootstrap.min.css";
 import "../node_modules/mdbreact/dist/css/mdb.css";
+import "./style/App.css";
 
 import Accueil from './pages/Accueil';
 import Devis from './pages/Devis';
