@@ -9,6 +9,16 @@ const Accueil = () => {
                 <Row>
                     <Col className="col1" md={10}>
                         
+                        <h2>Bienvenue sur Allô Dépanne Service</h2>
+                        <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
+
+                        <p> txtxttxt</p>
+                        <nobr>
+                            <img class="Imageoutil" src="/img/outil.jpg" alt="" />
+                            <img class="Imagetableauelectrique" src="/img/tableau-electrique.jpg" alt="" />
+                            <img class="Iamgechuaffage" src="/img/chauffage.jpg" alt="" />
+                        </nobr>
+                        
                     </Col>
                     <Col className="col2" md={2}>
                         <Form>

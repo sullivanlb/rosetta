@@ -9,11 +9,17 @@ import Devis from './pages/Devis';
 import Client from './pages/Client';
 import Scenario from './pages/Scenario';
 import FooterPage from './composants/Footer';
+import Navigation from './composants/Navigation';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+
+      
+      <Navigation/>
+      
+
         <Switch>
          <Route exact path="/" component={Accueil}/>
          <Route exact path="/client" component={Client}/>
