@@ -15,11 +15,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-
       
       <Navigation/>
       
-
         <Switch>
          <Route exact path="/" component={Accueil}/>
          <Route exact path="/client" component={Client}/>
