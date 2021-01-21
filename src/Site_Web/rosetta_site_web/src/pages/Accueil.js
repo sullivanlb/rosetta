@@ -14,17 +14,9 @@ const Accueil = () => {
                         <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
 
                         <p> txtxttxt</p>
-<<<<<<< HEAD
                         <Carousel/>
-                        
-=======
-                        <nobr>
-                            <img class="Imageoutil" src="/img/outil.jpg" alt="" />
-                            <img class="Imagetableauelectrique" src="/img/tableau-electrique.jpg" alt="" />
-                            <img class="Iamgechuaffage" src="/img/chauffage.jpg" alt="" />
-                        </nobr>
                         <span class="vertical-line"></span>
->>>>>>> 3ca31d3bceedc0170667a485590ad00bd2009d72
+                        
                     </Col>
                     <Col className="col2" md={2}>
                         <Alert className="ContactAlert" variant="dark">
