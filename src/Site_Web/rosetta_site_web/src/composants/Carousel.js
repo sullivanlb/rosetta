@@ -1,42 +1,35 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel'
+import "../style/Carousel.css"
+import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 
 export default function DiapoCarousel() {
     return(
     
-        <Carousel>
-            <Carousel.Item interval={1000}>
+        <Carousel className="carousel">
+            <Carousel.Item interval={5000}>
                 <img
-                className="Imageoutil"
+                className="ImageOutil w-100 h-100"
                 src="/img/outil.jpg"
                 alt=""
                 />
-            <Carousel.Caption>
-            
-            </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item interval={500}>
+            <Carousel.Item interval={5000}>
                 <img
-                className="Imagetableauelectrique"
+                className="ImageTableauElectrique w-100"
                 src="/img/tableau-electrique.jpg"
                 alt=""
                 />
-            <Carousel.Caption>
-                
-            </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item>
+            <Carousel.Item interval={5000}>
                 <img
-                className="Imagechuaffage"
+                className="ImageChauffage w-100"
                 src="/img/chauffage.jpg"
                 alt=""
                 />
-            <Carousel.Caption>
-               
-            </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
 

@@ -14,7 +14,7 @@ const Accueil = () => {
                         <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
 
                         <p> txtxttxt</p>
-                        <Carousel/>
+                        <Carousel className="carousel"/>
                         <span class="vertical-line"></span>
                         
                     </Col>
