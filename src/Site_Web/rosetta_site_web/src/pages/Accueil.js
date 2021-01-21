@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Col, Container, Form, Button, Alert } from 'react-bootstrap';
-import GoogleMapReact from 'google-map-react';
 import "../style/Accueil.css";
 
 const Accueil = () => {
     return (
         <div>
-            <Container className="cont" fluid>
+            <Container fluid>
                 <Row>
                     <Col className="col1" md={10}>
                         
@@ -22,7 +21,9 @@ const Accueil = () => {
                         
                     </Col>
                     <Col className="col2" md={2}>
-                        <h3>Contact</h3>
+                        <Alert variant="dark">
+                        Contact :
+                        </Alert>
                         <img className="ImageTelephone" src="/img/call.png" alt="" />
                         <h6 className="TexteTelephone">06.60.35.75.45</h6>
                         <br></br>
@@ -31,7 +32,7 @@ const Accueil = () => {
                         <h6 className="TexteRue">90 avenue Marne, 56000 Vannes</h6>
                         <br></br>
                         <Form>
-                        <Alert variant="secondary">
+                        <Alert variant="dark">
                         Connexion :
                         </Alert>
                             <Form.Group controlId="formGroupEmail">
