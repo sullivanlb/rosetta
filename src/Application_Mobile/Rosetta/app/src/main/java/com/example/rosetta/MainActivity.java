@@ -1,27 +1,24 @@
 package com.example.rosetta;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
-import com.example.rosetta.controller.ControleurEnregistrerClient;
-import com.example.rosetta.controller.ControleurListeView;
+import com.example.rosetta.model.Client;
+import com.example.rosetta.model.Scenario;
+import com.example.rosetta.ui.main.ListeClients;
+import com.example.rosetta.ui.main.ScenarioAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+//    private ListeClients listeClients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +30,13 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+//        this.listeClients = new ListeClients(this, android.R.layout.activity_list_item);
     }
+
+
+//    public ListeClients getClients() {
+//        return listeClients;
+//    }
+
 }

@@ -15,6 +15,6 @@ public class ControleurEnregistrerClient implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-    this.clientFragment.ajouterClient(v);
+        this.clientFragment.ajouterClient(v);
     }
 }

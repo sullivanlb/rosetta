@@ -8,9 +8,10 @@
     <LinearLayout
         android:id="@+id/linear_layout_gauche_client"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.70">
+        android:layout_height="match_parent"
+        android:layout_weight="0.70"
+        android:background="@drawable/rectangle_noir"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/rechercher_client"
@@ -72,7 +73,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="25dp"
                     android:text="Nom"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -81,14 +82,16 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/NouveauClientButton"
                     android:layout_marginLeft="100dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
                     android:layout_toRightOf="@id/NomClienttextView"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:textColor="#434343"
                     android:textColorHighlight="#000000"
                     android:textColorLink="#000000"
-                    android:textCursorDrawable="@color/black" />
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/PrenomClienttextView"
@@ -96,9 +99,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/NomClienttextView"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:text="Prenom"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -108,13 +111,15 @@
                     android:layout_below="@id/NomEditText"
                     android:layout_alignStart="@id/NomEditText"
                     android:layout_alignEnd="@id/NomEditText"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/PrenomClienttextView"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:textColor="#434343"
                     android:textColorHighlight="#000000"
                     android:textColorLink="#000000"
-                    android:textCursorDrawable="@color/black" />
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/EmailtextView"
@@ -122,9 +127,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/PrenomClienttextView"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:text="Email"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -134,13 +139,15 @@
                     android:layout_below="@id/PrenomEditText"
                     android:layout_alignStart="@id/PrenomEditText"
                     android:layout_alignEnd="@id/NomEditText"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/EmailtextView"
                     android:ems="10"
                     android:inputType="textEmailAddress"
+                    android:textColor="#434343"
                     android:textColorHighlight="#000000"
                     android:textColorLink="#000000"
-                    android:textCursorDrawable="@color/black" />
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/AdressetextView"
@@ -148,9 +155,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/EmailtextView"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:text="Adresse"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -160,13 +167,15 @@
                     android:layout_below="@id/EmailEditText"
                     android:layout_alignStart="@id/EmailEditText"
                     android:layout_alignEnd="@id/NomEditText"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/AdressetextView"
                     android:ems="10"
                     android:inputType="textPostalAddress"
+                    android:textColor="#434343"
                     android:textColorHighlight="#000000"
                     android:textColorLink="#000000"
-                    android:textCursorDrawable="@color/black" />
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/TelephonetextView"
@@ -174,9 +183,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/AdressetextView"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:text="Telephone"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -186,13 +195,63 @@
                     android:layout_below="@id/AdresseEditText"
                     android:layout_alignStart="@id/AdresseEditText"
                     android:layout_alignEnd="@id/NomEditText"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/TelephonetextView"
                     android:ems="10"
                     android:inputType="phone"
+                    android:textColor="#434343"
                     android:textColorHighlight="#000000"
                     android:textColorLink="#000000"
-                    android:textCursorDrawable="@color/black" />
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/sexeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/TelephonetextView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Sexe"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/TelephoneEditText"
+                    android:layout_alignStart="@id/NomEditText"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/sexeTextView"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/femmeCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Femme"
+                        android:textAlignment="textStart"
+                        android:textSize="24sp" />
+
+                    <CheckBox
+                        android:id="@+id/hommeCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Homme"
+                        android:textAlignment="textStart"
+                        android:textSize="24sp" />
+
+                    <CheckBox
+                        android:id="@+id/autreCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Autre"
+                        android:textAlignment="textStart"
+                        android:textSize="24sp" />
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -200,7 +259,10 @@
                 android:id="@+id/listView_client_devis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.45" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/rectangle_noir" />
 
             <LinearLayout
                 android:layout_width="match_parent"

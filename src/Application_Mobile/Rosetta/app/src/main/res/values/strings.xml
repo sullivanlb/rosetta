@@ -3,4 +3,27 @@
     <string name="tab_text_1">Client</string>
     <string name="tab_text_2">Scénario</string>
     <string name="tab_text_3">Devis</string>
+
+    <string-array name="clients">
+        <item>Rupert Grint</item>
+        <item>Emma Watson</item>
+        <item>Daniel Radcliffe</item>
+        <item>Tom Felton</item>
+        <item>Maggie Smith</item>
+        <item>David Yates</item>
+        <item>Christopher Nolan</item>
+        <item>Hanz Zimmer</item>
+        <item>Johnny Depp</item>
+        <item>Tom Hanks</item>
+        <item>Leonardo DiCaprio</item>
+        <item>Louis De Funès</item>
+        <item>Clint Eastwood</item>
+        <item>Will Smith</item>
+        <item>Tom Cruise</item>
+        <item>Morgan Freeman</item>
+        <item>Bruce Willis</item>
+        <item>Scarlett Johansson</item>
+        <item>Tom Holland</item>
+        <item>Robert Downey Junior</item>
+    </string-array>
 </resources>
