@@ -15,6 +15,12 @@ p{
     font-family: Times;
 }
 
+.Carousel{
+    max-width:100%;
+    resize: horizontal;
+
+}
+
 
 .col2 {
     padding-top: 2%;

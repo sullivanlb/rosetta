@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Container, Form, Button, Alert } from 'react-bootstrap';
 import "../style/Accueil.css";
+import Carousel from '../composants/Carousel';
 
 const Accueil = () => {
     return (
@@ -13,11 +14,7 @@ const Accueil = () => {
                         <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
 
                         <p> txtxttxt</p>
-                        <nobr>
-                            <img class="Imageoutil" src="/img/outil.jpg" alt="" />
-                            <img class="Imagetableauelectrique" src="/img/tableau-electrique.jpg" alt="" />
-                            <img class="Iamgechuaffage" src="/img/chauffage.jpg" alt="" />
-                        </nobr>
+                        <Carousel/>
                         
                     </Col>
                     <Col className="col2" md={2}>
