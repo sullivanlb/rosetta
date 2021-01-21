@@ -18,9 +18,10 @@ const Accueil = () => {
                             <img class="Imagetableauelectrique" src="/img/tableau-electrique.jpg" alt="" />
                             <img class="Iamgechuaffage" src="/img/chauffage.jpg" alt="" />
                         </nobr>
+                        <span class="vertical-line"></span>
                     </Col>
                     <Col className="col2" md={2}>
-                        <Alert variant="dark">
+                        <Alert className="ContactAlert" variant="dark">
                         Contact :
                         </Alert>
                         <img className="ImageTelephone" src="/img/call.png" alt="" />
@@ -31,7 +32,7 @@ const Accueil = () => {
                         <h6 className="TexteRue">90 avenue Marne, 56000 Vannes</h6>
                         <br></br>
                         <Form>
-                        <Alert variant="dark">
+                        <Alert className="ConnexionAlert" variant="dark">
                         Connexion :
                         </Alert>
                             <Form.Group controlId="formGroupEmail">
