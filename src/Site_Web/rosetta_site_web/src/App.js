@@ -26,7 +26,7 @@ function App() {
         </Switch>
       </BrowserRouter>
 
-      <footer className="footer fixed-bottom">
+      <footer className="footer">
         <FooterPage />
       </footer>
     </div>

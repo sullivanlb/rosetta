@@ -18,7 +18,6 @@ const Accueil = () => {
                             <img class="Imagetableauelectrique" src="/img/tableau-electrique.jpg" alt="" />
                             <img class="Iamgechuaffage" src="/img/chauffage.jpg" alt="" />
                         </nobr>
-                        
                     </Col>
                     <Col className="col2" md={2}>
                         <Alert variant="dark">
