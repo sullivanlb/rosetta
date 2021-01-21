@@ -8,8 +8,9 @@
 # testing
 /coverage
 
-#extension
+#vscode
 .eslintcache
+.vscode
 
 # production
 /build

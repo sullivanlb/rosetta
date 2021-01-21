@@ -13,7 +13,10 @@ const Accueil = () => {
                         <h2>Bienvenue sur Allô Dépanne Service</h2>
                         <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
 
-                        <p> txtxttxt</p>
+                        <h5 className="description mb-5">Vous avez des projets d'installation de salle de bain ? <br></br>
+                            Nous prenons en charge tous vos travaux de plomberie que ce soit en neuf ou en rénovation.<br></br>
+                            La vente et l'installation de salle de bain font également partie de nos prestations. 
+                            Faites-nous part de votre projet. </h5>
                         <Carousel className="carousel"/>
                         <span class="vertical-line"></span>
                         

@@ -7,7 +7,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 export default function DiapoCarousel() {
     return(
     
-        <Carousel className="carousel">
+        <Carousel className="carousel" pauseOnHover={true}>
             <Carousel.Item interval={5000}>
                 <img
                 className="ImageOutil w-100 h-100"
