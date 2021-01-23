@@ -22,7 +22,7 @@
             android:layout_marginLeft="200dp"
             android:layout_marginRight="30dp"
             android:layout_weight="1"
-            android:backgroundTint="#FF8C00"
+            android:backgroundTint="@color/orange_fonce"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:text="Composants/Packs" />
@@ -35,7 +35,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="200dp"
             android:layout_weight="1"
-            android:backgroundTint="#FF8C00"
+            android:backgroundTint="@color/orange_fonce"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:text="Nouveau Scénario" />
@@ -50,7 +50,6 @@
         android:layout_marginBottom="30dp"
         android:layout_weight="0.2"
         android:background="@drawable/rectangle_noir"
-        android:clickable="false"
         android:listSelector="@color/orange_clair" />
 
 </LinearLayout>

@@ -30,13 +30,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-//        this.listeClients = new ListeClients(this, android.R.layout.activity_list_item);
     }
-
-
-//    public ListeClients getClients() {
-//        return listeClients;
-//    }
 
 }

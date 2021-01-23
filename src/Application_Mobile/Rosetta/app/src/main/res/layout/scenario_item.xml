@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutScenarioItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="1">
@@ -9,30 +10,33 @@
     <TextView
         android:id="@+id/scenarioNomTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_height="match_parent"
         android:layout_weight="0.2"
-        android:paddingLeft="50dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
         android:text="Nom scenario"
         android:textColor="#000000"
         android:textSize="26sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="0.8"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/voirScenarioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            app:backgroundTint="#FFFFFF"
-            app:rippleColor="#000000"
+            android:foregroundGravity="center_vertical"
+            app:backgroundTint="@color/white"
             app:srcCompat="@android:drawable/ic_menu_search" />
 
         <Space
@@ -44,12 +48,13 @@
             android:id="@+id/modifierScenarioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            app:backgroundTint="#FFFFFF"
-            app:rippleColor="#000000"
+            android:foregroundGravity="center_vertical"
+            app:backgroundTint="@color/white"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <Space
@@ -61,12 +66,13 @@
             android:id="@+id/supprimerScenarioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            app:backgroundTint="#FFFFFF"
-            app:rippleColor="#000000"
+            android:foregroundGravity="center_vertical"
+            app:backgroundTint="@color/white"
             app:srcCompat="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 </LinearLayout>
