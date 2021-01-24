@@ -10,6 +10,7 @@ import Client from './pages/Client';
 import Scenario from './pages/Scenario';
 import FooterPage from './composants/Footer';
 import Navigation from './composants/Navigation';
+import NavbarPage from './composants/NavbarPage';
 
 function App() {
   return (
