@@ -1,6 +1,6 @@
 .ImageOutil, .ImageTableauElectrique, .ImageChauffage {
-    max-width: 80%;
-    max-height: 60vh;
-    height: auto;
-    border-radius: 1%;
+    max-width: 45%;
+    max-height: 20%;
+    height: 50%;
+    border-radius: 5%;
 }
