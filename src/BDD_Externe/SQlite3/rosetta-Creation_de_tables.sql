@@ -55,7 +55,7 @@ CREATE TABLE Client
 
     emailClient TEXT(100),
 
-    telClient TEXT(10),
+    telClient TEXT(20),
 
     sexeClient TEXT(100)
     CONSTRAINT nn_sexeClient NOT NULL
