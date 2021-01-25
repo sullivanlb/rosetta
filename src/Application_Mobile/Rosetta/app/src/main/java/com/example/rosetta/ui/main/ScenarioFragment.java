@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.rosetta.R;
+import com.example.rosetta.controller.ScenarioAdapter;
 import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;

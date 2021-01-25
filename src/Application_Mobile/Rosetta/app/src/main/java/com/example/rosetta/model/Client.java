@@ -38,7 +38,7 @@ public class Client {
     /**
      * Le numéro de téléphone du client.
      */
-    private int telClient;
+    private String telClient;
 
     /**
      * Le sexe du client.
@@ -61,7 +61,7 @@ public class Client {
      * @param tel     le numéro de téléphone du client
      * @param sexe    le sexe du client
      */
-    public Client(int id, String nom, String prenom, String adresse, String email, int tel, Sexe sexe) {
+    public Client(int id, String nom, String prenom, String adresse, String email, String tel, Sexe sexe) {
         this.setIdClient(id);
         this.setNomClient(nom);
         this.setPrenomClient(prenom);
@@ -167,7 +167,7 @@ public class Client {
      *
      * @return le numéro de téléphone du client
      */
-    public int getTelClient() {
+    public String getTelClient() {
         return this.telClient;
     }
 
@@ -176,7 +176,7 @@ public class Client {
      *
      * @param tel le numéro de téléphone du client
      */
-    public void setTelClient(int tel) {
+    public void setTelClient(String tel) {
         this.telClient = tel;
     }
 

@@ -1,39 +1,38 @@
-package com.example.rosetta.ui.main;
+package com.example.rosetta.controller;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.rosetta.R;
-import com.example.rosetta.model.Scenario;
+import com.example.rosetta.model.Client;
 
 import java.util.ArrayList;
 
-public class ScenarioAdapter extends BaseAdapter {
+public class ClientAdapter extends BaseAdapter {
 
-    private ArrayList<Scenario> listScenario;
+    private ArrayList<Client> listClient;
     private Context context;
     private LayoutInflater inflater;
 
-    public ScenarioAdapter(Context context, ArrayList<Scenario> list){
+    public ClientAdapter(Context context, ArrayList<Client> list){
         this.context = context;
-        this.listScenario = list;
+        this.listClient = list;
         inflater = LayoutInflater.from(context);
     }
 
+
     @Override
     public int getCount(){
-        return listScenario.size();
+        return listClient.size();
     }
 
     @Override
     public Object getItem(int position){
-        return listScenario.get(position);
+        return listClient.get(position);
     }
 
     @Override
@@ -47,17 +46,19 @@ public class ScenarioAdapter extends BaseAdapter {
 
         if (convertView == null){
             //initialisation de la vue film_list_item
-            view = (View) inflater.inflate(R.layout.scenario_item, parent, false);
+            view = (View) inflater.inflate(R.layout.client_item, parent, false);
         }
         else {
             view = (View) convertView;
         }
 
         //Initialisation des vues du layout
-        TextView nomScenario = (TextView) view.findViewById(R.id.scenarioNomTextView);
+        TextView nomClient = (TextView) view.findViewById(R.id.itemClientNom);
+        TextView prenomClient = (TextView) view.findViewById(R.id.itemClientPrenom);
 
         //modification des vues
-        nomScenario.setText(listScenario.get(position).getNomScenario());
+        nomClient.setText(listClient.get(position).getNomClient());
+        prenomClient.setText(listClient.get(position).getPrenomClient());
 
         //on retourne la vue crée
         return view;
