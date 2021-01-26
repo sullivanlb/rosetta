@@ -1,0 +1,11 @@
+.col1-AffichageDevis{
+    background-color: white;
+    height: 100vh;   
+    text-align: center;
+    align-items: center;
+    justify-content: center;   
+}
+
+.col2-ButtonDevis{
+    padding-top: 10%;
+}
