@@ -20,7 +20,7 @@ const Client = () => {
                         <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
                         <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
                         <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-                        <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+                        <button type="button" class="list-group-item list-group-item-action">Vestibulum at eros</button>
                     </div>
 
                     </Col>
@@ -28,7 +28,7 @@ const Client = () => {
 
                     </Col>
                     <Col className="col3-button" md={2}>
-                    <Link  class="btn btn-light" to="/">Nouveau client</Link>
+                    <Link  class="btn btn-light" to="/client/create">Nouveau client</Link>
                     <button type="button" class="btn btn-light">Modifier client</button>
                     <button type="button" class="btn btn-light">Supprimer client</button>
 

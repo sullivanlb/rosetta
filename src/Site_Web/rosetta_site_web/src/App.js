@@ -8,6 +8,7 @@ import Accueil from './pages/Accueil';
 import Devis from './pages/Devis';
 import Client from './pages/Client';
 import Scenario from './pages/Scenario';
+import NouveauClient from './pages/NouveauClient'
 import FooterPage from './composants/Footer';
 import Navigation from './composants/Navigation';
 import NavbarPage from './composants/NavbarPage';
@@ -22,6 +23,7 @@ function App() {
         <Switch>
          <Route exact path="/" component={Accueil}/>
          <Route exact path="/client" component={Client}/>
+         <Route exact path="/client/create" component={NouveauClient}/>
          <Route exact path="/devis" component={Devis}/>
          <Route exact path="/scenario" component={Scenario}/>
         </Switch>
