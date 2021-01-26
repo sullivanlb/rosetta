@@ -4,7 +4,7 @@ import "../style/Footer.css";
 
 const FooterPage = () => {
   return (
-    <MDBFooter color="black" className="font-small pt-4 mt-4"  position="bottom">
+    <MDBFooter color="black" className="mainFoot font-small pt-4 mt-4"  position="fixed-bottom">
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
             <img className="logo ml-4 mt-2" src="/img/logo.jpg" alt=""/>

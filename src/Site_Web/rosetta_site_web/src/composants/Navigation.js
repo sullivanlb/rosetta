@@ -10,9 +10,9 @@ export default function Navigation() {
 
         <ul class="nav-links">
             <li><a href="/">Accueil </a></li>
-            <li><a href="./Client">Client</a></li>
-            <li><a href="./Devis">Devis</a></li>
-            <li><a href="./Scenario">Scénario</a></li>
+            <li><a href="/client">Client</a></li>
+            <li><a href="/devis">Devis</a></li>
+            <li><a href="/scenario">Scénario</a></li>
         </ul>
 
         <nav class="navbar-toggler">
@@ -25,13 +25,13 @@ export default function Navigation() {
                         <a class="nav-link" href="/">Accueil</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="./Client">Client</a>
+                        <a class="nav-link" href="/client">Client</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./Devis">Devis</a>
+                        <a class="nav-link" href="/devis">Devis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./Scenario">Scenario</a>
+                        <a class="nav-link" href="/scenario">Scenario</a>
                     </li>
                 </ul>
             </div>

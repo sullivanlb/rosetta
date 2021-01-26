@@ -1,6 +1,7 @@
 import React from 'react';
-import { Row, Col, Container, Form, Button } from 'react-bootstrap';
-import {Link } from'react-router-dom';
+import { Row, Col, Container } from 'react-bootstrap';
+import { Link } from'react-router-dom';
+import Supprimer from '../composants/Supprimer';
 import "../style/Client.css";
 
 
@@ -29,8 +30,8 @@ const Client = () => {
                     </Col>
                     <Col className="col3-button" md={2}>
                     <Link  class="btn btn-light" to="/client/create">Nouveau client</Link>
-                    <button type="button" class="btn btn-light">Modifier client</button>
-                    <button type="button" class="btn btn-light">Supprimer client</button>
+                    <Link  class="btn btn-light" to="/client/modify">Modifier client</Link>
+                    <Supprimer/>
 
                     </Col>
                 </Row>
