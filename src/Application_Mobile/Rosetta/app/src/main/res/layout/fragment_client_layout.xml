@@ -57,7 +57,7 @@
                 android:foregroundTint="#FFFFFF">
 
                 <Button
-                    android:id="@+id/NouveauClientButton"
+                    android:id="@+id/nouveauClientButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -69,7 +69,7 @@
                     android:id="@+id/NomClienttextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/NouveauClientButton"
+                    android:layout_below="@id/nouveauClientButton"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="25dp"
                     android:text="Nom"
@@ -80,7 +80,7 @@
                     android:id="@+id/NomEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/NouveauClientButton"
+                    android:layout_below="@id/nouveauClientButton"
                     android:layout_marginLeft="100dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
@@ -88,8 +88,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textColor="#434343"
-                    android:textColorHighlight="#000000"
-                    android:textColorLink="#000000"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
                     android:textCursorDrawable="@color/black"
                     android:textSize="24sp" />
 
@@ -116,8 +116,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textColor="#434343"
-                    android:textColorHighlight="#000000"
-                    android:textColorLink="#000000"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
                     android:textCursorDrawable="@color/black"
                     android:textSize="24sp" />
 
@@ -144,8 +144,8 @@
                     android:ems="10"
                     android:inputType="textEmailAddress"
                     android:textColor="#434343"
-                    android:textColorHighlight="#000000"
-                    android:textColorLink="#000000"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
                     android:textCursorDrawable="@color/black"
                     android:textSize="24sp" />
 
@@ -172,8 +172,8 @@
                     android:ems="10"
                     android:inputType="textPostalAddress"
                     android:textColor="#434343"
-                    android:textColorHighlight="#000000"
-                    android:textColorLink="#000000"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
                     android:textCursorDrawable="@color/black"
                     android:textSize="24sp" />
 
@@ -200,8 +200,8 @@
                     android:ems="10"
                     android:inputType="phone"
                     android:textColor="#434343"
-                    android:textColorHighlight="#000000"
-                    android:textColorLink="#000000"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
                     android:textCursorDrawable="@color/black"
                     android:textSize="24sp" />
 

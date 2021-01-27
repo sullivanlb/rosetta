@@ -5,11 +5,11 @@ import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
-public class ControleurCheckSexeClient implements View.OnClickListener {
+public class ControleurClientCheckSexe implements View.OnClickListener {
 
     private ArrayList<CheckBox> listeCases;
 
-    public ControleurCheckSexeClient(ArrayList<CheckBox> liste) {
+    public ControleurClientCheckSexe(ArrayList<CheckBox> liste) {
         if (liste != null)
             this.listeCases = liste;
         else

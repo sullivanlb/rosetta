@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Interfaces_projet_synthese"
+rootProject.name = "Rosetta"

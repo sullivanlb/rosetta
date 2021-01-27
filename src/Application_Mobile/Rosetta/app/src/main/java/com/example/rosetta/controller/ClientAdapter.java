@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.rosetta.R;
 import com.example.rosetta.model.Client;
+import com.example.rosetta.ui.main.ClientFragment;
 
 import java.util.ArrayList;
 
@@ -18,12 +19,11 @@ public class ClientAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
 
-    public ClientAdapter(Context context, ArrayList<Client> list){
+    public ClientAdapter(Context context, ArrayList<Client> list) {
         this.context = context;
         this.listClient = list;
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
     }
-
 
     @Override
     public int getCount(){
@@ -41,26 +41,26 @@ public class ClientAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         View view;
 
         if (convertView == null){
-            //initialisation de la vue film_list_item
+            // Initialisation de la vue film_list_item
             view = (View) inflater.inflate(R.layout.client_item, parent, false);
         }
         else {
             view = (View) convertView;
         }
 
-        //Initialisation des vues du layout
+        // Initialisation des composants du layout
         TextView nomClient = (TextView) view.findViewById(R.id.itemClientNom);
         TextView prenomClient = (TextView) view.findViewById(R.id.itemClientPrenom);
 
-        //modification des vues
+        // Modification des composants
         nomClient.setText(listClient.get(position).getNomClient());
         prenomClient.setText(listClient.get(position).getPrenomClient());
 
-        //on retourne la vue crée
+        // On retourne la vue créée
         return view;
     }
 }

@@ -23,7 +23,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "\n" +
             "    emailClient TEXT(100),\n" +
             "\n" +
-            "    telClient INTEGER(10),\n" +
+            "    telClient TEXT(20),\n" +
             "\n" +
             "    sexeClient TEXT(100)\n" +
             "    CONSTRAINT nn_sexeClient NOT NULL\n" +
@@ -181,7 +181,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
      *
      * @param context le contexte de la BDD
      * @param name le nom de la BDD
-     * @param factory retourne la sous-classe quand on fait des requetes
+     * @param factory la sous-classe quand on fait des requetes
      * @param version le numero de version de la BDD
      */
     public MySQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

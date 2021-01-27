@@ -2,12 +2,15 @@ package com.example.rosetta;
 
 import android.os.Bundle;
 
+import com.example.rosetta.model.Client;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +25,4 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
     }
-
 }
