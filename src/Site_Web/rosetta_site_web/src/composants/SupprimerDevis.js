@@ -10,14 +10,14 @@ function Avertissement() {
     return (
       <>
         <Button variant="btn btn-light" onClick={handleShow}>
-          Supprimer Client
+          Supprimer Devis
         </Button>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Avertissement</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Attention, le client selectionné sera supprimé définitivement !</Modal.Body>
+          <Modal.Body>Attention, le devis selectionné sera supprimé définitivement !</Modal.Body>
           <Modal.Footer>
             <Button variant="ligth" onClick={handleClose}>
               Annuler

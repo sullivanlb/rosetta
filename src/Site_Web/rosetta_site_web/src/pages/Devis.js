@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import { MDBCol, MDBIcon} from "mdbreact";
+import Supprimer from '../composants/SupprimerDevis';
 import "../style/Devis.css";
 
 
@@ -15,7 +16,7 @@ const Devis = () => {
                     <MDBCol md="6">
                     <form className="form-inline mt-4 mb-4">
                         <MDBIcon icon="search" />
-                        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Rechercher" aria-label="Rechercher" />
+                        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Rechercher un devis" aria-label="Rechercher" />
                     </form>
                     </MDBCol>
 
@@ -26,7 +27,7 @@ const Devis = () => {
 
                     <button type="button" class="btn btn-light">Ajouter Devis</button>
                     <button type="button" class="btn btn-light">Modifier Devis</button>
-                    <button type="button" class="btn btn-light">Supprimer Devis</button>
+                    <Supprimer/>
 
                     </Col>
                 </Row>

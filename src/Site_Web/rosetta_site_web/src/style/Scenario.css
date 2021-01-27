@@ -1,10 +1,9 @@
-.col1-AffichageDevis{
+.col2-AffichageScenario{
     background-color: white;
     height: 100vh;   
-    text-align: center;
-     
+    text-align: center; 
 }
 
-.col2-ButtonDevis{
+.col3-ButtonScenario{
     padding-top: 2%;
 }
