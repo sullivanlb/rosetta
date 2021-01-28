@@ -11,7 +11,7 @@ const Accueil = () => {
           <Col className="col1" md={10}>
             <h2>Bienvenue sur Allô Dépanne Service</h2>
             <img
-              class="ImagelogoPlombier"
+              className="ImagelogoPlombier"
               src="/img/logo-plombiers.png"
               alt=""
             />
@@ -24,7 +24,7 @@ const Accueil = () => {
               de nos prestations. Faites-nous part de votre projet.{" "}
             </p>
             <Carousel className="carousel" />
-            <span class="vertical-line"></span>
+            <span className="vertical-line"></span>
           </Col>
           <Col className="col2" md={2}>
             <Alert className="ContactAlert" variant="dark">

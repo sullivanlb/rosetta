@@ -4,6 +4,7 @@ import AffichageClient from "./AffichageClient";
 
 export default class ListeClient extends Component {
   state = {
+    show: true,
     contact: [
       {
         id: 1,
@@ -29,11 +30,20 @@ export default class ListeClient extends Component {
     ],
   };
 
+  montrerClient = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+    <AffichageClient />;
+  };
+
   render() {
     return (
       <div>
         <ListGroup>
-          <ListGroupItem href="#link1">Link 1</ListGroupItem>
+          <ListGroupItem href="#link1" onClick={this.montrerClient}>
+            Link 1
+          </ListGroupItem>
           <ListGroupItem href="#link2">Link 2</ListGroupItem>
           <ListGroupItem href="#link3">Link 3</ListGroupItem>
         </ListGroup>
