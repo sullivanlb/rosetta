@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import { MDBCol, MDBIcon} from "mdbreact";
+import { Link } from "react-router-dom";
 import Supprimer from '../composants/SupprimerDevis';
 import "../style/Devis.css";
 
@@ -25,7 +26,7 @@ const Devis = () => {
                     </Col>
                     <Col className="col2-ButtonDevis" md={2}>
 
-                    <button type="button" class="btn btn-light">Ajouter Devis</button>
+                    <Link class="btn btn-light" to="/devis/nouveau">Ajouter Devis</Link>
                     <button type="button" class="btn btn-light">Modifier Devis</button>
                     <Supprimer/>
 

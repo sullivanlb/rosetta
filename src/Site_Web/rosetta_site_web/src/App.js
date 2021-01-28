@@ -8,11 +8,12 @@ import Accueil from './pages/Accueil';
 import Devis from './pages/Devis';
 import Client from './pages/Client';
 import Scenario from './pages/Scenario';
-import NouveauClient from './pages/NouveauClient'
-import ModifierClient from './pages/ModifierClient'
+import NouveauClient from './pages/NouveauClient';
+import ModifierClient from './pages/ModifierClient';
 import FooterPage from './composants/Footer';
 import Navigation from './composants/Navigation';
 import NavbarPage from './composants/NavbarPage';
+import NouveauDevis from './pages/NouveauDevis';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
          <Route exact path="/client/create" component={NouveauClient}/>
          <Route exact path="/client/modify" component={ModifierClient}/>
          <Route exact path="/devis" component={Devis}/>
+         <Route exact paht="/devis/nouveau" component={NouveauDevis}/>
          <Route exact path="/scenario" component={Scenario}/>
         </Switch>
       </BrowserRouter>
