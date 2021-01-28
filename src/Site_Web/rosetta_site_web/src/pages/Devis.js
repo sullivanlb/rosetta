@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
+import { Link } from "react-router-dom";
 import Supprimer from "../composants/SupprimerDevis";
 import "../style/Devis.css";
 
@@ -8,7 +9,7 @@ const Devis = () => {
   return (
     <div>
       <h3>Devis</h3>
-      <img className="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
+      <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
       <Container fluid>
         <Row>
           <Col className="col1-AffichageDevis" md={10}>
@@ -25,10 +26,10 @@ const Devis = () => {
             </MDBCol>
           </Col>
           <Col className="col2-ButtonDevis" md={2}>
-            <button type="button" className="btn btn-light">
+            <Link class="btn btn-light" to="/devis/nouveau">
               Ajouter Devis
-            </button>
-            <button type="button" className="btn btn-light">
+            </Link>
+            <button type="button" class="btn btn-light">
               Modifier Devis
             </button>
             <Supprimer />
