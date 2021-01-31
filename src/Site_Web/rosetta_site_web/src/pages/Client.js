@@ -8,31 +8,48 @@ import ListeClient from "../composants/ListeClient";
 import AffichageClient from "../composants/AffichageClient";
 
 export default class Client extends Component {
-  state = {
-    client: [
-      {
-        id: 1,
-        nom: "Jacque",
-        prenom: "Lors",
-        email: "jacquo@gmai.com",
-        tel: "0652124100",
-      },
-      {
-        id: 2,
-        nom: "Marie",
-        prenom: "Poli",
-        email: "popolli@hotmail.com",
-        tel: "0245789914",
-      },
-      {
-        id: 3,
-        nom: "Marc",
-        prenom: "Castier",
-        email: "castanier@superfree.com",
-        tel: "0155669988",
-      },
-    ],
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      idToDisplay: 1,
+      client: [
+        {
+          id: 1,
+          nom: "Jacque",
+          prenom: "Lors",
+          email: "jacquo@gmail.com",
+          tel: "0652124100",
+        },
+        {
+          id: 2,
+          nom: "Marie",
+          prenom: "Poli",
+          email: "popolli@hotmail.com",
+          tel: "0245789914",
+        },
+        {
+          id: 3,
+          nom: "Marc",
+          prenom: "Castier",
+          email: "castanier@superfree.com",
+          tel: "0155669988",
+        },
+      ],
+    };
+
+    this.affichageInfoClient = this.affichageInfoClient.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("componentDidUpdate");
+  }
+
+  affichageInfoClient(id) {
+    this.setState({ idToDisplay: id });
+    this.forceUpdate();
+    console.log(this.state.idToDisplay);
+  }
 
   render() {
     return (
@@ -54,10 +71,13 @@ export default class Client extends Component {
                   aria-label="Rechercher"
                 />
               </Row>
-              <ListeClient state={this.state} />
+              <ListeClient
+                state={this.state}
+                action={this.affichageInfoClient}
+              />
             </Col>
             <Col className="col2-affichage" md={8}>
-              <MDBCol md="6">
+              <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
                   <AffichageClient state={this.state} />
                 </form>
