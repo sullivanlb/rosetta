@@ -41,14 +41,8 @@ export default class Client extends Component {
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    console.log("componentDidUpdate");
-  }
-
   affichageInfoClient(id) {
     this.setState({ idToDisplay: id });
-    this.forceUpdate();
-    console.log(this.state.idToDisplay);
   }
 
   render() {
@@ -62,7 +56,7 @@ export default class Client extends Component {
         />
         <Container fluid>
           <Row>
-            <Col className="col1-liste" md={2}>
+            <Col className="col1-liste" md={4}>
               <Row>
                 <input
                   className="form-control form-control-sm ml-3 w-75 mb-2"
@@ -76,10 +70,10 @@ export default class Client extends Component {
                 action={this.affichageInfoClient}
               />
             </Col>
-            <Col className="col2-affichage" md={8}>
+            <Col className="col2-affichage" md={6}>
               <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
-                  <AffichageClient state={this.state} />
+                  <AffichageClient key={this.state.idToDisplay} state={this.state} />
                 </form>
               </MDBCol>
             </Col>

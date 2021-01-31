@@ -1,15 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 export default class AffichageClient extends Component {
   state = this.props.state;
 
   render() {
     return (
-      <div className="card card-body mb-3">
+      <Fragment>
         {this.state.client.map((client) => {
-          console.log(this.state.idToDisplay + " | " + client.id);
-          if (this.state.idToDisplay === client.id){
-            <div>
+          if (this.state.idToDisplay === client.id) {
+            return <div className="card card-body mb-3" key={this.state.client.id}>
               <h4>{client.nom}</h4>
               <ul className="list-group">
                 <li className="list-group-item">Nom : {client.nom}</li>
@@ -20,7 +19,7 @@ export default class AffichageClient extends Component {
             </div>
           }
         })}
-      </div>
+      </Fragment>
     );
   }
 }
