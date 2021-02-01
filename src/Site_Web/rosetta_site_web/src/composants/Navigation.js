@@ -5,7 +5,7 @@ import "../style/Navigation.css";
 export default function Navigation() {
   return (
     <nav>
-      <ul class="nav-links">
+      <ul className="nav-links">
         <li>
           <a href="/">Accueil </a>
         </li>
@@ -20,34 +20,34 @@ export default function Navigation() {
         </li>
       </ul>
 
-      <nav class="navbar-toggler">
+      <nav className="navbar-toggler">
         <button
-          class="navbar-toggler ml-auto"
+          className="navbar-toggler ml-auto"
           type="button"
           data-toggle="collapse"
           data-target="#collapsingNavbar3"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse" id="collapsingNavbar3">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">
+        <div className="navbar-collapse collapse" id="collapsingNavbar3">
+          <ul className="navbar-nav mx-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="/">
                 Accueil
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/client">
+            <li className="nav-item">
+              <a className="nav-link" href="/client">
                 Client
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/devis">
+            <li className="nav-item">
+              <a className="nav-link" href="/devis">
                 Devis
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/scenario">
+            <li className="nav-item">
+              <a className="nav-link" href="/scenario">
                 Scenario
               </a>
             </li>
