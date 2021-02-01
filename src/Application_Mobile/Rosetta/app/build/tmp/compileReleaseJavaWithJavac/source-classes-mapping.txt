@@ -1,0 +1,22 @@
+com/example/rosetta/ui/main/ClientFragment.java
+ com.example.rosetta.ui.main.ClientFragment
+com/example/rosetta/MainActivity.java
+ com.example.rosetta.MainActivity
+com/example/rosetta/controller/ControleurEnregistrerClient.java
+ com.example.rosetta.controller.ControleurEnregistrerClient
+com/example/rosetta/ui/main/PlaceholderFragment.java
+ com.example.rosetta.ui.main.PlaceholderFragment
+ com.example.rosetta.ui.main.PlaceholderFragment$1
+com/example/rosetta/ui/main/SectionsPagerAdapter.java
+ com.example.rosetta.ui.main.SectionsPagerAdapter
+com/example/rosetta/ui/main/DevisFragment.java
+ com.example.rosetta.ui.main.DevisFragment
+com/example/rosetta/controller/ControleurListeView.java
+ com.example.rosetta.controller.ControleurListeView
+com/example/rosetta/ui/main/PageViewModel.java
+ com.example.rosetta.ui.main.PageViewModel
+ com.example.rosetta.ui.main.PageViewModel$1
+com/example/rosetta/BuildConfig.java
+ com.example.rosetta.BuildConfig
+com/example/rosetta/ui/main/ScenarioFragment.java
+ com.example.rosetta.ui.main.ScenarioFragment
