@@ -3,7 +3,6 @@ import { Col, Button, Form, Container, Row } from 'react-bootstrap';
 import "../style/NouveauClient.css"
 import axios from 'axios';
 
-
 export default class NouveauClient extends Component {
     state = {
         nom: "",
@@ -97,6 +96,10 @@ export default class NouveauClient extends Component {
                         <Form.Control type="email" placeholder="Entrez l'adresse email" onChange={this.handleAddEmail} />
                     </Form.Group>
 
+          <Form.Group controlId="formGridAddress2">
+            <Form.Label>Adresse</Form.Label>
+            <Form.Control placeholder="Ex : Numéro et libellé de la voie, Lieu dit, Code postal, Pays" />
+          </Form.Group>
 
                     <Form.Group controlId="formGridAddress2">
                         <Form.Label>Adresse</Form.Label>
