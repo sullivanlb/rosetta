@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Fragment } from "react";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "../node_modules/bootstrap-css-only/css/bootstrap.min.css";
 import "../node_modules/mdbreact/dist/css/mdb.css";
@@ -18,7 +19,7 @@ import api from "./api/index.php";
 
 function App() {
   return (
-    <div>
+    <Fragment>
       <BrowserRouter>
         <Navigation />
 
@@ -40,7 +41,7 @@ function App() {
       <footer className="footer">
         <FooterPage />
       </footer>
-    </div>
+    </Fragment>
   );
 }
 

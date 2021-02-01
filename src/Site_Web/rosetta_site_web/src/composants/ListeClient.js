@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 export default class ListeClient extends Component {
@@ -6,7 +6,7 @@ export default class ListeClient extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <ListGroup>
           {this.state.client.map((client) => (
             <ListGroupItem
@@ -18,7 +18,7 @@ export default class ListeClient extends Component {
             </ListGroupItem>
           ))}
         </ListGroup>
-      </div>
+      </Fragment>
     );
   }
 }

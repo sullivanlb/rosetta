@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import Supprimer from "../composants/SupprimerScenario";
@@ -6,7 +6,7 @@ import "../style/Scenario.css";
 
 const Scenario = () => {
   return (
-    <div>
+    <Fragment>
       <h3>Scénario</h3>
       <img className="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
       <Container fluid>
@@ -37,7 +37,7 @@ const Scenario = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </Fragment>
   );
 };
 

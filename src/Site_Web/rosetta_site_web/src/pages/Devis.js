@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import "../style/Devis.css";
 
 const Devis = () => {
   return (
-    <div>
+    <Fragment>
       <h3>Devis</h3>
       <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
       <Container fluid>
@@ -36,7 +36,7 @@ const Devis = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </Fragment>
   );
 };
 

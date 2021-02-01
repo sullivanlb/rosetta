@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button, Alert } from "react-bootstrap";
 import "../style/Accueil.css";
 import Carousel from "../composants/Carousel";
 
 const Accueil = () => {
   return (
-    <div>
+    <Fragment>
       <Container fluid>
         <Row>
           <Col className="col1" md={10}>
@@ -56,7 +56,7 @@ const Accueil = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </Fragment>
   );
 };
 

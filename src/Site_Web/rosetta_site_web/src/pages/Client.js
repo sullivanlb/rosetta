@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { MDBCol } from "mdbreact";
 import { Link } from "react-router-dom";
@@ -47,7 +47,7 @@ export default class Client extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <h3>Client</h3>
         <img
           class="ImagelogoPlombier ml-3"
@@ -88,7 +88,7 @@ export default class Client extends Component {
             </Col>
           </Row>
         </Container>
-      </div>
+      </Fragment>
     );
   }
 }

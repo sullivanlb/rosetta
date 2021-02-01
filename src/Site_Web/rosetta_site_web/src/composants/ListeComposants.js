@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 export default class ListeComposants extends Component {
@@ -6,7 +6,7 @@ export default class ListeComposants extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <ListGroup>
           {this.state1.composants.map((composants) => (
             <ListGroupItem
@@ -20,7 +20,7 @@ export default class ListeComposants extends Component {
             </ListGroupItem>
           ))}
         </ListGroup>
-      </div>
+      </Fragment>
     );
   }
 }

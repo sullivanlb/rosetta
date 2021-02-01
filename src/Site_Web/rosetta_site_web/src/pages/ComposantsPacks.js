@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import Supprimer from "../composants/SupprimerComposants";
@@ -88,7 +88,7 @@ export default class ComposantsPacks extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <h3>Composants/Packs</h3>
         <img
           class="ImagelogoPlombier ml-3"
@@ -134,7 +134,7 @@ export default class ComposantsPacks extends Component {
             </Col>
           </Row>
         </Container>
-      </div>
+      </Fragment>
     );
   }
 }

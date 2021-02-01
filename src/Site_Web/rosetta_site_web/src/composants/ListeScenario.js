@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 export default class ListeScenario extends Component {
@@ -6,7 +6,7 @@ export default class ListeScenario extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <ListGroup>
           {this.state.scenario.map((scenario) => (
             <ListGroupItem
@@ -18,7 +18,7 @@ export default class ListeScenario extends Component {
             </ListGroupItem>
           ))}
         </ListGroup>
-      </div>
+      </Fragment>
     );
   }
 }
