@@ -112,7 +112,7 @@ const NouveauDevis = () => {
                 <FormControl placeholder="Tuyau"/>
             </Col>
             <Col md="2">
-                <FormControl placeholder="1"/>
+                <FormControl type="number" max="500" min="0" step="1" />
             </Col>
             <Col md="2">
                 <FormControl placeholder="2,20"/>
@@ -155,7 +155,7 @@ const NouveauDevis = () => {
                 <Button variant="ligth" type="submit"> Ajouter une ligne </Button>
             </Col>
             <Col md="3">
-                <Button variant="ligth" type="submit">Enregistrée </Button>
+                <Button variant="ligth" type="submit">Enregistrer </Button>
             </Col>
             <Col md="3">
                 <Button variant="ligth" type="submit">Générer le devis en PDF </Button>
