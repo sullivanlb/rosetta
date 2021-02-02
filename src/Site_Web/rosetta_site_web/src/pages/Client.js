@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { MDBCol } from "mdbreact";
+import { MDBCol, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
 import Supprimer from "../composants/Supprimer";
 import "../style/Client.css";
@@ -58,12 +58,17 @@ export default class Client extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-                <input
-                  className="form-control form-control-sm ml-3 w-75 mb-2"
-                  type="text"
-                  placeholder="Rechercher un client"
-                  aria-label="Rechercher"
-                />
+              <MDBCol md="6">
+                <form className="form-inline mt-4 mb-4">
+                  <MDBIcon icon="search" />
+                  <input
+                    className="form-control form-control-sm ml-3 w-75"
+                    type="text"
+                    placeholder="Rechercher un client"
+                    aria-label="Rechercher"
+                  />
+                </form>
+              </MDBCol>
               </Row>
               <ListeClient
                 state={this.state}

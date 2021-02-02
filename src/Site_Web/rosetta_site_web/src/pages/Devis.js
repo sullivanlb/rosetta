@@ -69,7 +69,7 @@ export default class Devis extends Component {
               </Row>
               <ListeDevis
                 state={this.state}
-                action={this.afficheInfoDevis}
+                action={this.affichageInfoDevis}
               />
             </Col>
 

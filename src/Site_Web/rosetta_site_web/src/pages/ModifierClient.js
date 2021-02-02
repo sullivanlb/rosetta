@@ -61,7 +61,7 @@ const NouveauClient = () => {
                         />
                         </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="light" type="submit">
                         Valider
                     </Button>
                 </Form>
