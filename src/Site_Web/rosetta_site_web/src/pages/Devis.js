@@ -45,7 +45,6 @@ export default class Devis extends Component {
     this.setState({ idToDisplay: id});
   }
 
-
   render() {
     return (
       <Fragment>
