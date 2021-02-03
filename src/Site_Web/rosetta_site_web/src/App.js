@@ -8,6 +8,7 @@ import "./style/App.css";
 import Accueil from "./pages/Accueil";
 import Devis from "./pages/Devis";
 import NouveauDevis from "./pages/NouveauDevis";
+import ModifierDevis from "./pages/ModifierDevis";
 import Client from "./pages/Client";
 import Scenario from "./pages/Scenario";
 import NouveauClient from "./pages/NouveauClient";
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/client/modify" component={ModifierClient} />
           <Route exact path="/devis" component={Devis} />
           <Route exact path="/devis/nouveau" component={NouveauDevis}/>
+          <Route exact path="/devis/modifier" component={ModifierDevis}/>
           <Route exact path="/scenario" component={Scenario} />
           <Route exact path="/api" component={api} />
         </Switch>

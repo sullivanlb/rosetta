@@ -1,8 +1,7 @@
 import React from 'react';
-import { Col, Button, Form, Container, Row, FormLabel, FormControl, FormGroup, Table } from 'react-bootstrap';
+import { Col, Button, Form, Container, Row, FormLabel, FormControl, Table } from 'react-bootstrap';
 import '../style/NouveauDevis.css';
-import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
-import FormFileInput from 'react-bootstrap/esm/FormFileInput';
+
 
 
 

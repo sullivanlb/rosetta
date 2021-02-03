@@ -85,9 +85,9 @@ export default class Devis extends Component {
               <Link class="btn btn-light" to="/devis/nouveau">
                 Ajouter Devis
               </Link>
-              <button type="button" class="btn btn-light">
+              <Link class="btn btn-light" to="/devis/modifier">
                 Modifier Devis
-              </button>
+              </Link>
               <Supprimer />
             </Col>
           </Row>
