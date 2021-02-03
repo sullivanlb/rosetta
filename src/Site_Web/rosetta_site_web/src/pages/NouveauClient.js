@@ -119,21 +119,21 @@ export default class NouveauClient extends Component {
                             label="Femme"
                             name="formHorizontalRadios"
                             id="formHorizontalRadios2"
-                            onChange={this.handleAddSexeFemme} 
+                            onChange={this.handleAddSexeFemme}
                         />
                         <Form.Check
                             type="radio"
                             label="Homme"
                             name="formHorizontalRadios"
                             id="formHorizontalRadios1"
-                            onChange={this.handleAddSexeHomme} 
+                            onChange={this.handleAddSexeHomme}
                         />
                         <Form.Check
                             type="radio"
                             label="Autre"
                             name="formHorizontalRadios"
                             id="formHorizontalRadios3"
-                            onChange={this.handleAddSexeAutre} 
+                            onChange={this.handleAddSexeAutre}
                         />
                         </Form.Group>
                     <button type="button" class="btn btn-light" onClick={this.handleSubmit.bind(this)} >
