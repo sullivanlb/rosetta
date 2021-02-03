@@ -15,8 +15,6 @@ export default class ListeComposants extends Component {
               value={composants.id}
             >
               {composants.nom}
-              {composants.unite}
-              {composants.prix}
             </ListGroupItem>
           ))}
         </ListGroup>
