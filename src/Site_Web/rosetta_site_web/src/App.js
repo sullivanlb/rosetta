@@ -16,6 +16,7 @@ import NouveauClient from "./pages/NouveauClient";
 import ModifierClient from "./pages/ModifierClient";
 import FooterPage from "./composants/Footer";
 import Navigation from "./composants/Navigation";
+import NouveauScenario from "./pages/NouveauScenario";
 import NavbarPage from "./composants/NavbarPage";
 import api from "./api/index.php";
 
@@ -36,7 +37,8 @@ function App() {
           <Route exact path="/devis" component={Devis} />
           <Route exact path="/devis/nouveau" component={NouveauDevis}/>
           <Route exact path="/devis/modifier" component={ModifierDevis}/>
-          <Route exact path="/scenario" component={Scenario} />
+          <Route exact path="/scenario" component={Scenario} />  
+          <Route exact path="/scenario/nouveauscenario" component={NouveauScenario} />
           <Route exact path="/scenario/composantspacks" component={ComposantsPacks} />
           <Route exact path="/api" component={api} />
         </Switch>

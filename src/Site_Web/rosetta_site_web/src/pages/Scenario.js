@@ -176,9 +176,9 @@ export default class Scenario extends Component {
               </MDBCol>
             </Col>
             <Col className="col3-button" md={2}>
-              <button type="button" class="btn btn-light">
+              <Link class="btn btn-light" to="/scenario/nouveauscenario">
                 Nouveau scénario
-              </button>
+              </Link>
               <button type="button" class="btn btn-light">
                 Modifier scénario
               </button>
