@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 function Avertissement() {
@@ -8,7 +8,7 @@ function Avertissement() {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <Fragment>
       <Button variant="btn btn-light" onClick={handleShow}>
         Supprimer
       </Button>
@@ -29,7 +29,7 @@ function Avertissement() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Fragment>
   );
 }
 

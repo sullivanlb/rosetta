@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Fragment } from "react";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "../node_modules/bootstrap-css-only/css/bootstrap.min.css";
 import "../node_modules/mdbreact/dist/css/mdb.css";
@@ -7,17 +8,20 @@ import "./style/App.css";
 import Accueil from "./pages/Accueil";
 import Devis from "./pages/Devis";
 import NouveauDevis from "./pages/NouveauDevis";
+import ModifierDevis from "./pages/ModifierDevis";
 import Client from "./pages/Client";
 import Scenario from "./pages/Scenario";
+import ComposantsPacks from "./pages/ComposantsPacks";
 import NouveauClient from "./pages/NouveauClient";
 import ModifierClient from "./pages/ModifierClient";
 import FooterPage from "./composants/Footer";
 import Navigation from "./composants/Navigation";
+import NouveauScenario from "./pages/NouveauScenario";
 import NavbarPage from "./composants/NavbarPage";
 
 function App() {
   return (
-    <div>
+    <Fragment>
       <BrowserRouter>
         <Navigation />
 
@@ -38,7 +42,7 @@ function App() {
       <footer className="footer">
         <FooterPage />
       </footer>
-    </div>
+    </Fragment>
   );
 }
 
