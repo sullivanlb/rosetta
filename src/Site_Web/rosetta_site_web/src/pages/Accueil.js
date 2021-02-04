@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button, Alert } from "react-bootstrap";
 import "../style/Accueil.css";
 import Carousel from "../composants/Carousel";
+import OpenStreetMap from "../composants/OpenStreetMap";
 
 const Accueil = () => {
   return (
@@ -37,6 +38,7 @@ const Accueil = () => {
             <img className="pointeur" src="/img/location-pointer.png" alt="" />
             <h6 className="TexteRue">90 avenue Marne, 56000 Vannes</h6>
             <br></br>
+            <OpenStreetMap/>
             <Form>
               <Alert className="ConnexionAlert" variant="dark">
                 Connexion :
