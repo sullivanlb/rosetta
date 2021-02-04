@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
 
+/**
+ * @description This component represent the section in page Client which display his info
+ * 
+ * @author Sullivan LEBOEUF
+ */
 export default class AffichageClient extends Component {
   state = this.props.state;
 

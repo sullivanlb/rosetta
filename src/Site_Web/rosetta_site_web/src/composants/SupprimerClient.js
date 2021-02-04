@@ -1,6 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Button, Modal } from "react-bootstrap";
 
+/**
+ * This function will create an advertising when delete button clicked
+ * 
+ * @author Sullivan LEBOEUF
+ */
 function Avertissement() {
   const [show, setShow] = useState(false);
 

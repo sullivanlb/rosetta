@@ -2,6 +2,11 @@ import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import axios from 'axios';
 
+/**
+ * @description This component represent the section in page Client which list the clients
+ * 
+ * @author Sullivan LEBOEUF & Christophe GARCIA
+ */
 export default class ListeClient extends Component {
   state = this.props.state;
 
