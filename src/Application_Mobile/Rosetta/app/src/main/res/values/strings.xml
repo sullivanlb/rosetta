@@ -1,4 +1,5 @@
 <resources>
+    <!-- Le nom des pages principales -->
     <string name="app_name">Rosetta</string>
     <string name="tab_text_1">Client</string>
     <string name="tab_text_2">Scénario</string>

@@ -12,6 +12,13 @@ import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet d'afficher l'application. Il n'y a qu'une seule activité, et plusieurs
+ * fragments : Client, Scenario, Devis.
+ *
+ * @author Alice, Christophe
+ * @version 2.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -12,12 +12,24 @@ import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet de contrôler l'affichage de la liste des Scénarios.
+ *
+ * @author Alice
+ * @version 2.0
+ */
 public class ScenarioAdapter extends BaseAdapter {
 
     private ArrayList<Scenario> listScenario;
     private Context context;
     private LayoutInflater inflater;
 
+    /**
+     * Le constructeur crée une nouvelle forme de ScenarioAdapter.
+     *
+     * @param context la contexte
+     * @param list la liste des scénarios
+     */
     public ScenarioAdapter(Context context, ArrayList<Scenario> list){
         this.context = context;
         this.listScenario = list;
@@ -43,21 +55,20 @@ public class ScenarioAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent){
         View view;
 
-        if (convertView == null){
-            //initialisation de la vue film_list_item
+        // Initilisation de la vue
+        if (convertView == null) {
             view = (View) inflater.inflate(R.layout.scenario_item, parent, false);
-        }
-        else {
+        } else {
             view = (View) convertView;
         }
 
-        //Initialisation des vues du layout
+        // Initialisation des vues du layout
         TextView nomScenario = (TextView) view.findViewById(R.id.scenarioNomTextView);
 
-        //modification des vues
+        // Modification des vues
         nomScenario.setText(listScenario.get(position).getNomScenario());
 
-        //on retourne la vue créée
+        // On retourne la vue créée
         return view;
     }
 }

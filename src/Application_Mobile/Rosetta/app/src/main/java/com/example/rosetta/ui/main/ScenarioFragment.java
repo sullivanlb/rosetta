@@ -19,13 +19,21 @@ import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
+ * associée : l'interface de Scenario.
+ *
+ * @author Alice
+ * @version 2.0
+ */
 public class ScenarioFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_scenario_layout, container, false);
 
-        // Temporaire (tant que pas de BDD) : création d'une arraylist de film
+        // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
+        // données
         ArrayList<Scenario> scenarioListArray = new ArrayList<Scenario>();
         Scenario test1 = new Scenario(1, "Nom court");
         Scenario test2 = new Scenario(2, "Test");
@@ -43,6 +51,7 @@ public class ScenarioFragment extends Fragment {
         Scenario test14 = new Scenario(2, "Scenario difficile");
         Scenario test15 = new Scenario(2, "Scenario normal");
 
+        // On ajoute les scénarios dans la liste de scénarios
         scenarioListArray.add(test1);
         scenarioListArray.add(test2);
         scenarioListArray.add(test3);

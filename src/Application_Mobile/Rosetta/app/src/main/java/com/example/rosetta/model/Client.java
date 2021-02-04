@@ -220,19 +220,21 @@ public class Client {
      * Représente textuellement les données du client.
      */
     public String toString() {
-        String client = "CLIENT : " + this.idClient;
-        String nom = "\n\tNom : " + this.nomClient;
-        String prenom = "\n\tPrenom : " + this.prenomClient;
-        String adresse = "\n\tAdresse : " + this.adresseClient;
-        String email = "\n\tEmail : " + this.emailClient;
-        String tel = "\n\tTel : " + this.telClient;
-        String sexe = "\n\tSexe : " + this.sexeClient;
-        String devis = "\n\tLes devis : \n---------------";
-        for (Devis d : this.lesDevis)
-            devis += d.toString() + "\n\n";
-        devis += "\n---------------";
+//        String client = "CLIENT : " + this.idClient;
+//        String nom = "\n\tNom : " + this.nomClient;
+//        String prenom = "\n\tPrenom : " + this.prenomClient;
+//        String adresse = "\n\tAdresse : " + this.adresseClient;
+//        String email = "\n\tEmail : " + this.emailClient;
+//        String tel = "\n\tTel : " + this.telClient;
+//        String sexe = "\n\tSexe : " + this.sexeClient;
+//        String devis = "\n\tLes devis : \n---------------";
+//        for (Devis d : this.lesDevis)
+//            devis += d.toString() + "\n\n";
+//        devis += "\n---------------";
 
-        return client + nom + prenom + adresse + email + tel + sexe + devis;
+//        return client + nom + prenom + adresse + email + tel + sexe + devis;
+
+        return this.getNomClient() + " " + this.getPrenomClient();
     }
 
 }

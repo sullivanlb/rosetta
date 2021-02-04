@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -12,11 +13,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.rosetta.R;
+import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.DevisAdapter;
+import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Devis;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
+ * associée : l'interface de Devis.
+ *
+ * @author Alice
+ * @version 2.0
+ */
 public class DevisFragment extends Fragment {
 
     @Nullable
@@ -24,9 +34,8 @@ public class DevisFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_devis_layout, container, false);
 
-        Spinner spinnerDevisClients = (Spinner) rootView.findViewById(R.id.spinner_devisClients);
-
-        // Temporaire : tant que nous n'avons pas connecté la BDD (liste des clients)
+        // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
+        // données
         ArrayList<Devis> listeDevis = new ArrayList<Devis>();
         Devis devis1 = new Devis(1,"Devis 1 normal");
         Devis devis2 = new Devis(2, "Devis 2 ok");
@@ -44,6 +53,7 @@ public class DevisFragment extends Fragment {
         Devis devis14 = new Devis(14, "Devis 14 est assez long quand meme aussi");
         Devis devis15 = new Devis(15, "Devis 15 normal");
 
+        // On ajoute les devis à la liste de devis
         listeDevis.add(devis1);
         listeDevis.add(devis2);
         listeDevis.add(devis3);
@@ -60,7 +70,13 @@ public class DevisFragment extends Fragment {
         listeDevis.add(devis14);
         listeDevis.add(devis15);
 
-        // Initialisation de l'adapter pour scenario
+        // La liste déroulante des clients
+        Spinner spinnerDevisClients = (Spinner) rootView.findViewById(R.id.spinner_devisClients);
+        ArrayAdapter<Client> adapterSpinner = new ArrayAdapter<Client>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Controleur.getListeClients());
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDevisClients.setAdapter(adapterSpinner);
+
+        // Initialisation de l'adapter pour devis
         DevisAdapter adapter = new DevisAdapter(this.getActivity(), listeDevis);
         ListView list = (ListView) rootView.findViewById(R.id.listView_devis);
         list.setAdapter(adapter);

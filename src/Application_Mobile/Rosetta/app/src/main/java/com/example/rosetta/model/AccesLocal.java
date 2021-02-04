@@ -9,6 +9,13 @@ import com.google.android.material.badge.BadgeDrawable;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet la liaison propre entre le {@link com.example.rosetta.controller.Controleur}
+ * et la base de données interne. Elle ajoute/modifie/supprime directement dans les tables.
+ *
+ * @author Christophe
+ * @version 2.0
+ */
 public class AccesLocal {
 
     private String name;
@@ -16,6 +23,11 @@ public class AccesLocal {
     private MySQLiteOpenHelper accesBD;
     private SQLiteDatabase bd;
 
+    /**
+     * Le constructeur crée une nouvelle forme de AccesLocal.
+     *
+     * @param context le contexte
+     */
     public AccesLocal(Context context) {
         this.name = "RosettaInterne.sqlite";
         this.version = 1;
@@ -55,11 +67,11 @@ public class AccesLocal {
     /**
      * Supprimer un client.
      *
-     * @param client le client à supprimer
+     * @param id le numéro d'identification du client à supprimer
      */
-    public void supprimerClient(Client client) {
+    public void supprimerClient(int id) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "DELETE FROM Client WHERE idClient = \"" + client.getIdClient() + "\"";
+        String requete = "DELETE FROM Client WHERE idClient = \"" + id + "\"";
         this.bd.execSQL(requete);
     }
 
@@ -121,71 +133,6 @@ public class AccesLocal {
 
         curseur.close();
         return listeClients;
-    }
-
-    /* TODO: ce qui suit n'est que du copié-collé de la méthode ajoutClient(). Temporaire tant que le fonctionnement avec Client n'est pas parfait. */
-
-    /**
-     * Ajoute un nouveau composant.
-     *
-     * @param composant le nouveau composant
-     */
-    public void ajoutComposant(Composant composant) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Composant (nomComposant, uniteComposant, prixComposant) values";
-        requete += "(" + composant.getNomComposant() + ", " + composant.getUniteComposant() + ", " + composant.getPrixComposant() + ")";
-        this.bd.execSQL(requete);
-    }
-
-    /**
-     * Ajoute un nouveau devis.
-     *
-     * @param devis le nouveau devis
-     */
-    public void ajoutDevis(Devis devis) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Composant (nomDevis) values";
-        requete += "(" + devis.getNomDevis() + ")";
-        this.bd.execSQL(requete);
-    }
-
-    /**
-     * Ajoute un nouveau client.
-     *
-     * @param client
-     */
-    public void ajoutPack(Client client) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Client (nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) values";
-        requete += "(" + client.getNomClient() + ", " + client.getPrenomClient() + ", " + client.getAdresseClient() + ", " +
-                client.getEmailClient() + ", " + client.getTelClient() + ", \"" + client.getSexeClient() + "\")";
-        this.bd.execSQL(requete);
-    }
-
-    /**
-     * Ajoute un nouveau client.
-     *
-     * @param client
-     */
-    public void ajoutQuestion(Client client) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Client (nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) values";
-        requete += "(" + client.getNomClient() + ", " + client.getPrenomClient() + ", " + client.getAdresseClient() + ", " +
-                client.getEmailClient() + ", " + client.getTelClient() + ", \"" + client.getSexeClient() + "\")";
-        this.bd.execSQL(requete);
-    }
-
-    /**
-     * Ajoute un nouveau client.
-     *
-     * @param client
-     */
-    public void ajoutScenario(Client client) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Client (nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) values";
-        requete += "(" + client.getNomClient() + ", " + client.getPrenomClient() + ", " + client.getAdresseClient() + ", " +
-                client.getEmailClient() + ", " + client.getTelClient() + ", \"" + client.getSexeClient() + "\")";
-        this.bd.execSQL(requete);
     }
 
 }

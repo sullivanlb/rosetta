@@ -23,6 +23,13 @@ import com.example.rosetta.model.Client;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
+ * associée : l'interface de Client.
+ *
+ * @author Alice, Christophe
+ * @version 2.0
+ */
 public class ClientFragment extends Fragment {
 
     private Controleur controleur;
@@ -36,8 +43,11 @@ public class ClientFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_client_layout, container, false);
 
-        // Le controleur principal (Accès à la BDD interne)
+        // Le controleur principal (accès à la base de données interne)
         this.controleur = Controleur.getInstance(this.getContext());
+
+        // La liste des clients récupérée depuis la base de données interne
+        this.listeClients = this.controleur.getListeClients();
 
         // Le bouton pour enregistrer les données d'un client (ajouter/sauvegarder)
         this.enregistrerBouton = (Button) rootView.findViewById(R.id.EnregistrerButton);
@@ -62,8 +72,6 @@ public class ClientFragment extends Fragment {
         hommeButton.setOnClickListener(controleurCheckSexeClient);
         autreButton.setOnClickListener(controleurCheckSexeClient);
 
-        this.listeClients = this.controleur.getListeClients();
-
         // Initialisation de l'adapteur pour clients
         this.liste = (ListView) rootView.findViewById(R.id.listView_clients);
         ControleurListeClients controleurListeClients = new ControleurListeClients(this);
@@ -74,15 +82,11 @@ public class ClientFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Permet d'actualiser la liste affichée des clients lorsqu'un client est ajouté, supprimé ou
+     * ses informations ont été modifiées.
+     */
     public void actualiserListeClients() {
         this.adapteur.notifyDataSetChanged();
-    }
-
-    public ListView getListe() {
-        return liste;
-    }
-
-    public ClientAdapter getAdapteur() {
-        return adapteur;
     }
 }

@@ -11,8 +11,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.rosetta.R;
 
 /**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
+ * Cette classe est un adapteur de pages, elle renvoie un fragment correspondant à une des
+ * sections/onglets/pages : Client, Scenario, Devis.
+ *
+ * @author Alice, Christophe
+ * @version 2.0
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -20,6 +23,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
 
+    /**
+     * Le constructeur crée une nouvelle forme de SectionPagerAdapter.
+     *
+     * @param context le contexte
+     * @param fm le manager de fragments
+     */
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
@@ -27,6 +36,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
+        // Retourne le fragment correspondant au lieu où se trouve l'utilisateur
         Fragment fragment = null;
         switch (position) {
             case 0:
@@ -46,12 +57,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
+
+        // Retourne le titre de la page où se trouve l'utilisateur
         return mContext.getResources().getString(TAB_TITLES[position]);
     }
 
     @Override
     public int getCount() {
-        // Show 3 total pages.
+        // Montre au total 3 pages
         return 3;
     }
 }

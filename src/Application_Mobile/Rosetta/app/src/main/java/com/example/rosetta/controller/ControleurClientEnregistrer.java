@@ -13,16 +13,30 @@ import static com.example.rosetta.model.Sexe.AUTRE;
 import static com.example.rosetta.model.Sexe.FEMME;
 import static com.example.rosetta.model.Sexe.HOMME;
 
+/**
+ * Cette classe permet d'ajouter un client et d'enregistrer les informations d'un client lorsque ce
+ * bouton Enregistrer est appuyé.
+ *
+ * @author Christophe
+ * @version 2.0
+ */
 public class ControleurClientEnregistrer implements View.OnClickListener {
 
     private ClientFragment clientFragment;
 
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurClientEnregistrer.
+     *
+     * @param cf le contexte {@link ClientFragment}
+     */
     public ControleurClientEnregistrer(ClientFragment cf) {
         this.clientFragment = cf;
     }
 
     @Override
     public void onClick(View v) {
+
+        // Récupération des informations du formulaire du client
         EditText editNom = (EditText) this.clientFragment.getView().findViewById(R.id.NomEditText);
         String nom = editNom.getText().toString();
         EditText editPrenom = (EditText) this.clientFragment.getView().findViewById(R.id.PrenomEditText);
@@ -37,6 +51,8 @@ public class ControleurClientEnregistrer implements View.OnClickListener {
         CheckBox hommeButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.hommeCheckbox);
         CheckBox autreButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.autreCheckbox);
 
+        // Si le nom, le prénom, l'adresse, le sexe sont bien renseignés, ainsi que l'email ou le
+        // ou le numéro de téléphone, alors le client est ajouté/enregistré
         if (nom != null && nom.length() > 0 && prenom != null && prenom.length() > 0 && adresse != null && adresse.length() > 0 &&
                 ((email != null && email.length() > 0) || (tel != null && tel.length() > 0))
                 && (femmeButton.isChecked() || hommeButton.isChecked() || autreButton.isChecked())) {
@@ -45,6 +61,7 @@ public class ControleurClientEnregistrer implements View.OnClickListener {
             Controleur.getInstance(this.clientFragment.getContext()).creerClient(client);
             this.clientFragment.actualiserListeClients();
 
+            // Vidage des champs
             editPrenom.setText("");
             editNom.setText("");
             editAdresse.setText("");
@@ -54,6 +71,9 @@ public class ControleurClientEnregistrer implements View.OnClickListener {
             hommeButton.setChecked(false);
             autreButton.setChecked(false);
         } else {
+
+            // Une information est envoyée à l'utilisateur lorsqu'il n'a pas saisi correctement
+            // les informations du formulaire
             Toast.makeText(this.clientFragment.getView().getContext(), "Veuillez remplir le formulaire.", Toast.LENGTH_LONG).show();
         }
     }

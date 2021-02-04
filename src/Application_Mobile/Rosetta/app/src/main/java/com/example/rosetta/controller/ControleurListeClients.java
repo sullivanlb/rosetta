@@ -11,10 +11,21 @@ import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Sexe;
 import com.example.rosetta.ui.main.ClientFragment;
 
+/**
+ * Cette classe permet d'afficher les informations du client sélectionné dans le formulaire.
+ *
+ * @author Christophe
+ * @version 2.0
+ */
 public class ControleurListeClients implements AdapterView.OnItemClickListener {
 
     private ClientFragment clientFragment;
 
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurListeClients
+     *
+     * @param cf le contexte {@link ClientFragment}
+     */
     public ControleurListeClients(ClientFragment cf) {
         if (cf != null) {
             this.clientFragment = cf;
@@ -24,8 +35,11 @@ public class ControleurListeClients implements AdapterView.OnItemClickListener {
     @SuppressLint("ResourceAsColor")
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        // Récupération des informations du client sélectionné
         Client client = Controleur.getInstance(this.clientFragment.getContext()).getListeClients().get(position);
 
+        // Récupération des champs du formulaire
         EditText editNom = (EditText) this.clientFragment.getView().findViewById(R.id.NomEditText);
         EditText editPrenom = (EditText) this.clientFragment.getView().findViewById(R.id.PrenomEditText);
         EditText editAdresse = (EditText) this.clientFragment.getView().findViewById(R.id.AdresseEditText);
@@ -35,12 +49,14 @@ public class ControleurListeClients implements AdapterView.OnItemClickListener {
         CheckBox hommeButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.hommeCheckbox);
         CheckBox autreButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.autreCheckbox);
 
+        // Remplit les champs suivant les informations du client
         editNom.setText(client.getNomClient(), null);
         editPrenom.setText(client.getPrenomClient(), null);
         editAdresse.setText(client.getAdresseClient(), null);
         editEmail.setText(client.getEmailClient(), null);
         editTelephone.setText(client.getTelClient(), null);
 
+        // Coche la case suivant le sexe du client
         if (client.getSexeClient() == Sexe.FEMME) {
             femmeButton.setChecked(true);
             hommeButton.setChecked(false);

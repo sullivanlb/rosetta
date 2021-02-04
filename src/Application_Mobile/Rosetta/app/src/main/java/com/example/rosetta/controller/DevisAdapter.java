@@ -13,12 +13,24 @@ import com.example.rosetta.model.Devis;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet de contrôler l'affichage de la liste des Devis.
+ *
+ * @author Alice
+ * @version 2.0
+ */
 public class DevisAdapter extends BaseAdapter {
 
     private ArrayList<Devis> listDevis;
     private Context context;
     private LayoutInflater inflater;
 
+    /**
+     * Le constructeur crée une nouvelle forme de DevisAdapter.
+     *
+     * @param context le contexte
+     * @param list la liste des devis
+     */
     public DevisAdapter(Context context, ArrayList<Devis> list){
         this.context = context;
         this.listDevis = list;
@@ -45,21 +57,20 @@ public class DevisAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent){
         View view;
 
-        if (convertView == null){
-            //initialisation de la vue film_list_item
+        // Initialisation de la vue
+        if (convertView == null) {
             view = (View) inflater.inflate(R.layout.devis_item, parent, false);
-        }
-        else {
+        } else {
             view = (View) convertView;
         }
 
-        //Initialisation des vues du layout
+        // Initialisation des vues du layout
         TextView nomDevis = (TextView) view.findViewById(R.id.nomDevisTextView);
 
-        //modification des vues
+        // Modification des vues
         nomDevis.setText(listDevis.get(position).getNomDevis());
 
-        //on retourne la vue crée
+        // On retourne la vue créée
         return view;
     }
 }

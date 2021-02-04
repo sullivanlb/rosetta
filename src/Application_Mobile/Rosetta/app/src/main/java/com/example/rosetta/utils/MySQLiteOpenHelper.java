@@ -4,6 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Cette classe permet de créer la base de données interne.
+ *
+ * @author Christophe
+ * @version 2.0
+ */
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     /**
