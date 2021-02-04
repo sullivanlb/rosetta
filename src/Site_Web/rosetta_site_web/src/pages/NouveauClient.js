@@ -66,7 +66,12 @@ export default class NouveauClient extends Component {
         console.log(this.state.nom + "\n" + this.state.prenom + "\n" + this.state.email + "\n" + this.state.adresse + "\n" + this.state.tel + "\n" + this.state.sexe);
         let formData = new FormData();
         formData.append("nom", this.state.nom);
-        const url = "http://localhost:3000/api";
+        formData.append("prenom", this.state.prenom);
+        formData.append("adresse", this.state.adresse);
+        formData.append("email", this.state.email);
+        formData.append("tel", this.state.tel);
+        formData.append("sexe", this.state.sexe);
+        const url = "http://localhost/api/";
         axios.post(url, formData)
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
@@ -95,11 +100,6 @@ export default class NouveauClient extends Component {
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Entrez l'adresse email" onChange={this.handleAddEmail} />
                     </Form.Group>
-
-          <Form.Group controlId="formGridAddress2">
-            <Form.Label>Adresse</Form.Label>
-            <Form.Control placeholder="Ex : Numéro et libellé de la voie, Lieu dit, Code postal, Pays" />
-          </Form.Group>
 
                     <Form.Group controlId="formGridAddress2">
                         <Form.Label>Adresse</Form.Label>

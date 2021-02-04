@@ -14,7 +14,6 @@ import ModifierClient from "./pages/ModifierClient";
 import FooterPage from "./composants/Footer";
 import Navigation from "./composants/Navigation";
 import NavbarPage from "./composants/NavbarPage";
-import api from "./api/index.php";
 
 function App() {
   return (
@@ -33,7 +32,6 @@ function App() {
           <Route exact path="/devis" component={Devis} />
           <Route exact path="/devis/nouveau" component={NouveauDevis}/>
           <Route exact path="/scenario" component={Scenario} />
-          <Route exact path="/api" component={api} />
         </Switch>
       </BrowserRouter>
 

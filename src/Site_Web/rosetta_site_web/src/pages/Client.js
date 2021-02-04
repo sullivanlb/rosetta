@@ -13,29 +13,7 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
-      client: [
-        {
-          id: 1,
-          nom: "Jacque",
-          prenom: "Lors",
-          email: "jacquo@gmail.com",
-          tel: "0652124100",
-        },
-        {
-          id: 2,
-          nom: "Marie",
-          prenom: "Poli",
-          email: "popolli@hotmail.com",
-          tel: "0245789914",
-        },
-        {
-          id: 3,
-          nom: "Marc",
-          prenom: "Castier",
-          email: "castanier@superfree.com",
-          tel: "0155669988",
-        },
-      ],
+      client: [],
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
