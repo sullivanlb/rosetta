@@ -2,34 +2,15 @@ import React, {Component} from "react";
 import { Col, Button, Form, Container, Row, FormLabel, FormControl, Table } from 'react-bootstrap';
 import '../style/NouveauDevis.css';
 
+/**
+ * Ce composant représente la page permettant d'ajouter un nouveau devis
+ * 
+ * @author Lucy Gastebois
+ */
+
 
 export default class NouveauDevis extends Component{
-    state = this.props.state;
-
-    /** addItem = () => {
-        const id = date.now().toString(); 
-       const items = {this.state.items};
-        item[id] = {
-            id:id,
-            ref:"",
-            description:"",
-            quantite:"1",
-            unite:"",
-            prix:""
-        };
-        this.setState({items : items});
-    }
-
-    handleItemChange = (evt, item, field) => {
-        const value = evt.currentTarget.value;
-        const clonedItem = { ...item };
-        clonedItem[field] = value;
-        const clonedItems = { ...this.state.items };
-        clonedItems[clonedItem.id] = clonedItem;
-        this.setState({ items: clonedItems });
-      };*/
     
-
     render(){
         return(
 
@@ -177,7 +158,6 @@ export default class NouveauDevis extends Component{
                 <Row>
                 <Col md="3">
                     <Button variant="ligth" type="submit" > Ajouter une ligne </Button>
-                    {/**{Object.keys(this.state.items).map((itemId, index)=> (<Item key={index} item={this.state.items[itemId]} onItemChange={this.handleItemChange}/>))}*/}
                 </Col>
                 <Col md="3">
                     <Button variant="ligth" type="submit">Enregistrer </Button>

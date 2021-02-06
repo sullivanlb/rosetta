@@ -1,8 +1,11 @@
 import React from 'react';
 import { Col, Button, Form, Container, Row, FormLabel, FormControl, Table } from 'react-bootstrap';
 
-
-
+/**
+ * Ce composant représente la page permettant de modifier un devis
+ * 
+ * @author Lucy Gastebois
+ */
 
 const ModifierDevis = () => {
     return(

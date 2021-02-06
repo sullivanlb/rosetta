@@ -2,6 +2,12 @@ import React from "react";
 import "../style/Navigation.css";
 //import Hamburger from 'hamburger-react'
 
+/**
+ * Ce composant représente le Menu (celui qu'on utilise)
+ * 
+ * @author Lucy Gastebois
+ */
+
 export default function Navigation() {
   return (
     <nav>
@@ -21,14 +27,6 @@ export default function Navigation() {
       </ul>
 
       <nav className="navbar-toggler">
-        <button
-          className="navbar-toggler ml-auto"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapsingNavbar3"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
         <div className="navbar-collapse collapse" id="collapsingNavbar3">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item active">

@@ -4,6 +4,14 @@ import "../style/Accueil.css";
 import Carousel from "../composants/Carousel";
 import OpenStreetMap from "../composants/OpenStreetMap";
 
+/**
+ * Ce composant représente la page d'accueil, elle permet de :
+ *  - Présenter l'entreprise, numéro, adresse et maps.
+ *  - Afficher un diaporam (carousel) de photos.
+ * 
+ * @author Sullivan LEBOEUF && Lucy Gastebois
+ */
+
 const Accueil = () => {
   return (
     <Fragment>
@@ -27,6 +35,7 @@ const Accueil = () => {
             <Carousel className="carousel" />
             <span className="vertical-line"></span>
           </Col>
+          
           <Col className="col2" md={2}>
             <Alert className="ContactAlert" variant="dark">
               Contact :
