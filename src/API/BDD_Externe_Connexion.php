@@ -37,7 +37,7 @@ class BDD_Externe_Connexion {
      */
 	public function __construct() {
 		try {
-			$this->connexion = new PDO("sqlite:../../../delivrables/BDD_Externe/SQlite3/Rosetta.db");
+			$this->connexion = new PDO("sqlite:./Rosetta.db");
 			$this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}catch (PDOException $e) {
 			print "Erreur : " . $e->getMessage() . "\r\n";
