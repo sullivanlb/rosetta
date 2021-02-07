@@ -1,0 +1,9 @@
+img {
+    height: 64px;
+    border-radius: 5%;
+}
+
+.mainFoot {
+    bottom: 0;
+    left: 0;
+}

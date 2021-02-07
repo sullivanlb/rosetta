@@ -1,6 +1,6 @@
 <?php
 
-require_once('BDD_Externe_Connexion.php');
+require_once('../BDD_Externe_Connexion.php');
 
 /** 
  * AppartientSCDAO est une classe de gestion de liaison.
