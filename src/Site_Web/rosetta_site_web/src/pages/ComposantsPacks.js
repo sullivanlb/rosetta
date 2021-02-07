@@ -80,10 +80,14 @@ export default class ComposantsPacks extends Component {
   }
 
   affichageInfoComposants(id) {
-    this.setState({ idToDisplay: id });
+    if (id = 1) {
+      this.setState({ idToDisplay: id });
+      console.log("id = 1");
+    }
+
   }
   affichageInfoPacks(id) {
-    this.setState({ idToDisplay: id });
+    this.state2.setState({ idToDisplay: id });
   }
 
   render() {

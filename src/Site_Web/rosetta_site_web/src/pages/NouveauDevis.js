@@ -14,7 +14,7 @@ const NouveauDevis = () => {
                 <Col><br></br></Col>
             </Row>
 
-            <Row>    
+            <Row>
             <Col md="4">
                 <img className="logo ml-4 mt-2" src="/img/logo.jpg" alt="" />
             </Col>
@@ -31,20 +31,20 @@ const NouveauDevis = () => {
             <Row>
                 <Col><br></br></Col>
             </Row>
-            
+
             <Form.Group >
                 <FormLabel>Devis n° </FormLabel>
                 <FormControl placeholder="exemple : 156"/>
             </Form.Group>
 
             <Row >
-            <Col md="2">        
+            <Col md="2">
                 <FormLabel>Edité le </FormLabel>
                 <FormControl placeholder="31/01/2021"/>
-            </Col> 
-            
+            </Col>
+
             <Col md="6"></Col>
-         
+
             <Col md="4">
             <select>
                 <option>Sélectionner un client </option>
@@ -80,7 +80,7 @@ const NouveauDevis = () => {
             <Row>
                 <Col><br></br></Col>
             </Row>
-               
+
             <FormLabel>Description : </FormLabel>
             <FormControl placeholder="Entrer la description"/>
 
@@ -91,7 +91,7 @@ const NouveauDevis = () => {
             <div class="alert alert-secondary" role="alert">
                 DETAIL DES PIECES
             </div>
-            
+
             <Table>
                 <thead>
                     <tr>
@@ -127,7 +127,7 @@ const NouveauDevis = () => {
             </Row>
 
             <div class="alert alert-secondary" role="alert">
-                TOTAL 
+                TOTAL
             </div>
 
             <Row>
