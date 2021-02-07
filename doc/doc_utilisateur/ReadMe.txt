@@ -4,7 +4,7 @@ Voici l'avancement de votre projet.
 
 ==============================================================
 
-Dans le dossier que vous venez de décompresser, vous trouverez une vidéo qui vous présente tout ce qui a déjà été réalisé pour votre projet.
+Dans le dossier que vous venez de décompresser, vous trouverez une vidéo qui vous présente tout ce qui a déjà été réalisé pour votre projet, ainsi que les divers documents liés aux diverses étapes passées.
 
 Passez une excellente journée,
 
