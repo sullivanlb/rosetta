@@ -6,7 +6,6 @@ import { Col, Button, Form, Container, Row, FormLabel, FormControl, Table } from
  * 
  * @author Lucy Gastebois
  */
-
 const ModifierDevis = () => {
     return(
 

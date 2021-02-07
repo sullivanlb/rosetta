@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from "react";
 
 /**
- * @description This component represent the section in page Scenario which display his info
+ * @description Ce composant représente la section de la page Scénario qui affiche ses informations
  *
  * @author Alice GONTARD
  */
-
 export default class AffichageScenario extends Component {
   state = this.props.state;
 

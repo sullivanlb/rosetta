@@ -8,14 +8,13 @@ import ListePacks from "../composants/ListePacks";
 import AffichageComposants from "../composants/AffichageComposants";
 
 /**
- * This component represent the Composants/Packs page in it we will be able to:
- *  - display 2 lists of composants and packs and there info display
- *  - have button to insert / cancel / delete a scenario
- *  - It is also possible to create component packs.
+ * Ce composant représente la page Composants/Packs dans laquelle nous pourrons :
+ * - afficher 2 listes de composants et packs, et y afficher des informations
+ * - avoir un bouton pour insérer / annuler / supprimer un scénario
+ * - créer des packs de composants.
  *
  * @author Alice GONTARD
  */
-
 export default class ComposantsPacks extends Component {
   constructor(props) {
     super(props);

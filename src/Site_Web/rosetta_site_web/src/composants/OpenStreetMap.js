@@ -14,6 +14,11 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
+/**
+ * @description Ce composant représente la carte de la page d'accueil, elle présente directement l'emplacement de ADS
+ * 
+ * @author Sullivan LEBOEUF
+ */
 export default class OpenStreetMap extends Component {
   render() {
     return (

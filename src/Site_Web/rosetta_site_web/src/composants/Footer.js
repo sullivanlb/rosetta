@@ -3,7 +3,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import "../style/Footer.css";
 
 /**
- * This component represent the footer of each page
+ * Ce composant représente le pied de page de chaque page
  * 
  * @author Sullivan LEBOEUF 
  */

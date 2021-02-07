@@ -14,7 +14,6 @@ import AffichageDevis from "../composants/AffichageDevis";
  * 
  * @author Lucy Gastebois
  */
-
 export default class Devis extends Component {
 
   /**

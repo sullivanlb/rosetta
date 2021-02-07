@@ -7,11 +7,10 @@ import ListeComposants from "../composants/ListeComposants";
 import ListePacks from "../composants/ListePacks";
 
 /**
- * @description This component represent the page to create a scenario
+ * @description Ce composant représente la page pour créer un scénario
  *
  * @author Alice GONTARD
  */
-
 export default class NouveauScenario extends Component {
 
   constructor(props) {

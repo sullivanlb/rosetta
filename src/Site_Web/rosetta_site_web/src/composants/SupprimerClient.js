@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 /**
- * This function will create an advertising when delete button clicked
+ * Cette fonction créera un avertissement lorsque le bouton de suppression sera cliqué
  * 
  * @author Sullivan LEBOEUF
  */

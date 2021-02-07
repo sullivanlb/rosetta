@@ -7,7 +7,6 @@ import "../style/Navigation.css";
  * 
  * @author Lucy Gastebois
  */
-
 export default function Navigation() {
   return (
     <nav>

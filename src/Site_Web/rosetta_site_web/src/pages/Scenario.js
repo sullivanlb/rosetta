@@ -8,14 +8,13 @@ import ListeScenario from "../composants/ListeScenario";
 import AffichageScenario from "../composants/AffichageScenario";
 
 /**
- * This component represent the scenario page in it we will be able to:
- *  - display list of scenario and his info display
- *  - have button to insert / edit / delete a scenario
- *  - have a button to access the page Composants/Packs
+ * Ce composant représente la page de scénario dans laquelle nous pourrons
+ * - afficher la liste du scénario et son affichage d'informations
+ * - avoir un bouton pour insérer / éditer / supprimer un scénario
+ * - avoir un bouton pour accéder à la page Composants/Packs
  *
  * @author Alice GONTARD
  */
-
 export default class Scenario extends Component {
   constructor(props) {
     super(props);

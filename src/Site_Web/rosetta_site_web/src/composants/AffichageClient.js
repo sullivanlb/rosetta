@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 /**
- * @description This component represent the section in page Client which display his info
+ * @description Ce composant représente la section de la page Client qui affiche ses informations
  * 
  * @author Sullivan LEBOEUF
  */

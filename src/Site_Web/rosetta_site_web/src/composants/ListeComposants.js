@@ -2,11 +2,10 @@ import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 /**
- * @description This component represent the section in page ComposantsPacks which list the component.
+ * @description Ce composant représente la section de la page ComposantsPacks qui énumère les composants.
  *
  * @author Alice GONTARD
  */
-
 export default class ListeComposants extends Component {
   state1 = this.props.state;
 

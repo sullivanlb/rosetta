@@ -2,11 +2,10 @@ import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 /**
- * @description This component represent the section in page Scenario which list the scenario.
+ * @description Ce composant représente la section de la page Scénario qui énumère les scénarios.
  *
  * @author Alice GONTARD
  */
-
 export default class ListeScenario extends Component {
   state = this.props.state;
 

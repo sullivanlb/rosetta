@@ -8,7 +8,6 @@ import { BrowserRouter as Router } from "react-router-dom";
  * 
  * @author Lucy Gastebois
  */
-
 class NavbarPage extends Component {
   state = {
     collapse1: false,

@@ -11,7 +11,6 @@ import OpenStreetMap from "../composants/OpenStreetMap";
  * 
  * @author Sullivan LEBOEUF && Lucy Gastebois
  */
-
 const Accueil = () => {
   return (
     <Fragment>

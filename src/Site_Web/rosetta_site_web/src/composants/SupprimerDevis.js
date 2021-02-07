@@ -2,11 +2,10 @@ import React, { useState, Fragment } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 /**
- * Cette fonction créera une publicité lorsque le bouton de suppression sera cliqué pour demander un confirmation de supression
+ * Cette fonction créera un avertissement lorsque le bouton de suppression sera cliqué pour demander un confirmation de supression
  * 
  * @author Lucy Gastebois
  */
-
 function Avertissement() {
   const [show, setShow] = useState(false);
 

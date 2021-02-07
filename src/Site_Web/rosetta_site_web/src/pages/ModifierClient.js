@@ -3,7 +3,7 @@ import { Col, Button, Form, Container, Row } from "react-bootstrap";
 import "../style/NouveauClient.css";
 
 /**
- * @description This component represent the page to edit a client
+ * @description Ce composant représente la page pour éditer un client
  * 
  * @author Sullivan LEBOEUF
  */

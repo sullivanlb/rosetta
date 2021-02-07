@@ -4,11 +4,10 @@ import "../style/Carousel.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 /**
- * Ce composant représente la section de la page D'accueil qui permet d'afficher le diaporama de photos
+ * Ce composant représente la section de la page d'accueil qui permet d'afficher le diaporama de photos
  * 
  * @author Lucy Gastebois
  */
-
 export default function DiapoCarousel() {
   return (
     <Carousel className="carousel" pauseOnHover={true}>

@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import axios from 'axios';
 
 /**
- * @description This component represent the section in page Client which list the clients
+ * @description Ce composant représente la section de la page Client qui énumère les clients
  * 
  * @author Sullivan LEBOEUF & Christophe GARCIA
  */
@@ -21,6 +21,8 @@ export default class ListeClient extends Component {
     formData.append("tel", this.state.tel);
     formData.append("sexe", this.state.sexe);
     
+/*  En cours de développement : récupération de la liste des clients depuis la BDD externe
+
     // axios.post(url, formData)
     // .then(res => console.log(res.data))
     // .catch(err => console.log(err));
@@ -36,6 +38,7 @@ export default class ListeClient extends Component {
       console.log(error);
     });
   }
+*/
 
   render() {
     return (

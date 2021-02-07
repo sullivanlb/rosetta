@@ -5,7 +5,6 @@ import React, { Component, Fragment } from "react";
  * 
  * @author Lucy Gastebois
  */
-
 export default class AffichageDevis extends Component {
   state = this.props.state;
 

@@ -8,9 +8,9 @@ import ListeClient from "../composants/ListeClient";
 import AffichageClient from "../composants/AffichageClient";
 
 /**
- * This component represent the client page in it we will be able to:
- *  - display list of client and his info display
- *  - have button to insert / edit / delete a client
+ * Ce composant représente la page client dans laquelle nous pourrons :
+ * - afficher la liste du client et son affichage d'informations
+ * - avoir un bouton pour insérer / éditer / supprimer un client
  *
  * @author Sullivan LEBOEUF
  */
@@ -27,9 +27,9 @@ export default class Client extends Component {
   }
 
   /**
-   * Change the state of the client to display
+   * Modifier l'état du client à afficher
    *
-   * @param {the id of the client to display} id
+   * @param {l'identifiant du client à afficher} id
    */
   affichageInfoClient(id) {
     this.setState({ idToDisplay: id });

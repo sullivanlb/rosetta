@@ -6,7 +6,6 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
  * 
  * @author Lucy Gastebois
  */
-
 export default class ListeDevis extends Component {
     state = this.props.state;
   
