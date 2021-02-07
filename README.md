@@ -15,10 +15,10 @@ L’application permet une prise de notes rapide et facile des informations esse
 --> _J'ai 19 ans et je suis étudiant en DUT Informatique à l'IUT de Vannes. Dans ce projet, je faciliterai la communication entre l'équipe, le maître d'œuvre et le client. J'animerai le groupe et signalerai ses difficultés. Je suis chargé de veiller au bon fonctionnement du projet dans tous ses aspects. Je pense que nous allons beaucoup apprendre sur le travail en équipe ainsi que sur le cadre méthodologique agile Scrum._
 
 **Responsable communication** : Alice Gontard
---> _J’ai 19 ans et je suis étudiante en DUT informatique à l’IUT de Vannes. Dans ce projet, je suis chargé de communication et je dois maintenir le site Web du groupe de projet ainsi que rédiger les comptes-rendus. Je trouve que ce projet est intéressant au niveau de la communication dans le groupe d’étudiants et vis-à-vis du client qui a des attentes définies._
+--> _J’ai 20 ans et je suis étudiante en DUT informatique à l’IUT de Vannes. Dans ce projet, je suis chargé de communication et je dois maintenir le site Web du groupe de projet ainsi que rédiger les comptes-rendus. Je trouve que ce projet est intéressant au niveau de la communication dans le groupe d’étudiants et vis-à-vis du client qui a des attentes définies._
 
 **Responsable des rendus** : Lucy Gastebois
---> _J’ai 19 ans et je suis étudiante en DUT informatique à l’IUT de Vannes. Dans ce projet, je veille à ce que les documents respectent la charte graphique de l’IUT et qu’ils soient livrés dans les temps. Le projet de synthèse permet de mettre en pratique nos connaissances apprises en informatique et d’avoir projet concret de travail de groupe._
+--> _J’ai 20 ans et je suis étudiante en DUT informatique à l’IUT de Vannes. Dans ce projet, je veille à ce que les documents respectent la charte graphique de l’IUT et qu’ils soient livrés dans les temps. Le projet de synthèse permet de mettre en pratique nos connaissances apprises en informatique et d’avoir projet concret de travail de groupe._
 
 **Responsable des tests** : Sullivan Leboeuf
 --> _J’ai 19 ans et je suis étudiant en DUT Informatique à l’IUT de Vannes. Dans ce projet je m’occuperai de toute la partie tests du développement de l’application web et mobile. A mon avis ce projet nous permettra d’avoir une meilleure idée de la gestion de projet, mais aussi du temps consacré à certaines tâches par exemple._
