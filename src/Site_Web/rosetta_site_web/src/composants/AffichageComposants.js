@@ -1,5 +1,11 @@
 import React, { Component, Fragment } from "react";
 
+/**
+ * @description This component represent the section in page ComposantsPacks which display his info
+ *
+ * @author Alice GONTARD
+ */
+
 export default class AffichageComposants extends Component {
   state1 = this.props.state;
 

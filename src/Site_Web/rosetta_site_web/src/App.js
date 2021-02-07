@@ -8,6 +8,7 @@ import "./style/App.css";
 import Accueil from "./pages/Accueil";
 import Devis from "./pages/Devis";
 import NouveauDevis from "./pages/NouveauDevis";
+import ModifierDevis from "./pages/ModifierDevis";
 import Client from "./pages/Client";
 import Scenario from "./pages/Scenario";
 import NouveauScenario from "./pages/NouveauScenario";
@@ -16,8 +17,8 @@ import NouveauClient from "./pages/NouveauClient";
 import ModifierClient from "./pages/ModifierClient";
 import FooterPage from "./composants/Footer";
 import Navigation from "./composants/Navigation";
+import NouveauScenario from "./pages/NouveauScenario";
 import NavbarPage from "./composants/NavbarPage";
-import api from "./api/index.php";
 
 function App() {
   return (
@@ -35,10 +36,15 @@ function App() {
           <Route exact path="/client/modify" component={ModifierClient} />
           <Route exact path="/devis" component={Devis} />
           <Route exact path="/devis/nouveau" component={NouveauDevis}/>
-          <Route exact path="/scenario" component={Scenario} />
+          <Route exact path="/devis/modifier" component={ModifierDevis}/>
+          <Route exact path="/scenario" component={Scenario} />  
+          <Route exact path="/scenario/nouveauscenario" component={NouveauScenario} />
           <Route exact path="/scenario/composantspacks" component={ComposantsPacks} />
+<<<<<<< HEAD
           <Route exact path="/scenario/nouveauscenario" component={NouveauScenario} />
           <Route exact path="/api" component={api} />
+=======
+>>>>>>> fdabadb2eab6e4a680c5220f92bab340e7bdbd70
         </Switch>
       </BrowserRouter>
 

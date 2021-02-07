@@ -2,45 +2,35 @@ import React, { Component, Fragment } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
-import Supprimer from "../composants/Supprimer";
+import Supprimer from "../composants/SupprimerClient";
 import "../style/Client.css";
 import ListeClient from "../composants/ListeClient";
 import AffichageClient from "../composants/AffichageClient";
 
+/**
+ * This component represent the client page in it we will be able to:
+ *  - display list of client and his info display
+ *  - have button to insert / edit / delete a client
+ *
+ * @author Sullivan LEBOEUF
+ */
 export default class Client extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       idToDisplay: 1,
-      client: [
-        {
-          id: 1,
-          nom: "Jacque",
-          prenom: "Lors",
-          email: "jacquo@gmail.com",
-          tel: "0652124100",
-        },
-        {
-          id: 2,
-          nom: "Marie",
-          prenom: "Poli",
-          email: "popolli@hotmail.com",
-          tel: "0245789914",
-        },
-        {
-          id: 3,
-          nom: "Marc",
-          prenom: "Castier",
-          email: "castanier@superfree.com",
-          tel: "0155669988",
-        },
-      ],
+      client: [],
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
   }
 
+  /**
+   * Change the state of the client to display
+   *
+   * @param {the id of the client to display} id
+   */
   affichageInfoClient(id) {
     this.setState({ idToDisplay: id });
   }
@@ -58,17 +48,17 @@ export default class Client extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-              <MDBCol md="6">
-                <form className="form-inline mt-4 mb-4">
-                  <MDBIcon icon="search" />
-                  <input
-                    className="form-control form-control-sm ml-3 w-75"
-                    type="text"
-                    placeholder="Rechercher un client"
-                    aria-label="Rechercher"
-                  />
-                </form>
-              </MDBCol>
+                <MDBCol md="6">
+                  <form className="form-inline mt-4 mb-4">
+                    <MDBIcon icon="search" />
+                    <input
+                      className="form-control form-control-sm ml-3 w-75"
+                      type="text"
+                      placeholder="Rechercher un client"
+                      aria-label="Rechercher"
+                    />
+                  </form>
+                </MDBCol>
               </Row>
               <ListeClient
                 state={this.state}
@@ -78,7 +68,10 @@ export default class Client extends Component {
             <Col className="col2-affichage" md={6}>
               <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
-                  <AffichageClient key={this.state.idToDisplay} state={this.state} />
+                  <AffichageClient
+                    key={this.state.idToDisplay}
+                    state={this.state}
+                  />
                 </form>
               </MDBCol>
             </Col>

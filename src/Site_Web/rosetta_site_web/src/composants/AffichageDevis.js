@@ -1,5 +1,11 @@
 import React, { Component, Fragment } from "react";
 
+/**
+ * Ce composant représente la section de la page Devis qui affiche ses informations
+ * 
+ * @author Lucy Gastebois
+ */
+
 export default class AffichageDevis extends Component {
   state = this.props.state;
 

@@ -7,6 +7,15 @@ import ListeComposants from "../composants/ListeComposants";
 import ListePacks from "../composants/ListePacks";
 import AffichageComposants from "../composants/AffichageComposants";
 
+/**
+ * This component represent the Composants/Packs page in it we will be able to:
+ *  - display 2 lists of composants and packs and there info display
+ *  - have button to insert / cancel / delete a scenario
+ *  - It is also possible to create component packs.
+ *
+ * @author Alice GONTARD
+ */
+
 export default class ComposantsPacks extends Component {
   constructor(props) {
     super(props);
@@ -103,12 +112,17 @@ export default class ComposantsPacks extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-                <input
-                  className="form-control form-control-sm ml-3 w-75 mb-2"
-                  type="text"
-                  placeholder="Rechercher"
-                  aria-label="Rechercher"
-                />
+              <MDBCol md="6">
+                <form className="form-inline mt-4 mb-4">
+                  <MDBIcon icon="search" />
+                  <input
+                    className="form-control form-control-sm ml-3 w-75"
+                    type="text"
+                    placeholder="Rechercher un packs/composants"
+                    aria-label="Rechercher"
+                  />
+                </form>
+              </MDBCol>
               </Row>
               <ListeComposants
                 state={this.state1}

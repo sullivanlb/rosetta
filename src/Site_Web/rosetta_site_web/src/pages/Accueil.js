@@ -2,6 +2,15 @@ import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button, Alert } from "react-bootstrap";
 import "../style/Accueil.css";
 import Carousel from "../composants/Carousel";
+import OpenStreetMap from "../composants/OpenStreetMap";
+
+/**
+ * Ce composant représente la page d'accueil, elle permet de :
+ *  - Présenter l'entreprise, numéro, adresse et maps.
+ *  - Afficher un diaporam (carousel) de photos.
+ * 
+ * @author Sullivan LEBOEUF && Lucy Gastebois
+ */
 
 const Accueil = () => {
   return (
@@ -26,6 +35,7 @@ const Accueil = () => {
             <Carousel className="carousel" />
             <span className="vertical-line"></span>
           </Col>
+          
           <Col className="col2" md={2}>
             <Alert className="ContactAlert" variant="dark">
               Contact :
@@ -37,6 +47,7 @@ const Accueil = () => {
             <img className="pointeur" src="/img/location-pointer.png" alt="" />
             <h6 className="TexteRue">90 avenue Marne, 56000 Vannes</h6>
             <br></br>
+            <OpenStreetMap/>
             <Form>
               <Alert className="ConnexionAlert" variant="dark">
                 Connexion :

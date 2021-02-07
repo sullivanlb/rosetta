@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBCollapse,
-  MDBContainer,
-  MDBHamburgerToggler,
-} from "mdbreact";
+import {MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBCollapse, MDBContainer, MDBHamburgerToggler} from "mdbreact";
 import { BrowserRouter as Router } from "react-router-dom";
+
+/**
+ * Ce composant représente le menu contenant un menu hamburger
+ * Nous ne l'utilisons pas dans notre site web pour l'instant
+ * 
+ * @author Lucy Gastebois
+ */
 
 class NavbarPage extends Component {
   state = {

@@ -5,9 +5,22 @@ import { Link } from "react-router-dom";
 import Supprimer from "../composants/SupprimerDevis";
 import "../style/Devis.css";
 import ListeDevis from "../composants/ListeDevis";
-import AffichageDevis from "../composants/AffichageDevis"; 
+import AffichageDevis from "../composants/AffichageDevis";
+
+/**
+ * Ce composant représente la page Devis, elle permet de :
+ *  - Afficher la liste des devis enregistrés
+ *  - Avoir un bouton ajouter/modifier/supprimer un devis
+ * 
+ * @author Lucy Gastebois
+ */
 
 export default class Devis extends Component {
+
+  /**
+   * Constructeur permettant d'entrée les données concernant le devis
+   * @param {*} props 
+   */
   constructor(props){
     super(props);
 
@@ -41,11 +54,19 @@ export default class Devis extends Component {
     this.affichageInfoDevis = this.affichageInfoDevis.bind(this);
   }
 
+  /**
+   * Modifier l'état du devis à afficher
+   *
+   * @param {l'identifiant du devis à afficher} id
+   */
+
   affichageInfoDevis(id){
     this.setState({ idToDisplay: id});
   }
 
-
+  /**
+   * Méthode permettant l'affichage des composants 
+   */
   render() {
     return (
       <Fragment>
@@ -85,9 +106,9 @@ export default class Devis extends Component {
               <Link class="btn btn-light" to="/devis/nouveau">
                 Ajouter Devis
               </Link>
-              <button type="button" class="btn btn-light">
+              <Link class="btn btn-light" to="/devis/modifier">
                 Modifier Devis
-              </button>
+              </Link>
               <Supprimer />
             </Col>
           </Row>
