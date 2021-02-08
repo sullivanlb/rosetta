@@ -88,7 +88,7 @@ export default class NouveauClient extends Component {
     formData.append("email", this.state.email);
     formData.append("tel", this.state.tel);
     formData.append("sexe", this.state.sexe);
-    const url = "http://localhost/api/";
+    const url = "http://localhost/API/";
     axios
       .post(url, formData)
       .then((res) => console.log(res.data))
