@@ -17,7 +17,6 @@ import NouveauClient from "./pages/NouveauClient";
 import ModifierClient from "./pages/ModifierClient";
 import FooterPage from "./composants/Footer";
 import Navigation from "./composants/Navigation";
-import NavbarPage from "./composants/NavbarPage";
 
 function App() {
   return (

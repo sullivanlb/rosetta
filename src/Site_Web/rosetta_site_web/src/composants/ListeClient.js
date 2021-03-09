@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
-import axios from 'axios';
 
 /**
  * @description Ce composant représente la section de la page Client qui énumère les clients
@@ -12,34 +11,18 @@ export default class ListeClient extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.nom + "\n" + this.state.prenom + "\n" + this.state.email + "\n" + this.state.adresse + "\n" + this.state.tel + "\n" + this.state.sexe);
+
+    console.log(this.state.client.nomClient + "\n" + this.state.client.prenomClient + "\n" + this.state.client.emailClient + 
+    "\n" + this.client.state.adresseClient + "\n" + this.client.state.telClient + "\n" + this.client.state.sexeClient);
+
     let formData = new FormData();
-    formData.append("nom", this.state.nom);
-    formData.append("prenom", this.state.prenom);
-    formData.append("adresse", this.state.adresse);
-    formData.append("email", this.state.email);
-    formData.append("tel", this.state.tel);
-    formData.append("sexe", this.state.sexe);
+    formData.append("nom", this.state.client.nomClient);
+    formData.append("prenom", this.state.client.prenomClient);
+    formData.append("adresse", this.state.client.adresseClient);
+    formData.append("email", this.state.client.emailClient);
+    formData.append("tel", this.state.client.telClient);
+    formData.append("sexe", this.state.client.sexeClient);
   }
-    
-/*  En cours de développement : récupération de la liste des clients depuis la BDD externe
-
-    // axios.post(url, formData)
-    // .then(res => console.log(res.data))
-    // .catch(err => console.log(err));
-
-    const url = "http://localhost/api/";
-    axios.get(url)
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
-  }
-*/
 
   render() {
     return (
@@ -47,11 +30,11 @@ export default class ListeClient extends Component {
         <ListGroup>
           {this.state.client.map((client) => (
             <ListGroupItem
-              href={client.id}
-              onClick={() => this.props.action(client.id)}
-              value={client.id}
+              href={client.idClient}
+              onClick={() => this.props.action(client.idClient)}
+              value={client.idClient}
             >
-              {client.nom} {client.prenom}
+              {client.nomClient} {client.prenomClient}
             </ListGroupItem>
           ))}
         </ListGroup>

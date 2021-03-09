@@ -31,7 +31,10 @@
 	
 	$connexion = new BDD_Externe_Connexion();
 
+	//echo ($_POST["nom"]);
+
 	// Ajout d'un nouveau client dans la base de données depuis le formulaire du site
+	/*
 	if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["adresse"]) && isset($_POST["email"]) && isset($_POST["tel"]) && isset($_POST["sexe"])) {
 		$nomNouveauClient = $_POST["nom"];
 		$prenomNouveauClient = $_POST["prenom"];
@@ -45,5 +48,5 @@
 		$client->init(null, $nomNouveauClient, $prenomNouveauClient, $adresseNouveauClient, $emailNouveauClient, $telNouveauClient, $sexeNouveauClient);
 		$daoClient->insertion($client);
 	}
-
+	*/
 ?>

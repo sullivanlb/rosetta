@@ -37,7 +37,11 @@ class BDD_Externe_Connexion {
      */
 	public function __construct() {
 		try {
-			$this->connexion = new PDO("sqlite:./Rosetta.db");
+			$servername = 'mysql-rosettabdd.alwaysdata.net';
+			$databasename = 'rosettabdd_rosetta';
+			$username = '227425_admin';
+			$password = 'Admin_56!?';
+			$this->connexion = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
 			$this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}catch (PDOException $e) {
 			print "Erreur : " . $e->getMessage() . "\r\n";
