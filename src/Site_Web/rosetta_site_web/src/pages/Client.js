@@ -38,8 +38,13 @@ export default class Client extends Component {
       })
   }
 
-  supprimerClient(id) {
-
+  supprimerClient() {
+    console.log("helloooooo")
+    axios.delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   }
 
   /**
@@ -92,10 +97,10 @@ export default class Client extends Component {
               </MDBCol>
             </Col>
             <Col className="col3-button" md={2}>
-              <Link class="btn btn-light" to="/client/create">
+              <Link className="btn btn-light" to="/client/create">
                 Nouveau client
               </Link>
-              <Link class="btn btn-light" to="/client/modify">
+              <Link className="btn btn-light" to="/client/modify">
                 Modifier client
               </Link>
               <Supprimer 

@@ -3,52 +3,62 @@ import { Button, Modal } from "react-bootstrap";
 
 /**
  * Cette fonction créera un avertissement lorsque le bouton de suppression sera cliqué
- * 
+ *
  * @author Sullivan LEBOEUF
  */
- export default class Supprimer extends Component {
-   constructor(props) {
-     super(props);
-     this.state = {
-       show: false
-     };
-   }
+export default class SupprimerClient extends Component {
+  constructor(props) {
+    super(props);
 
-   handleClose() {
+    this.state = {
+      show: false,
+    };
+
+    // this.handleClose = this.handleClose().bind(this);
+    // this.handleShow = this.handleShow().bind(this);
+  }
+
+  handleClose = () => {
     this.setState({show: false});
-   }
+  }
 
-   handleShow() {
+  handleShow = () => {
     this.setState({show: true});
-   }
+  }
 
-render(){
-  return (
-    <Fragment>
-      <Button variant="btn btn-light" onClick={this.handleShow()}>
-        Supprimer Client
-      </Button>
+  onClick = () => {
+    this.handleClose();
+    this.props.action();
+    console.log("helooooooo");
+  }
 
-      <Modal show={this.state.show} onHide={this.handleClose()}>
-        <Modal.Header closeButton>
-          <Modal.Title>Avertissement</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Attention, le client selectionné sera supprimé définitivement !
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="ligth" onClick={() => {
-            this.handleClose();
-            
-            }}>
-            Annuler
-          </Button>
-          <Button variant="danger" onClick={this.handleClose()}>
-            Supprimer
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </Fragment>
-  );
+  render() {
+    return (
+      <Fragment>
+        <Button variant="btn btn-light" onClick={this.handleShow}>
+          Supprimer Client
+        </Button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Avertissement</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Attention, le client selectionné sera supprimé définitivement !
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="ligth"
+              onClick={this.handleClose}
+            >
+              Annuler
+            </Button>
+            <Button variant="danger" onClick={this.onClick}>
+              Supprimer
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Fragment>
+    );
+  }
 }
- }
