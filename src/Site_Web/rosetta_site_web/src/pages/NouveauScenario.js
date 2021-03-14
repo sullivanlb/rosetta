@@ -14,9 +14,11 @@ import ListePacks from "../composants/ListePacks";
 export default class NouveauScenario extends Component {
 
   constructor(props) {
-  super(props);
+    super(props);
 
-      this.state1 = {
+    this.state = {
+      stateX: 1,
+      state1: {
         idToDisplay: 1,
         composants: [
           {
@@ -24,70 +26,92 @@ export default class NouveauScenario extends Component {
             nom: "Tuyaux",
             unite : " m ",
             prix : 5,
+            type: "composants",
           },
           {
             id: 2,
             nom: "cirage",
             unite : " Litre ",
             prix : 8,
+            type: "composants",
           },
           {
             id: 3,
             nom: "Joints",
             unite : " kg ",
             prix : 2,
+            type: "composants",
           },
           {
             id: 4,
             nom: "Vis",
             unite : null,
             prix : 1,
+            type: "composants",
           },
           {
             id: 5,
             nom: "Bruleur",
             unite : null,
             prix : 15,
+            type: "composants",
           },
         ],
-      };
-
-      this.state2 = {
+      },
+      state2: {
         idToDisplay: 2,
         packs: [
           {
             id: 1,
             nom: "packs n°1",
+            type: "packs",
           },
           {
             id: 2,
             nom: "packs n°2",
+            type: "packs",
           },
           {
             id: 3,
             nom: "packs n°3",
+            type: "packs",
           },
           {
             id: 4,
             nom: "packs n°4",
+            type: "packs",
           },
           {
             id: 5,
             nom: "packs n°5",
+            type: "packs",
           },
         ],
-      };
+      }
+    };
 
-
-    this.affichageInfoComposants = this.affichageInfoComposants.bind(this);
-    this.affichageInfoPacks = this.affichageInfoPacks.bind(this);
+      this.tab = this.state.state1.composants;
+      this.idElement = this.state.state1.idToDisplay;
+  
+      this.changeStateX = this.changeStateX.bind(this);
   }
 
-  affichageInfoComposants(id) {
-    this.setState({ idToDisplay: id });
-  }
-  affichageInfoPacks(id) {
-    this.setState({ idToDisplay: id });
+  changeStateX(type, id) {
+    if (type === "composants") {
+      this.setState({ stateX: 1 });
+      var stateTmp = this.state.state1;
+      stateTmp.idToDisplay = id;
+      this.setState({ state1: stateTmp });
+      this.tab = this.state.state1.composants;
+      this.idElement = this.state.state1.idToDisplay;
+    } else {
+      this.setState({ stateX: 2 });
+      var stateTmp = this.state.state2;
+      stateTmp.idToDisplay = id;
+      this.setState({ state2: stateTmp });
+      this.tab = this.state.state2.packs;
+      this.idElement = this.state.state2.idToDisplay;
+    }
   }
 
   render() {
@@ -111,12 +135,12 @@ export default class NouveauScenario extends Component {
                 />
               </Row>
               <ListeComposants
-                state={this.state1}
+                state={this.state}
                 action={this.affichageInfoComposants}
               />
               <Row><Col> <br></br>  <br></br> </Col></Row>
               <ListePacks
-                state={this.state2}
+                state={this.state}
                 action={this.affichageInfoPacks}
               />
             </Col>
