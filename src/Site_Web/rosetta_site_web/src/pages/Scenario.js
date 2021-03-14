@@ -196,13 +196,7 @@ export default class Scenario extends Component {
               </Link>
             </Col>
           </Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
+          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
         </Container>
       </Fragment>
     );

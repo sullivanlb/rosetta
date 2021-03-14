@@ -6,6 +6,7 @@ import Supprimer from "../composants/SupprimerClient";
 import "../style/Client.css";
 import ListeClient from "../composants/ListeClient";
 import AffichageClient from "../composants/AffichageClient";
+import axios from "axios";
 
 /**
  * Ce composant représente la page client dans laquelle nous pourrons :
@@ -20,16 +21,31 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
+      idSelected: 1,
       client: [],
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
+    this.supprimerClient = this.supprimerClient.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get(`http://api/client/tousLesClients`)
+      .then(res => {
+        const client = res.data;
+        this.setState({ client });
+        console.log(this.state)
+      })
+  }
+
+  supprimerClient(id) {
+
   }
 
   /**
    * Modifier l'état du client à afficher
    *
-   * @param {l'identifiant du client à afficher} id
+   * @param {int} id - l'identifiant du client à afficher
    */
   affichageInfoClient(id) {
     this.setState({ idToDisplay: id });
@@ -40,7 +56,7 @@ export default class Client extends Component {
       <Fragment>
         <h3>Client</h3>
         <img
-          class="ImagelogoPlombier ml-3"
+          className="ImagelogoPlombier ml-3"
           src="/img/logo-plombiers.png"
           alt=""
         />
@@ -82,7 +98,9 @@ export default class Client extends Component {
               <Link class="btn btn-light" to="/client/modify">
                 Modifier client
               </Link>
-              <Supprimer />
+              <Supprimer 
+              key={this.state.idSelected}
+              action={this.supprimerClient}/>
             </Col>
           </Row>
         </Container>
