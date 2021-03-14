@@ -1,41 +1,64 @@
-import React, { useState, Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 /**
  * Cette fonction créera un avertissement lorsque le bouton de suppression sera cliqué
- * 
+ *
  * @author Sullivan LEBOEUF
  */
-function Avertissement() {
-  const [show, setShow] = useState(false);
+export default class SupprimerClient extends Component {
+  constructor(props) {
+    super(props);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+    this.state = {
+      show: false,
+    };
 
-  return (
-    <Fragment>
-      <Button variant="btn btn-light" onClick={handleShow}>
-        Supprimer Client
-      </Button>
+    // this.handleClose = this.handleClose().bind(this);
+    // this.handleShow = this.handleShow().bind(this);
+  }
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Avertissement</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Attention, le client selectionné sera supprimé définitivement !
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="ligth" onClick={handleClose}>
-            Annuler
-          </Button>
-          <Button variant="danger" onClick={handleClose}>
-            Supprimer
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </Fragment>
-  );
+  handleClose = () => {
+    this.setState({show: false});
+  }
+
+  handleShow = () => {
+    this.setState({show: true});
+  }
+
+  onClick = () => {
+    this.handleClose();
+    this.props.action();
+    console.log("helooooooo");
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Button variant="btn btn-light" onClick={this.handleShow}>
+          Supprimer Client
+        </Button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Avertissement</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Attention, le client selectionné sera supprimé définitivement !
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="ligth"
+              onClick={this.handleClose}
+            >
+              Annuler
+            </Button>
+            <Button variant="danger" onClick={this.onClick}>
+              Supprimer
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Fragment>
+    );
+  }
 }
-
-export default Avertissement;

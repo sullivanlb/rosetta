@@ -68,19 +68,6 @@ export default class NouveauClient extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      this.state.nom +
-        "\n" +
-        this.state.prenom +
-        "\n" +
-        this.state.email +
-        "\n" +
-        this.state.adresse +
-        "\n" +
-        this.state.tel +
-        "\n" +
-        this.state.sexe
-    );
     let formData = new FormData();
     formData.append("nom", this.state.nom);
     formData.append("prenom", this.state.prenom);
@@ -91,8 +78,9 @@ export default class NouveauClient extends Component {
     const url = "http://localhost/API/";
     axios
       .post(url, formData)
-      .then((res) => console.log(res.data))
+      .then((res) => console.log("res : " + res.state))
       .catch((err) => console.log(err));
+      
   };
 
   render() {
@@ -176,7 +164,7 @@ export default class NouveauClient extends Component {
           </Form.Group>
           <button
             type="button"
-            class="btn btn-light"
+            className="btn btn-light"
             onClick={this.handleSubmit.bind(this)}
           >
             Valider

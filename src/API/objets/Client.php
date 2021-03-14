@@ -174,6 +174,11 @@ class Client {
         return $str;
 	}
 
+
+    public function getJSONEncode() {
+        return json_encode(get_object_vars());
+    }
+
 }
 
 ?>
