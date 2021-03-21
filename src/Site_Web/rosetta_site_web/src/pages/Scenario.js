@@ -13,7 +13,7 @@ import AffichageScenario from "../composants/AffichageScenario";
  * - avoir un bouton pour insérer / éditer / supprimer un scénario
  * - avoir un bouton pour accéder à la page Composants/Packs
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class Scenario extends Component {
   constructor(props) {
@@ -159,7 +159,7 @@ export default class Scenario extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-              <MDBCol md="6">
+              <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
                   <MDBIcon icon="search" />
                   <input

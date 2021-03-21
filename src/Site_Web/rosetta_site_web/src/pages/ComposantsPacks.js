@@ -13,7 +13,7 @@ import AffichageComposantsPacks from "../composants/AffichageComposantsPacks";
  * - avoir un bouton pour insérer / annuler / supprimer un scénario
  * - créer des packs de composants.
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class ComposantsPacks extends Component {
   constructor(props) {

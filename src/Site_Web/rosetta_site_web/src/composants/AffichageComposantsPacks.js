@@ -3,9 +3,9 @@ import React, { Component, Fragment } from "react";
 /**
  * @description Ce composant représente la section de la page ComposantsPacks qui affiche ses informations
  *
- * @author Alice GONTARD
+ * @author Christophe GARCIA
  */
-export default class AffichageComposants extends Component {
+export default class AffichageComposantsPacks extends Component {
 
   render() {
     return (

@@ -64,7 +64,7 @@ export default class Client extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-                <MDBCol md="6">
+                <MDBCol md="12">
                   <form className="form-inline mt-4 mb-4">
                     <MDBIcon icon="search" />
                     <input
