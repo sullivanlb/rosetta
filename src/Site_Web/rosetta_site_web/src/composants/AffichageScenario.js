@@ -3,17 +3,15 @@ import React, { Component, Fragment } from "react";
 /**
  * @description Ce composant représente la section de la page Scénario qui affiche ses informations
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class AffichageScenario extends Component {
-  state = this.props.state;
-
   render() {
     return (
       <Fragment>
-        {this.state.scenario.map((scenario) => {
-          if (this.state.idToDisplay === scenario.id) {
-            return <div className="card card-body mb-3" key={this.state.scenario.id}>
+        {this.props.state.list.scenario.map((scenario) => {
+          if (this.props.state.idToDisplay === scenario.id) {
+            return <div className="card card-body mb-3" key={this.props.state.list.scenario.id}>
               <h4>{scenario.nom}</h4>
               <ul className="list-group">
               <div className="card card-body mb-3" key={scenario.id}>

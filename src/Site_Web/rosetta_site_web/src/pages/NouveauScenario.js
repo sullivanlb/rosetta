@@ -301,7 +301,7 @@ export default class NouveauScenario extends Component {
                     <MDBIcon icon="search" />
                     <input
                       id="search-input"
-                      className="form-control form-control-sm ml-3 w-75 mb-2"
+                      className="form-control form-control-sm ml-3 w-75"
                       type="text"
                       placeholder="Rechercher"
                       aria-label="Rechercher"
