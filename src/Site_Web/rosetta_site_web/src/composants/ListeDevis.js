@@ -7,13 +7,11 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
  * @author Lucy Gastebois
  */
 export default class ListeDevis extends Component {
-    state = this.props.state;
-  
     render() {
       return (
         <Fragment>
           <ListGroup >
-            {this.state.devis.map((devis) => (
+            {this.props.state.devis.map((devis) => (
               <ListGroupItem
                 href={devis.id}
                 onClick={() => this.props.action(devis.id)}

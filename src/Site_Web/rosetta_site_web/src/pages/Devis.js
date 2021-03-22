@@ -6,6 +6,7 @@ import Supprimer from "../composants/SupprimerDevis";
 import "../style/Devis.css";
 import ListeDevis from "../composants/ListeDevis";
 import AffichageDevis from "../composants/AffichageDevis";
+import axios from "axios";
 
 /**
  * Ce composant représente la page Devis, elle permet de :
@@ -25,32 +26,11 @@ export default class Devis extends Component {
 
     this.state = {
       idToDisplay: 1,
-      devis: [
-        {
-          id: 1,
-          date: "01/02/2021",
-          client: "Jacque Lors",
-          scenario: "Installation d'un chauffe-eau électrique",
-          prix: "2 040€",
-        },
-        {
-          id: 2,
-          date: "12/01/2021",
-          client: "Marie Poli",
-          scenario: "Remplacement d'une baignoire en douche",
-          prix: "1 200€"
-        },
-        {
-          id: 3,
-          date: "25/01/2021",
-          client: "Marc Castier",
-          scenario: "Installation d'un chauffe-eau électrique",
-          prix: "2 040€"
-        },
-      ],
+      devis: [],
     };
 
     this.affichageInfoDevis = this.affichageInfoDevis.bind(this);
+    this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
   }
 
   /**
@@ -58,9 +38,45 @@ export default class Devis extends Component {
    *
    * @param {l'identifiant du devis à afficher} id
    */
-
   affichageInfoDevis(id){
     this.setState({ idToDisplay: id});
+  }
+
+  /**
+   * Mettre à jour la liste des devis à afficher, suivant la recherche de l'utilisateur
+   */
+  async onChangeSearchInput() {
+    await axios.get(`http://api/devis/tousLesDevis`).then((res) => {
+      const devis = res.data;
+      this.setState({ devis });
+    });
+
+    if (document.getElementById("search-input").value.length != 0) {
+      var devis_liste = [];
+
+      this.state.devis.map((devis) => {
+        var wordFound = false;
+
+        if ((devis.date != null && devis.date.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.client != null && devis.client.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.scenario != null && devis.scenario.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.prix != null && devis.prix.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {
+          wordFound = true;
+        }
+
+        if (wordFound) {
+          devis_liste.push({
+            id: devis.id,
+            date: devis.date,
+            client: devis.client,
+            scenario: devis.scenario,
+            prix: devis.prix,
+          });
+        }
+      });
+
+      this.setState({ devis: devis_liste });
+    }
   }
 
   /**
@@ -75,14 +91,16 @@ export default class Devis extends Component {
           <Row>
             <Col className="col1-AffichageDevis" md={4}>
               <Row>
-              <MDBCol md="6">
+              <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
                   <MDBIcon icon="search" />
                   <input
+                    id="search-input"
                     className="form-control form-control-sm ml-3 w-75"
                     type="text"
                     placeholder="Rechercher un devis"
                     aria-label="Rechercher"
+                    onChange={this.onChangeSearchInput}
                   />
                 </form>
               </MDBCol>

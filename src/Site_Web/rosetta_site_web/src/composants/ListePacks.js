@@ -7,16 +7,15 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
  * @author Alice GONTARD
  */
 export default class ListePacks extends Component {
-  state2 = this.props.state;
 
   render() {
     return (
       <Fragment>
         <ListGroup>
-          {this.state2.packs.map((packs) => (
+          {this.props.state.state2.packs.map((packs) => (
             <ListGroupItem
               href={packs.id}
-              onClick={() => this.props.action(packs.id)}
+              onClick={() => this.props.action(packs.type, packs.id)}
               value={packs.id}
             >
               {packs.nom}

@@ -5,7 +5,7 @@ import Supprimer from "../composants/SupprimerComposants";
 import "../style/ComposantsPacks.css";
 import ListeComposants from "../composants/ListeComposants";
 import ListePacks from "../composants/ListePacks";
-import AffichageComposants from "../composants/AffichageComposants";
+import AffichageComposantsPacks from "../composants/AffichageComposantsPacks";
 
 /**
  * Ce composant représente la page Composants/Packs dans laquelle nous pourrons :
@@ -13,89 +13,46 @@ import AffichageComposants from "../composants/AffichageComposants";
  * - avoir un bouton pour insérer / annuler / supprimer un scénario
  * - créer des packs de composants.
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class ComposantsPacks extends Component {
   constructor(props) {
     super(props);
 
-    this.state1 = {
-      idToDisplay: 1,
-      composants: [
-        {
-          id: 1,
-          nom: "Tuyaux",
-          unite : " m ",
-          prix : 5,
-        },
-        {
-          id: 2,
-          nom: "cirage",
-          unite : " Litre ",
-          prix : 8,
-        },
-        {
-          id: 3,
-          nom: "Joints",
-          unite : " kg ",
-          prix : 2,
-        },
-        {
-          id: 4,
-          nom: "Vis",
-          unite : null,
-          prix : 1,
-        },
-        {
-          id: 5,
-          nom: "Bruleur",
-          unite : null,
-          prix : 15,
-        },
-      ],
+    this.state = {
+      stateX: 1,
+      state1: {
+        idToDisplay: 1,
+        composants: [],
+      },
+      state2: {
+        idToDisplay: 2,
+        packs: [],
+      }
     };
 
-    this.state2 = {
-      idToDisplay: 2,
-      packs: [
-        {
-          id: 1,
-          nom: "packs n°1",
-        },
-        {
-          id: 2,
-          nom: "packs n°2",
-        },
-        {
-          id: 3,
-          nom: "packs n°3",
-        },
-        {
-          id: 4,
-          nom: "packs n°4",
-        },
-        {
-          id: 5,
-          nom: "packs n°5",
-        },
-      ],
-    };
+    this.tab = this.state.state1.composants;
+    this.idElement = this.state.state1.idToDisplay;
 
-
-
-    this.affichageInfoComposants = this.affichageInfoComposants.bind(this);
-    this.affichageInfoPacks = this.affichageInfoPacks.bind(this);
+    this.changeStateX = this.changeStateX.bind(this);
   }
 
-  affichageInfoComposants(id) {
-    if (id = 1) {
-      this.setState({ idToDisplay: id });
-      console.log("id = 1");
+  changeStateX(type, id) {
+    if (type === "composants") {
+      this.setState({ stateX: 1 });
+      var stateTmp = this.state.state1;
+      stateTmp.idToDisplay = id;
+      this.setState({ state1: stateTmp });
+      this.tab = this.state.state1.composants;
+      this.idElement = this.state.state1.idToDisplay;
+    } else {
+      this.setState({ stateX: 2 });
+      var stateTmp = this.state.state2;
+      stateTmp.idToDisplay = id;
+      this.setState({ state2: stateTmp });
+      this.tab = this.state.state2.packs;
+      this.idElement = this.state.state2.idToDisplay;
     }
-
-  }
-  affichageInfoPacks(id) {
-    this.state2.setState({ idToDisplay: id });
   }
 
   render() {
@@ -124,19 +81,22 @@ export default class ComposantsPacks extends Component {
               </MDBCol>
               </Row>
               <ListeComposants
-                state={this.state1}
-                action={this.affichageInfoComposants}
+                state={this.state}
+                action={this.changeStateX}
               />
               <Row><Col> <br></br>  <br></br> </Col></Row>
               <ListePacks
-                state={this.state2}
-                action={this.affichageInfoPacks}
+                state={this.state}
+                action={this.changeStateX}
               />
             </Col>
             <Col className="col2-affichage" md={6}>
               <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
-                  <AffichageComposants key={this.state1.idToDisplay} state={this.state1} />
+                  <AffichageComposantsPacks
+                    tab={this.tab}
+                    idElement={this.idElement}
+                     />
                 </form>
               </MDBCol>
             </Col>

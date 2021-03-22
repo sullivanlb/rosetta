@@ -1,0 +1,9 @@
+.selected-item {
+    background-color: #FF8C00;
+    color: black;
+}
+
+.unselected-item {
+    background-color: white;
+    color: black;
+}
