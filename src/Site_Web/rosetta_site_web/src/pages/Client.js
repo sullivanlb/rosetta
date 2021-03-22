@@ -21,7 +21,6 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
-      idSelected: 1,
       client: [],
     };
 

@@ -150,19 +150,45 @@ export default class Scenario extends Component {
   }
 
   onChangeSearchInput() {
-    // Récupère tous les scenarios de la BDD -> setState()
+    // Récupère tous les scenarios de la BDD -> setState({list})
     // {insérer le code} 
     // (peut-on appeler la méthode this.componentDidMount() quand elle sera faite ?)
 
-    if (document.getElementById("search-input").value !== "") {
+    if (document.getElementById("search-input").value.length != 0) {
       // Mise à jour de la liste des scénarios
       var list_tmp = this.state.list;
       var scenarios_liste = [];
 
-      // TODO : déjà corriger l'erreur
-      // Puis checker si nom.includes (fait), map.composant.includes, map.pack.includes, map.question.includes
       this.state.list.scenario.map((scenario) => {
-        if (scenario.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+        var wordFound = false;
+
+        if (scenario.nom != null && scenario.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+          wordFound = true;
+        } else {
+          scenario.questions.map((question) => {
+            if (question.nom != null && question.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+              wordFound = true;
+            }
+          });
+
+          if (!wordFound) {
+            scenario.composants.map((composant) => {
+              if (composant.nom != null && composant.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+                wordFound = true;
+              }
+            });
+          }
+
+          if (!wordFound) {
+            scenario.packs.map((pack) => {
+              if (pack.nom != null && pack.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+                wordFound = true;
+              }
+            });
+          }
+        }
+
+        if (wordFound) {
           var questions_liste = [];
           scenario.questions.map((question) => {
             questions_liste.push({

@@ -7,6 +7,7 @@ import ListeComposants from "../composants/ListeComposants";
 import ListePacks from "../composants/ListePacks";
 import AffichageQuestions from "../composants/AffichageQuestions";
 import AffichageNomScenario from "../composants/AffichageNomScenario";
+import axios from "axios";
 
 /**
  * @description Ce composant représente la page pour créer un scénario
@@ -21,103 +22,16 @@ export default class NouveauScenario extends Component {
       stateX: 1,
       state1: {
         idToDisplay: 1,
-        composants: [
-          {
-            id: 1,
-            nom: "Tuyaux",
-            unite : " m ",
-            prix : 5,
-            type: "composants",
-          },
-          {
-            id: 2,
-            nom: "cirage",
-            unite : " Litre ",
-            prix : 8,
-            type: "composants",
-          },
-          {
-            id: 3,
-            nom: "Joints",
-            unite : " kg ",
-            prix : 2,
-            type: "composants",
-          },
-          {
-            id: 4,
-            nom: "Vis",
-            unite : null,
-            prix : 1,
-            type: "composants",
-          },
-          {
-            id: 5,
-            nom: "Bruleur",
-            unite : null,
-            prix : 15,
-            type: "composants",
-          },
-        ],
+        composants: [],
       },
       state2: {
         idToDisplay: 2,
-        packs: [
-          {
-            id: 1,
-            nom: "packs n°1",
-            type: "packs",
-          },
-          {
-            id: 2,
-            nom: "packs n°2",
-            type: "packs",
-          },
-          {
-            id: 3,
-            nom: "packs n°3",
-            type: "packs",
-          },
-          {
-            id: 4,
-            nom: "packs n°4",
-            type: "packs",
-          },
-          {
-            id: 5,
-            nom: "packs n°5",
-            type: "packs",
-          },
-        ],
+        packs: [],
       },
       scenario: {
-        nom: "Installation chaudière",
-        questions:[
-          {
-            nom: "Quelle type de chaudière ?"
-          },
-          {
-            nom: "Combien de raccordements à faire ?"
-          },
-          {
-            nom: "Vérification de la place dans la pièce ?"
-          },
-        ],
-        composants:[
-          {
-            nom: "Tuyaux"
-          },
-          {
-            nom: "Laine de verre"
-          },
-          {
-            nom: "Bruleur"
-          },
-        ],
-        packs: [
-          {
-            nom: "packs n°1",
-          },
-        ],
+        nom: "",
+        questions: [],
+        composants: [],
       },
     };
 
@@ -130,6 +44,17 @@ export default class NouveauScenario extends Component {
   addComposantPack(type, id) {
     // do nothing for now
     if (type === "composants") {
+      // if (selected) {
+        var composantTmp = null;
+
+        this.state.state1.composants.map((composant) => {
+          if (composant.id == id) {
+            composantTmp = composant;
+          }
+        });
+
+        this.setState();
+      //}
       // set background color : orange
       // add dans state.added genre (seulement l'id ou jsp)
     } else {
@@ -138,18 +63,31 @@ export default class NouveauScenario extends Component {
     }
   }
 
-  onChangeSearchInput() {
-    // Récupère tous les composants de la BDD -> this.state.state1 et .state2
-    // {insérer le code} 
-    // (peut-on appeler la méthode this.componentDidMount() quand elle sera faite ?)
+  /**
+   * Mettre à jour la liste des composants et packs à afficher, suivant la recherche de l'utilisateur
+   */
+   async onChangeSearchInput() {
+    await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      const composants = res.data;
+      var stateTmp = this.state.state1;
+      stateTmp.composants = composants;
+      this.setState({ state1: stateTmp });
+    });
 
-    if (document.getElementById("search-input").value !== "") {
+    await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      const packs = res.data;
+      var stateTmp = this.state.state2;
+      stateTmp.packs = packs;
+      this.setState({ state2: stateTmp });
+    });
+
+    if (document.getElementById("search-input").value.length != 0) {
       // Mise à jour de la liste des composants
       var state1_tmp = this.state.state1;
       var composants_liste = [];
 
       this.state.state1.composants.map((composant) => {
-        if (composant.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+        if (composant.nom != null && composant.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
           composants_liste.push({
             id: composant.id,
             nom: composant.nom,
@@ -175,84 +113,6 @@ export default class NouveauScenario extends Component {
             type: pack.type,
           });
         }
-      });
-
-      state2_tmp.packs = packs_liste;
-      this.setState({ state2: state2_tmp });
-    } else {
-
-      // ENLEVER LE 'ELSE' QUAND LA LIAISON AVEC LA BDD SERA FAITE
-      // (cf avant le 'if ()')
-
-      var state1_tmp = this.state.state1;
-      var composants_liste = [];
-
-      composants_liste.push({
-        id: 1,
-        nom: "Tuyaux",
-        unite : " m ",
-        prix : 5,
-        type: "composants",
-      });
-      composants_liste.push({
-        id: 2,
-        nom: "cirage",
-        unite : " Litre ",
-        prix : 8,
-        type: "composants",
-      });
-      composants_liste.push({
-        id: 3,
-        nom: "Joints",
-        unite : " kg ",
-        prix : 2,
-        type: "composants",
-      });
-      composants_liste.push({
-        id: 4,
-        nom: "Vis",
-        unite : null,
-        prix : 1,
-        type: "composants",
-      });
-      composants_liste.push({
-        id: 5,
-        nom: "Bruleur",
-        unite : null,
-        prix : 15,
-        type: "composants",
-      });
-
-      state1_tmp.composants = composants_liste;
-      this.setState({ state1: state1_tmp });
-
-      var state2_tmp = this.state.state2;
-      var packs_liste = [];
-
-      packs_liste.push({
-        id: 1,
-        nom: "packs n°1",
-        type: "packs",
-      });
-      packs_liste.push({
-        id: 2,
-        nom: "packs n°2",
-        type: "packs",
-      });
-      packs_liste.push({
-        id: 3,
-        nom: "packs n°3",
-        type: "packs",
-      });
-      packs_liste.push({
-        id: 4,
-        nom: "packs n°4",
-        type: "packs",
-      });
-      packs_liste.push({
-        id: 5,
-        nom: "packs n°5",
-        type: "packs",
       });
 
       state2_tmp.packs = packs_liste;

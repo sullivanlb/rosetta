@@ -23,73 +23,11 @@ export default class ComposantsPacks extends Component {
       stateX: 1,
       state1: {
         idToDisplay: 1,
-        composants: [
-          {
-            id: 1,
-            nom: "Tuyaux",
-            unite : " m ",
-            prix : 5,
-            type: "composants",
-          },
-          {
-            id: 2,
-            nom: "cirage",
-            unite : " Litre ",
-            prix : 8,
-            type: "composants",
-          },
-          {
-            id: 3,
-            nom: "Joints",
-            unite : " kg ",
-            prix : 2,
-            type: "composants",
-          },
-          {
-            id: 4,
-            nom: "Vis",
-            unite : null,
-            prix : 1,
-            type: "composants",
-          },
-          {
-            id: 5,
-            nom: "Bruleur",
-            unite : null,
-            prix : 15,
-            type: "composants",
-          },
-        ],
+        composants: [],
       },
       state2: {
         idToDisplay: 2,
-        packs: [
-          {
-            id: 1,
-            nom: "packs n°1",
-            type: "packs",
-          },
-          {
-            id: 2,
-            nom: "packs n°2",
-            type: "packs",
-          },
-          {
-            id: 3,
-            nom: "packs n°3",
-            type: "packs",
-          },
-          {
-            id: 4,
-            nom: "packs n°4",
-            type: "packs",
-          },
-          {
-            id: 5,
-            nom: "packs n°5",
-            type: "packs",
-          },
-        ],
+        packs: [],
       }
     };
 
