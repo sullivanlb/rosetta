@@ -29,21 +29,21 @@ export default class Client extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://api/client/tousLesClients`)
-      .then(res => {
-        const client = res.data;
-        this.setState({ client });
-      })
+    axios.get(`http://api/client/tousLesClients`).then((res) => {
+      const client = res.data;
+      this.setState({ client });
+    });
   }
 
   /**
    * Envoi une requête de supprimession au serveur
    */
   async supprimerClient() {
-    await axios.delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
-      .then(res => {
+    await axios
+      .delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
+      .then((res) => {
         console.log(res.data);
-      })
+      });
 
     window.location.reload();
   }
@@ -101,12 +101,18 @@ export default class Client extends Component {
               <Link className="btn btn-light" to="/client/create">
                 Nouveau client
               </Link>
-              <Link className="btn btn-light" to="/client/modify">
+              <Link
+                className="btn btn-light"
+                to="/client/modify"
+                key={this.state.idToDisplay}
+                state={this.state}
+              >
                 Modifier client
               </Link>
-              <Supprimer 
-              key={this.state.idSelected}
-              action={this.supprimerClient}/>
+              <Supprimer
+                key={this.state.idSelected}
+                action={this.supprimerClient}
+              />
             </Col>
           </Row>
         </Container>

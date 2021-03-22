@@ -67,7 +67,7 @@ export default class NouveauClient extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("nom", this.state.nom);
@@ -76,13 +76,13 @@ export default class NouveauClient extends Component {
     formData.append("email", this.state.email);
     formData.append("tel", this.state.tel);
     formData.append("sexe", this.state.sexe);
-    axios
+    await axios
       .post("http://api/client/ajoutClient", formData)
       .then(res => {
         console.log(res.data);
       })
     
-      
+    window.location = "/client";
   };
 
   render() {
