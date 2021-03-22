@@ -1,0 +1,49 @@
+Classe : BDD_Externe_Connexion
+/** 
+ * BDD_Externe_Connexion est une classe d'accès à la base de données.
+ * 
+ * BDD_Externe_Connexion est une classe permettant de se connecter à
+ * la base de données externe, afin de réaliser par la suite autant de
+ * méthodes qu'on veut (Ex : insertion, modification, suppression, ...).
+ * 
+ * @author Garcia Christophe
+ * @version $Revision: 1.2 $
+ * @access public
+ */
+_____________________________________________________________________
+Attributs : 
+/**
+  * L'unique instance de cette classe
+  * 
+  * @access private
+  */
+instance
+
+/**
+  * La connexion à la base de données
+  * 
+  * @access private
+  */
+connexion
+_____________________________________________________________________
+/**
+  * Méthode magique __construct()
+  * 
+  * Permet de créer la BDD_Externe_Connexion
+  */
+public function __construct ()
+
+/**
+  * Méthode d'accès à l'unique instance getInstance()
+  * 
+  * Crée une instance si elle n'existe déjà pas, et retourne celle-ci
+  */
+public static function getInstance()
+
+/**
+  * Méthode d'accès à la connexion getConnexion()
+  * 
+  * Retourne la connexion établie à la base de données
+  */
+public function getConnexion()
+_____________________________________________________________________
