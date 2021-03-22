@@ -12,7 +12,7 @@ export default class FooterPage extends Component {
     return (
       <MDBFooter
         color="black"
-        className="mainFoot font-small pt-4 mt-4"
+        className="mainFoot font-small pt-4 mt-4 fixed-bottom"
       >
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>
