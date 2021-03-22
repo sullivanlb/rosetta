@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Col, Form, Container, Row } from "react-bootstrap";
+import { Col, Form, Container, Row, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "../style/NouveauClient.css";
 import axios from "axios";
 
@@ -75,11 +76,12 @@ export default class NouveauClient extends Component {
     formData.append("email", this.state.email);
     formData.append("tel", this.state.tel);
     formData.append("sexe", this.state.sexe);
-    const url = "http://localhost/API/";
     axios
-      .post(url, formData)
-      .then((res) => console.log("res : " + res.state))
-      .catch((err) => console.log(err));
+      .post("http://api/client/ajoutClient", formData)
+      .then(res => {
+        console.log(res.data);
+      })
+    
       
   };
 
@@ -162,13 +164,13 @@ export default class NouveauClient extends Component {
               onChange={this.handleAddSexeAutre}
             />
           </Form.Group>
-          <button
-            type="button"
+          <Button
             className="btn btn-light"
             onClick={this.handleSubmit.bind(this)}
+            href="/client"
           >
             Valider
-          </button>
+          </Button>
         </Form>
       </Container>
     );

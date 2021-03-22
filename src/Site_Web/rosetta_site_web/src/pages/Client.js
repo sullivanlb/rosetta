@@ -21,7 +21,6 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
-      idSelected: 1,
       client: [],
     };
 
@@ -34,17 +33,19 @@ export default class Client extends Component {
       .then(res => {
         const client = res.data;
         this.setState({ client });
-        console.log(this.state)
       })
   }
 
-  supprimerClient() {
-    console.log("helloooooo")
-    axios.delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
+  /**
+   * Envoi une requête de supprimession au serveur
+   */
+  async supprimerClient() {
+    await axios.delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
       .then(res => {
-        console.log(res);
         console.log(res.data);
       })
+
+    window.location.reload();
   }
 
   /**
