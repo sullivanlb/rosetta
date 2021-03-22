@@ -30,8 +30,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Accueil} />
           <Route exact path="/client" component={Client} />
-          <Route exact path="/client/create" component={NouveauClient} />
-          <Route exact path="/client/modify" component={ModifierClient} />
+          <Route exact path="/client/nouveau" component={NouveauClient} />
+          <Route exact path="/client/modifier" component={ModifierClient} />
           <Route exact path="/devis" component={Devis} />
           <Route exact path="/devis/nouveau" component={NouveauDevis}/>
           <Route exact path="/devis/modifier" component={ModifierDevis}/>
