@@ -18,36 +18,49 @@ import axios from "axios";
  * @author Lucy Gastebois
  */
 export default class NouveauDevis extends Component {
-  state= {
+  state = {
     clients: [],
     rows: [
       {
-        id: '1',
-        ref: '85236',
-        description: 'description',
-        quantite: '10',
-        unite: '2,20',
-        prix: '0'
+        id: "1",
+        ref: "85236",
+        description: "description",
+        quantite: "10",
+        unite: "2,20",
+        prix: "0",
       },
       {
-        id: '2',
-        ref: '44556',
-        description: 'description n°2',
-        quantite: '95',
-        unite: '0.85',
-        prix: '0'
-      }
+        id: "2",
+        ref: "44556",
+        description: "description n°2",
+        quantite: "95",
+        unite: "0.85",
+        prix: "0",
+      },
+    ],
+    autoCompleteRows: [
+      {
+        id: "1",
+        description: "",
+        unite: "",
+      },
+      {
+        id: "2",
+        description: "",
+        unite: "",
+      },
     ],
     prixTotal: 0,
     tva: 20,
     inputs: {
-      dateEdition: '',
-      dateDebutTravaux: '',
-      dureeDevis: '',
-      descriptionDevis: '',
-      leClient: '',
-      leScenario: '',
-    }
+      nomDevis :"",
+      dateEdition: "",
+      dateDebutTravaux: "",
+      dureeDevis: "",
+      descriptionDevis: "",
+      leClient: "",
+      leScenario: "",
+    },
   };
 
   componentDidMount() {
@@ -55,6 +68,8 @@ export default class NouveauDevis extends Component {
       const clients = res.data;
       this.setState({ clients });
     });
+
+    
   }
 
   constructor(props) {
@@ -67,110 +82,142 @@ export default class NouveauDevis extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleQuantite(id, e) {
     var rows = this.state.rows;
-    rows.filter((row => row.id === id))[0].quantite = e.target.value;
-    this.setState({rows: rows});
+    rows.filter((row) => row.id === id)[0].quantite = e.target.value;
+    this.setState({ rows: rows });
 
-    this.handlePrix(id)
+    this.handlePrix(id);
   }
 
   handleUnite(id, e) {
     var rows = this.state.rows;
-    rows.filter((row => row.id === id))[0].unite = e.target.value;
-    this.setState({rows: rows});
+    rows.filter((row) => row.id === id)[0].unite = e.target.value;
+    this.setState({ rows: rows });
 
-    this.handlePrix(id)
+    this.handlePrix(id);
   }
 
   handlePrix(id) {
-    var row = this.state.rows.filter((row => row.id === id))[0];
+    var row = this.state.rows.filter((row) => row.id === id)[0];
     var rows = this.state.rows;
-    rows.filter((row => row.id === id))[0].prix = Math.round((parseFloat(row.unite) * parseFloat(row.quantite)) * 100) / 100;
+    rows.filter((row) => row.id === id)[0].prix =
+      Math.round(parseFloat(row.unite) * parseFloat(row.quantite) * 100) / 100;
 
-    this.setState({rows: rows});
-    this.handlePrixTotal()
+    this.setState({ rows: rows });
+    this.handlePrixTotal();
   }
 
   handlePrixTotal() {
     var total = 0;
 
-    this.state.rows.map((row) => (
-      total += row.prix
-    ))
+    this.state.rows.map((row) => (total += row.prix));
 
-    this.setState({prixTotal: total})
+    this.setState({ prixTotal: total });
   }
 
   handleTVA(e) {
-    this.setState({tva: e.target.value});
+    this.setState({ tva: e.target.value });
   }
 
+  handleSelect(id, e) {
+    var autoRows = this.state.autoCompleteRows;
+    var rows = this.state.rows;
+
+    autoRows.filter((row) => row.id === id)[0].description = rows.filter(
+      (row) => row.ref === e.target.value
+    )[0].description;
+    autoRows.filter((row) => row.id === id)[0].unite = rows.filter(
+      (row) => row.ref === e.target.value
+    )[0].unite;
+    this.setState({ autoCompleteRows: autoRows });
+    console.log(this.state);
+  }
+
+  handleNom = (e) => {
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, nomDevis: e.target.value },
+    }));
+  };
+
   handleDateEdition = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, dateEdition: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, dateEdition: e.target.value },
     }));
   };
 
   handleDebutTravaux = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, dateDebutTravaux: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, dateDebutTravaux: e.target.value },
     }));
   };
 
   handleDebutTravaux = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, dateDebutTravaux: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, dateDebutTravaux: e.target.value },
     }));
   };
 
   handleDuree = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, dureeDevis: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, dureeDevis: e.target.value },
     }));
   };
 
   handleDescription = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, descriptionDevis: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, descriptionDevis: e.target.value },
     }));
   };
 
   handleClient = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, leClient: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, leClient: e.target.value },
     }));
   };
 
   handleScenario = (e) => {
-    this.setState(prevState => ({
-      inputs: {...prevState.inputs, leScenario: e.target.value}
+    this.setState((prevState) => ({
+      inputs: { ...prevState.inputs, leScenario: e.target.value },
     }));
   };
 
-  handleSubmit() {
-    console.log(this.state)
+  async handleSubmit(e) {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("nom", this.state.inputs.nomDevis);
+    formData.append("description", this.state.inputs.descriptionDevis);
+    formData.append("duree", this.state.inputs.dureeDevis);
+    formData.append("dateEdition", this.state.inputs.dateEdition);
+    formData.append("dateTravaux", this.state.inputs.dateDebutTravaux);
+    await axios
+    .post("http://api/devis/ajoutDevis", formData)
+      .then(res => {
+        console.log(res.data);
+      })
+    
+    //window.location = "/devis";
   }
 
   ajouterLigne() {
     var rows = this.state.rows;
     rows.push({
-        ref: '',
-        description: '',
-        quantite: '',
-        unite: '',
-        prix: ''
-    })
-    this.setState({rows: rows})
+      id: "",
+      ref: "",
+      description: "",
+      quantite: "",
+      unite: "",
+      prix: "",
+    });
+    this.setState({ rows: rows });
   }
 
   supprimerLigne() {
     var rows = this.state.rows;
     rows.pop();
-    this.setState({rows: rows})
+    this.setState({ rows: rows });
   }
-  
+
   render() {
     return (
       <Container className="nouveau_devis_form">
@@ -201,14 +248,19 @@ export default class NouveauDevis extends Component {
         </Row>
 
         <Form.Group>
-          <FormLabel>Devis n° </FormLabel>
-          <FormControl placeholder="exemple : 156" />
+          <FormLabel>Nom du devis :  </FormLabel>
+          <FormControl 
+              onChange={(e) => this.handleNom(e)} 
+              placeholder="exemple : Réparation radiateur" />
         </Form.Group>
 
         <Row>
           <Col md="2">
             <FormLabel>Edité le </FormLabel>
-            <FormControl onChange={(e) => this.handleDateEdition(e)} placeholder="31/01/2021" />
+            <FormControl
+              onChange={(e) => this.handleDateEdition(e)}
+              placeholder="31/01/2021"
+            />
           </Col>
 
           <Col md="6"></Col>
@@ -226,7 +278,10 @@ export default class NouveauDevis extends Component {
         <Row>
           <Col md="2">
             <FormLabel>Début des travaux le </FormLabel>
-            <FormControl onChange={(e) => this.handleDebutTravaux(e)} placeholder="25/02/2021" />
+            <FormControl
+              onChange={(e) => this.handleDebutTravaux(e)}
+              placeholder="25/02/2021"
+            />
           </Col>
 
           <Col md="6"></Col>
@@ -241,7 +296,10 @@ export default class NouveauDevis extends Component {
 
           <Col md="4">
             <FormLabel>Durée estimée des travaux </FormLabel>
-            <FormControl onChange={(e) => this.handleDuree(e)} placeholder="2 semaines" />
+            <FormControl
+              onChange={(e) => this.handleDuree(e)}
+              placeholder="2 semaines"
+            />
           </Col>
         </Row>
 
@@ -252,7 +310,10 @@ export default class NouveauDevis extends Component {
         </Row>
 
         <FormLabel>Description : </FormLabel>
-        <FormControl onChange={(e) => this.handleDescription(e)} placeholder="Entrer la description" />
+        <FormControl
+          onChange={(e) => this.handleDescription(e)}
+          placeholder="Entrer la description"
+        />
 
         <Row>
           <Col>
@@ -275,46 +336,55 @@ export default class NouveauDevis extends Component {
             </tr>
           </thead>
         </Table>
-        
-        
-        <Row>
-          <Col md="3">
-            <FormControl readOnly placeholder="exemple : 85236" />
-          </Col>
-          <Col md="3">
-            <FormControl readOnly placeholder="exemple : Tuyau" />
-          </Col>
-          <Col md="2">
-            <FormControl readOnly placeholder="exemple : 5" type="number" max="500" min="0" step="1" />
-          </Col>
-          <Col md="2">
-            <FormControl readOnly placeholder="exemple : 2,20" />
-          </Col>
-          <Col md="2">
-            <FormControl readOnly placeholder="exemple : 2,20" />
-          </Col>
-        </Row>
 
         {this.state.rows.map((row) => (
           <Fragment>
-            <br></br>
             <Row>
               <Col md="3">
-                <FormControl defaultValue={row.ref} />
+                <FormControl
+                  as="select"
+                  onChange={(e) => this.handleSelect(row.id, e)}
+                  defaultValue={row.ref}
+                >
+                  <option>Choose...</option>
+                  {this.state.rows.map((row) => (
+                    <option>{row.ref}</option>
+                  ))}
+                </FormControl>
               </Col>
               <Col md="3">
-                <FormControl defaultValue={row.description} />
+                <FormControl
+                  readOnly
+                  defaultValue={
+                    this.state.autoCompleteRows.filter(
+                      (rowFilter) => row.id === rowFilter.id
+                    )[0].description
+                  }
+                />
               </Col>
               <Col md="2">
-                <FormControl onChange={(e) => this.handleQuantite(row.id, e)} type="number" defaultValue={row.quantite} />
+                <FormControl
+                  onChange={(e) => this.handleQuantite(row.id, e)}
+                  type="number"
+                  defaultValue={row.quantite}
+                />
               </Col>
               <Col md="2">
-                <FormControl onChange={(e) => this.handleUnite(row.id, e)} defaultValue={row.unite} />
+                <FormControl
+                  readOnly
+                  onChange={(e) => this.handleUnite(row.id, e)}
+                  defaultValue={
+                    this.state.autoCompleteRows.filter(
+                      (rowFilter) => row.id === rowFilter.id
+                    )[0].unite
+                  }
+                />
               </Col>
               <Col md="2">
                 <FormControl readOnly value={row.prix} />
               </Col>
             </Row>
+            <br></br>
           </Fragment>
         ))}
 
@@ -339,7 +409,16 @@ export default class NouveauDevis extends Component {
         </Col>
         <Col md="4">
           <FormLabel> Prix </FormLabel>
-          <FormControl readOnly value={Math.round((parseFloat(this.state.prixTotal) * (1 + (this.state.tva/100))) * 100) / 100} />
+          <FormControl
+            readOnly
+            value={
+              Math.round(
+                parseFloat(this.state.prixTotal) *
+                  (1 + this.state.tva / 100) *
+                  100
+              ) / 100
+            }
+          />
         </Col>
 
         <Row>
@@ -349,7 +428,6 @@ export default class NouveauDevis extends Component {
         </Row>
 
         <Row>
-          
           <Col md="3">
             <Button variant="ligth" type="submit" onClick={this.handleSubmit}>
               Enregistrer
@@ -366,7 +444,11 @@ export default class NouveauDevis extends Component {
             </Button>
           </Col>
           <Col md="3">
-            <Button variant="danger" type="submit" onClick={this.supprimerLigne}>
+            <Button
+              variant="danger"
+              type="submit"
+              onClick={this.supprimerLigne}
+            >
               Supprimer une ligne
             </Button>
           </Col>
