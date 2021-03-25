@@ -11,7 +11,7 @@ export default class AffichageQuestions extends Component {
 			<Fragment>
 				{this.props.scenario.questions.map((question) => {
 					return <ul className="list-group">
-						<li className="list-group-item">{question.nom}</li>
+						<li className="list-group-item">{question.nomQuestion}</li>
 					</ul>
 				})}
 			</Fragment>

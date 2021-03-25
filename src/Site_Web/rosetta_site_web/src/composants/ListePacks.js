@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 /**
  * @description Ce composant représente la section de la page ComposantsPacks qui énumère les packs.
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class ListePacks extends Component {
 
@@ -12,13 +12,14 @@ export default class ListePacks extends Component {
     return (
       <Fragment>
         <ListGroup>
-          {this.props.state.state2.packs.map((packs) => (
+          {this.props.state.state2.packs.map((pack) => (
             <ListGroupItem
-              href={packs.id}
-              onClick={() => this.props.action(packs.type, packs.id)}
-              value={packs.id}
+              key={pack.idPack}
+              href={pack.idPack}
+              onClick={() => this.props.action(pack.type, pack.idPack)}
+              value={pack.idPack}
             >
-              {packs.nom}
+              {pack.nomPack}
             </ListGroupItem>
           ))}
         </ListGroup>

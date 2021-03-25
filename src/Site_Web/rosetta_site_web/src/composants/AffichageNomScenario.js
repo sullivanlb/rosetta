@@ -9,9 +9,9 @@ export default class AffichageNomScenario extends Component {
 	render() {
 		return (
 			<Fragment>
-				<h6 style={{"text-align":"center"}}>
+				<h3 style={{"text-align":"center"}}>
 						{this.props.nom}
-				</h6>
+				</h3>
 			</Fragment>
 		);
 	}

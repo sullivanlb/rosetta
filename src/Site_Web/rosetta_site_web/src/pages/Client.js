@@ -21,30 +21,64 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
-      idSelected: 1,
-      client: [],
+      clients: [],
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
     this.supprimerClient = this.supprimerClient.bind(this);
+    this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
   }
 
   componentDidMount() {
     axios.get(`http://api/client/tousLesClients`)
       .then(res => {
-        const client = res.data;
-        this.setState({ client });
+        const clients = res.data;
+        this.setState({ clients });
         console.log(this.state)
       })
   }
 
-  supprimerClient() {
-    console.log("helloooooo")
-    axios.delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+  supprimerClient(id) {
+
+  }
+
+  /**
+   * Mettre à jour la liste des clients à afficher, suivant la recherche de l'utilisateur
+   */
+  async onChangeSearchInput() {
+    await axios.get(`http://api/client/tousLesClients`).then((res) => {
+      const clients = res.data;
+      this.setState({ clients });
+    });
+
+    if (document.getElementById("search-input").value.length != 0) {
+      var clients_liste = [];
+
+      this.state.clients.map((client) => {
+        var wordFound = false;
+
+        if ((client.nomClient != null && client.nomClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (client.prenomClient != null && client.prenomClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (client.adresseClient != null && client.adresseClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (client.emailClient != null && client.emailClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (client.telClient != null && client.telClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {
+          wordFound = true;
+        }
+
+        if (wordFound) {
+          clients_liste.push({
+            idClient: client.idClient,
+            nomClient: client.nomClient,
+            prenomClient: client.prenomClient,
+            adresseClient: client.adresseClient,
+            emailClient: client.emailClient,
+            telClient: client.telClient,
+          });
+        }
+      });
+
+      this.setState({ clients: clients_liste });
+    }
   }
 
   /**
@@ -73,10 +107,12 @@ export default class Client extends Component {
                   <form className="form-inline mt-4 mb-4">
                     <MDBIcon icon="search" />
                     <input
+                      id="search-input"
                       className="form-control form-control-sm ml-3 w-75"
                       type="text"
                       placeholder="Rechercher un client"
                       aria-label="Rechercher"
+                      onChange={this.onChangeSearchInput}
                     />
                   </form>
                 </MDBCol>
@@ -97,10 +133,10 @@ export default class Client extends Component {
               </MDBCol>
             </Col>
             <Col className="col3-button" md={2}>
-              <Link className="btn btn-light" to="/client/create">
+              <Link class="btn btn-light" to="/client/create">
                 Nouveau client
               </Link>
-              <Link className="btn btn-light" to="/client/modify">
+              <Link class="btn btn-light" to="/client/modify">
                 Modifier client
               </Link>
               <Supprimer 

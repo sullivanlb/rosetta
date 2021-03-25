@@ -3,8 +3,8 @@ import { Row, Col, Container,FormLabel,FormControl, Form, Button } from "react-b
 import { MDBCol, MDBIcon } from "mdbreact";
 import Supprimer from "../composants/SupprimerScenario";
 import "../style/Scenario.css";
-import ListeComposants from "../composants/ListeComposants";
-import ListePacks from "../composants/ListePacks";
+import ListeComposantsNouveauScenario from "../composants/ListeComposantsNouveauScenario";
+import ListePacksNouveauScenario from "../composants/ListePacksNouveauScenario";
 import AffichageQuestions from "../composants/AffichageQuestions";
 import AffichageNomScenario from "../composants/AffichageNomScenario";
 import axios from "axios";
@@ -12,26 +12,20 @@ import axios from "axios";
 /**
  * @description Ce composant représente la page pour créer un scénario
  *
- * @author Alice GONTARD, Christophe GARCIA
+ * @author Christophe GARCIA, Alice GONTARD
  */
 export default class NouveauScenario extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      stateX: 1,
-      state1: {
-        idToDisplay: 1,
-        composants: [],
-      },
-      state2: {
-        idToDisplay: 2,
-        packs: [],
-      },
+      composants: [],
+      packs: [],
       scenario: {
-        nom: "",
+        nomScenario: "Faire en sorte de récupérer le nom du scénario en cours de modification",
         questions: [],
         composants: [],
+        packs: [],
       },
     };
 
@@ -41,25 +35,32 @@ export default class NouveauScenario extends Component {
     this.handleKeyPressNom = this.handleKeyPressNom.bind(this);
   }
 
+  componentDidMount() {
+    axios.get(`http://api/composant/tousLesComposants`)
+      .then((res) => {
+        const composants = res.data;
+        this.setState({ composants: composants });
+      });
+
+    axios.get(`http://api/pack/tousLesPacks`)
+      .then((res) => {
+        const packs = res.data;
+        this.setState({ packs: packs });
+      });
+  }
+
   addComposantPack(type, id) {
     // do nothing for now
-    if (type === "composants") {
-      // if (selected) {
-        var composantTmp = null;
+    if (type === "composant") {
+      // if (!composant.added) composant.added: true,
+      // else composant.added: false,
 
-        this.state.state1.composants.map((composant) => {
-          if (composant.id == id) {
-            composantTmp = composant;
-          }
-        });
-
-        this.setState();
-      //}
-      // set background color : orange
-      // add dans state.added genre (seulement l'id ou jsp)
+      // add dans la liste Composants à gauche + créer AffichageComposantsNouveauScenario.js
     } else {
-      // set background color : orange
-      // add dans state.added genre (seulement l'id ou jsp)
+      // if (!pack.added) pack.added: true,
+      // else pack.added: false,
+
+      // add dans la liste Composants à gauche + créer AffichagePacksNouveauScenario.js
     }
   }
 
@@ -69,54 +70,46 @@ export default class NouveauScenario extends Component {
    async onChangeSearchInput() {
     await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
       const composants = res.data;
-      var stateTmp = this.state.state1;
-      stateTmp.composants = composants;
-      this.setState({ state1: stateTmp });
+      this.setState({ composants });
     });
 
     await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
       const packs = res.data;
-      var stateTmp = this.state.state2;
-      stateTmp.packs = packs;
-      this.setState({ state2: stateTmp });
+      this.setState({ packs });
     });
 
     if (document.getElementById("search-input").value.length != 0) {
       // Mise à jour de la liste des composants
-      var state1_tmp = this.state.state1;
       var composants_liste = [];
 
-      this.state.state1.composants.map((composant) => {
-        if (composant.nom != null && composant.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+      this.state.composants.map((composant) => {
+        if (composant.nomComposant != null && composant.nomComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
           composants_liste.push({
-            id: composant.id,
-            nom: composant.nom,
-            unite : composant.unite,
-            prix : composant.prix,
-            type: composant.type,
+            idComposant: composant.idComposant,
+            nomComposant: composant.nomComposant,
+            uniteComposant: composant.uniteComposant,
+            prixComposant: composant.prixComposant,
+            type: "composant",
           });
         }
       });
 
-      state1_tmp.composants = composants_liste;
-      this.setState({ state1: state1_tmp });
+      this.setState({ composants: composants_liste });
 
       // Mise à jour de la liste des packs
-      var state2_tmp = this.state.state2;
       var packs_liste = [];
 
-      this.state.state2.packs.map((pack) => {
-        if (pack.nom.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+      this.state.packs.map((pack) => {
+        if (pack.nomPack != null && pack.nomPack.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
           packs_liste.push({
-            id: pack.id,
-            nom: pack.nom,
-            type: pack.type,
+            idPack: pack.idPack,
+            nomPack: pack.nomPack,
+            type: "pack",
           });
         }
       });
 
-      state2_tmp.packs = packs_liste;
-      this.setState({ state2: state2_tmp });
+      this.setState({ packs: packs_liste });
     }
   }
 
@@ -124,7 +117,7 @@ export default class NouveauScenario extends Component {
     // Quand la touche ENTRER est tapée lorsqu'on écrit une nouvelle question
     if (event.charCode === 13) {
       var scenarioTmp = this.state.scenario;
-      scenarioTmp.questions.push({nom: event.target.value});
+      scenarioTmp.questions.push({nomQuestion: event.target.value});
       this.setState({ scenario: scenarioTmp });
       document.getElementById("form-question").value = "";
     }
@@ -134,18 +127,60 @@ export default class NouveauScenario extends Component {
     // Quand la touche ENTRER est tapée lorsqu'on écrit le nom du scénario
     if (event.charCode === 13) {
       var scenarioTmp = this.state.scenario;
-      scenarioTmp.nom = event.target.value;
+      scenarioTmp.nomScenario = event.target.value;
       this.setState({ scenario: scenarioTmp });
       document.getElementById("form-nom").value = "";
     }
   }
 
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    
+    // Nom du scénario
+    formData.append("nom", this.state.scenario.nomScenario);
+
+    // Les questions du scénario
+    formData.append("questionsTaille", this.state.scenario.questions.length);
+    var i = 0;
+    this.state.scenario.questions.map((question) => {
+      formData.append("question" + i + "_nom", question.nomQuestion);
+      i = i + 1;
+    });
+
+    // Les composants du scénario
+    formData.append("composantsTaille", this.state.scenario.composants.length);
+    var i = 0;
+    this.state.scenario.composants.map((composant) => {
+      formData.append("composant" + i + "_nom", composant.nomComposant);
+      formData.append("composant" + i + "_unite", composant.uniteComposant);
+      formData.append("composant" + i + "_prix", composant.prixComposant);
+      i = i + 1;
+    });
+
+    // Les packs du scénario
+    formData.append("packsTaille", this.state.scenario.packs.length);
+    var i = 0;
+    this.state.scenario.packs.map((pack) => {
+      formData.append("pack" + i + "_nom", pack.nomPack);
+      i = i + 1;
+    });
+
+    await axios
+      .post("http://api/scenario/ajoutScenario", formData)
+      .then(res => {
+        console.log(res.data);
+      });
+
+    // Retour sur la page des scénarios
+    window.location = "/scenario";
+  };
+
   render() {
     return (
       <Fragment>
-        <h3>Nouveau scénario</h3>
         <AffichageNomScenario
-          nom={this.state.scenario.nom}
+          nom={this.state.scenario.nomScenario}
         />
         <img
           class="ImagelogoPlombier ml-3"
@@ -170,12 +205,12 @@ export default class NouveauScenario extends Component {
                   </form>
                 </MDBCol>
               </Row>
-              <ListeComposants
+              <ListeComposantsNouveauScenario
                 state={this.state}
                 action={this.addComposantPack}
               />
               <Row><Col> <br></br>  <br></br> </Col></Row>
-              <ListePacks
+              <ListePacksNouveauScenario
                 state={this.state}
                 action={this.addComposantPack}
               />
@@ -208,12 +243,21 @@ export default class NouveauScenario extends Component {
             </Col>
 
             <Col className="col3-button" md={2}>
-            <button type="button" class="btn btn-light">
+            <button
+              type="button"
+              class="btn btn-light"
+              onClick={this.handleSubmit.bind(this)}
+            >
               Enregistrer
             </button>
               <Supprimer />
-              <button type="button" class="btn btn-light">
-                Annuler
+              <button
+                type="button"
+                class="btn btn-light"
+              >
+                <a style={{"color":"black","text-decoration":"none"}} href="/scenario">
+                  Annuler
+                </a>
               </button>
             </Col>
           </Row>

@@ -6,7 +6,7 @@ import axios from "axios";
 /**
  * @description Ce composant représente la page pour créer un client
  *
- * @author Christophe GARCIA & Sullivan LEBOEUF
+ * @author Christophe GARCIA, Sullivan LEBOEUF
  */
 export default class NouveauClient extends Component {
   state = {
@@ -80,7 +80,6 @@ export default class NouveauClient extends Component {
       .post(url, formData)
       .then((res) => console.log("res : " + res.state))
       .catch((err) => console.log(err));
-      
   };
 
   render() {

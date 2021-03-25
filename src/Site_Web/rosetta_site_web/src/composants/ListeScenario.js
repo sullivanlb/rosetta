@@ -11,13 +11,13 @@ export default class ListeScenario extends Component {
     return (
       <Fragment>
         <ListGroup>
-          {this.props.state.list.scenario.map((scenario) => (
+          {this.props.state.scenarios.map((scenario) => (
             <ListGroupItem
-              href={scenario.id}
-              onClick={() => this.props.action(scenario.id)}
-              value={scenario.id}
+              href={scenario.idScenario}
+              onClick={() => this.props.action(scenario.idScenario)}
+              value={scenario.idScenario}
             >
-              {scenario.nom}
+              {scenario.nomScenario}
             </ListGroupItem>
           ))}
         </ListGroup>

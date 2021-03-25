@@ -10,9 +10,9 @@ export default class AffichageClient extends Component {
   render() {
     return (
       <Fragment>
-        {this.props.state.client.map((client) => {
+        {this.props.state.clients.map((client) => {
           if (this.props.state.idToDisplay === client.idClient) {
-            return <div className="card card-body mb-3" key={this.props.state.client.idClient}>
+            return <div className="card card-body mb-3" key={this.props.state.clients.idClient}>
               <h4>{client.nomClient}</h4>
               <ul className="list-group">
                 <li className="list-group-item">Nom : {client.nomClient}</li>
