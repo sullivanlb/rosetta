@@ -12,7 +12,7 @@ export default class ListeComposantsNouveauScenario extends Component {
     return (
       <Fragment>
         <ListGroup>
-          {this.props.state.composants.map((composant) => (
+          {this.props.state.composantsRecherches.map((composant) => (
             <ListGroupItem
               key={composant.idComposant}
               href={composant.idComposant}

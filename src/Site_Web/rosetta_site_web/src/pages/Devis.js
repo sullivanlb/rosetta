@@ -33,6 +33,121 @@ export default class Devis extends Component {
     this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
   }
 
+  async componentDidMount() {
+    var tousLesDevis = [];
+    var devis_liste = [];
+    var clients_liste = [];
+    var composants_liste = [];
+    var packs_liste = [];
+    var appartientCD_liste = [];
+    var appartientDC_liste = [];
+    var appartientDP_liste = [];
+    var appartientPC_liste = [];
+
+    // Récupération de tous les devis
+    await axios.get(`http://api/devis/tousLesDevis`).then((res) => {
+      devis_liste = res.data;
+    });
+
+    // Récupération de tous les clients
+    await axios.get(`http://api/client/tousLesClients`).then((res) => {
+      clients_liste = res.data;
+    });
+
+    // Récupération de tous les composants
+    await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      composants_liste = res.data;
+    });
+
+    // Récupération de tous les packs
+    await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      packs_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Client-Devis
+    await axios.get(`http://api/appartientcd/tousLesElements`).then((res) => {
+      appartientCD_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Devis-Composant
+    await axios.get(`http://api/appartientdc/tousLesElements`).then((res) => {
+      appartientDC_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Devis-Pack
+    await axios.get(`http://api/appartientdp/tousLesElements`).then((res) => {
+      appartientDP_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Pack-Composant
+    await axios.get(`http://api/appartientpc/tousLesElements`).then((res) => {
+      appartientPC_liste = res.data;
+    });
+
+    // Recréation des devis
+    devis_liste.map((devis) => {
+      var nomDuClient = "";
+      var prenomDuClient = "";
+      var prixDevis = 0;
+
+      // Récupération du nom du client
+      appartientCD_liste.map((liaison) => {
+        if (liaison.unDevis == devis.idDevis) {
+          clients_liste.map((client) => {
+            if (client.idClient == liaison.unClient) {
+              nomDuClient = client.nomClient;
+              prenomDuClient = client.prenomClient;
+            }
+          });
+        }
+      });
+
+      // Comptage du prix des composants
+      appartientDC_liste.map((liaison) => {
+        if (liaison.unDevis == devis.idDevis) {
+          composants_liste.map((composant) => {
+            if (composant.idComposant == liaison.unComposant) {
+              prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison.quantite);
+            }
+          });
+        }
+      });
+
+      // Comptage du prix des packs
+      appartientDP_liste.map((liaison) => {
+        if (liaison.unDevis == devis.idDevis) {
+          packs_liste.map((pack) => {
+            if (pack.idPack == liaison.unPack) {
+              appartientPC_liste.map((liaison2) => {
+                if (liaison2.unPack == pack.idPack) {
+                  composants_liste.map((composant) => {
+                    if (composant.idComposant == liaison2.unComposant) {
+                      prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison2.quantite * liaison.quantite);
+                    }
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+
+      tousLesDevis.push({
+        idDevis: devis.idDevis,
+        nomDevis: devis.nomDevis,
+        descriptionDevis: devis.descriptionDevis,
+        dureeDevis: devis.dureeDevis,
+        dateEditionDevis: devis.dateEditionDevis,
+        dateTravauxDevis: devis.dateTravauxDevis,
+        nomClient: nomDuClient,
+        prenomClient: prenomDuClient,
+        prixDevis: prixDevis,
+      });
+    });
+
+    this.setState({ devis: tousLesDevis });
+  }
+
   /**
    * Modifier l'état du devis à afficher
    *
@@ -46,10 +161,118 @@ export default class Devis extends Component {
    * Mettre à jour la liste des devis à afficher, suivant la recherche de l'utilisateur
    */
   async onChangeSearchInput() {
+    var tousLesDevis = [];
+    var devis_liste = [];
+    var clients_liste = [];
+    var composants_liste = [];
+    var packs_liste = [];
+    var appartientCD_liste = [];
+    var appartientDC_liste = [];
+    var appartientDP_liste = [];
+    var appartientPC_liste = [];
+
+    // Récupération de tous les devis
     await axios.get(`http://api/devis/tousLesDevis`).then((res) => {
-      const devis = res.data;
-      this.setState({ devis });
+      devis_liste = res.data;
     });
+
+    // Récupération de tous les clients
+    await axios.get(`http://api/client/tousLesClients`).then((res) => {
+      clients_liste = res.data;
+    });
+
+    // Récupération de tous les composants
+    await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      composants_liste = res.data;
+    });
+
+    // Récupération de tous les packs
+    await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      packs_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Client-Devis
+    await axios.get(`http://api/appartientcd/tousLesElements`).then((res) => {
+      appartientCD_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Devis-Composant
+    await axios.get(`http://api/appartientdc/tousLesElements`).then((res) => {
+      appartientDC_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Devis-Pack
+    await axios.get(`http://api/appartientdp/tousLesElements`).then((res) => {
+      appartientDP_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Pack-Composant
+    await axios.get(`http://api/appartientpc/tousLesElements`).then((res) => {
+      appartientPC_liste = res.data;
+    });
+
+    // Recréation des devis
+    devis_liste.map((devis) => {
+      var nomDuClient = "";
+      var prenomDuClient = "";
+      var prixDevis = 0;
+
+      // Récupération du nom du client
+      appartientCD_liste.map((liaison) => {
+        if (liaison.unDevis == devis.idDevis) {
+          clients_liste.map((client) => {
+            if (client.idClient == liaison.unClient) {
+              nomDuClient = client.nomClient;
+              prenomDuClient = client.prenomClient;
+            }
+          });
+        }
+      });
+
+      // Comptage du prix des composants
+      appartientDC_liste.map((liaison) => {
+        if (liaison.unDevis == devis.idDevis) {
+          composants_liste.map((composant) => {
+            if (composant.idComposant == liaison.unComposant) {
+              prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison.quantite);
+            }
+          });
+        }
+      });
+
+      // Comptage du prix des packs
+      appartientDP_liste.map((liaison) => {
+        if (liaison.unDevis == devis.idDevis) {
+          packs_liste.map((pack) => {
+            if (pack.idPack == liaison.unPack) {
+              appartientPC_liste.map((liaison2) => {
+                if (liaison2.unPack == pack.idPack) {
+                  composants_liste.map((composant) => {
+                    if (composant.idComposant == liaison2.unComposant) {
+                      prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison2.quantite * liaison.quantite);
+                    }
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+
+      tousLesDevis.push({
+        idDevis: devis.idDevis,
+        nomDevis: devis.nomDevis,
+        descriptionDevis: devis.descriptionDevis,
+        dureeDevis: devis.dureeDevis,
+        dateEditionDevis: devis.dateEditionDevis,
+        dateTravauxDevis: devis.dateTravauxDevis,
+        nomClient: nomDuClient,
+        prenomClient: prenomDuClient,
+        prixDevis: prixDevis,
+      });
+    });
+
+    this.setState({ devis: tousLesDevis });
 
     if (document.getElementById("search-input").value.length != 0) {
       var devis_liste = [];
@@ -57,20 +280,28 @@ export default class Devis extends Component {
       this.state.devis.map((devis) => {
         var wordFound = false;
 
-        if ((devis.date != null && devis.date.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-            || (devis.client != null && devis.client.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-            || (devis.scenario != null && devis.scenario.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+        if ((devis.nomDevis != null && devis.nomDevis.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.descriptionDevis != null && devis.descriptionDevis.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.dureeDevis != null && devis.dureeDevis.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.dateEditionDevis != null && devis.dateEditionDevis.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.dateTravauxDevis != null && devis.dateTravauxDevis.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.nomClient != null && devis.nomClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
+            || (devis.prenomClient != null && devis.prenomClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
             || (devis.prix != null && devis.prix.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {
           wordFound = true;
         }
 
         if (wordFound) {
           devis_liste.push({
-            id: devis.id,
-            date: devis.date,
-            client: devis.client,
-            scenario: devis.scenario,
-            prix: devis.prix,
+            idDevis: devis.idDevis,
+            nomDevis: devis.nomDevis,
+            descriptionDevis: devis.descriptionDevis,
+            dureeDevis: devis.dureeDevis,
+            dateEditionDevis: devis.dateEditionDevis,
+            dateTravauxDevis: devis.dateTravauxDevis,
+            nomClient: devis.nomClient,
+            prenomClient: devis.prenomClient,
+            prixDevis: devis.prixDevis,
           });
         }
       });

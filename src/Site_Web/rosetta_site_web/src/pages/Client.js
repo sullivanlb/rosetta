@@ -21,64 +21,31 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
-      clients: [],
+      client: [],
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
     this.supprimerClient = this.supprimerClient.bind(this);
-    this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`http://api/client/tousLesClients`)
-      .then(res => {
-        const clients = res.data;
-        this.setState({ clients });
-        console.log(this.state)
-      })
-  }
-
-  supprimerClient(id) {
-
+    axios.get(`http://api/client/tousLesClients`).then((res) => {
+      const client = res.data;
+      this.setState({ client });
+    });
   }
 
   /**
-   * Mettre à jour la liste des clients à afficher, suivant la recherche de l'utilisateur
+   * Envoi une requête de supprimession au serveur
    */
-  async onChangeSearchInput() {
-    await axios.get(`http://api/client/tousLesClients`).then((res) => {
-      const clients = res.data;
-      this.setState({ clients });
-    });
-
-    if (document.getElementById("search-input").value.length != 0) {
-      var clients_liste = [];
-
-      this.state.clients.map((client) => {
-        var wordFound = false;
-
-        if ((client.nomClient != null && client.nomClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-            || (client.prenomClient != null && client.prenomClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-            || (client.adresseClient != null && client.adresseClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-            || (client.emailClient != null && client.emailClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-            || (client.telClient != null && client.telClient.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {
-          wordFound = true;
-        }
-
-        if (wordFound) {
-          clients_liste.push({
-            idClient: client.idClient,
-            nomClient: client.nomClient,
-            prenomClient: client.prenomClient,
-            adresseClient: client.adresseClient,
-            emailClient: client.emailClient,
-            telClient: client.telClient,
-          });
-        }
+  async supprimerClient() {
+    await axios
+      .delete(`http://api/client/supprimerClient/${this.state.idToDisplay}`)
+      .then((res) => {
+        console.log(res.data);
       });
 
-      this.setState({ clients: clients_liste });
-    }
+    window.location.reload();
   }
 
   /**
@@ -103,16 +70,14 @@ export default class Client extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-                <MDBCol md="12">
+                <MDBCol md="6">
                   <form className="form-inline mt-4 mb-4">
-                    <MDBIcon icon="search" />
+                    <MDBIcon icon="search"/>
                     <input
-                      id="search-input"
                       className="form-control form-control-sm ml-3 w-75"
                       type="text"
                       placeholder="Rechercher un client"
                       aria-label="Rechercher"
-                      onChange={this.onChangeSearchInput}
                     />
                   </form>
                 </MDBCol>
@@ -133,15 +98,26 @@ export default class Client extends Component {
               </MDBCol>
             </Col>
             <Col className="col3-button" md={2}>
-              <Link class="btn btn-light" to="/client/create">
+              <Link className="btn btn-light" to="/client/nouveau">
                 Nouveau client
               </Link>
-              <Link class="btn btn-light" to="/client/modify">
+              <Link
+                className="btn btn-light"
+                to={{
+                  pathname: "/client/modifier",
+                  params: {
+                    idToDisplay: this.state.idToDisplay,
+                    client: this.state.client.filter((client => 
+                      client.idClient === this.state.idToDisplay
+                    ))
+                  }
+                }}
+              >
                 Modifier client
               </Link>
-              <Supprimer 
-              key={this.state.idSelected}
-              action={this.supprimerClient}/>
+              <Supprimer
+                action={this.supprimerClient}
+              />
             </Col>
           </Row>
         </Container>

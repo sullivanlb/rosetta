@@ -32,7 +32,7 @@ export default class AffichageScenario extends Component {
                 <ul className="list-group">
                   <li className="list-group-item">Composants : </li>
                   {scenario.composants.map((composant) => {
-                    return <li className="list-group-item">{composant.nomComposant}</li>
+                    return <li className="list-group-item">{composant.nomComposant} : {composant.quantite}</li>
                     })
                   }
                   </ul>
@@ -41,7 +41,7 @@ export default class AffichageScenario extends Component {
                   <ul className="list-group">
                     <li className="list-group-item">Packs : </li>
                     {scenario.packs.map((pack) => {
-                      return <li className="list-group-item">{pack.nomPack}</li>
+                      return <li className="list-group-item">{pack.nomPack} : {pack.quantite}</li>
                       })
                     }
                     </ul>

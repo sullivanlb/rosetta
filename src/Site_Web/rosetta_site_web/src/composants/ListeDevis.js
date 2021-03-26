@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 /**
  * Ce composant représente la section de la page Devis qui énumère les devis
  * 
- * @author Lucy Gastebois
+ * @author Lucy Gastebois, Christophe GARCIA
  */
 export default class ListeDevis extends Component {
     render() {
@@ -13,11 +13,11 @@ export default class ListeDevis extends Component {
           <ListGroup >
             {this.props.state.devis.map((devis) => (
               <ListGroupItem
-                href={devis.id}
-                onClick={() => this.props.action(devis.id)}
-                value={devis.id}
+                href={devis.idDevis}
+                onClick={() => this.props.action(devis.idDevis)}
+                value={devis.idDevis}
               >
-                Devis n°{devis.id} - {devis.client} - {devis.scenario} 
+                {devis.nomDevis} - {devis.prenomClient} {devis.nomClient} - {devis.dateEditionDevis} 
               </ListGroupItem>
             ))}
           </ListGroup>

@@ -26,6 +26,7 @@ export default class Scenario extends Component {
     };
 
     this.affichageInfoScenario = this.affichageInfoScenario.bind(this);
+    this.supprimerScenario = this.supprimerScenario.bind(this);
     this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
   }
 
@@ -104,6 +105,7 @@ export default class Scenario extends Component {
                 nomComposant: composant.nomComposant,
                 uniteComposant: composant.uniteComposant,
                 prixComposant: composant.prixComposant,
+                quantite: liaison.quantite,
               });
             }
           });
@@ -118,6 +120,7 @@ export default class Scenario extends Component {
               packsScenario.push({
                 idPack: pack.idPack,
                 nomPack: pack.nomPack,
+                quantite: liaison.quantite,
               });
             }
           });
@@ -138,6 +141,19 @@ export default class Scenario extends Component {
 
   affichageInfoScenario(id) {
     this.setState({ idToDisplay: id });
+  }
+
+  /**
+   * Envoi une requête de suppression au serveur
+   */
+   async supprimerScenario() {
+    await axios
+      .delete(`http://api/scenario/supprimerScenario/${this.state.idToDisplay}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    window.location.reload();
   }
 
   /**
@@ -218,6 +234,7 @@ export default class Scenario extends Component {
                 nomComposant: composant.nomComposant,
                 uniteComposant: composant.uniteComposant,
                 prixComposant: composant.prixComposant,
+                quantite: liaison.quantite,
               });
             }
           });
@@ -232,6 +249,7 @@ export default class Scenario extends Component {
               packsScenario.push({
                 idPack: pack.idPack,
                 nomPack: pack.nomPack,
+                quantite: liaison.quantite,
               });
             }
           });
@@ -366,10 +384,22 @@ export default class Scenario extends Component {
               <Link class="btn btn-light" to="/scenario/nouveauscenario">
                 Nouveau scénario
               </Link>
-              <button type="button" class="btn btn-light">
+              <Link
+                className="btn btn-light"
+                to={{
+                  pathname: "/scenario/modifier",
+                  params: {
+                    idToDisplay: this.state.idToDisplay,
+                    scenarios: this.state.scenarios.filter((scenario => 
+                      scenario.idScenario === this.state.idToDisplay
+                    ))
+                  }
+                }}
+              >
                 Modifier scénario
-              </button>
-              <Supprimer />
+              </Link>
+              <Supprimer
+                action={this.supprimerScenario}/>
               <Link class="btn btn-light" to="/scenario/composantspacks">
                 Composants/Packs
               </Link>

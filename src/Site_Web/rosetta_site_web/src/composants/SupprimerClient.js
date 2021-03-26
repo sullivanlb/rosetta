@@ -29,7 +29,6 @@ export default class SupprimerClient extends Component {
   onClick = () => {
     this.handleClose();
     this.props.action();
-    console.log("helooooooo");
   }
 
   render() {

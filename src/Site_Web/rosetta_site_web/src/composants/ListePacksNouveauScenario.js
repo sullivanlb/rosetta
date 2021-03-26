@@ -12,7 +12,7 @@ export default class ListePacksNouveauScenario extends Component {
     return (
       <Fragment>
         <ListGroup>
-          {this.props.state.packs.map((pack) => (
+          {this.props.state.packsRecherches.map((pack) => (
             <ListGroupItem
               href={pack.idPack}
               onClick={() => this.props.action(pack.type, pack.idPack)}
