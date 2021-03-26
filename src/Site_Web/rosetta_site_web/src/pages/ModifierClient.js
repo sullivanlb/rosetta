@@ -5,18 +5,19 @@ import "../style/NouveauClient.css";
 import axios from "axios";
 
 /**
- * @description Ce composant représente la page pour créer un client
+ * @description Ce composant représente la page pour modifier un client
  *
  * @author Christophe GARCIA & Sullivan LEBOEUF
  */
 export default class ModifierClient extends Component {
   state = {
-    nom: "",
-    prenom: "",
-    email: "",
-    adresse: "",
-    tel: "",
-    sexe: "",
+    id: this.props.location.params.client[0].idClient,
+    nom: this.props.location.params.client[0].nomClient,
+    prenom: this.props.location.params.client[0].prenomClient,
+    email: this.props.location.params.client[0].emailClient,
+    adresse: this.props.location.params.client[0].adresseClient,
+    tel: this.props.location.params.client[0].telClient,
+    sexe: this.props.location.params.client[0].sexeClient,
   };
 
   handleAddNom = async (e) => {
@@ -68,25 +69,23 @@ export default class ModifierClient extends Component {
   };
 
   handleSubmit = async (e) => {
-
-    console.log(this.props);
-
-    /*
     e.preventDefault();
     let formData = new FormData();
+    formData.append("id", this.state.id);
     formData.append("nom", this.state.nom);
     formData.append("prenom", this.state.prenom);
     formData.append("adresse", this.state.adresse);
     formData.append("email", this.state.email);
     formData.append("tel", this.state.tel);
     formData.append("sexe", this.state.sexe);
+
     await axios
-      .post("http://api/client/ajoutClient", formData)
+      .post("http://api/client/modifierClient", formData)
       .then(res => {
         console.log(res.data);
       })
     
-    window.location = "/client";*/
+    window.location = "/client";
   };
 
   render() {
@@ -103,7 +102,7 @@ export default class ModifierClient extends Component {
               <Form.Label>Nom</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Entrez le nom"
+                placeholder={this.state.nom}
                 onChange={this.handleAddNom}
               />
             </Form.Group>
@@ -112,7 +111,7 @@ export default class ModifierClient extends Component {
               <Form.Label>Prénom</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Entrez le prénom"
+                placeholder={this.state.prenom}
                 onChange={this.handleAddPrenom}
               />
             </Form.Group>
@@ -122,7 +121,7 @@ export default class ModifierClient extends Component {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Entrez l'adresse email"
+              placeholder={this.state.email}
               onChange={this.handleAddEmail}
             />
           </Form.Group>
@@ -130,7 +129,7 @@ export default class ModifierClient extends Component {
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Adresse</Form.Label>
             <Form.Control
-              placeholder="Numéro et libellé de la voie, Lieu dit, Code postal, Pays"
+              placeholder={this.state.adresse}
               onChange={this.handleAddAdresse}
             />
           </Form.Group>
@@ -139,7 +138,7 @@ export default class ModifierClient extends Component {
             <Form.Group as={Col} controlId="number">
               <Form.Label>Numéro de téléphone</Form.Label>
               <Form.Control
-                placeholder="Entrez le numéro de téléphone"
+                placeholder={this.state.tel}
                 onChange={this.handleAddTel}
               />
             </Form.Group>
@@ -151,6 +150,7 @@ export default class ModifierClient extends Component {
               label="Femme"
               name="formHorizontalRadios"
               id="formHorizontalRadios2"
+              checked={this.state.sexe === "femme" ? true : false}
               onChange={this.handleAddSexeFemme}
             />
             <Form.Check
@@ -158,6 +158,7 @@ export default class ModifierClient extends Component {
               label="Homme"
               name="formHorizontalRadios"
               id="formHorizontalRadios1"
+              checked={this.state.sexe === "homme" ? true : false}
               onChange={this.handleAddSexeHomme}
             />
             <Form.Check
@@ -165,6 +166,7 @@ export default class ModifierClient extends Component {
               label="Autre"
               name="formHorizontalRadios"
               id="formHorizontalRadios3"
+              checked={this.state.sexe === "autre" ? true : false}
               onChange={this.handleAddSexeAutre}
             />
           </Form.Group>

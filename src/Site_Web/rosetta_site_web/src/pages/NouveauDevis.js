@@ -69,7 +69,7 @@ export default class NouveauDevis extends Component{
                 <Col md="4">
                 <select>
                     <option>Sélectionner un scénario </option>
-                    <option>Installation d'un chauffe-eau électrique </option>/option>
+                    <option>Installation d'un chauffe-eau électrique </option>
                     <option>Remplacement de la baignoire en douche</option>
                 </select>
                 </Col>

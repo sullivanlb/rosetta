@@ -72,7 +72,7 @@ export default class Client extends Component {
               <Row>
                 <MDBCol md="6">
                   <form className="form-inline mt-4 mb-4">
-                    <MDBIcon icon="search" />
+                    <MDBIcon icon="search"/>
                     <input
                       className="form-control form-control-sm ml-3 w-75"
                       type="text"
@@ -98,19 +98,24 @@ export default class Client extends Component {
               </MDBCol>
             </Col>
             <Col className="col3-button" md={2}>
-              <Link className="btn btn-light" to="/client/create">
+              <Link className="btn btn-light" to="/client/nouveau">
                 Nouveau client
               </Link>
               <Link
                 className="btn btn-light"
-                to="/client/modify"
-                key={this.state.idToDisplay}
-                state={this.state}
+                to={{
+                  pathname: "/client/modifier",
+                  params: {
+                    idToDisplay: this.state.idToDisplay,
+                    client: this.state.client.filter((client => 
+                      client.idClient === this.state.idToDisplay
+                    ))
+                  }
+                }}
               >
                 Modifier client
               </Link>
               <Supprimer
-                key={this.state.idSelected}
                 action={this.supprimerClient}
               />
             </Col>
