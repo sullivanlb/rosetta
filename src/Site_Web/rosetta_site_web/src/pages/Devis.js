@@ -1,5 +1,5 @@
-import React, {Component, Fragment } from "react";
-import { Row, Col, Container, Form, Button } from "react-bootstrap";
+import React, { Component, Fragment } from "react";
+import { Row, Col, Container } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
 import Supprimer from "../composants/SupprimerDevis";
@@ -12,16 +12,15 @@ import axios from "axios";
  * Ce composant représente la page Devis, elle permet de :
  *  - Afficher la liste des devis enregistrés
  *  - Avoir un bouton ajouter/modifier/supprimer un devis
- * 
+ *
  * @author Lucy Gastebois
  */
 export default class Devis extends Component {
-
   /**
    * Constructeur permettant d'entrée les données concernant le devis
-   * @param {*} props 
+   * @param {*} props
    */
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -151,7 +150,7 @@ export default class Devis extends Component {
   /**
    * Modifier l'état du devis à afficher
    *
-   * @param {l'identifiant du devis à afficher} id
+   * @param {int} id l'identifiant du devis à afficher
    */
   affichageInfoDevis(id){
     this.setState({ idToDisplay: id});
@@ -317,7 +316,7 @@ export default class Devis extends Component {
     return (
       <Fragment>
         <h3>Devis</h3>
-        <img class="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
+        <img className="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
         <Container fluid>
           <Row>
             <Col className="col1-AffichageDevis" md={4}>
@@ -336,28 +335,39 @@ export default class Devis extends Component {
                 </form>
               </MDBCol>
               </Row>
-              <ListeDevis
-                state={this.state}
-                action={this.affichageInfoDevis}
-              />
+              <ListeDevis state={this.state} action={this.affichageInfoDevis} />
             </Col>
 
             <Col className="col2-affichageDevis" md={6}>
-            <MDBCol md="12">
+              <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
-                <AffichageDevis key={this.state.idToDisplay} state={this.state} />
+                  <AffichageDevis
+                    key={this.state.idToDisplay}
+                    state={this.state}
+                  />
                 </form>
-            </MDBCol>
+              </MDBCol>
             </Col>
 
             <Col className="col2-ButtonDevis" md={2}>
-              <Link class="btn btn-light" to="/devis/nouveau">
-                Ajouter Devis
+              <Link className="btn btn-light" to="/devis/nouveau">
+                Nouveau Devis
               </Link>
-              <Link class="btn btn-light" to="/devis/modifier">
-                Modifier Devis
+              <Link
+                className="btn btn-light"
+                to={{
+                  pathname: "/devis/modifier",
+                  params: {
+                    idToDisplay: this.state.idToDisplay,
+                    devis: this.state.devis.filter(
+                      (devis) => devis.idDevis === this.state.idToDisplay
+                    ),
+                  },
+                }}
+              >
+                Modifier devis
               </Link>
-              <Supprimer />
+              <Supprimer action={this.supprimerDevis} />
             </Col>
           </Row>
         </Container>
@@ -365,6 +375,3 @@ export default class Devis extends Component {
     );
   }
 }
-
-
-

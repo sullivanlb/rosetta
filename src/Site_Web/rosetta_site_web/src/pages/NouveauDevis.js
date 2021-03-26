@@ -59,7 +59,6 @@ export default class NouveauDevis extends Component {
       dureeDevis: "",
       descriptionDevis: "",
       leClient: "",
-      leScenario: "",
     },
   };
 
@@ -183,6 +182,9 @@ export default class NouveauDevis extends Component {
   };
 
   async handleSubmit(e) {
+    var regExp = /\(([^)]+)\)/;
+    var matches = regExp.exec(this.state.inputs.leClient);
+
     e.preventDefault();
     let formData = new FormData();
     formData.append("nom", this.state.inputs.nomDevis);
@@ -190,6 +192,7 @@ export default class NouveauDevis extends Component {
     formData.append("duree", this.state.inputs.dureeDevis);
     formData.append("dateEdition", this.state.inputs.dateEdition);
     formData.append("dateTravaux", this.state.inputs.dateDebutTravaux);
+    formData.append("leClient", matches[1]);
     await axios
     .post("http://api/devis/ajoutDevis", formData)
       .then(res => {
@@ -269,7 +272,7 @@ export default class NouveauDevis extends Component {
             <select onChange={(e) => this.handleClient(e)}>
               <option>Sélectionner un client </option>
               {this.state.clients.map((client) => (
-                <option key={client.idClient}>{client.nomClient}</option>
+                <option key={client.idClient}>{client.nomClient} ({client.idClient})</option>
               ))}
             </select>
           </Col>
