@@ -30,6 +30,7 @@ export default class Devis extends Component {
 
     this.affichageInfoDevis = this.affichageInfoDevis.bind(this);
     this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
+    this.supprimerDevis = this.supprimerDevis.bind(this);
   }
 
   async componentDidMount() {
@@ -145,6 +146,19 @@ export default class Devis extends Component {
     });
 
     this.setState({ devis: tousLesDevis });
+  }
+
+  /**
+   * Envoi une requête de suppression au serveur
+   */
+   async supprimerDevis() {
+    await axios
+      .delete(`http://api/devis/supprimerDevis/${this.state.idToDisplay}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    window.location.reload();
   }
 
   /**

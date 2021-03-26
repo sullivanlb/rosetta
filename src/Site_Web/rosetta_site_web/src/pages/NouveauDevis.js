@@ -20,24 +20,7 @@ import axios from "axios";
 export default class NouveauDevis extends Component {
   state = {
     clients: [],
-    rows: [
-      {
-        id: "1",
-        ref: "85236",
-        description: "description",
-        quantite: "10",
-        unite: "2,20",
-        prix: "0",
-      },
-      {
-        id: "2",
-        ref: "44556",
-        description: "description n°2",
-        quantite: "95",
-        unite: "0.85",
-        prix: "0",
-      },
-    ],
+    rows: [],
     autoCompleteRows: [
       {
         id: "1",
@@ -59,6 +42,7 @@ export default class NouveauDevis extends Component {
       dureeDevis: "",
       descriptionDevis: "",
       leClient: "",
+      leScenario: "",
     },
   };
 
@@ -72,11 +56,14 @@ export default class NouveauDevis extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    axios.get(`http://api/client/tousLesClients`).then((res) => {
+  async componentDidMount() {
+    await axios.get(`http://api/client/tousLesClients`).then((res) => {
       const clients = res.data;
       this.setState({ clients });
     });
+
+    
+
   }
 
   handleQuantite(id, e) {
@@ -177,6 +164,39 @@ export default class NouveauDevis extends Component {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, leScenario: e.target.value },
     }));
+
+    var rows = [];
+    await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      rows = res.data;
+    });
+
+    var rowsArr = [];
+    rows.map((row) => (
+        rowsArr.push({
+            id: row.idComposant,
+            ref: row.nomComposant,
+            quantite: "95",
+            unite: row.uniteComposant,
+            prix: row.prixComposant,
+        })
+    ));
+
+    rows = [];
+    await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      rows = res.data;
+    });
+
+    var rowsArr = [];
+    rows.map((row) => (
+        rowsArr.push({
+            id: row.idPack,
+            ref: row.nomPack,
+            quantite: "95",
+            prix: "0",
+        })
+    ));
+
+    this.setState({ rows });
   };
 
   async handleSubmit(e) {
@@ -197,7 +217,7 @@ export default class NouveauDevis extends Component {
         console.log(res.data);
       })
     
-    //window.location = "/devis";
+    window.location = "/devis";
   }
 
   ajouterLigne() {
@@ -359,7 +379,7 @@ export default class NouveauDevis extends Component {
                   defaultValue={
                     this.state.autoCompleteRows.filter(
                       (rowFilter) => row.id === rowFilter.id
-                    )[0].description
+                    ).description
                   }
                 />
               </Col>
@@ -377,7 +397,7 @@ export default class NouveauDevis extends Component {
                   defaultValue={
                     this.state.autoCompleteRows.filter(
                       (rowFilter) => row.id === rowFilter.id
-                    )[0].unite
+                    ).unite
                   }
                 />
               </Col>

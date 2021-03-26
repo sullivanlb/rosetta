@@ -21,7 +21,7 @@ export default class Client extends Component {
 
     this.state = {
       idToDisplay: 1,
-      client: [],
+      clients: [],
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
@@ -30,8 +30,8 @@ export default class Client extends Component {
 
   componentDidMount() {
     axios.get(`http://api/client/tousLesClients`).then((res) => {
-      const client = res.data;
-      this.setState({ client });
+      const clients = res.data;
+      this.setState({ clients });
     });
   }
 
@@ -45,7 +45,7 @@ export default class Client extends Component {
         console.log(res.data);
       });
 
-    // window.location.reload();
+    window.location.reload();
   }
 
   /**
@@ -110,7 +110,7 @@ export default class Client extends Component {
                   pathname: "/client/modifier",
                   params: {
                     idToDisplay: this.state.idToDisplay,
-                    client: this.state.client.filter(
+                    client: this.state.clients.filter(
                       (client) => client.idClient === this.state.idToDisplay
                     ),
                   },

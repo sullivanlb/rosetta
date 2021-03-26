@@ -20,6 +20,7 @@ export default class AffichageClient extends Component {
                 <li className="list-group-item">Adresse : {client.adresseClient}</li>
                 <li className="list-group-item">Email : {client.emailClient}</li>
                 <li className="list-group-item">Téléphone : {client.telClient}</li>
+                <li className="list-group-item">Sexe : {client.sexeClient}</li>
               </ul>
             </div>
           }
