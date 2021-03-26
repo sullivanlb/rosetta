@@ -118,13 +118,7 @@ export default class Client extends Component {
               >
                 Modifier client
               </Link>
-<<<<<<< HEAD
-              <Supprimer
-                action={this.supprimerClient}
-              />
-=======
               <Supprimer action={this.supprimerClient} />
->>>>>>> API_Link
             </Col>
           </Row>
         </Container>
