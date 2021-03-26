@@ -11,6 +11,7 @@ import NouveauDevis from "./pages/NouveauDevis";
 import ModifierDevis from "./pages/ModifierDevis";
 import Client from "./pages/Client";
 import Scenario from "./pages/Scenario";
+import ModifierScenario from "./pages/ModifierScenario";
 import NouveauScenario from "./pages/NouveauScenario";
 import ComposantsPacks from "./pages/ComposantsPacks";
 import NouveauClient from "./pages/NouveauClient";
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/devis/nouveau" component={NouveauDevis}/>
           <Route exact path="/devis/modifier" component={ModifierDevis}/>
           <Route exact path="/scenario" component={Scenario} />  
+          <Route exact path="/scenario/modifier" component={ModifierScenario} />
           <Route exact path="/scenario/nouveauscenario" component={NouveauScenario} />
           <Route exact path="/scenario/composantspacks" component={ComposantsPacks} />
         </Switch>

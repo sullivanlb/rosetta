@@ -4,22 +4,22 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 /**
  * @description Ce composant représente la section de la page ComposantsPacks qui énumère les composants.
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class ListeComposants extends Component {
-  state1 = this.props.state;
 
   render() {
     return (
       <Fragment>
         <ListGroup>
-          {this.state1.composants.map((composants) => (
+          {this.props.state.state1.composants.map((composant) => (
             <ListGroupItem
-              href={composants.id}
-              onClick={() => this.props.action(composants.id)}
-              value={composants.id}
+              key={composant.idComposant}
+              href={composant.idComposant}
+              onClick={() => this.props.action(composant.type, composant.idComposant)}
+              value={composant.idComposant}
             >
-              {composants.nom}
+              {composant.nomComposant}
             </ListGroupItem>
           ))}
         </ListGroup>

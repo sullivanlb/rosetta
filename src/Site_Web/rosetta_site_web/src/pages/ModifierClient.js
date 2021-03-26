@@ -4,7 +4,7 @@ import "../style/NouveauClient.css";
 import axios from "axios";
 
 /**
- * @description Ce composant représente la page pour créer un client
+ * @description Ce composant représente la page pour modifier un client
  *
  * @author Christophe GARCIA & Sullivan LEBOEUF
  */

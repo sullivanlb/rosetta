@@ -4,22 +4,20 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 /**
  * @description Ce composant représente la section de la page Scénario qui énumère les scénarios.
  *
- * @author Alice GONTARD
+ * @author Alice GONTARD, Christophe GARCIA
  */
 export default class ListeScenario extends Component {
-  state = this.props.state;
-
   render() {
     return (
       <Fragment>
         <ListGroup>
-          {this.state.scenario.map((scenario) => (
+          {this.props.state.scenarios.map((scenario) => (
             <ListGroupItem
-              href={scenario.id}
-              onClick={() => this.props.action(scenario.id)}
-              value={scenario.id}
+              href={scenario.idScenario}
+              onClick={() => this.props.action(scenario.idScenario)}
+              value={scenario.idScenario}
             >
-              {scenario.nom}
+              {scenario.nomScenario}
             </ListGroupItem>
           ))}
         </ListGroup>

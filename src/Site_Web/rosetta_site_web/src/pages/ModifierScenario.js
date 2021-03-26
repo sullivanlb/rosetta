@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Row, Col, Container,FormLabel,FormControl, Form, Button } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
-import Supprimer from "../composants/SupprimerScenario";
 import "../style/Scenario.css";
+import "../style/NouveauClient.css";
 import ListeComposantsNouveauScenario from "../composants/ListeComposantsNouveauScenario";
 import ListePacksNouveauScenario from "../composants/ListePacksNouveauScenario";
 import AffichageQuestions from "../composants/AffichageQuestions";
@@ -11,70 +11,112 @@ import AffichageComposantsPacksNouveauScenario from "../composants/AffichageComp
 import axios from "axios";
 
 /**
- * @description Ce composant représente la page pour créer un scénario
+ * @description Ce composant représente la page pour modifier un scenario
  *
- * @author Christophe GARCIA, Alice GONTARD
+ * @author Christophe GARCIA
  */
-export default class NouveauScenario extends Component {
-  constructor(props) {
+export default class ModifierScenario extends Component {
+	constructor(props) {
     super(props);
 
     this.state = {
-      composants: [],
-      composantsRecherches: [],
-      packs: [],
-      packsRecherches: [],
-      scenario: {
-        nomScenario: "Insérer le nom du nouveau scénario",
-        questions: [],
-      },
-    };
+			composants: [],
+			composantsRecherches: [],
+			packs: [],
+			packsRecherches: [],
+			scenario: {
+				idScenario: this.props.location.params.scenarios[0].idScenario,
+				nomScenario: this.props.location.params.scenarios[0].nomScenario,
+				questions: this.props.location.params.scenarios[0].questions,
+			},
+		};
 
     this.addComposantPack = this.addComposantPack.bind(this);
+    this.supprimerScenario = this.supprimerScenario.bind(this);
     this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
     this.handleKeyPressQuestion = this.handleKeyPressQuestion.bind(this);
     this.handleKeyPressNom = this.handleKeyPressNom.bind(this);
   }
 
-  componentDidMount() {
-    axios.get(`http://api/composant/tousLesComposants`)
-      .then((res) => {
-        var composantsBDD = res.data;
-        var composants = [];
-        composantsBDD.map((composant) => {
-          composants.push({
-            idComposant: composant.idComposant,
-            nomComposant: composant.nomComposant,
-            uniteComposant: composant.uniteComposant,
-            prixComposant: composant.prixComposant,
-            type: "composant",
-            quantite: 0,
-            ajoute: false,
-          });
-        });
-        this.setState({ composants: composants });
-        this.setState({ composantsRecherches: composants });
-      });
+	async componentDidMount() {
+		await axios.get(`http://api/composant/tousLesComposants`)
+			.then((res) => {
+				var composantsBDD = res.data;
+				var composants = [];
+				composantsBDD.map((composant) => {
+					var estAjoute = false;
+					var quantite = 0;
+					this.props.location.params.scenarios[0].composants.forEach(composant2 => {
+						if (composant.idComposant == composant2.idComposant) {
+							estAjoute = true;
+							quantite = composant2.quantite;
+						}
+					});
 
-    axios.get(`http://api/pack/tousLesPacks`)
-      .then((res) => {
-        var packsBDD = res.data;
-        var packs = [];
-        packsBDD.map((pack) => {
-          packs.push({
-            idPack: pack.idPack,
-            nomPack: pack.nomPack,
-            type: "pack",
-            quantite: 0,
-            ajoute: false,
-          });
-        });
-        this.setState({ packs: packs });
-        this.setState({ packsRecherches: packs });
-      });
-  }
+					if (estAjoute) {
+						composants.push({
+							idComposant: composant.idComposant,
+							nomComposant: composant.nomComposant,
+							uniteComposant: composant.uniteComposant,
+							prixComposant: composant.prixComposant,
+							type: "composant",
+							quantite: quantite,
+							ajoute: estAjoute,
+						});
+					} else {
+						composants.push({
+							idComposant: composant.idComposant,
+							nomComposant: composant.nomComposant,
+							uniteComposant: composant.uniteComposant,
+							prixComposant: composant.prixComposant,
+							type: "composant",
+							quantite: 0,
+							ajoute: estAjoute,
+						});
+					}
+				});
+				this.setState({ composants: composants });
+				this.setState({ composantsRecherches: composants });
+			});
 
-  addComposantPack(type, id) {
+		await axios.get(`http://api/pack/tousLesPacks`)
+			.then((res) => {
+				var packsBDD = res.data;
+				var packs = [];
+				packsBDD.map((pack) => {
+					var estAjoute = false;
+					var quantite = 0;
+					this.props.location.params.scenarios[0].packs.forEach(pack2 => {
+						if (pack.idPack == pack2.idPack) {
+							estAjoute = true;
+							quantite = pack2.quantite;
+						}
+					});
+
+					if (estAjoute) {
+						packs.push({
+							idPack: pack.idPack,
+							nomPack: pack.nomPack,
+							type: "pack",
+							quantite: quantite,
+							ajoute: estAjoute,
+						});
+					} else {
+						packs.push({
+							idPack: pack.idPack,
+							nomPack: pack.nomPack,
+							type: "pack",
+							quantite: 0,
+							ajoute: estAjoute,
+						});
+					}
+				});
+				this.setState({ packs: packs });
+				this.setState({ packsRecherches: packs });
+			});
+	}
+
+	addComposantPack(type, id) {
     if (type === "composant") {
       var composants = this.state.composants;
 
@@ -138,6 +180,19 @@ export default class NouveauScenario extends Component {
 
       this.setState({ packs: packs });
     }
+  }
+
+	/**
+   * Envoi une requête de suppression au serveur
+   */
+   async supprimerScenario() {
+    await axios
+      .delete(`http://api/scenario/supprimerScenario/${this.state.scenario.idScenarioy}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    window.location.reload();
   }
 
   /**
@@ -240,8 +295,8 @@ export default class NouveauScenario extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
-    
-    // Nom du scénario
+
+		// Id & Nom du scénario
     formData.append("nom", this.state.scenario.nomScenario);
 
     // Les questions du scénario
@@ -274,12 +329,17 @@ export default class NouveauScenario extends Component {
     formData.append("packsTaille", i);
 
     await axios
-      .post("http://api/scenario/ajoutScenario", formData)
-      .then(res => {
+      .delete(`http://api/scenario/supprimerScenario/${this.state.scenario.idScenario}`)
+      .then((res) => {
         console.log(res.data);
       });
 
-    // Retour sur la page des scénarios
+		await axios
+      .post("http://api/scenario/ajoutScenario", formData)
+      .then(res => {
+        console.log(res.data);
+      })
+    
     window.location = "/scenario";
   };
 
@@ -354,14 +414,12 @@ export default class NouveauScenario extends Component {
             </Col>
 
             <Col className="col3-button" md={2}>
-            <button
-              type="button"
-              class="btn btn-light"
-              onClick={this.handleSubmit.bind(this)}
-            >
-              Enregistrer
-            </button>
-              <Supprimer />
+            	<Button
+            		className="btn btn-light"
+            		onClick={this.handleSubmit.bind(this)}
+          		>
+              	Valider
+							</Button>
               <button
                 type="button"
                 class="btn btn-light"
