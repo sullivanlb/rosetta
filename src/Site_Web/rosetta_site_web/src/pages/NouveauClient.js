@@ -19,50 +19,50 @@ export default class NouveauClient extends Component {
     sexe: "",
   };
 
-  handleAddNom = async (e) => {
-    await this.setState({
+  handleAddNom = (e) => {
+   this.setState({
       nom: e.target.value,
     });
   };
 
-  handleAddPrenom = async (e) => {
-    await this.setState({
+  handleAddPrenom = (e) => {
+    this.setState({
       prenom: e.target.value,
     });
   };
 
-  handleAddEmail = async (e) => {
-    await this.setState({
+  handleAddEmail = (e) => {
+    this.setState({
       email: e.target.value,
     });
   };
 
-  handleAddAdresse = async (e) => {
-    await this.setState({
+  handleAddAdresse = (e) => {
+    this.setState({
       adresse: e.target.value,
     });
   };
 
-  handleAddTel = async (e) => {
-    await this.setState({
+  handleAddTel = (e) => {
+    this.setState({
       tel: e.target.value,
     });
   };
 
-  handleAddSexeHomme = async (e) => {
-    await this.setState({
+  handleAddSexeHomme = (e) => {
+    this.setState({
       sexe: "homme",
     });
   };
 
-  handleAddSexeFemme = async (e) => {
-    await this.setState({
+  handleAddSexeFemme = (e) => {
+    this.setState({
       sexe: "femme",
     });
   };
 
-  handleAddSexeAutre = async (e) => {
-    await this.setState({
+  handleAddSexeAutre = (e) => {
+    this.setState({
       sexe: "autre",
     });
   };

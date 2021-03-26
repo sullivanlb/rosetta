@@ -36,7 +36,7 @@ export default class Client extends Component {
   }
 
   /**
-   * Envoi une requête de supprimession au serveur
+   * Envoi une requête de suppression au serveur
    */
   async supprimerClient() {
     await axios
@@ -45,7 +45,7 @@ export default class Client extends Component {
         console.log(res.data);
       });
 
-    window.location.reload();
+    // window.location.reload();
   }
 
   /**
@@ -57,6 +57,9 @@ export default class Client extends Component {
     this.setState({ idToDisplay: id });
   }
 
+  /**
+   * Méthode permettant l'affichage des composants
+   */
   render() {
     return (
       <Fragment>
@@ -72,7 +75,7 @@ export default class Client extends Component {
               <Row>
                 <MDBCol md="6">
                   <form className="form-inline mt-4 mb-4">
-                    <MDBIcon icon="search"/>
+                    <MDBIcon icon="search" />
                     <input
                       className="form-control form-control-sm ml-3 w-75"
                       type="text"
@@ -107,17 +110,21 @@ export default class Client extends Component {
                   pathname: "/client/modifier",
                   params: {
                     idToDisplay: this.state.idToDisplay,
-                    client: this.state.client.filter((client => 
-                      client.idClient === this.state.idToDisplay
-                    ))
-                  }
+                    client: this.state.client.filter(
+                      (client) => client.idClient === this.state.idToDisplay
+                    ),
+                  },
                 }}
               >
                 Modifier client
               </Link>
+<<<<<<< HEAD
               <Supprimer
                 action={this.supprimerClient}
               />
+=======
+              <Supprimer action={this.supprimerClient} />
+>>>>>>> API_Link
             </Col>
           </Row>
         </Container>
