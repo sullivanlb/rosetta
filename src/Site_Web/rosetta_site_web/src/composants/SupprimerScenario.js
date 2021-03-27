@@ -4,7 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 /**
  * Cette fonction créera un avertissement lorsque le bouton de suppression sera cliqué
  *
- * @author Alice GONTARD, Christophe GARCIA
+ * @author Alice GONTARD
  */
 export default class SupprimerScenario extends Component {
   constructor(props) {
@@ -13,9 +13,6 @@ export default class SupprimerScenario extends Component {
     this.state = {
       show: false,
     };
-
-    // this.handleClose = this.handleClose().bind(this);
-    // this.handleShow = this.handleShow().bind(this);
   }
 
   handleClose = () => {

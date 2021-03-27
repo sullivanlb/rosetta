@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
-import Supprimer from "../composants/SupprimerComposants";
+import Supprimer from "../composants/SupprimerComposantPack";
 import "../style/ComposantsPacks.css";
 import ListeComposants from "../composants/ListeComposants";
 import ListePacks from "../composants/ListePacks";
@@ -32,11 +32,13 @@ export default class ComposantsPacks extends Component {
       }
     };
 
+    this.typeSelectionne = "";
     this.tab = this.state.state1.composants;
     this.idElement = this.state.state1.idToDisplay;
 
     this.changeStateX = this.changeStateX.bind(this);
     this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
+    this.supprimerComposantPack = this.supprimerComposantPack.bind(this);
   }
 
   async componentDidMount() {
@@ -130,6 +132,7 @@ export default class ComposantsPacks extends Component {
       this.setState({ state1: stateTmp });
       this.tab = this.state.state1.composants;
       this.idElement = this.state.state1.idToDisplay;
+      this.typeSelectionne = "composant";
     } else {
       this.setState({ stateX: 2 });
       var stateTmp = this.state.state2;
@@ -137,6 +140,7 @@ export default class ComposantsPacks extends Component {
       this.setState({ state2: stateTmp });
       this.tab = this.state.state2.packs;
       this.idElement = this.state.state2.idToDisplay;
+      this.typeSelectionne = "pack";
     }
   }
 
@@ -287,6 +291,29 @@ export default class ComposantsPacks extends Component {
     }
   }
 
+  /**
+   * Envoi une requête de suppression au serveur
+   */
+   async supprimerComposantPack() {
+    if (this.typeSelectionne === "composant") {
+      await axios
+      .delete(`http://api/composant/supprimerComposant/${this.state.state1.idToDisplay}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    window.location.reload();
+    } else if (this.typeSelectionne === "pack") {
+      await axios
+      .delete(`http://api/pack/supprimerPack/${this.state.state2.idToDisplay}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    window.location.reload();
+    }
+  }
+
   render() {
     return (
       <Fragment>
@@ -338,7 +365,8 @@ export default class ComposantsPacks extends Component {
             <button type="button" class="btn btn-light">
               Enregistrer
             </button>
-              <Supprimer />
+              <Supprimer 
+                action={this.supprimerComposantPack}/>
               <button type="button" class="btn btn-light">
                 Annuler
               </button>
