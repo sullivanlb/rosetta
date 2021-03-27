@@ -24,7 +24,6 @@ export default class NouveauDevis extends Component {
     this.state = {
       clients: [],
       scenarios: [],
-      rows: []
       composantsPacks: [],
       prixTotal: 0,
       tva: 20,
