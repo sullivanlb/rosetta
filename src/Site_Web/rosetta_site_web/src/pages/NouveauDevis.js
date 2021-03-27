@@ -18,36 +18,28 @@ import axios from "axios";
  * @author Lucy Gastebois
  */
 export default class NouveauDevis extends Component {
-  state = {
-    clients: [],
-    rows: [],
-    autoCompleteRows: [
-      {
-        id: "1",
-        description: "",
-        unite: "",
-      },
-      {
-        id: "2",
-        description: "",
-        unite: "",
-      },
-    ],
-    prixTotal: 0,
-    tva: 20,
-    inputs: {
-      nomDevis :"",
-      dateEdition: "",
-      dateDebutTravaux: "",
-      dureeDevis: "",
-      descriptionDevis: "",
-      leClient: "",
-      leScenario: "",
-    },
-  };
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      clients: [],
+      scenarios: [],
+      rows: [],
+      composantsPacks: [],
+      prixTotal: 0,
+      tva: 20,
+      inputs: {
+        nomDevis :"",
+        dateEdition: "",
+        dateDebutTravaux: "",
+        dureeDevis: "",
+        descriptionDevis: "",
+        leClient: "",
+        leScenario: "",
+      },
+      idRow: 0,
+      idRowModifiable: 0,
+    };
 
     this.ajouterLigne = this.ajouterLigne.bind(this);
     this.supprimerLigne = this.supprimerLigne.bind(this);
@@ -57,45 +49,119 @@ export default class NouveauDevis extends Component {
   }
 
   async componentDidMount() {
+
+    // Récupération de tous les clients
     await axios.get(`http://api/client/tousLesClients`).then((res) => {
       const clients = res.data;
-      this.setState({ clients });
+      this.setState({ clients: clients });
     });
 
-    
+    // Récupération de tous les scénarios
+    await axios.get(`http://api/scenario/tousLesScenarios`).then((res) => {
+      const scenarios = res.data;
+      this.setState({ scenarios: scenarios });
+    });
 
+    // Récupération de tous les composants
+    var composants_liste = [];
+    await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      composants_liste = res.data;
+    });
+
+    // Récupération de tous les packs
+    var packs_liste = [];
+    await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      packs_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Pack-Composant
+    var appartientPC_liste = [];
+    await axios.get(`http://api/appartientpc/tousLesElements`).then((res) => {
+      appartientPC_liste = res.data;
+    });
+
+    // Mise en place des composants
+    var composantsPacks = [];
+    composants_liste.map((composant) => {
+      composantsPacks.push({
+          id: composant.idComposant,
+          ref: composant.nomComposant,
+          description: composant.nomComposant,
+          quantite: 1,
+          unite: composant.uniteComposant,
+          prix: 0,
+          prixUnitaire: composant.prixComposant,
+          type: "composant",
+          garde: false,
+          idRow: 0,
+      });
+    });
+
+    // Mise en place des packs (avec le calcul de leur prix)
+    packs_liste.map((pack) => {
+      var prixPack = 0;
+      appartientPC_liste.map((liaison) => {
+        if (liaison.unPack == pack.idPack) {
+          composants_liste.map((composant) => {
+            if (composant.idComposant == liaison.unComposant) {
+              prixPack = prixPack + (parseFloat(composant.prixComposant) * liaison.quantite);
+            }
+          });
+        }
+      });
+
+      composantsPacks.push({
+        id: pack.idPack,
+        ref: pack.nomPack,
+        description: pack.nomPack,
+        quantite: 1,
+        unite: "",
+        prix: 0,
+        prixUnitaire: prixPack,
+        type: "pack",
+        garde: false,
+        idRow: 0,
+      });
+    });
+
+    this.setState({ composantsPacks: composantsPacks });
   }
 
-  handleQuantite(id, e) {
-    var rows = this.state.rows;
-    rows.filter((row) => row.id === id)[0].quantite = e.target.value;
-    this.setState({ rows: rows });
+  handleQuantite(id, type, e) {
+    if (e.target.value >= 0) {
+      var rows = this.state.composantsPacks;
 
-    this.handlePrix(id);
+      rows.filter((row) => row.id === id && row.type === type)[0].quantite = e.target.value;
+      this.setState({ composantsPacks: rows });
+
+      this.handlePrix(id, type);
+    }
   }
 
-  handleUnite(id, e) {
-    var rows = this.state.rows;
-    rows.filter((row) => row.id === id)[0].unite = e.target.value;
-    this.setState({ rows: rows });
+  // handleUnite(id, e) {
+  //   var rows = this.state.rows;
+  //   rows.filter((row) => row.id === id)[0].unite = e.target.value;
+  //   this.setState({ rows: rows });
 
-    this.handlePrix(id);
-  }
+  //   this.handlePrix(id);
+  // }
 
-  handlePrix(id) {
-    var row = this.state.rows.filter((row) => row.id === id)[0];
-    var rows = this.state.rows;
-    rows.filter((row) => row.id === id)[0].prix =
-      Math.round(parseFloat(row.unite) * parseFloat(row.quantite) * 100) / 100;
+  handlePrix(id, type) {
+    var rows = this.state.composantsPacks;
+    rows.map((row) => {
+      if (row.id === id && row.type === type) {
+        row.prix = parseFloat(row.prixUnitaire) * parseFloat(row.quantite);
+      }
+    });
 
-    this.setState({ rows: rows });
+    this.setState({ composantsPacks: rows });
     this.handlePrixTotal();
   }
 
   handlePrixTotal() {
     var total = 0;
 
-    this.state.rows.map((row) => (total += row.prix));
+    this.state.composantsPacks.map((row) => (total += parseFloat(row.prix)));
 
     this.setState({ prixTotal: total });
   }
@@ -104,18 +170,45 @@ export default class NouveauDevis extends Component {
     this.setState({ tva: e.target.value });
   }
 
-  handleSelect(id, e) {
-    var autoRows = this.state.autoCompleteRows;
-    var rows = this.state.rows;
+  handleClick(e, idRow) {
+    this.state.idRowModifiable = idRow;
+  }
 
-    autoRows.filter((row) => row.id === id)[0].description = rows.filter(
-      (row) => row.ref === e.target.value
-    )[0].description;
-    autoRows.filter((row) => row.id === id)[0].unite = rows.filter(
-      (row) => row.ref === e.target.value
-    )[0].unite;
-    this.setState({ autoCompleteRows: autoRows });
-    console.log(this.state);
+  handleSelect(e, idRow) {
+    var composantsPacks = this.state.composantsPacks;
+    var myArray = e.target.value.split("-");
+    var id = myArray[0].slice(0, -1);
+    var nom = myArray[1].substring(id.length);
+    var type = "";
+
+    composantsPacks.map((composantPack) => {
+      if (composantPack.idRow === this.state.idRowModifiable) {
+        composantPack.garde = false;
+        composantPack.idRow = 0;
+        composantPack.prix = 0;
+      }
+    });
+
+    composantsPacks.map((composantPack) => {
+      if (composantPack.id === id && composantPack.ref === nom) {
+        composantPack.garde = true;
+        composantPack.idRow = this.state.idRowModifiable;
+        composantPack.quantite = 1;
+        type = composantPack.type;
+      }
+    });
+
+    var i = 0;
+    composantsPacks.map((composantPack) => {
+      if (composantPack.ref === "") {
+        composantsPacks.splice(i, 1);
+      }
+      i++;
+    });
+
+    this.setState({ composantsPacks: composantsPacks });
+
+    this.handlePrix(id, type);
   }
 
   handleNom = (e) => {
@@ -160,43 +253,147 @@ export default class NouveauDevis extends Component {
     }));
   };
 
-  handleScenario = (e) => {
+  async handleScenario (e) {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, leScenario: e.target.value },
     }));
 
-    var rows = [];
+    var myArray = e.target.value.split("(");
+    var idAndMore = myArray[myArray.length - 1];
+    var myArray2 = idAndMore.split(")");
+    var idScenario = myArray2[0];
+
+    // Récupération de tous les composants
+    var composants_liste = []
     await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
-      rows = res.data;
+      composants_liste = res.data;
     });
 
-    var rowsArr = [];
-    rows.map((row) => (
-        rowsArr.push({
-            id: row.idComposant,
-            ref: row.nomComposant,
-            quantite: "95",
-            unite: row.uniteComposant,
-            prix: row.prixComposant,
-        })
-    ));
-
-    rows = [];
+    // Récupération de tous les packs
+    var packs_liste = []
     await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
-      rows = res.data;
+      packs_liste = res.data;
     });
 
-    var rowsArr = [];
-    rows.map((row) => (
-        rowsArr.push({
-            id: row.idPack,
-            ref: row.nomPack,
-            quantite: "95",
-            prix: "0",
-        })
-    ));
+    // Récupération de toutes les liaisons Scenario-Composant
+    var appartientSC_liste = []
+    await axios.get(`http://api/appartientsc/tousLesElements`).then((res) => {
+      appartientSC_liste = res.data;
+    });
 
-    this.setState({ rows });
+    // Récupération de toutes les liaisons Scenario-Pack
+    var appartientSP_liste = []
+    await axios.get(`http://api/appartientsp/tousLesElements`).then((res) => {
+      appartientSP_liste = res.data;
+    });
+
+    // Récupération de toutes les liaisons Pack-Composant
+    var appartientPC_liste = []
+    await axios.get(`http://api/appartientpc/tousLesElements`).then((res) => {
+      appartientPC_liste = res.data;
+    });
+
+    if (e.target.value === "Sélectionner un scénario") {
+      // push tous les comp/pack comme componentDidMount
+    } else {
+      var composantsPacks = [];
+      var idRow = 0;
+  
+      // Insertion des lignes de composants suivant le scénario
+      composants_liste.map((composant) => {
+        var appartient = false;
+
+        appartientSC_liste.map((liaison) => {
+          if (liaison.unScenario === idScenario && composant.idComposant === liaison.unComposant) {
+            idRow++;
+            appartient = true;
+            composantsPacks.push({
+              id: composant.idComposant,
+              ref: composant.nomComposant,
+              description: composant.nomComposant,
+              quantite: parseFloat(liaison.quantite),
+              unite: composant.uniteComposant,
+              prix: (parseFloat(composant.prixComposant) * parseFloat(liaison.quantite)),
+              prixUnitaire: composant.prixComposant,
+              type: "composant",
+              garde: true,
+              idRow: idRow,
+            });
+          }
+        });
+
+        if (!appartient) {
+          composantsPacks.push({
+            id: composant.idComposant,
+            ref: composant.nomComposant,
+            description: composant.nomComposant,
+            quantite: 1,
+            unite: composant.uniteComposant,
+            prix: 0,
+            prixUnitaire: composant.prixComposant,
+            type: "composant",
+            garde: false,
+            idRow: 0,
+          });
+        }
+      });
+
+      // Insertion des lignes de packs suivant le scénario
+      packs_liste.map((pack) => {
+        var appartient = false;
+
+        // Comptage du prix du pack
+        var prixPack = 0;
+        appartientPC_liste.map((liaison) => {
+          if (liaison.unPack == pack.idPack) {
+            composants_liste.map((composant) => {
+              if (composant.idComposant == liaison.unComposant) {
+                prixPack = prixPack + (parseFloat(composant.prixComposant) * liaison.quantite);
+              }
+            });
+          }
+        });
+
+        appartientSP_liste.map((liaison) => {
+          if (liaison.unScenario === idScenario && pack.idPack=== liaison.unPack) {
+
+            idRow++;
+            appartient = true;
+            composantsPacks.push({
+              id: pack.idPack,
+              ref: pack.nomPack,
+              description: pack.nomPack,
+              quantite: parseFloat(liaison.quantite),
+              unite: pack.unitePack,
+              prix: parseFloat(prixPack * parseFloat(liaison.quantite)),
+              prixUnitaire: prixPack,
+              type: "pack",
+              garde: true,
+              idRow: idRow,
+            });
+          }
+        });
+
+        if (!appartient) {
+          composantsPacks.push({
+            id: pack.idPack,
+            ref: pack.nomPack,
+            description: pack.nomPack,
+            quantite: 1,
+            unite: pack.unitePack,
+            prix: 0,
+            prixUnitaire: prixPack,
+            type: "composant",
+            garde: false,
+            idRow: 0,
+          });
+        }
+      });
+    }
+
+    this.setState({ idRow: idRow });
+    this.setState({ composantsPacks: composantsPacks });
+    this.handlePrixTotal();
   };
 
   async handleSubmit(e) {
@@ -221,22 +418,84 @@ export default class NouveauDevis extends Component {
   }
 
   ajouterLigne() {
-    var rows = this.state.rows;
-    rows.push({
+    var idRow = this.state.idRow;
+    idRow++;
+
+    var composantsPacks = this.state.composantsPacks;
+    composantsPacks.push({
       id: "",
       ref: "",
       description: "",
       quantite: "",
       unite: "",
-      prix: "",
+      prix: 0,
+      prixUnitaire: "",
+      type: "",
+      garde: true,
+      idRow: idRow,
     });
-    this.setState({ rows: rows });
+
+    this.setState({ idRow: idRow });
+    this.setState({ composantsPacks: composantsPacks });
   }
 
   supprimerLigne() {
-    var rows = this.state.rows;
-    rows.pop();
-    this.setState({ rows: rows });
+    if (this.state.idRow > 0) {
+      var idRow = this.state.idRow - 1;
+      this.setState({ idRow: idRow });
+
+      var composantsPacksGardes = [];
+      this.state.composantsPacks.map((cp) => {
+        if (cp.garde) {
+          composantsPacksGardes.push({
+            id: cp.id,
+            ref: cp.ref,
+            description: cp.description,
+            quantite: cp.quantite,
+            unite: cp.unite,
+            prix: cp.prix,
+            prixUnitaire: cp.prixUnitaire,
+            type: cp.type,
+            garde: cp.garde,
+            idRow: cp.idRow,
+          });
+        }
+      });
+      var idRowLigneASupprimer = composantsPacksGardes[composantsPacksGardes.length - 1].idRow;
+
+      var tousLesComposantsPacks = [];
+      this.state.composantsPacks.map((cp) => {
+        if (cp.idRow === idRowLigneASupprimer) {
+          tousLesComposantsPacks.push({
+            id: cp.id,
+            ref: cp.ref,
+            description: cp.description,
+            quantite: cp.quantite,
+            unite: cp.unite,
+            prix: 0,
+            prixUnitaire: cp.prixUnitaire,
+            type: cp.type,
+            garde: false,
+            idRow: 0,
+          });
+        } else {
+          tousLesComposantsPacks.push({
+            id: cp.id,
+            ref: cp.ref,
+            description: cp.description,
+            quantite: cp.quantite,
+            unite: cp.unite,
+            prix: 0,
+            prixUnitaire: cp.prixUnitaire,
+            type: cp.type,
+            garde: cp.garde,
+            idRow: cp.idRow,
+          });
+        }
+      });
+
+      this.setState({ composantsPacks: tousLesComposantsPacks });
+    }
   }
 
   render() {
@@ -309,9 +568,10 @@ export default class NouveauDevis extends Component {
 
           <Col md="4">
             <select onChange={(e) => this.handleScenario(e)}>
-              <option>Sélectionner un scénario </option>
-              <option>Installation d'un chauffe-eau électrique </option>
-              <option>Remplacement de la baignoire en douche</option>
+              <option>Sélectionner un scénario</option>
+              {this.state.scenarios.map((scenario) => (
+                <option key={scenario.idScenario}>{scenario.nomScenario} ({scenario.idScenario})</option>
+              ))}
             </select>
           </Col>
 
@@ -353,61 +613,59 @@ export default class NouveauDevis extends Component {
               <th> Description </th>
               <th> Quantité </th>
               <th> Unité </th>
-              <th> Prix </th>
+              <th> Prix (€) </th>
             </tr>
           </thead>
         </Table>
 
-        {this.state.rows.map((row) => (
-          <Fragment>
-            <Row>
-              <Col md="3">
-                <FormControl
-                  as="select"
-                  onChange={(e) => this.handleSelect(row.id, e)}
-                  defaultValue={row.ref}
-                >
-                  <option>Choose...</option>
-                  {this.state.rows.map((row) => (
-                    <option>{row.ref}</option>
-                  ))}
-                </FormControl>
-              </Col>
-              <Col md="3">
-                <FormControl
-                  readOnly
-                  defaultValue={
-                    this.state.autoCompleteRows.filter(
-                      (rowFilter) => row.id === rowFilter.id
-                    ).description
-                  }
-                />
-              </Col>
-              <Col md="2">
-                <FormControl
-                  onChange={(e) => this.handleQuantite(row.id, e)}
-                  type="number"
-                  defaultValue={row.quantite}
-                />
-              </Col>
-              <Col md="2">
-                <FormControl
-                  readOnly
-                  onChange={(e) => this.handleUnite(row.id, e)}
-                  defaultValue={
-                    this.state.autoCompleteRows.filter(
-                      (rowFilter) => row.id === rowFilter.id
-                    ).unite
-                  }
-                />
-              </Col>
-              <Col md="2">
-                <FormControl readOnly value={row.prix} />
-              </Col>
-            </Row>
-            <br></br>
-          </Fragment>
-        ))}
+        {console.log(this.state)}
+
+        {this.state.composantsPacks.map((row) => {
+          if (row.garde) {
+            return <Fragment>
+              <Row>
+                <Col md="3">
+                  <FormControl
+                    as="select"
+                    onClick={(e) => this.handleClick(e, row.idRow)}
+                    onChange={(e) => this.handleSelect(e, row.idRow)}
+                  >
+                    <option>Composant/Pack</option>
+                    {this.state.composantsPacks.map((composantPack) => {
+                      if (composantPack.ref !== "" && !composantPack.garde) {
+                        return <option>{composantPack.id} - {composantPack.ref}</option>
+                      }
+                    })}
+                  </FormControl>
+                </Col>
+                <Col md="3">
+                  <FormControl
+                    readOnly
+                    value={row.ref}
+                  />
+                </Col>
+                <Col md="2">
+                  <FormControl
+                    onChange={(e) => this.handleQuantite(row.id, row.type, e)}
+                    type="number"
+                    defaultValue={row.quantite}
+                  />
+                </Col>
+                <Col md="2">
+                  <FormControl
+                    readOnly
+                    // onChange={(e) => this.handleUnite(row.id, e)}
+                    value={row.unite}
+                  />
+                </Col>
+                <Col md="2">
+                  <FormControl readOnly value={row.prix} />
+                </Col>
+              </Row>
+              <br></br>
+            </Fragment>
+          }
+        })}
 
         <Row>
           <Col>
