@@ -24,7 +24,7 @@ export default class NouveauDevis extends Component {
     this.state = {
       clients: [],
       scenarios: [],
-      rows: [],
+      rows: []
       composantsPacks: [],
       prixTotal: 0,
       tva: 20,
@@ -127,6 +127,11 @@ export default class NouveauDevis extends Component {
     this.setState({ composantsPacks: composantsPacks });
   }
 
+  /**
+   * Met à jour la quantité de composants/packs de la ligne modifiée
+   * 
+   * @param {*} e 
+   */
   handleQuantite(id, type, e) {
     if (e.target.value >= 0) {
       var rows = this.state.composantsPacks;
@@ -138,14 +143,11 @@ export default class NouveauDevis extends Component {
     }
   }
 
-  // handleUnite(id, e) {
-  //   var rows = this.state.rows;
-  //   rows.filter((row) => row.id === id)[0].unite = e.target.value;
-  //   this.setState({ rows: rows });
-
-  //   this.handlePrix(id);
-  // }
-
+  /**
+   * Met à jour le prix total de la ligne modifiée
+   * 
+   * @param {*} e 
+   */
   handlePrix(id, type) {
     var rows = this.state.composantsPacks;
     rows.map((row) => {
@@ -158,6 +160,11 @@ export default class NouveauDevis extends Component {
     this.handlePrixTotal();
   }
 
+  /**
+   * Met à jour le prix total du devis
+   * 
+   * @param {*} e 
+   */
   handlePrixTotal() {
     var total = 0;
 
@@ -166,14 +173,29 @@ export default class NouveauDevis extends Component {
     this.setState({ prixTotal: total });
   }
 
+  /**
+   * Met à jour la TVA sur le devis
+   * 
+   * @param {*} e 
+   */
   handleTVA(e) {
     this.setState({ tva: e.target.value });
   }
 
+  /**
+   * Prépare la mise à jour de la ligne du tableau
+   * 
+   * @param {*} e 
+   */
   handleClick(e, idRow) {
     this.state.idRowModifiable = idRow;
   }
 
+  /**
+   * Met à jour la ligne du tableau
+   * 
+   * @param {*} e 
+   */
   handleSelect(e, idRow) {
     var composantsPacks = this.state.composantsPacks;
     var myArray = e.target.value.split("-");
@@ -211,48 +233,77 @@ export default class NouveauDevis extends Component {
     this.handlePrix(id, type);
   }
 
+  /**
+   * Met à jour le nom du devis
+   * 
+   * @param {*} e 
+   */
   handleNom = (e) => {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, nomDevis: e.target.value },
     }));
   };
 
+  /**
+   * Met à jour la date d'édition du devis
+   * 
+   * @param {*} e 
+   */
   handleDateEdition = (e) => {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, dateEdition: e.target.value },
     }));
   };
 
+  /**
+   * Met à jour la date de travaux du devis
+   * 
+   * @param {*} e 
+   */
   handleDebutTravaux = (e) => {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, dateDebutTravaux: e.target.value },
     }));
   };
 
-  handleDebutTravaux = (e) => {
-    this.setState((prevState) => ({
-      inputs: { ...prevState.inputs, dateDebutTravaux: e.target.value },
-    }));
-  };
-
+  /**
+   * Met à jour la durée du devis
+   * 
+   * @param {*} e 
+   */
   handleDuree = (e) => {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, dureeDevis: e.target.value },
     }));
   };
 
+  /**
+   * Met à jour la description du devis
+   * 
+   * @param {*} e 
+   */
   handleDescription = (e) => {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, descriptionDevis: e.target.value },
     }));
   };
 
+  /**
+   * Met à jour le client du devis
+   * 
+   * @param {*} e 
+   */
   handleClient = (e) => {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, leClient: e.target.value },
     }));
   };
 
+  /**
+   * Ajoute les lignes (composants et packs) suivant le scénario sélectionné
+   * 
+   * @param {*} e 
+   */
   async handleScenario (e) {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, leScenario: e.target.value },
@@ -304,6 +355,8 @@ export default class NouveauDevis extends Component {
         var appartient = false;
 
         appartientSC_liste.map((liaison) => {
+
+          // Si le composant appartient au scénario
           if (liaison.unScenario === idScenario && composant.idComposant === liaison.unComposant) {
             idRow++;
             appartient = true;
@@ -322,6 +375,7 @@ export default class NouveauDevis extends Component {
           }
         });
 
+        // Si le composant n'appartient pas au scénario
         if (!appartient) {
           composantsPacks.push({
             id: composant.idComposant,
@@ -355,8 +409,9 @@ export default class NouveauDevis extends Component {
         });
 
         appartientSP_liste.map((liaison) => {
-          if (liaison.unScenario === idScenario && pack.idPack=== liaison.unPack) {
 
+          // Si le pack appartient au scénario
+          if (liaison.unScenario === idScenario && pack.idPack=== liaison.unPack) {
             idRow++;
             appartient = true;
             composantsPacks.push({
@@ -374,6 +429,7 @@ export default class NouveauDevis extends Component {
           }
         });
 
+        // Si le pack n'appartient pas au scénario
         if (!appartient) {
           composantsPacks.push({
             id: pack.idPack,
@@ -396,6 +452,11 @@ export default class NouveauDevis extends Component {
     this.handlePrixTotal();
   };
 
+  /**
+   * Enregistre les modifications dans la base de données
+   * 
+   * @param {*} e 
+   */
   async handleSubmit(e) {
     var regExp = /\(([^)]+)\)/;
     var matches = regExp.exec(this.state.inputs.leClient);
@@ -417,6 +478,9 @@ export default class NouveauDevis extends Component {
     window.location = "/devis";
   }
 
+  /**
+   * Ajoute une ligne vide au tableau
+   */
   ajouterLigne() {
     var idRow = this.state.idRow;
     idRow++;
@@ -439,6 +503,9 @@ export default class NouveauDevis extends Component {
     this.setState({ composantsPacks: composantsPacks });
   }
 
+  /**
+   * Supprime la dernière ligne du tableau
+   */
   supprimerLigne() {
     if (this.state.idRow > 0) {
       var idRow = this.state.idRow - 1;
@@ -617,8 +684,6 @@ export default class NouveauDevis extends Component {
             </tr>
           </thead>
         </Table>
-
-        {console.log(this.state)}
 
         {this.state.composantsPacks.map((row) => {
           if (row.garde) {
