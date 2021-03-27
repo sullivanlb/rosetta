@@ -28,7 +28,7 @@ export default class NouveauDevis extends Component {
       prixTotal: 0,
       tva: 20,
       inputs: {
-        nomDevis :"",
+        nomDevis: "",
         dateEdition: "",
         dateDebutTravaux: "",
         dureeDevis: "",
@@ -48,7 +48,6 @@ export default class NouveauDevis extends Component {
   }
 
   async componentDidMount() {
-
     // Récupération de tous les clients
     await axios.get(`http://api/client/tousLesClients`).then((res) => {
       const clients = res.data;
@@ -83,16 +82,16 @@ export default class NouveauDevis extends Component {
     var composantsPacks = [];
     composants_liste.map((composant) => {
       composantsPacks.push({
-          id: composant.idComposant,
-          ref: composant.nomComposant,
-          description: composant.nomComposant,
-          quantite: 1,
-          unite: composant.uniteComposant,
-          prix: 0,
-          prixUnitaire: composant.prixComposant,
-          type: "composant",
-          garde: false,
-          idRow: 0,
+        id: composant.idComposant,
+        ref: composant.nomComposant,
+        description: composant.nomComposant,
+        quantite: 1,
+        unite: composant.uniteComposant,
+        prix: 0,
+        prixUnitaire: composant.prixComposant,
+        type: "composant",
+        garde: false,
+        idRow: 0,
       });
     });
 
@@ -100,10 +99,12 @@ export default class NouveauDevis extends Component {
     packs_liste.map((pack) => {
       var prixPack = 0;
       appartientPC_liste.map((liaison) => {
-        if (liaison.unPack == pack.idPack) {
+        if (liaison.unPack === pack.idPack) {
           composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
-              prixPack = prixPack + (parseFloat(composant.prixComposant) * liaison.quantite);
+            if (composant.idComposant === liaison.unComposant) {
+              prixPack =
+                prixPack +
+                parseFloat(composant.prixComposant) * liaison.quantite;
             }
           });
         }
@@ -128,14 +129,15 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la quantité de composants/packs de la ligne modifiée
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleQuantite(id, type, e) {
     if (e.target.value >= 0) {
       var rows = this.state.composantsPacks;
 
-      rows.filter((row) => row.id === id && row.type === type)[0].quantite = e.target.value;
+      rows.filter((row) => row.id === id && row.type === type)[0].quantite =
+        e.target.value;
       this.setState({ composantsPacks: rows });
 
       this.handlePrix(id, type);
@@ -144,8 +146,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour le prix total de la ligne modifiée
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handlePrix(id, type) {
     var rows = this.state.composantsPacks;
@@ -161,8 +163,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour le prix total du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handlePrixTotal() {
     var total = 0;
@@ -174,8 +176,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la TVA sur le devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleTVA(e) {
     this.setState({ tva: e.target.value });
@@ -183,8 +185,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Prépare la mise à jour de la ligne du tableau
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleClick(e, idRow) {
     this.state.idRowModifiable = idRow;
@@ -192,8 +194,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la ligne du tableau
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleSelect(e, idRow) {
     var composantsPacks = this.state.composantsPacks;
@@ -234,8 +236,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour le nom du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleNom = (e) => {
     this.setState((prevState) => ({
@@ -245,8 +247,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la date d'édition du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleDateEdition = (e) => {
     this.setState((prevState) => ({
@@ -256,8 +258,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la date de travaux du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleDebutTravaux = (e) => {
     this.setState((prevState) => ({
@@ -267,8 +269,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la durée du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleDuree = (e) => {
     this.setState((prevState) => ({
@@ -278,8 +280,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour la description du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleDescription = (e) => {
     this.setState((prevState) => ({
@@ -289,8 +291,8 @@ export default class NouveauDevis extends Component {
 
   /**
    * Met à jour le client du devis
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   handleClient = (e) => {
     this.setState((prevState) => ({
@@ -300,10 +302,10 @@ export default class NouveauDevis extends Component {
 
   /**
    * Ajoute les lignes (composants et packs) suivant le scénario sélectionné
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
-  async handleScenario (e) {
+  async handleScenario(e) {
     this.setState((prevState) => ({
       inputs: { ...prevState.inputs, leScenario: e.target.value },
     }));
@@ -314,31 +316,31 @@ export default class NouveauDevis extends Component {
     var idScenario = myArray2[0];
 
     // Récupération de tous les composants
-    var composants_liste = []
+    var composants_liste = [];
     await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
       composants_liste = res.data;
     });
 
     // Récupération de tous les packs
-    var packs_liste = []
+    var packs_liste = [];
     await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
       packs_liste = res.data;
     });
 
     // Récupération de toutes les liaisons Scenario-Composant
-    var appartientSC_liste = []
+    var appartientSC_liste = [];
     await axios.get(`http://api/appartientsc/tousLesElements`).then((res) => {
       appartientSC_liste = res.data;
     });
 
     // Récupération de toutes les liaisons Scenario-Pack
-    var appartientSP_liste = []
+    var appartientSP_liste = [];
     await axios.get(`http://api/appartientsp/tousLesElements`).then((res) => {
       appartientSP_liste = res.data;
     });
 
     // Récupération de toutes les liaisons Pack-Composant
-    var appartientPC_liste = []
+    var appartientPC_liste = [];
     await axios.get(`http://api/appartientpc/tousLesElements`).then((res) => {
       appartientPC_liste = res.data;
     });
@@ -348,15 +350,17 @@ export default class NouveauDevis extends Component {
     } else {
       var composantsPacks = [];
       var idRow = 0;
-  
+
       // Insertion des lignes de composants suivant le scénario
       composants_liste.map((composant) => {
         var appartient = false;
 
         appartientSC_liste.map((liaison) => {
-
           // Si le composant appartient au scénario
-          if (liaison.unScenario === idScenario && composant.idComposant === liaison.unComposant) {
+          if (
+            liaison.unScenario === idScenario &&
+            composant.idComposant === liaison.unComposant
+          ) {
             idRow++;
             appartient = true;
             composantsPacks.push({
@@ -365,7 +369,9 @@ export default class NouveauDevis extends Component {
               description: composant.nomComposant,
               quantite: parseFloat(liaison.quantite),
               unite: composant.uniteComposant,
-              prix: (parseFloat(composant.prixComposant) * parseFloat(liaison.quantite)),
+              prix:
+                parseFloat(composant.prixComposant) *
+                parseFloat(liaison.quantite),
               prixUnitaire: composant.prixComposant,
               type: "composant",
               garde: true,
@@ -398,19 +404,23 @@ export default class NouveauDevis extends Component {
         // Comptage du prix du pack
         var prixPack = 0;
         appartientPC_liste.map((liaison) => {
-          if (liaison.unPack == pack.idPack) {
+          if (liaison.unPack === pack.idPack) {
             composants_liste.map((composant) => {
               if (composant.idComposant == liaison.unComposant) {
-                prixPack = prixPack + (parseFloat(composant.prixComposant) * liaison.quantite);
+                prixPack =
+                  prixPack +
+                  parseFloat(composant.prixComposant) * liaison.quantite;
               }
             });
           }
         });
 
         appartientSP_liste.map((liaison) => {
-
           // Si le pack appartient au scénario
-          if (liaison.unScenario === idScenario && pack.idPack=== liaison.unPack) {
+          if (
+            liaison.unScenario === idScenario &&
+            pack.idPack === liaison.unPack
+          ) {
             idRow++;
             appartient = true;
             composantsPacks.push({
@@ -449,16 +459,19 @@ export default class NouveauDevis extends Component {
     this.setState({ idRow: idRow });
     this.setState({ composantsPacks: composantsPacks });
     this.handlePrixTotal();
-  };
+  }
 
   /**
    * Enregistre les modifications dans la base de données
-   * 
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   async handleSubmit(e) {
     var regExp = /\(([^)]+)\)/;
     var matches = regExp.exec(this.state.inputs.leClient);
+    var leClient =  matches[1];
+    matches = regExp.exec(this.state.inputs.leScenario);
+    var leScenario =  matches[1];
 
     e.preventDefault();
     let formData = new FormData();
@@ -467,14 +480,13 @@ export default class NouveauDevis extends Component {
     formData.append("duree", this.state.inputs.dureeDevis);
     formData.append("dateEdition", this.state.inputs.dateEdition);
     formData.append("dateTravaux", this.state.inputs.dateDebutTravaux);
-    formData.append("leClient", matches[1]);
-    await axios
-    .post("http://api/devis/ajoutDevis", formData)
-      .then(res => {
-        console.log(res.data);
-      })
-    
-    window.location = "/devis";
+    formData.append("leClient", leClient);
+    formData.append("leScenario", leScenario);
+    await axios.post("http://api/devis/ajoutDevis", formData).then((res) => {
+      console.log(res.data);
+    });
+
+    // window.location = "/devis";
   }
 
   /**
@@ -527,7 +539,8 @@ export default class NouveauDevis extends Component {
           });
         }
       });
-      var idRowLigneASupprimer = composantsPacksGardes[composantsPacksGardes.length - 1].idRow;
+      var idRowLigneASupprimer =
+        composantsPacksGardes[composantsPacksGardes.length - 1].idRow;
 
       var tousLesComposantsPacks = [];
       this.state.composantsPacks.map((cp) => {
@@ -594,10 +607,11 @@ export default class NouveauDevis extends Component {
         </Row>
 
         <Form.Group>
-          <FormLabel>Nom du devis :  </FormLabel>
-          <FormControl 
-              onChange={(e) => this.handleNom(e)} 
-              placeholder="exemple : Réparation radiateur" />
+          <FormLabel>Nom du devis : </FormLabel>
+          <FormControl
+            onChange={(e) => this.handleNom(e)}
+            placeholder="exemple : Réparation radiateur"
+          />
         </Form.Group>
 
         <Row>
@@ -615,7 +629,9 @@ export default class NouveauDevis extends Component {
             <select onChange={(e) => this.handleClient(e)}>
               <option>Sélectionner un client </option>
               {this.state.clients.map((client) => (
-                <option key={client.idClient}>{client.nomClient} ({client.idClient})</option>
+                <option key={client.idClient}>
+                  {client.nomClient} ({client.idClient})
+                </option>
               ))}
             </select>
           </Col>
@@ -636,7 +652,9 @@ export default class NouveauDevis extends Component {
             <select onChange={(e) => this.handleScenario(e)}>
               <option>Sélectionner un scénario</option>
               {this.state.scenarios.map((scenario) => (
-                <option key={scenario.idScenario}>{scenario.nomScenario} ({scenario.idScenario})</option>
+                <option key={scenario.idScenario}>
+                  {scenario.nomScenario} ({scenario.idScenario})
+                </option>
               ))}
             </select>
           </Col>
@@ -686,48 +704,51 @@ export default class NouveauDevis extends Component {
 
         {this.state.composantsPacks.map((row) => {
           if (row.garde) {
-            return <Fragment>
-              <Row>
-                <Col md="3">
-                  <FormControl
-                    as="select"
-                    onClick={(e) => this.handleClick(e, row.idRow)}
-                    onChange={(e) => this.handleSelect(e, row.idRow)}
-                  >
-                    <option>Composant/Pack</option>
-                    {this.state.composantsPacks.map((composantPack) => {
-                      if (composantPack.ref !== "" && !composantPack.garde) {
-                        return <option>{composantPack.id} - {composantPack.ref}</option>
-                      }
-                    })}
-                  </FormControl>
-                </Col>
-                <Col md="3">
-                  <FormControl
-                    readOnly
-                    value={row.ref}
-                  />
-                </Col>
-                <Col md="2">
-                  <FormControl
-                    onChange={(e) => this.handleQuantite(row.id, row.type, e)}
-                    type="number"
-                    defaultValue={row.quantite}
-                  />
-                </Col>
-                <Col md="2">
-                  <FormControl
-                    readOnly
-                    // onChange={(e) => this.handleUnite(row.id, e)}
-                    value={row.unite}
-                  />
-                </Col>
-                <Col md="2">
-                  <FormControl readOnly value={row.prix} />
-                </Col>
-              </Row>
-              <br></br>
-            </Fragment>
+            return (
+              <Fragment>
+                <Row>
+                  <Col md="3">
+                    <FormControl
+                      as="select"
+                      onClick={(e) => this.handleClick(e, row.idRow)}
+                      onChange={(e) => this.handleSelect(e, row.idRow)}
+                    >
+                      <option>Composant/Pack</option>
+                      {this.state.composantsPacks.map((composantPack) => {
+                        if (composantPack.ref !== "" && !composantPack.garde) {
+                          return (
+                            <option>
+                              {composantPack.id} - {composantPack.ref}
+                            </option>
+                          );
+                        }
+                      })}
+                    </FormControl>
+                  </Col>
+                  <Col md="3">
+                    <FormControl readOnly value={row.ref} />
+                  </Col>
+                  <Col md="2">
+                    <FormControl
+                      onChange={(e) => this.handleQuantite(row.id, row.type, e)}
+                      type="number"
+                      defaultValue={row.quantite}
+                    />
+                  </Col>
+                  <Col md="2">
+                    <FormControl
+                      readOnly
+                      // onChange={(e) => this.handleUnite(row.id, e)}
+                      value={row.unite}
+                    />
+                  </Col>
+                  <Col md="2">
+                    <FormControl readOnly value={row.prix} />
+                  </Col>
+                </Row>
+                <br></br>
+              </Fragment>
+            );
           }
         })}
 

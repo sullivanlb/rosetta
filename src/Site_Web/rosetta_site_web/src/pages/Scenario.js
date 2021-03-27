@@ -1,5 +1,5 @@
 import React, {Component, Fragment } from "react";
-import { Row, Col, Container, Form, Button } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
 import Supprimer from "../composants/SupprimerScenario";
@@ -83,9 +83,9 @@ export default class Scenario extends Component {
 
       // Récupération de ses questions
       appartientSQ_liste.map((liaison) => {
-        if (liaison.unScenario == scenario.idScenario) {
+        if (liaison.unScenario === scenario.idScenario) {
           questions_liste.map((question) => {
-            if (question.idQuestion == liaison.uneQuestion) {
+            if (question.idQuestion === liaison.uneQuestion) {
               questionsScenario.push({
                 idQuestion: question.idQuestion,
                 nomQuestion: question.nomQuestion,
@@ -97,9 +97,9 @@ export default class Scenario extends Component {
 
       // Récupération de ses composants
       appartientSC_liste.map((liaison) => {
-        if (liaison.unScenario == scenario.idScenario) {
+        if (liaison.unScenario === scenario.idScenario) {
           composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
+            if (composant.idComposant === liaison.unComposant) {
               composantsScenario.push({
                 idComposant: composant.idComposant,
                 nomComposant: composant.nomComposant,
@@ -114,9 +114,9 @@ export default class Scenario extends Component {
 
       // Récupération de ses packs
       appartientSP_liste.map((liaison) => {
-        if (liaison.unScenario == scenario.idScenario) {
+        if (liaison.unScenario === scenario.idScenario) {
           packs_liste.map((pack) => {
-            if (pack.idPack == liaison.unPack) {
+            if (pack.idPack === liaison.unPack) {
               packsScenario.push({
                 idPack: pack.idPack,
                 nomPack: pack.nomPack,
@@ -212,9 +212,9 @@ export default class Scenario extends Component {
 
       // Récupération de ses questions
       appartientSQ_liste.map((liaison) => {
-        if (liaison.unScenario == scenario.idScenario) {
+        if (liaison.unScenario === scenario.idScenario) {
           questions_liste.map((question) => {
-            if (question.idQuestion == liaison.uneQuestion) {
+            if (question.idQuestion === liaison.uneQuestion) {
               questionsScenario.push({
                 idQuestion: question.idQuestion,
                 nomQuestion: question.nomQuestion,
@@ -226,9 +226,9 @@ export default class Scenario extends Component {
 
       // Récupération de ses composants
       appartientSC_liste.map((liaison) => {
-        if (liaison.unScenario == scenario.idScenario) {
+        if (liaison.unScenario === scenario.idScenario) {
           composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
+            if (composant.idComposant === liaison.unComposant) {
               composantsScenario.push({
                 idComposant: composant.idComposant,
                 nomComposant: composant.nomComposant,
@@ -243,9 +243,9 @@ export default class Scenario extends Component {
 
       // Récupération de ses packs
       appartientSP_liste.map((liaison) => {
-        if (liaison.unScenario == scenario.idScenario) {
+        if (liaison.unScenario === scenario.idScenario) {
           packs_liste.map((pack) => {
-            if (pack.idPack == liaison.unPack) {
+            if (pack.idPack === liaison.unPack) {
               packsScenario.push({
                 idPack: pack.idPack,
                 nomPack: pack.nomPack,
