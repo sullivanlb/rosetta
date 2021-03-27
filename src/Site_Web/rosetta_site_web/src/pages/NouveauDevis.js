@@ -486,7 +486,7 @@ export default class NouveauDevis extends Component {
       console.log(res.data);
     });
 
-    // window.location = "/devis";
+    window.location = "/devis";
   }
 
   /**
