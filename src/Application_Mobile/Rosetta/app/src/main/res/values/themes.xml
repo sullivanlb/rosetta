@@ -14,10 +14,13 @@
         <!-- Couleur du status de la barre. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
+
     <style name="Theme.Rosetta.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="Theme.Rosetta.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.Rosetta.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

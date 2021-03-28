@@ -7,8 +7,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.rosetta.R;
 import com.example.rosetta.model.Scenario;
+import com.example.rosetta.ui.main.NouveauModifierScenarioFragment;
+import com.example.rosetta.ui.main.ScenarioFragment;
+import com.example.rosetta.ui.main.SectionsPagerAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -67,6 +75,25 @@ public class ScenarioAdapter extends BaseAdapter {
 
         // Modification des vues
         nomScenario.setText(listScenario.get(position).getNomScenario());
+
+        FloatingActionButton modifierScenarioButton = (FloatingActionButton) view.findViewById(R.id.modifierScenarioButton);
+        modifierScenarioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScenarioFragment scenarioFragment = ScenarioFragment.getInstance();
+                scenarioFragment.actionModifier();
+            }
+        });
+
+        FloatingActionButton voirScenarioButton = (FloatingActionButton) view.findViewById(R.id.voirScenarioButton);
+
+        voirScenarioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScenarioFragment scenarioFragment = ScenarioFragment.getInstance();
+                scenarioFragment.actionVoir();
+            }
+        });
 
         // On retourne la vue créée
         return view;

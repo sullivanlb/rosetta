@@ -3,8 +3,10 @@ package com.example.rosetta;
 import android.os.Bundle;
 
 import com.example.rosetta.model.Client;
+import com.example.rosetta.ui.main.DevisFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,5 +33,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
     }
 }

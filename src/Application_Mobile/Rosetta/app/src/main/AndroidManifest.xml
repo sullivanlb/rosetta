@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Le Manifest permet de décrire les fonctionnalités et les exigences de l'application. -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rosetta">
 
@@ -12,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Rosetta">
+        <activity
+            android:name=".utils.DevisActivity"
+            android:label="@string/title_activity_devis"
+            android:theme="@style/Theme.Rosetta.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

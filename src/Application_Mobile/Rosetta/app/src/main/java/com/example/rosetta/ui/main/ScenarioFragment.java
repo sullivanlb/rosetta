@@ -1,10 +1,12 @@
 package com.example.rosetta.ui.main;
 
+import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -12,10 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ScenarioAdapter;
 import com.example.rosetta.model.Scenario;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -27,10 +32,15 @@ import java.util.ArrayList;
  * @version 2.0
  */
 public class ScenarioFragment extends Fragment {
+
+    private static ScenarioFragment scenarioFragment;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_scenario_layout, container, false);
+
+        scenarioFragment = this;
 
         // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
         // données
@@ -73,6 +83,59 @@ public class ScenarioFragment extends Fragment {
         ListView list = (ListView) rootView.findViewById(R.id.scenarioListe);
         list.setAdapter(adapter);
 
+        Button composantPackButton = (Button) rootView.findViewById(R.id.composantsPacksButton);
+        Button nouveauScenario = (Button) rootView.findViewById(R.id.nouveauScenarioButton);
+
+        composantPackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionsPagerAdapter.setScenarioFragment("ComposantPackFragment");
+                FragmentManager frman = getFragmentManager();
+                FragmentTransaction ftran = frman.beginTransaction();
+                Fragment leFrag = new ComposantPackFragment();
+                ftran.replace(R.id.view_pager, leFrag);
+                ftran.commit();
+            }
+        });
+
+        nouveauScenario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionsPagerAdapter.setScenarioFragment("NouveauModifierScenarioFragment");
+                FragmentManager frman = getFragmentManager();
+                FragmentTransaction ftran = frman.beginTransaction();
+                Fragment leFrag = new NouveauModifierScenarioFragment();
+                ftran.replace(R.id.view_pager, leFrag);
+                ftran.commit();
+            }
+        });
+
+
         return rootView;
+    }
+
+    public void actionModifier(){
+        SectionsPagerAdapter.setScenarioFragment("NouveauModifierScenarioFragment");
+        FragmentManager frman = getFragmentManager();
+        FragmentTransaction ftran = frman.beginTransaction();
+        Fragment leFrag = new NouveauModifierScenarioFragment();
+        ftran.replace(R.id.view_pager, leFrag);
+        ftran.commit();
+    }
+
+    public void actionVoir(){
+        SectionsPagerAdapter.setScenarioFragment("InfoScenarioFragment");
+        FragmentManager frman = getFragmentManager();
+        FragmentTransaction ftran = frman.beginTransaction();
+        Fragment leFrag = new InfoScenarioFragment();
+        ftran.replace(R.id.view_pager, leFrag);
+        ftran.commit();
+    }
+
+    public static ScenarioFragment getInstance(){
+        if (scenarioFragment == null){
+            scenarioFragment = new ScenarioFragment();
+        }
+        return scenarioFragment;
     }
 }

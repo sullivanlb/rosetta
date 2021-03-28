@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:text="Nom"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
@@ -35,5 +35,5 @@
         android:layout_weight="1"
         android:text="Prenom"
         android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textSize="14sp" />
 </LinearLayout>
