@@ -158,7 +158,7 @@ export default class Devis extends Component {
         console.log(res.data);
       });
 
-    window.location.reload();
+    // window.location.reload();
   }
 
   /**
