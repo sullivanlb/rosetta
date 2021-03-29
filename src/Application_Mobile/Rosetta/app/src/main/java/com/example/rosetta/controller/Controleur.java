@@ -4,6 +4,10 @@ import android.content.Context;
 
 import com.example.rosetta.model.AccesLocal;
 import com.example.rosetta.model.Client;
+import com.example.rosetta.model.Composant;
+import com.example.rosetta.model.Devis;
+import com.example.rosetta.model.Pack;
+import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;
 
@@ -19,6 +23,10 @@ public class Controleur {
     private static Controleur instance;
     private static AccesLocal accesLocal;
     private static ArrayList<Client> listeClients;
+    private static ArrayList<Scenario> listeScenarios;
+    private static ArrayList<Composant> listeComposants;
+    private static ArrayList<Pack> listePacks;
+    private static ArrayList<Devis> listeDevis;
 
     /**
      * Le constructeur crée une nouvelle forme de Controleur.
@@ -43,6 +51,7 @@ public class Controleur {
         return Controleur.instance;
     }
 
+    // ================================= Client ======================================================
     /**
      * Demande à la classe accesLocal d'ajouter un client.
      *
@@ -111,5 +120,247 @@ public class Controleur {
      */
     public static ArrayList<Client> getListeClients() {
         return listeClients;
+    }
+
+    //====================================== Scénario ===================================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un scenario.
+     *
+     * @param scenario le scenario à ajouter
+     */
+    public void creerScenario(Scenario scenario) {
+        if (scenario != null) {
+            Controleur.accesLocal.ajoutScenario(scenario);
+            this.listeScenarios.add(Controleur.accesLocal.dernierScenario());
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de modifier un scenario.
+     *
+     * @param scenario le scenario à modifier
+     */
+
+    public void modifierScenario(Scenario scenario){
+        if(scenario != null){
+            Controleur.accesLocal.modifierScenario(scenario);
+
+            int position = 0;
+            boolean trouve = false;
+
+            //Permet de retrouver la position dans l'ArrayList
+            while (position < this.listeScenarios.size() && !trouve) {
+                if (this.listeScenarios.get(position).getIdScenario() == scenario.getIdScenario()) {
+                    trouve = true;
+                }
+                else position++;
+            }
+            if (trouve) {
+                this.listeScenarios.set(position,scenario);
+            }
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de supprimer un scenario.
+     *
+     * @param id l'identifiant du scenario  à supprimer
+     */
+    public void supprimerScenario(int id) {
+        Controleur.accesLocal.supprimerScenario(id);
+
+        int position = 0;
+        boolean trouve = false;
+
+        //En fonction de id, on retrouve la position du scenario dans l'ArrayList
+        while (position < this.listeScenarios.size() && !trouve) {
+            if (this.listeScenarios.get(position).getIdScenario() == id) {
+                trouve = true;
+            }
+            else position++;
+        }
+        if (trouve) {
+            this.listeScenarios.remove(position);
+        }
+    }
+
+    /**
+     * Retourne la liste de tous les scénarios.
+     *
+     * @return le liste de tous les scénarios.
+     */
+    public static ArrayList<Scenario> getListeScenarios() {
+        return listeScenarios;
+    }
+
+    // ================================== Composant =======================================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un composant.
+     *
+     * @param composant le composant à ajouter
+     */
+    public void creerComposant(Composant composant) {
+        if (composant != null) {
+            Controleur.accesLocal.ajoutComposant(composant);
+            this.listeComposants.add(Controleur.accesLocal.dernierComposant());
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de modifier un composant.
+     *
+     * @param composant le composant à modifier
+     */
+
+    public void modifierComposant(Composant composant){
+        if(composant != null){
+            Controleur.accesLocal.modifierComposant(composant);
+
+            int position = 0;
+            boolean trouve = false;
+
+            //Permet de retrouver la position dans l'ArrayList
+            while (position < this.listeComposants.size() && !trouve) {
+                if (this.listeComposants.get(position).getIdComposant() == composant.getIdComposant()) {
+                    trouve = true;
+                }
+                else position++;
+            }
+            if (trouve) {
+                this.listeComposants.set(position,composant);
+            }
+        }
+    }
+
+    /**
+     * Retourne la liste de tous les composants.
+     *
+     * @return le liste de tous les composants.
+     */
+    public static ArrayList<Composant> getListeComposants() {
+        return listeComposants;
+    }
+
+    // ================================= Pack =============================================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un pack.
+     *
+     * @param pack le pack à ajouter
+     */
+    public void creerPack(Pack pack) {
+        if (pack != null) {
+            Controleur.accesLocal.ajoutPack(pack);
+            this.listePacks.add(Controleur.accesLocal.dernierPack());
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de modifier un pack.
+     *
+     * @param pack le pack à modifier
+     */
+
+    public void modifierPack(Pack pack){
+        if(pack != null){
+            Controleur.accesLocal.modifierPack(pack);
+
+            int position = 0;
+            boolean trouve = false;
+
+            //Permet de retrouver la position dans l'ArrayList
+            while (position < this.listePacks.size() && !trouve) {
+                if (this.listePacks.get(position).getIdPack() == pack.getIdPack()) {
+                    trouve = true;
+                }
+                else position++;
+            }
+            if (trouve) {
+                this.listePacks.set(position,pack);
+            }
+        }
+    }
+
+    /**
+     * Retourne la liste de tous les packs.
+     *
+     * @return le liste de tous les packs.
+     */
+    public static ArrayList<Pack> getListePacks() {
+        return listePacks;
+    }
+
+    // ===================================Devis ===========================================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un devis.
+     *
+     * @param devis le devis à ajouter
+     */
+    public void creerDevis(Devis devis) {
+        if (devis != null) {
+            Controleur.accesLocal.ajoutDevis(devis);
+            this.listeDevis.add(Controleur.accesLocal.dernierDevis());
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de modifier un devis.
+     *
+     * @param devis le devis à modifier
+     */
+
+    public void modifierDevis(Devis devis){
+        if(devis != null){
+            Controleur.accesLocal.modifierDevis(devis);
+
+            int position = 0;
+            boolean trouve = false;
+
+            //Permet de retrouver la position dans l'ArrayList
+            while (position < this.listeDevis.size() && !trouve) {
+                if (this.listeDevis.get(position).getIdDevis() == devis.getIdDevis()) {
+                    trouve = true;
+                }
+                else position++;
+            }
+            if (trouve) {
+                this.listeDevis.set(position,devis);
+            }
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de supprimer un devis.
+     *
+     * @param id l'identifiant du devis à supprimer
+     */
+    public void supprimerDevis(int id) {
+        Controleur.accesLocal.supprimerDevis(id);
+
+        int position = 0;
+        boolean trouve = false;
+
+        //En fonction de id, on retrouve la position du client dans l'ArrayList
+        while (position < this.listeDevis.size() && !trouve) {
+            if (this.listeDevis.get(position).getIdDevis() == id) {
+                trouve = true;
+            }
+            else position++;
+        }
+        if (trouve) {
+            this.listeDevis.remove(position);
+        }
+    }
+
+    /**
+     * Retourne la liste de tous les devis.
+     *
+     * @return le liste de tous les devis.
+     */
+    public static ArrayList<Devis> getListeDevis() {
+        return listeDevis;
     }
 }

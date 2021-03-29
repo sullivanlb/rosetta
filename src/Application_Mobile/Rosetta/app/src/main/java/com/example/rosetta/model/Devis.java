@@ -21,6 +21,30 @@ public class Devis {
     private String nomDevis;
 
     /**
+     * La description d'un devis.
+     */
+
+    private String descriptionDevis;
+
+    /**
+     * Le duree des travaux.
+     */
+
+    private String dureeDevis;
+
+    /**
+     * La date de la création du devis.
+     */
+
+    private String dateEditionDevis;
+
+    /**
+     * La date de commencement des travaux.
+     */
+
+    private String dateTravauxDevis;
+
+    /**
      * Liste de tous les packs du devis.
      */
     private ArrayList<Pack> lesPacks;
@@ -36,9 +60,13 @@ public class Devis {
      * @param id  le numéro d'identification du cdevis
      * @param nom le nom du devis
      */
-    public Devis(int id, String nom) {
+    public Devis(int id, String nom, String description, String duree, String dateEdition, String dateTravaux) {
         this.setIdDevis(id);
         this.setNomDevis(nom);
+        this.setDescriptionDevis(description);
+        this.setDureeDevis(duree);
+        this.setDateEditionDevis(dateEdition);
+        this.setDateTravauxDevis(dateTravaux);
         this.lesPacks = new ArrayList<Pack>();
         this.lesComposants = new ArrayList<Composant>();
     }
@@ -77,6 +105,86 @@ public class Devis {
      */
     public void setNomDevis(String nom) {
         this.nomDevis = nom;
+    }
+
+    /**
+     * Permet d'accèsder à la description du devis.
+     *
+     * @return la description du Devis.
+     */
+
+    public String getDescriptionDevis() {
+        return descriptionDevis;
+    }
+
+    /**
+     * Renseigne la description du devis.
+     *
+     * @param descriptionDevis la description du devis.
+     */
+
+    public void setDescriptionDevis(String descriptionDevis) {
+        this.descriptionDevis = descriptionDevis;
+    }
+
+    /**
+     * Permet d'accèder à la duree du devis.
+     *
+     * @return la duree du devis.
+     */
+
+    public String getDureeDevis() {
+        return dureeDevis;
+    }
+
+    /**
+     * Renseigne la duree du devis.
+     *
+     * @param dureeDevis la duree du devis.
+     */
+
+    public void setDureeDevis(String dureeDevis) {
+        this.dureeDevis = dureeDevis;
+    }
+
+    /**
+     * Permet d'accèder à la date d'édition du devis.
+     *
+     * @return la date d'édition du devis.
+     */
+
+    public String getDateEditionDevis() {
+        return dateEditionDevis;
+    }
+
+    /**
+     * Renseigne la date d'édition du devis.
+     *
+     * @param dateEditionDevis la date d'édition du devis.
+     */
+
+    public void setDateEditionDevis(String dateEditionDevis) {
+        this.dateEditionDevis = dateEditionDevis;
+    }
+
+    /**
+     * Permet d'accèder à la date de commencement des travaux.
+     *
+     * @return la date de commencement des travaux.
+     */
+
+    public String getDateTravauxDevis() {
+        return dateTravauxDevis;
+    }
+
+    /**
+     * Renseigne la date de commencement des travaux.
+     *
+     * @param dateTravauxDevis la date de commencement des travaux.
+     */
+
+    public void setDateTravauxDevis(String dateTravauxDevis) {
+        this.dateTravauxDevis = dateTravauxDevis;
     }
 
     /**
@@ -121,6 +229,10 @@ public class Devis {
     public String toString() {
         String devis = "DEVIS : " + this.idDevis;
         String nom = "\n\tNom : " + this.nomDevis;
+        String description = "\n\tDescription : " + this.descriptionDevis;
+        String duree = "\n\tDuree : " + this.dureeDevis;
+        String dateEdition = "\n\tDate de creation du devis : " + this.dateEditionDevis;
+        String dateTravaux = "\n\tDate de commencement des travaux : " + this.dateTravauxDevis;
         String packs = "\n\tLes packs : \n---------------";
         for (Pack p : this.lesPacks)
             packs += p.toString() + "\n\n";
@@ -130,7 +242,6 @@ public class Devis {
             composants += c.toString() + "\n\n";
         composants += "\n---------------";
 
-        return devis + nom + packs + composants;
+        return devis + nom + description + duree + dateEdition + dateTravaux + packs + composants;
     }
-
 }

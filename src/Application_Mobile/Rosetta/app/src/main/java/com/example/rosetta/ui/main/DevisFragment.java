@@ -40,21 +40,21 @@ public class DevisFragment extends Fragment {
         // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
         // données
         ArrayList<Devis> listeDevis = new ArrayList<Devis>();
-        Devis devis1 = new Devis(1,"Devis 1 normal");
-        Devis devis2 = new Devis(2, "Devis 2 ok");
-        Devis devis3 = new Devis(3, "Devis 3 qui a un nom tres tres tres loooong pour voir si ça passe, comme cela nous testons plusieurs cas possibles, afin d'etre le plus exhaustifs que possible");
-        Devis devis4 = new Devis(4, "Devis 4 normal");
-        Devis devis5 = new Devis(5, "Devis 5 qui est ok");
-        Devis devis6= new Devis(6, "Devis 6 a aussi un nom qui va etre tres tres tres loooong");
-        Devis devis7 = new Devis(7, "Devis 7 est ok");
-        Devis devis8 = new Devis(8, "Devis 8 normal");
-        Devis devis9 = new Devis(9, "Devis 9 est ok");
-        Devis devis10 = new Devis(10, "Devis 10 normal");
-        Devis devis11 = new Devis(11, "Devis 11 est aussi tres tres looong");
-        Devis devis12 = new Devis(12, "Devis 12");
-        Devis devis13 = new Devis(13, "Devis 13");
-        Devis devis14 = new Devis(14, "Devis 14 est assez long quand meme aussi");
-        Devis devis15 = new Devis(15, "Devis 15 normal");
+        Devis devis1 = new Devis(1,"Devis 1 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis2 = new Devis(2, "Devis 2 ok", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis3 = new Devis(3, "Devis 3 qui a un nom tres tres tres loooong pour voir si ça passe, comme cela nous testons plusieurs cas possibles, afin d'etre le plus exhaustifs que possible", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis4 = new Devis(4, "Devis 4 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis5 = new Devis(5, "Devis 5 qui est ok", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis6= new Devis(6, "Devis 6 a aussi un nom qui va etre tres tres tres loooong", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis7 = new Devis(7, "Devis 7 est ok", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis8 = new Devis(8, "Devis 8 normal", null, null, null, null);
+        Devis devis9 = new Devis(9, "Devis 9 est ok","description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis10 = new Devis(10, "Devis 10 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis11 = new Devis(11, "Devis 11 est aussi tres tres looong", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis12 = new Devis(12, "Devis 12", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis13 = new Devis(13, "Devis 13", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis14 = new Devis(14, "Devis 14 est assez long quand meme aussi", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        Devis devis15 = new Devis(15, "Devis 15 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
 
         // On ajoute les devis à la liste de devis
         listeDevis.add(devis1);

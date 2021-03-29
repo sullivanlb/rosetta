@@ -71,6 +71,14 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "\n" +
             "      nomDevis TEXT(100)\n" +
             "      CONSTRAINT nn_Devis NOT NULL\n" +
+            "\n" +
+            "      descriptionDevis TEXT(500)\n"+
+            "\n" +
+            "       dureeDevis TEXT(100)\n" +
+            "\n" +
+            "       dateEditionDevis TEXT(100)\n" +
+            "\n" +
+            "       dateTravauxDevis TEXT(100)\n" +
             "    );\n" +
             "\n" +
             "  CREATE TABLE Connexion\n" +
