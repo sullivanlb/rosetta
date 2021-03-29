@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- La vue de la page qui permet d'ajouter et de modifier un scénario. -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_gauche"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.70"
+        android:background="@drawable/rectangle_noir"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/rechercher_composants_packs_nouveauscenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Rechercher"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+            android:textColorHighlight="@color/orange_clair"
+            android:textColorLink="@color/orange_clair"
+            android:textCursorDrawable="@color/black"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/composantsTitleList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#C0C0C0"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:text="Composants"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listView_composants_nouveauscenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:listSelector="@color/orange_clair" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/packsTitleList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#C0C0C0"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:text="Packs"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listView_packs_nouveauscenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:listSelector="@color/orange_clair" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.30"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/ajoutScenarioRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:foregroundGravity="center|center_horizontal"
+                android:foregroundTint="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/ajout_nomScenarioTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="Nom scénario"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/ajout_nomScenarioEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toRightOf="@id/ajout_nomScenarioTextView"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/titleQuestionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajout_nomScenarioTextView"
+                    android:layout_alignStart="@+id/ajout_nomScenarioTextView"
+                    android:layout_marginTop="45dp"
+                    android:text="Entrez la question : "
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/ajout_questionEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajout_nomScenarioTextView"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toRightOf="@+id/titleQuestionTextView"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/ajout_questionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajout_nomScenarioEditText"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toRightOf="@id/ajout_questionEditText"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Ajouter"
+                    android:textSize="13sp" />
+
+
+                <TextView
+                    android:id="@+id/explication_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleQuestionTextView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:text="Liste des questions"
+                    android:textColor="#787070"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/listView_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="40dp"
+                android:layout_weight="0.4"
+                android:background="@drawable/rectangle_noir" />
+
+            <ListView
+                android:id="@+id/listView_pack_avec_composants_packs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.4"
+                android:background="@drawable/rectangle_noir" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.15"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/nouveauscenarioAnnulerButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Annuler"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/nouveauscenarioSupprimerButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Supprimer"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/nouveauscenarioEnregistrerButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Enregistrer"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

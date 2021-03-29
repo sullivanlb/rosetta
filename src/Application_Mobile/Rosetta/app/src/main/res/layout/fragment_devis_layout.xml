@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
+    android:id="@+id/devislayout"
     android:orientation="vertical">
 
     <LinearLayout
@@ -31,7 +32,7 @@
                 android:gravity="center_horizontal"
                 android:text="Nom du client :"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="14sp" />
 
             <Spinner
                 android:id="@+id/spinner_devisClients"
@@ -69,12 +70,12 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/continuerDevisButton"
+            android:id="@+id/editerDevisButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/orange_fonce"
-            android:text="Continuer" />
+            android:text="Editer" />
 
         <Space
             android:layout_width="0dp"
@@ -82,12 +83,12 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/autreScenarioDevisButton"
+            android:id="@+id/nouveauDevisButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/orange_fonce"
-            android:text="Autre Scénario" />
+            android:text="Nouveau Devis" />
 
         <Space
             android:layout_width="0dp"

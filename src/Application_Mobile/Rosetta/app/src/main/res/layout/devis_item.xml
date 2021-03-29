@@ -17,6 +17,6 @@
         android:layout_weight="1"
         android:text="Devis"
         android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

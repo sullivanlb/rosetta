@@ -37,7 +37,9 @@ public class ControleurListeClients implements AdapterView.OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         // Récupération des informations du client sélectionné
-        Client client = Controleur.getInstance(this.clientFragment.getContext()).getListeClients().get(position);
+        Client client = this.clientFragment.getListeClients().get(position);
+        this.clientFragment.setIdClient(client.getIdClient());
+        this.clientFragment.setIndiceSelectionner(position);
 
         // Récupération des champs du formulaire
         EditText editNom = (EditText) this.clientFragment.getView().findViewById(R.id.NomEditText);

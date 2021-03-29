@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
 import com.example.rosetta.controller.Controleur;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
  * associée : l'interface de Devis.
  *
- * @author Alice
+ * @author Alice ~ Lucy
  * @version 2.0
  */
 public class DevisFragment extends Fragment {
@@ -80,6 +83,33 @@ public class DevisFragment extends Fragment {
         DevisAdapter adapter = new DevisAdapter(this.getActivity(), listeDevis);
         ListView list = (ListView) rootView.findViewById(R.id.listView_devis);
         list.setAdapter(adapter);
+
+        Button editerDevisButton = (Button) rootView.findViewById(R.id.editerDevisButton);
+        Button nouveauDevisButton = (Button) rootView.findViewById(R.id.nouveauDevisButton);
+
+        editerDevisButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionsPagerAdapter.setDevisFragment("NouveauDevisFragment");
+                FragmentManager frman = getFragmentManager();
+                FragmentTransaction ftran = frman.beginTransaction();
+                Fragment leFrag = new NouveauDevisFragment();
+                ftran.replace(R.id.view_pager, leFrag);
+                ftran.commit();
+            }
+        });
+
+        nouveauDevisButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionsPagerAdapter.setDevisFragment("NouveauDevisClientScenarioFragment");
+                FragmentManager frman = getFragmentManager();
+                FragmentTransaction ftran = frman.beginTransaction();
+                Fragment leFrag = new NouveauDevisClientScenarioFragment();
+                ftran.replace(R.id.view_pager, leFrag);
+                ftran.commit();
+            }
+        });
 
         return rootView;
     }

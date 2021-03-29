@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Cette classe permet de faire la différence proprement entre l'ensemble des contrôleurs et l'accès
  * local à la base de données interne.
  *
- * @author Christophe
+ * @author Christophe, Lucy
  * @version 2.0
  */
 public class Controleur {
@@ -44,7 +44,7 @@ public class Controleur {
     }
 
     /**
-     * Demande à l'accès local d'ajouter un client.
+     * Demande à la classe accesLocal d'ajouter un client.
      *
      * @param client le client à ajouter
      */
@@ -56,16 +56,52 @@ public class Controleur {
     }
 
     /**
-     * Demande à l'accesLocal de supprimer un client.
+     * Demande à la classe accesLocal de modifier un client.
      *
-     * @param position la position dans la liste du client à supprimer
+     * @param client le client à modifier
      */
-    public void supprimerClient(int position) {
-        /*
-        if (client != null) {
-            Controleur.accesLocal.supprimerClient();
+
+    public void modifierClient(Client client){
+        if(client != null){
+            Controleur.accesLocal.modifierClient(client);
+
+            int position = 0;
+            boolean trouve = false;
+
+            //Permet de retrouver la position dans l'ArrayList
+            while (position < this.listeClients.size() && !trouve) {
+                if (this.listeClients.get(position).getIdClient() == client.getIdClient()) {
+                    trouve = true;
+                }
+                else position++;
+            }
+            if (trouve) {
+                this.listeClients.set(position,client);
+            }
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de supprimer un client.
+     *
+     * @param id l'identifiant du client à supprimer
+     */
+    public void supprimerClient(int id) {
+        Controleur.accesLocal.supprimerClient(id);
+
+        int position = 0;
+        boolean trouve = false;
+
+        //En fonction de id, on retrouve la position du client dans l'ArrayList
+        while (position < this.listeClients.size() && !trouve) {
+            if (this.listeClients.get(position).getIdClient() == id) {
+                trouve = true;
+            }
+            else position++;
+        }
+        if (trouve) {
             this.listeClients.remove(position);
-        }*/
+        }
     }
 
     /**
