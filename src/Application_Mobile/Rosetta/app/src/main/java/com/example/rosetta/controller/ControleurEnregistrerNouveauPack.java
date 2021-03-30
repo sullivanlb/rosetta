@@ -56,7 +56,8 @@ public class ControleurEnregistrerNouveauPack implements View.OnClickListener {
             for(int i = 0; i < this.listeComposantDePack.size(); i++){
 
                 Composant composant = listeComposantDePack.get(i);
-                Controleur.getInstance(this.ajoutPackFragment.getContext()).creerAppartientPC(pack, composant);
+                System.out.println("id : " + Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().get(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().size() -1 ));
+                Controleur.getInstance(this.ajoutPackFragment.getContext()).creerAppartientPC(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().get(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().size() -1), composant);
 
             }
 
