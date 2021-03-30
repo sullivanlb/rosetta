@@ -34,6 +34,8 @@ public class Controleur {
     public Controleur() {
         super();
         this.listeClients = Controleur.accesLocal.tousLesClients();
+        this.listeComposants = Controleur.accesLocal.tousLesComposants();
+        this.listePacks = Controleur.accesLocal.tousLesPacks();
     }
 
     /**
@@ -362,5 +364,19 @@ public class Controleur {
      */
     public static ArrayList<Devis> getListeDevis() {
         return listeDevis;
+    }
+
+    //================================== Appartient Pack Composant ==================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientPC.
+     *
+     * @param pack le pack à ajouter
+     * @param composant le composant à ajouter
+     */
+    public void creerAppartientPC(Pack pack, Composant composant) {
+        if (pack != null && composant != null) {
+            Controleur.accesLocal.ajoutAppartientPC(pack, composant);
+        }
     }
 }

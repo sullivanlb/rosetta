@@ -14,6 +14,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ComposantAdapter;
+import com.example.rosetta.controller.Controleur;
+import com.example.rosetta.controller.ControleurEnregistrerModificationComposantPack;
+import com.example.rosetta.controller.ControleurListeComposants;
 import com.example.rosetta.controller.PackAdapter;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
@@ -32,32 +35,34 @@ import java.util.ArrayList;
 
 public class ComposantPackFragment extends Fragment {
 
+    private ArrayList<Composant> listeComposants;
+    private Controleur controleur;
+    private ComposantAdapter adapteurComposant;
+    private ListView listeViewComposant;
+    private int indiceSelectionnerComposant;
+    private int idComposant;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_composantpack_layout, container, false);
 
-        // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
-        // données
-        ArrayList<Composant> listeComposant = new ArrayList<Composant>();
-        Composant composant1 = new Composant(1,"composant1", "m", 0.80);
-        Composant composant2 = new Composant(2,"tuyau ", "kg", 1.20);
-        Composant composant3 = new Composant(3,"test", "cm", 2.00);
-        Composant composant4 = new Composant(4,"composant lonnnnnnnnng", "l", 0.30);
+        // Le controleur principal (accès à la base de données interne)
+        this.controleur = Controleur.getInstance(this.getContext());
 
+        // =============================== COMPOSANT ================================================
+        // La liste des composants récupérée depuis la base de données interne
+       this.listeComposants = new ArrayList<Composant>(this.controleur.getListeComposants());
 
-        //On ajoute la liste des composants
-        listeComposant.add(composant1);
-        listeComposant.add(composant2);
-        listeComposant.add(composant3);
-        listeComposant.add(composant4);
+        // Initialisation de l'adapteur pour composant
+        this.listeViewComposant = (ListView) rootView.findViewById(R.id.listView_composants_composantspacks);
+        ControleurListeComposants controleurListeComposants = new ControleurListeComposants(this);
+        this.listeViewComposant.setOnItemClickListener(controleurListeComposants);
 
-        // Initialisation de l'adapter pour le composant
-        ComposantAdapter adapterComposant = new ComposantAdapter(this.getActivity(), listeComposant);
-        ListView listComposant = (ListView) rootView.findViewById(R.id.listView_composants_composantspacks);
-        listComposant.setAdapter(adapterComposant);
+        this.adapteurComposant = new ComposantAdapter(this.getActivity(), listeComposants);
+        this.listeViewComposant.setAdapter(this.adapteurComposant);
 
-
+        //================================= PACK ====================================================
         // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
         // données
         ArrayList<Pack> listePack = new ArrayList<Pack>();
@@ -66,7 +71,7 @@ public class ComposantPackFragment extends Fragment {
         Pack pack3 = new Pack(3,"pack1");
         Pack pack4 = new Pack(4,"pack1");
 
-        //On ajoute la liste des composants
+        //On ajoute la liste des packs
         listePack.add(pack1);
         listePack.add(pack2);
         listePack.add(pack3);
@@ -77,35 +82,42 @@ public class ComposantPackFragment extends Fragment {
         ListView listPack = (ListView) rootView.findViewById(R.id. listView_packs_composantspacks);
         listPack.setAdapter(adapterPack);
 
-        Button annulerButton = (Button) rootView.findViewById(R.id.composantpackAnnulerButton);
-        Button enregistrerScenario = (Button) rootView.findViewById(R.id.composantpackEnregistrerButton);
+
+        //================================= BOUTONS ====================================================
+
+        // Bouton pour enregistré les modifications d'un composant ou d'un pack.
+        Button modificationComposantPack = (Button) rootView.findViewById(R.id.composantpackEnregistrerButton);
+        ControleurEnregistrerModificationComposantPack controleurEnregistrerModificationComposantPack = new ControleurEnregistrerModificationComposantPack(this);
+        modificationComposantPack.setOnClickListener(controleurEnregistrerModificationComposantPack);
+
+        //Bouton pour  revenir sur l'interface de Scénario
+        Button retourBouton = (Button) rootView.findViewById(R.id.composantpackRetourButton);
+        retourBouton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionsPagerAdapter.setScenarioFragment("ScenarioFragment");
+                FragmentManager frman = getFragmentManager();
+                FragmentTransaction ftran = frman.beginTransaction();
+                Fragment leFrag = new ScenarioFragment();
+                ftran.replace(R.id.view_pager, leFrag);
+                ftran.commit();
+            }
+        });
+
+        /**enregistrerScenario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SectionsPagerAdapter.setScenarioFragment("ScenarioFragment");
+                FragmentManager frman = getFragmentManager();
+                FragmentTransaction ftran = frman.beginTransaction();
+                Fragment leFrag = new ScenarioFragment();
+                ftran.replace(R.id.view_pager, leFrag);
+                ftran.commit();
+            }
+        });*/
+
+        //Ajouter Un composant
         FloatingActionButton ajoutComposantButton = (FloatingActionButton) rootView.findViewById(R.id.ajoutComposantsButton);
-        FloatingActionButton ajoutPackButton = (FloatingActionButton) rootView.findViewById(R.id.ajoutPacksButton);
-
-        annulerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SectionsPagerAdapter.setScenarioFragment("ScenarioFragment");
-                FragmentManager frman = getFragmentManager();
-                FragmentTransaction ftran = frman.beginTransaction();
-                Fragment leFrag = new ScenarioFragment();
-                ftran.replace(R.id.view_pager, leFrag);
-                ftran.commit();
-            }
-        });
-
-        enregistrerScenario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SectionsPagerAdapter.setScenarioFragment("ScenarioFragment");
-                FragmentManager frman = getFragmentManager();
-                FragmentTransaction ftran = frman.beginTransaction();
-                Fragment leFrag = new ScenarioFragment();
-                ftran.replace(R.id.view_pager, leFrag);
-                ftran.commit();
-            }
-        });
-
         ajoutComposantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +130,8 @@ public class ComposantPackFragment extends Fragment {
             }
         });
 
+        //Ajouter Un Pack
+        FloatingActionButton ajoutPackButton = (FloatingActionButton) rootView.findViewById(R.id.ajoutPacksButton);
         ajoutPackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,5 +145,56 @@ public class ComposantPackFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    /**
+     * Getter
+     * @return la liste des composants
+     */
+    public ArrayList<Composant> getListeComposants() {
+        return listeComposants;
+    }
+
+
+    /**
+     * Getter
+     * @return l'indice selectionné
+     */
+    public int getIndiceSelectionnerComposant() {
+        return indiceSelectionnerComposant;
+    }
+
+    /**
+     * Getter
+     * @return l'identifiant du composant selectionne
+     */
+    public int getIdComposant() {
+        return idComposant;
+    }
+
+    /**
+     * Setter
+     * @param indiceSelectionnerComposant à modifier
+     */
+    public void setIndiceSelectionnerComposant(int indiceSelectionnerComposant) {
+        this.indiceSelectionnerComposant = indiceSelectionnerComposant;
+    }
+
+    /**
+     * Setter
+     * @param idComposant à modifier
+     */
+    public void setIdComposant(int idComposant) {
+        this.idComposant = idComposant;
+    }
+
+    /**
+     * Permet d'actualiser la liste affichée des composants lorsqu'un composant est ajouté, supprimé ou
+     * ses informations ont été modifiées.
+     */
+    public void actualiserListeComposants() {
+        listeComposants = new ArrayList<Composant>(controleur.getListeComposants());
+        adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
+        listeViewComposant.setAdapter(adapteurComposant);
     }
 }

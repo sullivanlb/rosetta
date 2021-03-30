@@ -1781,9 +1781,8 @@ id clip_horizontal
 id clip_vertical
 id collapseActionView
 id composantTitleList
-id composantpackAnnulerButton
 id composantpackEnregistrerButton
-id composantpackSupprimerButton
+id composantpackRetourButton
 id composantsPacksButton
 id composantsTitleList
 id confirm_button

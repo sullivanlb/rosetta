@@ -263,7 +263,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/composantpackAnnulerButton"
+                    android:id="@+id/composantpackRetourButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -271,19 +271,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_fonce"
-                    android:text="Annuler"
+                    android:text="Retour"
                     android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/composantpackSupprimerButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/orange_fonce"
-                    android:text="Supprimer" />
 
                 <Button
                     android:id="@+id/composantpackEnregistrerButton"

@@ -30,7 +30,7 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
 
 
     /**
-     * Le constructeur crée une nouvelle forme de ControleurClientEnregistrer.
+     * Le constructeur crée une nouvelle forme de ControleurEnregistrerNouveauClient.
      *
      * @param cf le contexte {@link ClientFragment}
      */
@@ -81,8 +81,6 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
 
             //Modifier un Client
             if(this.clientFragment.getIndiceSelectionner()>=0 ){
-
-                int id = this.clientFragment.getIndiceSelectionner();
 
                 Client client = list.get(this.clientFragment.getIndiceSelectionner());
                 client.setNomClient(nom);

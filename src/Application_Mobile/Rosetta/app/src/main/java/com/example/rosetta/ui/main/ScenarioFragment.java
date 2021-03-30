@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ScenarioAdapter;
+import com.example.rosetta.model.Client;
+import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Scenario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,12 +30,13 @@ import java.util.ArrayList;
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
  * associée : l'interface de Scenario.
  *
- * @author Alice
+ * @author Alice, Lucy
  * @version 2.0
  */
 public class ScenarioFragment extends Fragment {
 
     private static ScenarioFragment scenarioFragment;
+
 
     @Nullable
     @Override

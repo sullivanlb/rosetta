@@ -156,7 +156,7 @@ public class AccesLocal {
      */
     public void modifierScenario(Scenario scenario) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "UPDATE Scenario SET nomScenario = \"" + scenario.getNomScenario() + "\", " +
+        String requete = "UPDATE Scenario SET nomScenario = \"" + scenario.getNomScenario() + "\"" +
                 "WHERE idClient = \"" + scenario.getIdScenario()+ "\"";
         this.bd.execSQL(requete);
     }
@@ -232,7 +232,7 @@ public class AccesLocal {
 
     public void ajoutComposant(Composant composant) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Composant (nomClient, uniteComposant, prixComposant) values";
+        String requete = "INSERT INTO Composant (nomComposant, uniteComposant, prixComposant) values";
         requete += "(\"" + composant.getNomComposant()+ "\", \"" + composant.getUniteComposant()+ "\", \"" + composant.getPrixComposant() + "\")";
         this.bd.execSQL(requete);
     }
@@ -246,7 +246,7 @@ public class AccesLocal {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "UPDATE Composant SET nomComposant = \"" + composant.getNomComposant() + "\", " +
                 "uniteComposant = \"" + composant.getUniteComposant() + "\", " +
-                "prixComposant = \"" + composant.getPrixComposant() + "\", " +
+                "prixComposant = \"" + composant.getPrixComposant() + "\"" +
                 "WHERE idComposant = \"" + composant.getIdComposant() + "\"";
         this.bd.execSQL(requete);
     }
@@ -327,7 +327,7 @@ public class AccesLocal {
      */
     public void modifierPack(Pack pack) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "UPDATE Pack SET nomPack = \"" + pack.getNomPack() + "\", " +
+        String requete = "UPDATE Pack SET nomPack = \"" + pack.getNomPack() + "\"" +
                 "WHERE idPack = \"" + pack.getIdPack() + "\"";
         this.bd.execSQL(requete);
     }
@@ -478,5 +478,22 @@ public class AccesLocal {
 
         curseur.close();
         return listeDevis;
+    }
+
+    //=========================== Appartient Pack Composant =========================================
+
+    /**
+     * Ajoute un pack et un composant dans AppartientPC.
+     *
+     * @param pack l'id du pack.
+     * @param  composant l'id composant
+     */
+    public void ajoutAppartientPC(Pack pack, Composant composant) {
+        System.out.println("cc j'aime buggé");
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientPC (unPack, unComposant, quantite) values";
+        requete += "(\"" + pack.getIdPack() + "\", \"" + composant.getIdComposant() + "\", \""+ 1 +"\")";
+        System.out.println("p : " + pack.getIdPack() + " c : " + composant.getIdComposant());
+        this.bd.execSQL(requete);
     }
 }
