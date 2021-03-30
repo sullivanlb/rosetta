@@ -83,6 +83,32 @@
                     android:textCursorDrawable="@color/black"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/NomQuantiteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NomAjoutPackTextView"
+                    android:layout_alignStart="@id/NomAjoutPackTextView"
+                    android:layout_marginTop="20dp"
+                    android:text="Quantité"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/NomQuantiteEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NomAjoutPackEditText"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/NomAjoutPackTextView"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
             </RelativeLayout>
 
             <ListView

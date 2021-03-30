@@ -48,17 +48,16 @@ public class ControleurEnregistrerNouveauPack implements View.OnClickListener {
 
         listeComposantDePack = this.ajoutPackFragment.getListeComposantDePack();
 
-
         if (nom != null && nom.length() > 0 && listeComposantDePack.size() > 0) {
             Pack pack = new Pack(0, nom);
             Controleur.getInstance(this.ajoutPackFragment.getContext()).creerPack(pack);
 
-            for(int i = 0; i < this.listeComposantDePack.size(); i++){
-
+            for(int i = 0; i < this.listeComposantDePack.size(); i++) {
                 Composant composant = listeComposantDePack.get(i);
-                System.out.println("id : " + Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().get(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().size() -1 ));
-                Controleur.getInstance(this.ajoutPackFragment.getContext()).creerAppartientPC(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().get(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().size() -1), composant);
-
+                int quantite = this.ajoutPackFragment.getHashmapIdComposantQuantite().get(composant.getIdComposant());
+                Controleur.getInstance(this.ajoutPackFragment.getContext())
+                        .creerAppartientPC(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks()
+                                .get(Controleur.getInstance(this.ajoutPackFragment.getContext()).getListePacks().size() -1), composant, quantite);
             }
 
             //Permet de changer de framgment
@@ -69,11 +68,7 @@ public class ControleurEnregistrerNouveauPack implements View.OnClickListener {
             ftran.replace(R.id.view_pager, leFrag);
             ftran.commit();
 
-            for(int i = 0; i < this.listeComposantDePack.size(); i ++){
-                this.listeComposantDePack.remove(i);
-            }
-            System.out.println("Taille arrayliste " + listeComposantDePack.size());
-
+            this.listeComposantDePack.clear();
         }
         else {
             Toast.makeText(this.ajoutPackFragment.getView().getContext(), "Veuillez remplir le formulaire.", Toast.LENGTH_LONG).show();

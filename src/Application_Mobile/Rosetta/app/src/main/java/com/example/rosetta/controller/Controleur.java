@@ -374,9 +374,9 @@ public class Controleur {
      * @param pack le pack à ajouter
      * @param composant le composant à ajouter
      */
-    public void creerAppartientPC(Pack pack, Composant composant) {
+    public void creerAppartientPC(Pack pack, Composant composant, int quantite) {
         if (pack != null && composant != null) {
-            Controleur.accesLocal.ajoutAppartientPC(pack, composant);
+            Controleur.accesLocal.ajoutAppartientPC(pack, composant, quantite);
         }
     }
 }

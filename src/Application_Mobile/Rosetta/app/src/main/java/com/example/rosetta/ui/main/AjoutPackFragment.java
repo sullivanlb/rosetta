@@ -22,6 +22,7 @@ import com.example.rosetta.controller.ControleurListeComposants;
 import com.example.rosetta.model.Composant;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
@@ -36,6 +37,7 @@ public class AjoutPackFragment extends Fragment {
 
     private ArrayList<Composant> listeComposants;
     private  ArrayList<Composant> listeComposantDePack = new ArrayList<Composant>();
+    private HashMap<Integer, Integer> hashmapIdComposantQuantite;
     private Controleur controleur;
     private ComposantAdapter adapteurComposant;
     private ListView listeViewComposant;
@@ -53,6 +55,9 @@ public class AjoutPackFragment extends Fragment {
 
         // La liste des composants récupérée depuis la base de données interne
         this.listeComposants = new ArrayList<Composant>(this.controleur.getListeComposants());
+
+        // Initialisation du hashmap
+        this.hashmapIdComposantQuantite = new HashMap<Integer, Integer>();
 
         //Initialisation de la liste des Composants
         this.listeViewComposant = (ListView) rootView.findViewById(R.id.listView_composants_ajoutPack);
@@ -103,6 +108,14 @@ public class AjoutPackFragment extends Fragment {
      */
     public ArrayList<Composant> getListeComposants() {
         return listeComposants;
+    }
+
+    /**
+     * Getter
+     * @return le hashmap de l'id de composant et sa quantite dans le pack
+     */
+    public HashMap<Integer, Integer> getHashmapIdComposantQuantite() {
+        return hashmapIdComposantQuantite;
     }
 
     /**

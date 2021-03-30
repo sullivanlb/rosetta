@@ -488,12 +488,10 @@ public class AccesLocal {
      * @param pack l'id du pack.
      * @param  composant l'id composant
      */
-    public void ajoutAppartientPC(Pack pack, Composant composant) {
-        System.out.println("cc j'aime buggé");
+    public void ajoutAppartientPC(Pack pack, Composant composant, int quantite) {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "INSERT INTO AppartientPC (unPack, unComposant, quantite) values";
-        requete += "(\"" + pack.getIdPack() + "\", \"" + composant.getIdComposant() + "\", \""+ 1 +"\")";
-        System.out.println("p : " + pack.getIdPack() + " c : " + composant.getIdComposant());
+        requete += "(\"" + pack.getIdPack() + "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
         this.bd.execSQL(requete);
     }
 }
