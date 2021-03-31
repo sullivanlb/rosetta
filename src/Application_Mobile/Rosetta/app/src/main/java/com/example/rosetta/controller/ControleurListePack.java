@@ -7,6 +7,8 @@ import android.widget.EditText;
 import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.ui.main.ComposantPackFragment;
+import com.example.rosetta.ui.main.NouveauDevisFragment;
+import com.example.rosetta.ui.main.NouveauModifierScenarioFragment;
 
 /**
  * Cette classe permet d'afficher les informations du pack sélectionné dans le formulaire pour le modifie.
@@ -18,6 +20,8 @@ import com.example.rosetta.ui.main.ComposantPackFragment;
 public class ControleurListePack implements AdapterView.OnItemClickListener{
 
     private ComposantPackFragment composantPackFragment;
+    private  NouveauModifierScenarioFragment nouveauModifierScenarioFragment;
+    private NouveauDevisFragment nouveauDevisFragment;
 
     /**
      * Le constructeur crée une nouvelle forme de ControleurListePack
@@ -27,6 +31,30 @@ public class ControleurListePack implements AdapterView.OnItemClickListener{
     public ControleurListePack(ComposantPackFragment sf) {
         if (sf != null) {
             this.composantPackFragment = sf;
+        }
+    }
+
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurListeComposants
+     *
+     * @param nmSf le contexte {@link NouveauModifierScenarioFragment}
+     */
+
+    public ControleurListePack(NouveauModifierScenarioFragment nmSf) {
+        if(nmSf != null){
+            this.nouveauModifierScenarioFragment = nmSf;
+        }
+    }
+
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurListeComposants
+     *
+     * @param nDf le contexte {@link NouveauDevisFragment}
+     */
+
+    public ControleurListePack(NouveauDevisFragment nDf) {
+        if(nDf != null){
+            this.nouveauDevisFragment= nDf;
         }
     }
 

@@ -23,8 +23,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginLeft="630dp"
+            android:layout_marginStart="750dp"
+            android:layout_marginLeft="700dp"
+            android:layout_marginEnd="20dp"
             android:clickable="true"
+            android:forceHasOverlappingRendering="false"
             android:foregroundGravity="left"
             app:srcCompat="@android:drawable/ic_delete" />
 

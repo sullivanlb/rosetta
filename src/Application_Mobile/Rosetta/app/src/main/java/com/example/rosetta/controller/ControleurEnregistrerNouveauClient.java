@@ -59,85 +59,89 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
         CheckBox hommeButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.hommeCheckbox);
         CheckBox autreButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.autreCheckbox);
 
-        //Bouton Nouveau Client
-        if (boutonSelectionne.getText().equals("Nouveau client")) {
 
-            this.clientFragment.setIndiceSelectionner(-1);
+        if(nom != null && nom.length() > 0){
 
-            // N'affiche plus aucune donnée dans le formulaire
-            editPrenom.setText("");
-            editNom.setText("");
-            editAdresse.setText("");
-            editEmail.setText("");
-            editTelephone.setText("");
-            femmeButton.setChecked(false);
-            hommeButton.setChecked(false);
-            autreButton.setChecked(false);
-        }
-        else {
-            //Bouton Enregistrer
+            //Bouton Nouveau Client
+            if (boutonSelectionne.getText().equals("Nouveau client")) {
 
-            this.clientFragment.actualiserListeClients();
-            ArrayList<Client> list = Controleur.getInstance(this.clientFragment.getContext()).getListeClients();
+                this.clientFragment.setIndiceSelectionner(-1);
 
-            //Modifier un Client
-            if(this.clientFragment.getIndiceSelectionner()>=0 ){
-
-                Client client = null;
-
-                for(int i = 0; i < list.size(); i++){
-                    if(list.get(i).getIdClient() == this.clientFragment.getIdClient()){
-                        client = list.get(i);
-                    }
-                }
-                if(client != null){
-                client.setNomClient(nom);
-                client.setPrenomClient(prenom);
-                client.setAdresseClient(adresse);
-                client.setEmailClient(email);
-                client.setTelClient(tel);
-                }
-
-                if (hommeButton.isChecked()) {
-                    client.setSexeClient(Sexe.HOMME);
-                }
-                else if (femmeButton.isChecked()) {
-                    client.setSexeClient(Sexe.FEMME);
-                }
-                else {
-                    client.setSexeClient(Sexe.AUTRE);
-                }
-
-                Controleur.getInstance(this.clientFragment.getContext()).modifierClient(client);
-                this.clientFragment.actualiserListeClients();
+                // N'affiche plus aucune donnée dans le formulaire
+                editPrenom.setText("");
+                editNom.setText("");
+                editAdresse.setText("");
+                editEmail.setText("");
+                editTelephone.setText("");
+                femmeButton.setChecked(false);
+                hommeButton.setChecked(false);
+                autreButton.setChecked(false);
             }
-            else{
-                //Ajouter un Client
+            else {
 
-                // Si le nom, le prénom, l'adresse, le sexe sont bien renseignés, ainsi que l'email ou le
-                // ou le numéro de téléphone, alors le client est ajouté/enregistré
-                if (nom != null && nom.length() > 0 && prenom != null && prenom.length() > 0 && adresse != null && adresse.length() > 0 &&
-                        ((email != null && email.length() > 0) || (tel != null && tel.length() > 0))
-                        && (femmeButton.isChecked() || hommeButton.isChecked() || autreButton.isChecked())) {
-                    Client client = new Client(0, nom, prenom, adresse, email != null ? email : "", tel != null ? tel : "", (femmeButton.isChecked()) ? FEMME :
-                            (hommeButton.isChecked()) ? HOMME : AUTRE);
-                    Controleur.getInstance(this.clientFragment.getContext()).creerClient(client);
+                //Bouton Enregistrer
+                this.clientFragment.actualiserListeClients();
+                ArrayList<Client> list = Controleur.getInstance(this.clientFragment.getContext()).getListeClients();
+
+                //Modifier un Client
+                if (this.clientFragment.getIndiceSelectionner() >= 0) {
+
+                    Client client = null;
+
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getIdClient() == this.clientFragment.getIdClient()) {
+                            client = list.get(i);
+                        }
+                    }
+                    if (client != null) {
+                        client.setNomClient(nom);
+                        client.setPrenomClient(prenom);
+                        client.setAdresseClient(adresse);
+                        client.setEmailClient(email);
+                        client.setTelClient(tel);
+                    }
+
+                    if (hommeButton.isChecked()) {
+                        client.setSexeClient(Sexe.HOMME);
+                    } else if (femmeButton.isChecked()) {
+                        client.setSexeClient(Sexe.FEMME);
+                    } else {
+                        client.setSexeClient(Sexe.AUTRE);
+                    }
+
+                    Controleur.getInstance(this.clientFragment.getContext()).modifierClient(client);
                     this.clientFragment.actualiserListeClients();
 
-                    // Vidage des champs
-                    editPrenom.setText("");
-                    editNom.setText("");
-                    editAdresse.setText("");
-                    editEmail.setText("");
-                    editTelephone.setText("");
-                    femmeButton.setChecked(false);
-                    hommeButton.setChecked(false);
-                    autreButton.setChecked(false);
                 } else {
 
-                    // Une information est envoyée à l'utilisateur lorsqu'il n'a pas saisi correctement
-                    // les informations du formulaire
-                    Toast.makeText(this.clientFragment.getView().getContext(), "Veuillez remplir le formulaire.", Toast.LENGTH_LONG).show();
+                    //Ajouter un Client
+
+                    // Si le nom, le prénom, l'adresse, le sexe sont bien renseignés, ainsi que l'email ou le
+                    // ou le numéro de téléphone, alors le client est ajouté/enregistré
+                    if (nom != null && nom.length() > 0 && prenom != null && prenom.length() > 0 && adresse != null && adresse.length() > 0 &&
+                            ((email != null && email.length() > 0) || (tel != null && tel.length() > 0))
+                            && (femmeButton.isChecked() || hommeButton.isChecked() || autreButton.isChecked())) {
+                        Client client = new Client(0, nom, prenom, adresse, email != null ? email : "", tel != null ? tel : "", (femmeButton.isChecked()) ? FEMME :
+                                (hommeButton.isChecked()) ? HOMME : AUTRE);
+                        Controleur.getInstance(this.clientFragment.getContext()).creerClient(client);
+                        this.clientFragment.actualiserListeClients();
+
+                        // Vidage des champs
+                        editPrenom.setText("");
+                        editNom.setText("");
+                        editAdresse.setText("");
+                        editEmail.setText("");
+                        editTelephone.setText("");
+                        femmeButton.setChecked(false);
+                        hommeButton.setChecked(false);
+                        autreButton.setChecked(false);
+
+                    } else {
+
+                        // Une information est envoyée à l'utilisateur lorsqu'il n'a pas saisi correctement
+                        // les informations du formulaire
+                        Toast.makeText(this.clientFragment.getView().getContext(), "Veuillez remplir le formulaire.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }

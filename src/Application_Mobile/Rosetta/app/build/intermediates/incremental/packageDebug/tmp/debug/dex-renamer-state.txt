@@ -1,4 +1,4 @@
-#Wed Mar 31 14:40:27 CEST 2021
+#Wed Mar 31 16:12:27 CEST 2021
 base.0=C\:\\Users\\lucy\\AndroidStudioProjects\\Rosetta\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

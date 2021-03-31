@@ -43,6 +43,7 @@ import java.util.List;
 public class ComposantPackFragment extends Fragment {
 
     private Controleur controleur;
+    private View rootView;
     private ArrayList<Composant> listeComposants;
     private ArrayList<Pack> listePacks;
 
@@ -59,7 +60,7 @@ public class ComposantPackFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_composantpack_layout, container, false);
+        this.rootView = inflater.inflate(R.layout.fragment_composantpack_layout, container, false);
 
         // Le controleur principal (accès à la base de données interne)
         this.controleur = Controleur.getInstance(this.getContext());
@@ -189,7 +190,7 @@ public class ComposantPackFragment extends Fragment {
             }
         });
 
-        return rootView;
+        return this.rootView;
     }
 
     /**
@@ -241,6 +242,7 @@ public class ComposantPackFragment extends Fragment {
         listeComposants = new ArrayList<Composant>(controleur.getListeComposants());
         adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
         listeViewComposant.setAdapter(adapteurComposant);
+        rechercher();
     }
 
     /**
@@ -249,6 +251,36 @@ public class ComposantPackFragment extends Fragment {
      */
     public void actualiserListePacks(){
         listePacks = new ArrayList<Pack>(controleur.getListePacks());
+        adapteurPack = new PackAdapter(getActivity(), listePacks);
+        listeViewPack.setAdapter(adapteurPack);
+        rechercher();
+    }
+
+    /**
+     * Cette méthode permet de mettre à jour la recherche, et d'afficher les composant et les packs recherchés.
+     */
+    public void rechercher() {
+
+        EditText recherche = (EditText) rootView.findViewById(R.id.rechercher_composants_packs);
+        String input = recherche.getText().toString();
+
+        ArrayList<Composant> rechercheListComposant= new ArrayList<Composant>();
+        ArrayList<Pack> rechercheListPack = new ArrayList<Pack>();
+        for (Composant c : listeComposants) {
+            if (c.getNomComposant().contains(input)) {
+                rechercheListComposant.add(c);
+            }
+        }
+        listeComposants = rechercheListComposant;
+        adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
+        listeViewComposant.setAdapter(adapteurComposant);
+
+        for(Pack p : listePacks){
+            if(p.getNomPack().contains(input)){
+                rechercheListPack.add(p);
+            }
+        }
+        listePacks = rechercheListPack;
         adapteurPack = new PackAdapter(getActivity(), listePacks);
         listeViewPack.setAdapter(adapteurPack);
     }

@@ -11,6 +11,7 @@ import com.example.rosetta.model.Composant;
 import com.example.rosetta.ui.main.AjoutPackFragment;
 import com.example.rosetta.ui.main.ClientFragment;
 import com.example.rosetta.ui.main.ComposantPackFragment;
+import com.example.rosetta.ui.main.NouveauDevisFragment;
 import com.example.rosetta.ui.main.NouveauModifierScenarioFragment;
 import com.example.rosetta.ui.main.ScenarioFragment;
 
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 public class ControleurListeComposants implements AdapterView.OnItemClickListener  {
 
     private ComposantPackFragment composantPackFragment;
+    private NouveauModifierScenarioFragment nouveauModifierScenarioFragment;
+    private  NouveauDevisFragment nouveauDevisFragment;
 
     /**
      * Le constructeur crée une nouvelle forme de ControleurListeComposants
@@ -35,6 +38,30 @@ public class ControleurListeComposants implements AdapterView.OnItemClickListene
     public ControleurListeComposants(ComposantPackFragment sf) {
         if (sf != null) {
             this.composantPackFragment = sf;
+        }
+    }
+
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurListeComposants
+     *
+     * @param nmSf le contexte {@link NouveauModifierScenarioFragment}
+     */
+
+    public  ControleurListeComposants(NouveauModifierScenarioFragment nmSf) {
+        if(nmSf != null){
+            this.nouveauModifierScenarioFragment = nmSf;
+        }
+    }
+
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurListeComposants
+     *
+     * @param nDf le contexte {@link NouveauDevisFragment}
+     */
+
+    public ControleurListeComposants(NouveauDevisFragment nDf) {
+        if(nDf != null){
+            this.nouveauDevisFragment= nDf;
         }
     }
 

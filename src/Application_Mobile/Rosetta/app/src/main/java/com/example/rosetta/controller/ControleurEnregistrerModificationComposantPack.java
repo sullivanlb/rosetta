@@ -42,29 +42,30 @@ public class ControleurEnregistrerModificationComposantPack implements View.OnCl
 
         String nomComposant = editNom.getText().toString();
         String uniteComposant = editUnite.getText().toString();
-        double prixComposant = Double.parseDouble(editPrix.getText().toString());
+        String prix = editPrix.getText().toString();
 
-        ArrayList<Composant> listComposant = Controleur.getInstance(this.composantPackFragment.getContext()).getListeComposants();
+        if(nomComposant != null && nomComposant.length() > 0 && nomComposant != null && nomComposant.length() > 0 && prix != null && prix.length() > 0) {
+            double prixComposant = Double.parseDouble(editPrix.getText().toString());
 
-        if(this.composantPackFragment.getIndiceSelectionnerComposant() >=0){
+            ArrayList<Composant> listComposant = Controleur.getInstance(this.composantPackFragment.getContext()).getListeComposants();
 
-            Composant composant = null;
-            for(int i = 0; i < listComposant.size(); i++){
-                if(listComposant.get(i).getIdComposant() == this.composantPackFragment.getIdSelectionnnerComposant()){
-                    composant = listComposant.get(i);
+            if (this.composantPackFragment.getIndiceSelectionnerComposant() >= 0) {
+
+                Composant composant = null;
+                for (int i = 0; i < listComposant.size(); i++) {
+                    if (listComposant.get(i).getIdComposant() == this.composantPackFragment.getIdSelectionnnerComposant()) {
+                        composant = listComposant.get(i);
+                    }
+                }
+
+                if (composant != null) {
+                    composant.setNomComposant(nomComposant);
+                    composant.setUniteComposant(uniteComposant);
+                    composant.setPrixComposant(prixComposant);
+                    Controleur.getInstance(this.composantPackFragment.getContext()).modifierComposant(composant);
+                    this.composantPackFragment.actualiserListeComposants();
                 }
             }
-
-            if( composant != null) {
-                Composant comp = listComposant.get(this.composantPackFragment.getIndiceSelectionnerComposant());
-                comp.setNomComposant(nomComposant);
-                comp.setUniteComposant(uniteComposant);
-                comp.setPrixComposant(prixComposant);
-                Controleur.getInstance(this.composantPackFragment.getContext()).modifierComposant(comp);
-                this.composantPackFragment.actualiserListeComposants();
-            }
-
         }
-
     }
 }
