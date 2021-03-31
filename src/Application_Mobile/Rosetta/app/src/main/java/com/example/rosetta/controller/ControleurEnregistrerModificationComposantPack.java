@@ -48,13 +48,21 @@ public class ControleurEnregistrerModificationComposantPack implements View.OnCl
 
         if(this.composantPackFragment.getIndiceSelectionnerComposant() >=0){
 
-            Composant comp = listComposant.get(this.composantPackFragment.getIndiceSelectionnerComposant());
-            comp.setNomComposant(nomComposant);
-            comp.setUniteComposant(uniteComposant);
-            comp.setPrixComposant(prixComposant);
+            Composant composant = null;
+            for(int i = 0; i < listComposant.size(); i++){
+                if(listComposant.get(i).getIdComposant() == this.composantPackFragment.getIdSelectionnnerComposant()){
+                    composant = listComposant.get(i);
+                }
+            }
 
-            Controleur.getInstance(this.composantPackFragment.getContext()).modifierComposant(comp);
-            this.composantPackFragment.actualiserListeComposants();
+            if( composant != null) {
+                Composant comp = listComposant.get(this.composantPackFragment.getIndiceSelectionnerComposant());
+                comp.setNomComposant(nomComposant);
+                comp.setUniteComposant(uniteComposant);
+                comp.setPrixComposant(prixComposant);
+                Controleur.getInstance(this.composantPackFragment.getContext()).modifierComposant(comp);
+                this.composantPackFragment.actualiserListeComposants();
+            }
 
         }
 

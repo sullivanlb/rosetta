@@ -44,7 +44,7 @@ public class ControleurListeComposants implements AdapterView.OnItemClickListene
 
         // Récupération des informations du composant sélectionné
         Composant composant = this.composantPackFragment.getListeComposants().get(position);
-        this.composantPackFragment.setIdComposant(composant.getIdComposant());
+        this.composantPackFragment.setIdSelectionnnerComposant(composant.getIdComposant());
         this.composantPackFragment.setIndiceSelectionnerComposant(position);
 
         //Récupération du champs du formulaire

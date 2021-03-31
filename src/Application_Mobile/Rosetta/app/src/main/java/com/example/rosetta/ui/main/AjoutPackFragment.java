@@ -42,8 +42,6 @@ public class AjoutPackFragment extends Fragment {
     private ComposantAdapter adapteurComposant;
     private ListView listeViewComposant;
     ListView listeComposantsPack;
-    private int indiceSelectionnerComposant;
-    private int idComposant;
 
     @Nullable
     @Override
@@ -126,43 +124,4 @@ public class AjoutPackFragment extends Fragment {
         this.listeComposantsPack.setAdapter(adapteurComposant);
     }
 
-    /**
-     * Permet de vider l'ArrayList
-     */
-
-    public void viderList(){
-        this.listeComposantDePack = new ArrayList<Composant>();
-    }
-
-    /**
-     * Getter
-     * @return l'indice selectionné
-     */
-    public int getIndiceSelectionnerComposant() {
-        return indiceSelectionnerComposant;
-    }
-
-    /**
-     * Getter
-     * @return l'identifiant du composant selectionne
-     */
-    public int getIdComposant() {
-        return idComposant;
-    }
-
-    /**
-     * Setter
-     * @param indiceSelectionnerComposant à modifier
-     */
-    public void setIndiceSelectionnerComposant(int indiceSelectionnerComposant) {
-        this.indiceSelectionnerComposant = indiceSelectionnerComposant;
-    }
-
-    /**
-     * Setter
-     * @param idComposant à modifier
-     */
-    public void setIdComposant(int idComposant) {
-        this.idComposant = idComposant;
-    }
 }

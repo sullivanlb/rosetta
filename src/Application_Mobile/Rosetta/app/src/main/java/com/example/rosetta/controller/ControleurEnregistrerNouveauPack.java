@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Cette classe permet d'ajouter un pack et d'enregistrer les informations de celui-ci
  *
- * @author Lucy
+ * @author Lucy, Christophe, Alice
  * @version 2.0
  */
 

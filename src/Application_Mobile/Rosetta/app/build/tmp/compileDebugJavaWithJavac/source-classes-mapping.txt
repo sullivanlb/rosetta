@@ -1,7 +1,9 @@
-com/example/rosetta/controller/ControleurListeComposants.java
- com.example.rosetta.controller.ControleurListeComposants
-com/example/rosetta/ui/main/SectionsPagerAdapter.java
- com.example.rosetta.ui.main.SectionsPagerAdapter
+com/example/rosetta/BuildConfig.java
+ com.example.rosetta.BuildConfig
+com/example/rosetta/controller/ScenarioAdapter.java
+ com.example.rosetta.controller.ScenarioAdapter
+ com.example.rosetta.controller.ScenarioAdapter$1
+ com.example.rosetta.controller.ScenarioAdapter$2
 com/example/rosetta/ui/main/NouveauModifierScenarioFragment.java
  com.example.rosetta.ui.main.NouveauModifierScenarioFragment
  com.example.rosetta.ui.main.NouveauModifierScenarioFragment$1
@@ -12,8 +14,8 @@ com/example/rosetta/model/AccesLocal.java
  com.example.rosetta.model.AccesLocal
 com/example/rosetta/controller/ScenarioAdapter2.java
  com.example.rosetta.controller.ScenarioAdapter2
-com/example/rosetta/controller/ControleurEnregistrerNouveauComposant.java
- com.example.rosetta.controller.ControleurEnregistrerNouveauComposant
+com/example/rosetta/model/Question.java
+ com.example.rosetta.model.Question
 com/example/rosetta/controller/DevisAdapter.java
  com.example.rosetta.controller.DevisAdapter
 com/example/rosetta/model/Scenario.java
@@ -22,35 +24,39 @@ com/example/rosetta/controller/PackAdapter.java
  com.example.rosetta.controller.PackAdapter
 com/example/rosetta/model/Pack.java
  com.example.rosetta.model.Pack
-com/example/rosetta/controller/ControleurEnregistrerModificationComposantPack.java
- com.example.rosetta.controller.ControleurEnregistrerModificationComposantPack
+com/example/rosetta/utils/MySQLiteOpenHelper.java
+ com.example.rosetta.utils.MySQLiteOpenHelper
 com/example/rosetta/model/Sexe.java
  com.example.rosetta.model.Sexe
 com/example/rosetta/MainActivity.java
  com.example.rosetta.MainActivity
-com/example/rosetta/BuildConfig.java
- com.example.rosetta.BuildConfig
-com/example/rosetta/model/Devis.java
- com.example.rosetta.model.Devis
+com/example/rosetta/controller/ComposantAdapter.java
+ com.example.rosetta.controller.ComposantAdapter
+com/example/rosetta/ui/main/NouveauDevisClientScenarioFragment.java
+ com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment
+ com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$1
+ com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$2
 com/example/rosetta/ui/main/InfoScenarioFragment.java
  com.example.rosetta.ui.main.InfoScenarioFragment
  com.example.rosetta.ui.main.InfoScenarioFragment$1
-com/example/rosetta/controller/ControleurClientSupprimer.java
- com.example.rosetta.controller.ControleurClientSupprimer
+com/example/rosetta/ui/main/AjoutComposantFragment.java
+ com.example.rosetta.ui.main.AjoutComposantFragment
+ com.example.rosetta.ui.main.AjoutComposantFragment$1
 com/example/rosetta/model/Composant.java
  com.example.rosetta.model.Composant
-com/example/rosetta/utils/MySQLiteOpenHelper.java
- com.example.rosetta.utils.MySQLiteOpenHelper
-com/example/rosetta/controller/QuestionAdapter.java
- com.example.rosetta.controller.QuestionAdapter
-com/example/rosetta/controller/ControleurListeClients.java
- com.example.rosetta.controller.ControleurListeClients
-com/example/rosetta/ui/main/ScenarioFragment.java
- com.example.rosetta.ui.main.ScenarioFragment
- com.example.rosetta.ui.main.ScenarioFragment$1
- com.example.rosetta.ui.main.ScenarioFragment$2
 com/example/rosetta/controller/ControleurEnregistrerNouveauClient.java
  com.example.rosetta.controller.ControleurEnregistrerNouveauClient
+com/example/rosetta/controller/QuestionAdapter.java
+ com.example.rosetta.controller.QuestionAdapter
+com/example/rosetta/model/Devis.java
+ com.example.rosetta.model.Devis
+com/example/rosetta/ui/main/NouveauDevisFragment.java
+ com.example.rosetta.ui.main.NouveauDevisFragment
+ com.example.rosetta.ui.main.NouveauDevisFragment$1
+ com.example.rosetta.ui.main.NouveauDevisFragment$2
+ com.example.rosetta.ui.main.NouveauDevisFragment$3
+com/example/rosetta/controller/ControleurListePack.java
+ com.example.rosetta.controller.ControleurListePack
 com/example/rosetta/controller/ClientAdapter.java
  com.example.rosetta.controller.ClientAdapter
 com/example/rosetta/ui/main/DevisFragment.java
@@ -65,38 +71,35 @@ com/example/rosetta/ui/main/DevisQuestionFragment.java
  com.example.rosetta.ui.main.DevisQuestionFragment$2
 com/example/rosetta/controller/ControleurClientCheckSexe.java
  com.example.rosetta.controller.ControleurClientCheckSexe
-com/example/rosetta/model/Question.java
- com.example.rosetta.model.Question
+com/example/rosetta/controller/ControleurListeClients.java
+ com.example.rosetta.controller.ControleurListeClients
+com/example/rosetta/ui/main/ScenarioFragment.java
+ com.example.rosetta.ui.main.ScenarioFragment
+ com.example.rosetta.ui.main.ScenarioFragment$1
+ com.example.rosetta.ui.main.ScenarioFragment$2
+com/example/rosetta/controller/ControleurEnregistrerNouveauComposant.java
+ com.example.rosetta.controller.ControleurEnregistrerNouveauComposant
+com/example/rosetta/controller/ControleurClientSupprimer.java
+ com.example.rosetta.controller.ControleurClientSupprimer
+com/example/rosetta/ui/main/ClientFragment.java
+ com.example.rosetta.ui.main.ClientFragment
+ com.example.rosetta.ui.main.ClientFragment$1
+com/example/rosetta/controller/ControleurListeComposants.java
+ com.example.rosetta.controller.ControleurListeComposants
 com/example/rosetta/ui/main/ComposantPackFragment.java
  com.example.rosetta.ui.main.ComposantPackFragment
  com.example.rosetta.ui.main.ComposantPackFragment$1
  com.example.rosetta.ui.main.ComposantPackFragment$2
  com.example.rosetta.ui.main.ComposantPackFragment$3
-com/example/rosetta/ui/main/NouveauDevisFragment.java
- com.example.rosetta.ui.main.NouveauDevisFragment
- com.example.rosetta.ui.main.NouveauDevisFragment$1
- com.example.rosetta.ui.main.NouveauDevisFragment$2
- com.example.rosetta.ui.main.NouveauDevisFragment$3
-com/example/rosetta/ui/main/ClientFragment.java
- com.example.rosetta.ui.main.ClientFragment
- com.example.rosetta.ui.main.ClientFragment$1
-com/example/rosetta/controller/ScenarioAdapter.java
- com.example.rosetta.controller.ScenarioAdapter
- com.example.rosetta.controller.ScenarioAdapter$1
- com.example.rosetta.controller.ScenarioAdapter$2
-com/example/rosetta/ui/main/AjoutComposantFragment.java
- com.example.rosetta.ui.main.AjoutComposantFragment
- com.example.rosetta.ui.main.AjoutComposantFragment$1
-com/example/rosetta/ui/main/NouveauDevisClientScenarioFragment.java
- com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment
- com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$1
- com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$2
-com/example/rosetta/controller/ComposantAdapter.java
- com.example.rosetta.controller.ComposantAdapter
-com/example/rosetta/controller/ControleurListeComposantDePack.java
- com.example.rosetta.controller.ControleurListeComposantDePack
+ com.example.rosetta.ui.main.ComposantPackFragment$4
+com/example/rosetta/controller/ControleurEnregistrerModificationComposantPack.java
+ com.example.rosetta.controller.ControleurEnregistrerModificationComposantPack
 com/example/rosetta/controller/ControleurEnregistrerNouveauPack.java
  com.example.rosetta.controller.ControleurEnregistrerNouveauPack
 com/example/rosetta/ui/main/AjoutPackFragment.java
  com.example.rosetta.ui.main.AjoutPackFragment
  com.example.rosetta.ui.main.AjoutPackFragment$1
+com/example/rosetta/ui/main/SectionsPagerAdapter.java
+ com.example.rosetta.ui.main.SectionsPagerAdapter
+com/example/rosetta/controller/ControleurListeComposantDePack.java
+ com.example.rosetta.controller.ControleurListeComposantDePack

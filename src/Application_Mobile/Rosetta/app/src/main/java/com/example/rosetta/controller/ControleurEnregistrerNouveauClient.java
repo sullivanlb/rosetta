@@ -77,17 +77,26 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
         else {
             //Bouton Enregistrer
 
+            this.clientFragment.actualiserListeClients();
             ArrayList<Client> list = Controleur.getInstance(this.clientFragment.getContext()).getListeClients();
 
             //Modifier un Client
             if(this.clientFragment.getIndiceSelectionner()>=0 ){
 
-                Client client = list.get(this.clientFragment.getIndiceSelectionner());
+                Client client = null;
+
+                for(int i = 0; i < list.size(); i++){
+                    if(list.get(i).getIdClient() == this.clientFragment.getIdClient()){
+                        client = list.get(i);
+                    }
+                }
+                if(client != null){
                 client.setNomClient(nom);
                 client.setPrenomClient(prenom);
                 client.setAdresseClient(adresse);
                 client.setEmailClient(email);
                 client.setTelClient(tel);
+                }
 
                 if (hommeButton.isChecked()) {
                     client.setSexeClient(Sexe.HOMME);

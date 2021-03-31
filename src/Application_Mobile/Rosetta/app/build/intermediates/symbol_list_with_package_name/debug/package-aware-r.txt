@@ -1646,6 +1646,8 @@ id NomAjoutPackEditText
 id NomAjoutPackTextView
 id NomClienttextView
 id NomEditText
+id NomQuantiteEditText
+id NomQuantiteTextView
 id PrenomClienttextView
 id PrenomEditText
 id SHIFT

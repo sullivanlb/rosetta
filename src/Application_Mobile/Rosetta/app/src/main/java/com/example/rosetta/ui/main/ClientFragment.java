@@ -63,7 +63,6 @@ public class ClientFragment extends Fragment {
 
         // Le bouton Nouveau Client qui vide les champs
         Button nouveauClientBouton = (Button) rootView.findViewById(R.id.nouveauClientButton);
-        //ControleurClientNouveauClient controleurClientNouveauClient = new ControleurClientNouveauClient(this);
         nouveauClientBouton.setOnClickListener(controleurEnregistrerClient);
 
         //bouton pour supprimer un client
