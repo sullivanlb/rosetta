@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- La vue de la page Composants/Packs. -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_gauche"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.70"
+        android:background="@drawable/rectangle_noir"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/rechercher_client_scenario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Rechercher"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+            android:textColorHighlight="@color/orange_clair"
+            android:textColorLink="@color/orange_clair"
+            android:textCursorDrawable="@color/black"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/clientTitleList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="#C0C0C0"
+            android:gravity="center_horizontal"
+            android:text="Clients"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/listView_clients_nouveauDevis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="3"
+            android:listSelector="@color/orange_clair" />
+
+        <TextView
+            android:id="@+id/scenarioTitleList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="#C0C0C0"
+            android:gravity="center_horizontal"
+            android:text="Scenarios"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/listView_scenarios_nouveauDevis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="3"
+            android:listSelector="@color/orange_clair" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.30"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/ajoutComposantRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:foregroundTint="#FFFFFF"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/choix_clientTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Choisir un client : "
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+                <EditText
+                    android:id="@+id/choix_clientEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/choix_clientTextView"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/choix_scenarioTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/choix_clientEditText"
+                    android:layout_alignStart="@id/choix_clientTextView"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginTop="70dp"
+                    android:text="Choisir un ou plusieurs scénario(s) : "
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/listView_scenarios_choisis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/rectangle_noir" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.2"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/nouveauDevisCSRetourButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="Retour" />
+
+                <Button
+                    android:id="@+id/nouveauDevisCSSuivantButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="Suivant" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

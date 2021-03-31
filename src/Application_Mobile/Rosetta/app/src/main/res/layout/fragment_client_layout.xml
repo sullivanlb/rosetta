@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- La vue de la page principale de Client. -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_gauche_client"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.70"
+        android:background="@drawable/rectangle_noir"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/rechercher_client"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Rechercher"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+            android:textColorHighlight="@color/orange_clair"
+            android:textColorLink="@color/orange_clair"
+            android:textCursorDrawable="@color/black"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <ListView
+            android:id="@+id/listView_clients"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@color/orange_clair" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.30"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/FormulaireRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="15"
+                android:foregroundTint="#FFFFFF">
+
+                <Button
+                    android:id="@+id/nouveauClientButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Nouveau client"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/NomClienttextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nouveauClientButton"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Nom"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/NomEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nouveauClientButton"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/NomClienttextView"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/PrenomClienttextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NomClienttextView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Prenom"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/PrenomEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NomEditText"
+                    android:layout_alignStart="@id/NomEditText"
+                    android:layout_alignEnd="@id/NomEditText"
+                    android:layout_toRightOf="@id/PrenomClienttextView"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/EmailtextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PrenomClienttextView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Email"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/EmailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PrenomEditText"
+                    android:layout_alignStart="@id/PrenomEditText"
+                    android:layout_alignEnd="@id/NomEditText"
+                    android:layout_toRightOf="@id/EmailtextView"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/AdressetextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/EmailtextView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Adresse"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/AdresseEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/EmailEditText"
+                    android:layout_alignStart="@id/EmailEditText"
+                    android:layout_alignEnd="@id/NomEditText"
+                    android:layout_toRightOf="@id/AdressetextView"
+                    android:ems="10"
+                    android:inputType="textPostalAddress"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/TelephonetextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/AdressetextView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Telephone"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/TelephoneEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/AdresseEditText"
+                    android:layout_alignStart="@id/AdresseEditText"
+                    android:layout_alignEnd="@id/NomEditText"
+                    android:layout_toRightOf="@id/TelephonetextView"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/sexeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/TelephonetextView"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Sexe"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/TelephoneEditText"
+                    android:layout_alignStart="@id/NomEditText"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/sexeTextView"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/femmeCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Femme"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/hommeCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Homme"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/autreCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Autre"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/SupprimerClientButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Supprimer"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/EnregistrerButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:text="Enregistrer"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

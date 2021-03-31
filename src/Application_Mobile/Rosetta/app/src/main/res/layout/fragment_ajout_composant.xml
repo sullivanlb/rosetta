@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- La vue de la page d'ajout de composants. -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.30"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/ajoutComposantRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:foregroundTint="#FFFFFF"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/NomAjoutComposantTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Nom composant"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/NomAjoutComposantEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/NomAjoutComposantTextView"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/ajoutUniteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/NomAjoutComposantTextView"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="70dp"
+                    android:text="Unite"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/ajoutUniteEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NomAjoutComposantEditText"
+                    android:layout_alignStart="@id/NomAjoutComposantEditText"
+                    android:layout_alignEnd="@id/NomAjoutComposantEditText"
+                    android:layout_marginTop="50dp"
+                    android:layout_toRightOf="@id/ajoutUniteTextView"
+                    android:ems="10"
+                    android:hint="ex : kg, L, m"
+                    android:inputType="textPersonName"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/ajoutPrixTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajoutUniteTextView"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginTop="70dp"
+                    android:text="Prix"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/ajoutPrixEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajoutUniteEditText"
+                    android:layout_alignStart="@id/ajoutUniteEditText"
+                    android:layout_alignEnd="@id/NomAjoutComposantEditText"
+                    android:layout_marginTop="50dp"
+                    android:layout_toRightOf="@id/ajoutPrixTextView"
+                    android:ems="10"
+                    android:hint="ex : 2.50"
+                    android:inputType="number|numberDecimal"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ajoutComposantAnnulerButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="Annuler" />
+
+                <Button
+                    android:id="@+id/ajoutComposantEnregistrerButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="200dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/orange_fonce"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="Enregistrer" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
