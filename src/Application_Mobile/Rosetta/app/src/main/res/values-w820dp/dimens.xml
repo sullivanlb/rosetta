@@ -1,6 +1,0 @@
-<resources>
-    <!-- Exemple de personnalisation des dimensions définies à l'origine dans res/values/dimens.xml
-         (telles que les marges de l'écran) pour les écrans de +820dp de largeur disponible. Cela
-         inclurait les appareils de 7/10 pouces dans le paysage (~960dp/~1280dp respectivement). -->
-    <dimen name="activity_horizontal_margin">64dp</dimen>
-</resources>
