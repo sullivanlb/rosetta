@@ -770,7 +770,8 @@ public class AccesLocal {
     public void ajoutAppartientSC(Scenario scenario, Composant composant, int quantite) {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "INSERT INTO AppartientSC (unScenario, unComposant, quantite) values";
-        requete += "(\"" + scenario.getIdScenario()+ "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
+        System.out.println("idscenario : " + scenario.getIdScenario() + " idcomposant : " +composant.getIdComposant());
+        requete += "(\"" + scenario.getIdScenario() + "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
         this.bd.execSQL(requete);
     }
 
@@ -783,8 +784,8 @@ public class AccesLocal {
      */
     public void ajoutAppartientSQ(Scenario scenario, Question question) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO AppartientSC (unScenario, uneQuestion) values";
-        requete += "(\"\"" + scenario.getIdScenario() + "\", \""+ question.getIdQuestion() +"\")" ;
+        String requete = "INSERT INTO AppartientSQ (unScenario, uneQuestion) values";
+        requete += "(\"" + scenario.getIdScenario() + "\", \"" + question.getIdQuestion() + "\")";
         this.bd.execSQL(requete);
     }
 

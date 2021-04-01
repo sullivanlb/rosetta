@@ -19,6 +19,7 @@ import com.example.rosetta.ui.main.ScenarioFragment;
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Cette classe permet d'ajouter un scenario et d'enregistrer les informations de celui-ci
@@ -57,6 +58,7 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
                 //Vérification de l'Arrayliste pack et composant != vide
                 if(this.nouveauScenarioFragment.getListeObjectPackComposant().size() > 0){
 
+
                     //Ajout d'un Scenario
                     Scenario scenario = new Scenario(0, nomScenario);
                     Controleur.getInstance(this.nouveauScenarioFragment.getContext()).creerScenario(scenario);
@@ -65,20 +67,21 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
                     ArrayList<Object> listObject = this.nouveauScenarioFragment.getListeObjectPackComposant();
 
                     for(int i = 0; i < listObject.size(); i++){
-                        if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Composant")){
-                            Composant composant = (Composant) listObject.get(i);
-                            int quantite = this.nouveauScenarioFragment.getHashmapIdComposantQuantite().get(composant.getIdComposant());
 
-                           Controleur.getInstance(this.nouveauScenarioFragment.getContext())
-                                   .creerAppartientSC(scenario, composant, quantite);
-
-                        }
-                        else if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Pack")){
+                        if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Pack")){
                             Pack pack = (Pack) listObject.get(i);
                             int quantite = this.nouveauScenarioFragment.getHashmapIdPackQuantite().get(pack.getIdPack());
 
                             Controleur.getInstance(this.nouveauScenarioFragment.getContext())
                                     .creerAppartientSP(scenario, pack, quantite);
+
+                        }
+                        else if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Composant")){
+                            Composant composant = (Composant) listObject.get(i);
+                            int quantite = this.nouveauScenarioFragment.getHashmapIdComposantQuantite().get(composant.getIdComposant());
+
+                            Controleur.getInstance(this.nouveauScenarioFragment.getContext())
+                                    .creerAppartientSC(scenario, composant, quantite);
 
                         }
                     }

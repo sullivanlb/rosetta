@@ -34,7 +34,7 @@ public class ControleurListeQuestionScenario implements AdapterView.OnItemClickL
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         // Récupération des informations du pack sélectionné
-        Question question = this.nouveauScenarioFragment.getListeQuestions().get(position);
+        Question question = this.nouveauScenarioFragment.getListeQuestionTemporaire().get(position);
         this.nouveauScenarioFragment.setIndiceSelectionnerQuestion(position);
 
         //Demande la confirmation de supprimer la question.

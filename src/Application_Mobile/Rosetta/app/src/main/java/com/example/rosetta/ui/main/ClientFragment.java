@@ -42,7 +42,7 @@ public class ClientFragment extends Fragment {
     private ClientAdapter adapteur;
     private ListView liste;
     private Button enregistrerBouton;
-    private int indiceSelectionner;
+    private int indiceSelectionner = -1;
     private int idClient;
 
     @Nullable
@@ -124,6 +124,7 @@ public class ClientFragment extends Fragment {
 
         this.adapteur = new ClientAdapter(this.getActivity(), listeClients);
         this.liste.setAdapter(this.adapteur);
+        this.setIndiceSelectionner(-1);
 
         return rootView;
     }
