@@ -14,7 +14,7 @@ import java.util.HashMap;
  * Cette classe permet la liaison propre entre le {@link com.example.rosetta.controller.Controleur}
  * et la base de données interne. Elle ajoute/modifie/supprime directement dans les tables.
  *
- * @author Christophe, Lucy
+ * @author Christophe, Lucy, Alice
  * @version 2.0
  */
 public class AccesLocal {
@@ -629,6 +629,29 @@ public class AccesLocal {
         return tousLesElements;
     }
 
+    /**
+     * Récupère tous les composants de la table appartient PC.
+     *
+     * @return la liste de toutes les liaisons
+     */
+    public ArrayList<Integer> tousLesElementsPC_Quantite() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientPC";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int quantite = curseur.getInt(2);
+
+            tousLesElements.add(quantite);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
 
     /**
      *
@@ -645,13 +668,14 @@ public class AccesLocal {
     /**
      * Ajoute un pack et un composant dans AppartientSP.
      *
-     * @param idScenario l'id du pack.
-     * @param  idPack l'id composant
+     * @param scenario le scenario.
+     * @param  pack le pack
+     * @param  quantite la quantité
      */
-    public void ajoutAppartientSP(int idScenario, int idPack, int quantite) {
+    public void ajoutAppartientSP(Scenario scenario, Pack pack, int quantite) {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "INSERT INTO AppartientSP (unScenario, unPack, quantite) values";
-        requete += "(\"" + idScenario + "\", \"" + idPack + "\", \""+ quantite +"\")";
+        requete += "(\"" + scenario.getIdScenario() + "\", \"" + pack.getIdPack() + "\", \""+ quantite +"\")";
         this.bd.execSQL(requete);
     }
 
@@ -731,6 +755,36 @@ public class AccesLocal {
     public void supprimerPackSP(int idPack){
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "DELETE FROM AppartientSP WHERE unPack = \"" + idPack + "\"";
+        this.bd.execSQL(requete);
+    }
+
+    //================================ Appartient Scenario Composant =============================
+
+    /**
+     * Ajoute un pack et un composant dans AppartientSC.
+     *
+     * @param scenario le scenario.
+     * @param  composant le composant.
+     * @param  quantite la quantité.
+     */
+    public void ajoutAppartientSC(Scenario scenario, Composant composant, int quantite) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientSC (unScenario, unComposant, quantite) values";
+        requete += "(\"" + scenario.getIdScenario()+ "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
+        this.bd.execSQL(requete);
+    }
+
+    //========================== Appartient Scenario Question ====================================
+    /**
+     * Ajoute un scenario et une question dans AppartientSQ.
+     *
+     * @param scenario le scenario.
+     * @param  question  la question.
+     */
+    public void ajoutAppartientSQ(Scenario scenario, Question question) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientSC (unScenario, uneQuestion) values";
+        requete += "(\"\"" + scenario.getIdScenario() + "\", \""+ question.getIdQuestion() +"\")" ;
         this.bd.execSQL(requete);
     }
 

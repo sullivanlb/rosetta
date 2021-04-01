@@ -4,16 +4,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.rosetta.R;
+import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
+import com.example.rosetta.ui.main.AjoutPackFragment;
+import com.example.rosetta.ui.main.ClientFragment;
 import com.example.rosetta.ui.main.ComposantPackFragment;
+
+import com.example.rosetta.ui.main.ScenarioFragment;
+
+import java.util.ArrayList;
 
 /**
  * Cette classe permet d'afficher les informations du composant sélectionné dans le formulaire.
  *
- * @author Lucy
+ * @author Lucy, Alice 
  * @version 2.0
  */
 
@@ -81,9 +89,6 @@ public class ControleurListeComposantsComposantPack implements AdapterView.OnIte
                         this.composantPackFragment.getListeComposantDePack().add(composant);
                         this.composantPackFragment.getHashmapIdComposantQuantite().put(identifiant, quantite);
                         this.composantPackFragment.actualiserListeComposantDePack();
-
-                        // Vider le champ de la quantité
-                        editQuantite.setText("");
                     } else {
                         Toast.makeText(this.composantPackFragment.getContext(), "Veuillez saisir la quantité avant.", Toast.LENGTH_LONG).show();
                     }

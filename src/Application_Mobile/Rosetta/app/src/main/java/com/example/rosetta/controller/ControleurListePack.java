@@ -1,5 +1,6 @@
 package com.example.rosetta.controller;
 
+import android.service.controls.Control;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -9,21 +10,21 @@ import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
 import com.example.rosetta.ui.main.ComposantPackFragment;
 import com.example.rosetta.ui.main.NouveauDevisFragment;
-import com.example.rosetta.ui.main.NouveauScenarioFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Cette classe permet d'afficher les informations du pack sélectionné dans le formulaire pour le modifie.
  *
- * @author Lucy
+ * @author Lucy, Alice 
  * @version 2.0
  */
 
 public class ControleurListePack implements AdapterView.OnItemClickListener{
 
     private ComposantPackFragment composantPackFragment;
-    private NouveauScenarioFragment nouveauScenarioFragment;
     private NouveauDevisFragment nouveauDevisFragment;
 
     /**
@@ -36,6 +37,7 @@ public class ControleurListePack implements AdapterView.OnItemClickListener{
             this.composantPackFragment = sf;
         }
     }
+
 
     /**
      * Le constructeur crée une nouvelle forme de ControleurListeComposants
@@ -76,7 +78,7 @@ public class ControleurListePack implements AdapterView.OnItemClickListener{
 
         for(int i = 0; i < packsPC.size(); i++) {
             Integer idPackPC = packsPC.get(i);
-            System.out.println("idPackPC.intValue() : " + idPackPC.intValue() + " pack.getIdPack() : " + pack.getIdPack());
+
             if (idPackPC.intValue() == pack.getIdPack()) {
                 this.composantPackFragment.getHashmapIdComposantQuantite().put(idPackPC, composantsPC.get(i));
 

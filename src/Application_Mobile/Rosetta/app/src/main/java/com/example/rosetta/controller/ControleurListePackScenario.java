@@ -65,6 +65,7 @@ public class ControleurListePackScenario implements AdapterView.OnItemClickListe
             if( quantite > 0){
 
                 this.nouveauScenarioFragment.getListeObjectPackComposant().add(pack);
+                this.nouveauScenarioFragment.getHashmapIdPackQuantite().put(idPack, quantite);
 
                 ObjectAdapter adapter = new ObjectAdapter(this.nouveauScenarioFragment.getActivity(), nouveauScenarioFragment.getListeObjectPackComposant());
                 this.nouveauScenarioFragment.getListViewObject().setAdapter(adapter);
@@ -86,6 +87,7 @@ public class ControleurListePackScenario implements AdapterView.OnItemClickListe
                     Pack pa = (Pack) this.nouveauScenarioFragment.getListeObjectPackComposant().get(j);
                     if(pa.getIdPack() == idPack){
                         this.nouveauScenarioFragment.getListeObjectPackComposant().remove(j);
+                        this.nouveauScenarioFragment.getHashmapIdPackQuantite().remove(idPack);
                     }
                 }
                 j++;

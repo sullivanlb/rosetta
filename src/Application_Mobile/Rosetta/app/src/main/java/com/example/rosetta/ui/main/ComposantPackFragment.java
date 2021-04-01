@@ -255,10 +255,26 @@ public class ComposantPackFragment extends Fragment {
 
     /**
      * Getter
+     * @return l'indice selectionné
+     */
+    public int getIndiceSelectionnerPack() {
+        return indiceSelectionnerPack;
+    }
+
+    /**
+     * Getter
      * @return l'identifiant du composant selectionne
      */
     public int getIdSelectionnnerComposant() {
         return idSelectionnnerComposant;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getIdSelectionnnerPack() {
+        return idSelectionnnerPack;
     }
 
     /**

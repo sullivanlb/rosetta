@@ -40,7 +40,7 @@ public class ControleurAjoutQuestionScenario implements View.OnClickListener {
 
             //Ajoute la question à l'Arrayliste
             Question question = new Question(1, questionStr);
-            this.nouveauScenarioFragment.getListeQuestions().add(question);
+            this.nouveauScenarioFragment.getListeQuestionTemporaire().add(question);
 
             //Remet le champ à vide
             editQuestion.setText("");

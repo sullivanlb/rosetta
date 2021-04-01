@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Cette classe permet de faire la différence proprement entre l'ensemble des contrôleurs et l'accès
  * local à la base de données interne.
  *
- * @author Christophe, Lucy
+ * @author Christophe, Lucy, Alice
  * @version 2.0
  */
 public class Controleur {
@@ -40,6 +40,7 @@ public class Controleur {
         this.listeComposants = Controleur.accesLocal.tousLesComposants();
         this.listePacks = Controleur.accesLocal.tousLesPacks();
         this.listeQuestions = Controleur.accesLocal.tousLesQuestions();
+        this.listeScenarios = Controleur.accesLocal.tousLesScenarios();
     }
 
     /**
@@ -139,6 +140,7 @@ public class Controleur {
         if (scenario != null) {
             Controleur.accesLocal.ajoutScenario(scenario);
             this.listeScenarios.add(Controleur.accesLocal.dernierScenario());
+            System.out.println("Scénario créer ");
         }
     }
 
@@ -298,6 +300,15 @@ public class Controleur {
         return listePacks;
     }
 
+    /**
+     *
+     * @param
+     */
+
+    public void supprimerPack(int idPack){
+        Controleur.accesLocal.supprimerPack(idPack);
+    }
+
     // ===================================Devis ===========================================================
 
     /**
@@ -443,5 +454,144 @@ public class Controleur {
      */
     public ArrayList<Integer> getTousLesElementsPC_Packs() {
         return Controleur.accesLocal.tousLesElementsPC_Packs();
+    }
+
+    /**
+     * @return tous les packs de la table appartient PC
+     */
+    public ArrayList<Integer> getTousLesElementsPC_Quantite() {
+        return Controleur.accesLocal.tousLesElementsPC_Quantite();
+    }
+
+    /**
+     *
+     * @param
+     */
+
+    public void supprimerPackPC(int idPack){
+        Controleur.accesLocal.supprimerPackPC(idPack);
+    }
+
+    //========================== Appartient Scénario Composant =======================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientSC.
+     *
+     * @param scenario le scénario à ajouter
+     * @param composant le composant à ajouter
+     */
+    public void creerAppartientSC(Scenario scenario, Composant composant, int quantite) {
+        if (scenario!= null && composant != null) {
+            Controleur.accesLocal.ajoutAppartientSC(scenario, composant, quantite);
+        }
+    }
+
+    //=============================== Appartient Scénario Pack ======================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientSP.
+     *
+     * @param scenario le scénario à ajouter
+     * @param pack le pack à ajouter
+     * @param quantite la quantité à ajouter
+     */
+    public void creerAppartientSP(Scenario scenario, Pack pack, int quantite) {
+        if (scenario!= null && pack != null) {
+            Controleur.accesLocal.ajoutAppartientSP(scenario, pack, quantite);
+        }
+    }
+
+    /**
+     * Getter
+     * @return
+     */
+    public ArrayList<Integer> getTousLesElementsSP_scenarios(){
+        return Controleur.accesLocal.tousLesElementsSP_Scenarios();
+    }
+
+    /**
+     * Getter
+     * @return
+     */
+    public ArrayList<Integer> getTousLesElementsSP_pack(){
+        return Controleur.accesLocal.tousLesElementsSP_Pack();
+    }
+
+    /**
+     * Getter
+     * @return
+     */
+    public ArrayList<Integer> getTousLesElementsSP_quantite(){
+        return Controleur.accesLocal.tousLesElementsSP_Quantite();
+    }
+
+    /**
+     *
+     * @param
+     */
+
+    public void supprimerPackSP(int idPack){
+        Controleur.accesLocal.supprimerPackSP(idPack);
+    }
+
+
+    //========================= Appartient Scénario Question ========================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientSQ.
+     *
+     * @param scenario le scénario à ajouter
+     * @param question la question à ajouter
+     */
+    public void creerAppartientSQ(Scenario scenario, Question question) {
+        if (scenario!= null && question != null) {
+            Controleur.accesLocal.ajoutAppartientSQ(scenario, question);
+        }
+    }
+
+    //================================== Appartient Devis Pack ==================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientPC.
+     *
+     * @param idDevis le pack à ajouter
+     * @param idPack le composant à ajouter
+     */
+    public void creerAppartientDP(int idDevis, int idPack, int quantite) {
+        Controleur.accesLocal.ajoutAppartientDP(idDevis, idPack, quantite);
+    }
+
+    /**
+     *
+     * @param
+     */
+
+    public void supprimerPackDP(int idPack){
+        Controleur.accesLocal.supprimerPackDP(idPack);
+    }
+
+    /**
+     * Getter
+     * @return
+     */
+    public ArrayList<Integer> getTousLesElementsDP_devis(){
+        return Controleur.accesLocal.tousLesElementsDP_Devis();
+    }
+
+
+    /**
+     * Getter
+     * @return
+     */
+    public ArrayList<Integer> getTousLesElementsDP_pack(){
+        return Controleur.accesLocal.tousLesElementsDP_Pack();
+    }
+
+    /**
+     * Getter
+     * @return
+     */
+    public ArrayList<Integer> getTousLesElementsDP_quantite(){
+        return Controleur.accesLocal.tousLesElementsDP_Quantite();
     }
 }

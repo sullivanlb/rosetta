@@ -84,20 +84,8 @@ public class DevisFragment extends Fragment {
         ListView list = (ListView) rootView.findViewById(R.id.listView_devis);
         list.setAdapter(adapter);
 
-        Button editerDevisButton = (Button) rootView.findViewById(R.id.editerDevisButton);
         Button nouveauDevisButton = (Button) rootView.findViewById(R.id.nouveauDevisButton);
 
-        editerDevisButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SectionsPagerAdapter.setDevisFragment("NouveauDevisFragment");
-                FragmentManager frman = getFragmentManager();
-                FragmentTransaction ftran = frman.beginTransaction();
-                Fragment leFrag = new NouveauDevisFragment();
-                ftran.replace(R.id.view_pager, leFrag);
-                ftran.commit();
-            }
-        });
 
         nouveauDevisButton.setOnClickListener(new View.OnClickListener() {
             @Override

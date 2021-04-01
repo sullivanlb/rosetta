@@ -46,10 +46,9 @@ public class DialogQuestionScenario extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         int position = nouveauScenarioFragment.getIndiceSelectionnerQuestion();
-                        System.out.println("Position : " +position);
-                        System.out.println("Nom : " + nouveauScenarioFragment.getListeQuestions().get(position).getNomQuestion());
-                        nouveauScenarioFragment.getListeQuestions().remove(position);
-                        QuestionAdapter2 adapter = new QuestionAdapter2(getActivity(), nouveauScenarioFragment.getListeQuestions());
+
+                        nouveauScenarioFragment.getListeQuestionTemporaire().remove(position);
+                        QuestionAdapter2 adapter = new QuestionAdapter2(getActivity(), nouveauScenarioFragment.getListeQuestionTemporaire());
                         nouveauScenarioFragment.getListeViewQuestion().setAdapter(adapter);
 
 

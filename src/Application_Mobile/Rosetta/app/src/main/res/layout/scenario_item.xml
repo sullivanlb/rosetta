@@ -48,24 +48,6 @@
             android:layout_weight="1" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/modifierScenarioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:foregroundGravity="center_vertical"
-            app:backgroundTint="@color/white"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/supprimerScenarioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -191,12 +191,6 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_fonce"
                     android:text="Enregistrer devis" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/nouveaudevisRetourButton"
@@ -208,17 +202,6 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_fonce"
                     android:text="Retour" />
-
-                <Button
-                    android:id="@+id/nouveaudevisSupprimerButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/orange_fonce"
-                    android:text="Supprimer" />
             </LinearLayout>
 
         </LinearLayout>

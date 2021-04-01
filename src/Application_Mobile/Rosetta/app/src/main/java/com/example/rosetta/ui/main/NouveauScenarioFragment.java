@@ -64,6 +64,7 @@ public class NouveauScenarioFragment extends Fragment {
     private int idSelectionnnerPack;
 
     private ArrayList<Question> listeQuestions;
+    private  ArrayList<Question> listeQuestionTemporaire;
     private ListView listeViewQuestion;
     private QuestionAdapter2 adapteurQuestion;
     private int indiceSelectionnerQuestion;
@@ -74,6 +75,9 @@ public class NouveauScenarioFragment extends Fragment {
     private ObjectAdapter adapteurObject;
     private int indiceSelectionnerObject;
     private int idSelectionnnerObject;
+
+    private HashMap<Integer, Integer> hashmapIdComposantQuantite;
+    private HashMap<Integer, Integer> hashmapIdPackQuantite;
 
 
     @Nullable
@@ -97,6 +101,9 @@ public class NouveauScenarioFragment extends Fragment {
         this.adapteurComposant = new ComposantAdapter(this.getActivity(), listeComposants);
         this.listeViewComposant.setAdapter(this.adapteurComposant);
 
+        //Initialisation de la hashmap
+        this.hashmapIdComposantQuantite = new HashMap<Integer, Integer>();
+
         //================================= PACK ====================================================
 
         // La liste des composants récupérée depuis la base de données interne
@@ -110,17 +117,21 @@ public class NouveauScenarioFragment extends Fragment {
         this.adapteurPack = new PackAdapter(this.getActivity(), listePacks);
         this.listeViewPack.setAdapter(this.adapteurPack);
 
+        //Initisalisation de la hashmap
+        this.hashmapIdPackQuantite = new HashMap<Integer, Integer>();
+
         //============================== Question ===================================================
 
         // La liste des composants récupérée depuis la base de données interne
         this.listeQuestions = new ArrayList<Question>(this.controleur.getListeQuestions());
+        this.listeQuestionTemporaire = new ArrayList<Question>();
 
         // Initialisation de l'adapter pour les packs
         this.listeViewQuestion = (ListView) rootView.findViewById(R.id.listView_question);
         ControleurListeQuestionScenario controleurListeQuestionScenario = new ControleurListeQuestionScenario(this);
         this.listeViewQuestion.setOnItemClickListener(controleurListeQuestionScenario);
 
-        this.adapteurQuestion = new QuestionAdapter2(this.getActivity(), listeQuestions);
+        this.adapteurQuestion = new QuestionAdapter2(this.getActivity(), listeQuestionTemporaire);
         this.listeViewQuestion.setAdapter(this.adapteurQuestion);
 
         //================== Object = Arrayliste de Composant + de Pack ============================
@@ -243,10 +254,37 @@ public class NouveauScenarioFragment extends Fragment {
     /**
      * Getter
      *
+     * @return la liste des temporaire
+     */
+    public ArrayList<Question> getListeQuestionTemporaire() {
+        return listeQuestionTemporaire;
+    }
+
+    /**
+     * Getter
+     *
      * @return la liste des objects (composant et pack)
      */
     public ArrayList<Object> getListeObjectPackComposant() {
         return listeObjectPackComposant;
+    }
+
+    /**
+     * Getter
+     *
+     * @return la hashMap (idComposant et quantité)
+     */
+    public HashMap<Integer, Integer> getHashmapIdComposantQuantite() {
+        return hashmapIdComposantQuantite;
+    }
+
+    /**
+     * Getter
+     *
+     * @return la hashMap (idPack et quantité)
+     */
+    public HashMap<Integer, Integer> getHashmapIdPackQuantite() {
+        return hashmapIdPackQuantite;
     }
 
     /**

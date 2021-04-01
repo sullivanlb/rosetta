@@ -64,6 +64,8 @@ public class ControleurListeComposantScenario  implements AdapterView.OnItemClic
             if( quantite > 0){
 
                 this.nouveauScenarioFragment.getListeObjectPackComposant().add(composant);
+                this.nouveauScenarioFragment.getHashmapIdComposantQuantite().put(idComposant, quantite);
+
                 ObjectAdapter adapter = new ObjectAdapter(this.nouveauScenarioFragment.getActivity(), nouveauScenarioFragment.getListeObjectPackComposant());
                 this.nouveauScenarioFragment.getListViewObject().setAdapter(adapter);
 
@@ -83,6 +85,7 @@ public class ControleurListeComposantScenario  implements AdapterView.OnItemClic
                     Composant comp = (Composant) this.nouveauScenarioFragment.getListeObjectPackComposant().get(j);
                     if(comp.getIdComposant() == idComposant){
                        this.nouveauScenarioFragment.getListeObjectPackComposant().remove(j);
+                        this.nouveauScenarioFragment.getHashmapIdComposantQuantite().remove(idComposant);
                     }
                 }
                 j++;

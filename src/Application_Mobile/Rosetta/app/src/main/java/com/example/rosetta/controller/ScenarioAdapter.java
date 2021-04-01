@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+
 import com.example.rosetta.R;
 import com.example.rosetta.model.Scenario;
 import com.example.rosetta.ui.main.ScenarioFragment;
@@ -70,14 +71,6 @@ public class ScenarioAdapter extends BaseAdapter {
         // Modification des vues
         nomScenario.setText(listScenario.get(position).getNomScenario());
 
-        FloatingActionButton modifierScenarioButton = (FloatingActionButton) view.findViewById(R.id.modifierScenarioButton);
-        modifierScenarioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ScenarioFragment scenarioFragment = ScenarioFragment.getInstance();
-                scenarioFragment.actionModifier();
-            }
-        });
 
         FloatingActionButton voirScenarioButton = (FloatingActionButton) view.findViewById(R.id.voirScenarioButton);
 
