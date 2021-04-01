@@ -81,9 +81,8 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
             ArrayList<Client> list = Controleur.getInstance(this.clientFragment.getContext()).getListeClients();
 
             //Modifier un Client
-            System.out.println("this.clientFragment.getIndiceSelectionner(): " + this.clientFragment.getIndiceSelectionner());
             if (this.clientFragment.getIndiceSelectionner() >= 0) {
-                System.out.println("modification");
+
                 Client client = null;
 
                 for (int i = 0; i < list.size(); i++) {
@@ -111,7 +110,6 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
                 this.clientFragment.actualiserListeClients();
 
             } else {
-                System.out.println("ajout");
 
                 //Ajouter un Client
 

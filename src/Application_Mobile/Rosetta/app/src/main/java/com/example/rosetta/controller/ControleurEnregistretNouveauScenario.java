@@ -63,6 +63,7 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
                     Scenario scenario = new Scenario(0, nomScenario);
                     Controleur.getInstance(this.nouveauScenarioFragment.getContext()).creerScenario(scenario);
 
+
                     // Ajout aux tables AppartientSC(scenario, composant, quantite) et  AppartientSP(scenario, pack, quantite)
                     ArrayList<Object> listObject = this.nouveauScenarioFragment.getListeObjectPackComposant();
 

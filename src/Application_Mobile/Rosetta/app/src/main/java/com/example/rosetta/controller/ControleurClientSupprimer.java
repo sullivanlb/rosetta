@@ -47,9 +47,8 @@ public class ControleurClientSupprimer implements View.OnClickListener {
         CheckBox hommeButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.hommeCheckbox);
         CheckBox autreButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.autreCheckbox);
 
-        Controleur.getInstance(this.clientFragment.getContext()).supprimerClient(this.clientFragment.getIdClient());
-        this.clientFragment.actualiserListeClients();
-
+        //Demande la confirmation de supprimer la question.
+        openDialog();
 
         // Vidage des champs
         editPrenom.setText("");
@@ -60,5 +59,12 @@ public class ControleurClientSupprimer implements View.OnClickListener {
         femmeButton.setChecked(false);
         hommeButton.setChecked(false);
         autreButton.setChecked(false);
+
+    }
+
+    public void  openDialog(){
+
+        DialogSuppressionClient dialogSuppressionClient = new DialogSuppressionClient(this.clientFragment);
+        dialogSuppressionClient.show(this.clientFragment.getActivity().getSupportFragmentManager(),"Supprimer Client" );
     }
 }

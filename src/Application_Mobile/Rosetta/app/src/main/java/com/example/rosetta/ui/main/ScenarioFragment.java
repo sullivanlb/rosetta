@@ -18,6 +18,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
+import com.example.rosetta.controller.ComposantAdapter;
+import com.example.rosetta.controller.Controleur;
+import com.example.rosetta.controller.ControleurListeComposantScenario;
+import com.example.rosetta.controller.ControleurListeScenario;
+import com.example.rosetta.controller.ControleurScenarioSupprimer;
+import com.example.rosetta.controller.DevisAdapter;
 import com.example.rosetta.controller.ScenarioAdapter;
 import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
@@ -37,58 +43,47 @@ public class ScenarioFragment extends Fragment {
 
     private static ScenarioFragment scenarioFragment;
 
+    private View rootView;
+    private Controleur controleur;
+
+    private ArrayList<Scenario> listeScenarios;
+    private ListView listeViewScenarios;
+    private ScenarioAdapter adapteurScenarios;
+    private int indiceSelectionnerScenario;
+    private int idSelectionnnerScenario;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_scenario_layout, container, false);
+        this.rootView = inflater.inflate(R.layout.fragment_scenario_layout, container, false);
 
         scenarioFragment = this;
 
-        // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
-        // données
-        ArrayList<Scenario> scenarioListArray = new ArrayList<Scenario>();
-        Scenario test1 = new Scenario(1, "Nom court");
-        Scenario test2 = new Scenario(2, "Test");
-        Scenario test3 = new Scenario(2, "Scenario 3");
-        Scenario test4 = new Scenario(2, "Nom de scenario");
-        Scenario test5 = new Scenario(2, "Nom très long de scénario comme ça on peut tester tous les cas possibles (exhaustivité)");
-        Scenario test6 = new Scenario(2, "Encore un test de nom très long, le voici : deuxieme nom très long de scénario comme ça on peut tester vraiment tous les cas possibles (exhaustivité encore et encore)");
-        Scenario test7 = new Scenario(2, "Salle de bain");
-        Scenario test8 = new Scenario(2, "Chauffage maison");
-        Scenario test9 = new Scenario(2, "Chauffage chambre 2");
-        Scenario test10 = new Scenario(2, "Baignoire");
-        Scenario test11 = new Scenario(2, "Chauffe-eau");
-        Scenario test12 = new Scenario(2, "Scenario facile");
-        Scenario test13 = new Scenario(2, "Scenario moyen");
-        Scenario test14 = new Scenario(2, "Scenario difficile");
-        Scenario test15 = new Scenario(2, "Scenario normal");
+        // Le controleur principal (accès à la base de données interne)
+        this.controleur = Controleur.getInstance(this.getContext());
 
-        // On ajoute les scénarios dans la liste de scénarios
-        scenarioListArray.add(test1);
-        scenarioListArray.add(test2);
-        scenarioListArray.add(test3);
-        scenarioListArray.add(test4);
-        scenarioListArray.add(test5);
-        scenarioListArray.add(test6);
-        scenarioListArray.add(test7);
-        scenarioListArray.add(test8);
-        scenarioListArray.add(test9);
-        scenarioListArray.add(test10);
-        scenarioListArray.add(test11);
-        scenarioListArray.add(test12);
-        scenarioListArray.add(test13);
-        scenarioListArray.add(test14);
-        scenarioListArray.add(test15);
+        // La liste des scénarios récupérée depuis la base de données interne
+        this.listeScenarios = new ArrayList<Scenario>(this.controleur.getListeScenarios());
 
-        // Initialisation de l'adapter pour scenario
-        ScenarioAdapter adapter = new ScenarioAdapter(this.getActivity(), scenarioListArray);
-        ListView list = (ListView) rootView.findViewById(R.id.scenarioListe);
-        list.setAdapter(adapter);
+        // Initialisation de l'adapteur pour les composants
+        this.listeViewScenarios = (ListView) rootView.findViewById(R.id.scenarioListe);
+        ControleurListeScenario controleurListeScenario = new ControleurListeScenario(this);
+        this.listeViewScenarios.setOnItemClickListener(controleurListeScenario);
 
+        this.adapteurScenarios = new ScenarioAdapter(this.getActivity(),listeScenarios);
+        this.listeViewScenarios.setAdapter(this.adapteurScenarios);
+
+
+        //======================= Boutons ==========================================================
+
+        //Bouton pour supprimer un scénario
+        //FloatingActionButton supprimerScenario = (FloatingActionButton) rootView.findViewById(R.id.supprimerScenarioButton);
+        //ControleurScenarioSupprimer controleurScenarioSupprimer = new ControleurScenarioSupprimer(this);
+        //supprimerScenario.setOnClickListener(controleurScenarioSupprimer);
+
+        //Bouton pour ajouter des composants ou des packs
         Button composantPackButton = (Button) rootView.findViewById(R.id.composantsPacksButton);
-        Button nouveauScenario = (Button) rootView.findViewById(R.id.nouveauScenarioButton);
-
         composantPackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +96,8 @@ public class ScenarioFragment extends Fragment {
             }
         });
 
+        //Bouton pour ajouter un scénario
+        Button nouveauScenario = (Button) rootView.findViewById(R.id.nouveauScenarioButton);
         nouveauScenario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,8 +111,72 @@ public class ScenarioFragment extends Fragment {
         });
 
 
-        return rootView;
+        return this.rootView;
     }
+
+    /**
+     * Getter
+     *
+     * @return la liste des Scénarios
+     */
+
+    public ArrayList<Scenario> getListeScenarios() {
+        return listeScenarios;
+    }
+
+    /**
+     * Getter
+     *
+     * @return l'indice selectionné
+     */
+
+    public int getIndiceSelectionnerScenario() {
+        return indiceSelectionnerScenario;
+    }
+
+    /**
+     * Setter
+     *
+     * @param indiceSelectionnerScenario à modifier
+     */
+
+    public void setIndiceSelectionnerScenario(int indiceSelectionnerScenario) {
+        this.indiceSelectionnerScenario = indiceSelectionnerScenario;
+    }
+
+    /**
+     * Getter
+     *
+     * @return l'id selectionné
+     */
+
+    public int getIdSelectionnnerScenario() {
+        return idSelectionnnerScenario;
+    }
+
+    /**
+     * Setter
+     *
+     * @param idSelectionnnerScenario à modifier
+     */
+
+    public void setIdSelectionnnerScenario(int idSelectionnnerScenario) {
+        this.idSelectionnnerScenario = idSelectionnnerScenario;
+    }
+
+    /**
+     * Permet d'actualiser la liste affichée des composants lorsqu'un scénario est ajouté, ou supprimé
+     */
+    public void actualiserListeScenarios() {
+        listeScenarios = new ArrayList<Scenario>(controleur.getListeScenarios());
+        adapteurScenarios = new ScenarioAdapter(getActivity(), listeScenarios);
+        listeViewScenarios.setAdapter(adapteurScenarios);
+    }
+
+    /**
+     * Cette méthode permet d'accéder au fragment InfoScenarioFragment à partir du FloatingActionButton
+     * "voirScenarioButton" de la listeView de ScénarioFragement.
+     */
 
     public void actionVoir(){
         SectionsPagerAdapter.setScenarioFragment("InfoScenarioFragment");
@@ -126,6 +187,11 @@ public class ScenarioFragment extends Fragment {
         ftran.commit();
     }
 
+    /**
+     * Cette méthode permet de donner l'accès à une instance de ScenarioFragement.
+     *
+     * @return une instance de ScenarioFragment
+     */
     public static ScenarioFragment getInstance(){
         if (scenarioFragment == null){
             scenarioFragment = new ScenarioFragment();
