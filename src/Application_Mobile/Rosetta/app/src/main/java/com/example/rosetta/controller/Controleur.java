@@ -7,6 +7,7 @@ import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Devis;
 import com.example.rosetta.model.Pack;
+import com.example.rosetta.model.Question;
 import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Controleur {
     private static ArrayList<Scenario> listeScenarios;
     private static ArrayList<Composant> listeComposants;
     private static ArrayList<Pack> listePacks;
+    private static  ArrayList<Question> listeQuestions;
     private static ArrayList<Devis> listeDevis;
 
     /**
@@ -37,6 +39,7 @@ public class Controleur {
         this.listeClients = Controleur.accesLocal.tousLesClients();
         this.listeComposants = Controleur.accesLocal.tousLesComposants();
         this.listePacks = Controleur.accesLocal.tousLesPacks();
+        this.listeQuestions = Controleur.accesLocal.tousLesQuestions();
     }
 
     /**
@@ -367,6 +370,53 @@ public class Controleur {
         return listeDevis;
     }
 
+    // =================================== Question ================================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter une question.
+     *
+     * @param question la question à ajouter
+     */
+    public void creerQuestion(Question question) {
+        if (question != null) {
+            Controleur.accesLocal.ajoutQuestion(question);
+            this.listeQuestions.add(Controleur.accesLocal.derniereQuestion());
+        }
+    }
+
+    /**
+     * Demande à la classe accesLocal de supprimer une question.
+     *
+     * @param id l'identifiant de la question à supprimer
+     */
+    public void supprimerQuestion(int id) {
+        Controleur.accesLocal.supprimerQuetion(id);
+
+        int position = 0;
+        boolean trouve = false;
+
+        //En fonction de id, on retrouve la position du client dans l'ArrayList
+        while (position < this.listeQuestions.size() && !trouve) {
+            if (this.listeQuestions.get(position).getIdQuestion() == id) {
+                trouve = true;
+            }
+            else position++;
+        }
+        if (trouve) {
+            this.listeQuestions.remove(position);
+        }
+    }
+
+    /**
+     * Retourne la liste de tous les questions.
+     *
+     * @return le liste de tous les questions.
+     */
+    public static ArrayList<Question> getListeQuestions() {
+        return listeQuestions;
+    }
+
+
     //================================== Appartient Pack Composant ==================================
 
     /**
@@ -392,6 +442,6 @@ public class Controleur {
      * @return tous les packs de la table appartient PC
      */
     public ArrayList<Integer> getTousLesElementsPC_Packs() {
-        return Controleur.accesLocal.tousLesElementsPC_Composants();
+        return Controleur.accesLocal.tousLesElementsPC_Packs();
     }
 }

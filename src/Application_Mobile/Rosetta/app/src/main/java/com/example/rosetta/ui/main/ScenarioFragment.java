@@ -1,15 +1,11 @@
 package com.example.rosetta.ui.main;
 
-import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ScenarioAdapter;
-import com.example.rosetta.model.Client;
-import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Scenario;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -107,7 +100,7 @@ public class ScenarioFragment extends Fragment {
                 SectionsPagerAdapter.setScenarioFragment("NouveauModifierScenarioFragment");
                 FragmentManager frman = getFragmentManager();
                 FragmentTransaction ftran = frman.beginTransaction();
-                Fragment leFrag = new NouveauModifierScenarioFragment();
+                Fragment leFrag = new NouveauScenarioFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
             }
@@ -121,7 +114,7 @@ public class ScenarioFragment extends Fragment {
         SectionsPagerAdapter.setScenarioFragment("NouveauModifierScenarioFragment");
         FragmentManager frman = getFragmentManager();
         FragmentTransaction ftran = frman.beginTransaction();
-        Fragment leFrag = new NouveauModifierScenarioFragment();
+        Fragment leFrag = new NouveauScenarioFragment();
         ftran.replace(R.id.view_pager, leFrag);
         ftran.commit();
     }

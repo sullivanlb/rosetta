@@ -383,6 +383,16 @@ public class AccesLocal {
         return listePacks;
     }
 
+    /**
+     *
+     * @param idPack
+     */
+    public void supprimerPack(int idPack){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM Pack WHERE idPack = \"" + idPack + "\"";
+        this.bd.execSQL(requete);
+    }
+
     //============================== Devis =============================================================
 
     /**
@@ -481,6 +491,83 @@ public class AccesLocal {
         return listeDevis;
     }
 
+    //============================ Question ========================================================
+
+    /**
+     * Ajouter un nouvelle question
+     *
+     * @param question, le nouvelle pquestion
+     */
+
+    public void ajoutQuestion(Question question) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO Question (nomQuestion) values";
+        requete += "(\"" + question.getNomQuestion()+ "\")";
+        this.bd.execSQL(requete);
+    }
+
+    /**
+     * Supprimer une question.
+     *
+     * @param id le numéro d'identification de la question à supprimer
+     */
+    public void supprimerQuetion(int id) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM Question WHERE idQuestion = \"" + id + "\"";
+        this.bd.execSQL(requete);
+    }
+
+    /**
+     * Récupère la dernière question ajoutée.
+     *
+     * @return la dernière question ajoutée
+     */
+    public Question derniereQuestion() {
+        this.bd = this.accesBD.getReadableDatabase();
+        Question question = null;
+        String requete = "SELECT * FROM Question";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToLast();
+
+        if (!curseur.isAfterLast()) {
+            int id = curseur.getInt(0);
+            String nom = curseur.getString(1);
+
+            question = new Question(id, nom);
+        }
+
+        curseur.close();
+        return question;
+    }
+
+    /**
+     * Récupère tous les questions.
+     *
+     * @return la liste de tous les questions.
+     */
+    public ArrayList<Question> tousLesQuestions() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Question> listeQuestions = new ArrayList<Question>();
+        Question question = null;
+        String requete = "SELECT * FROM Question";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int id = curseur.getInt(0);
+            String nom = curseur.getString(1);
+
+            question = new Question(id, nom);
+            listeQuestions.add(question);
+
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return listeQuestions;
+    }
+
+
     //=========================== Appartient Pack Composant =========================================
 
     /**
@@ -541,4 +628,203 @@ public class AccesLocal {
         curseur.close();
         return tousLesElements;
     }
+
+
+    /**
+     *
+     * @param idPack
+     */
+    public void supprimerPackPC(int idPack){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientPC WHERE unPack = \"" + idPack + "\"";
+        this.bd.execSQL(requete);
+    }
+
+    //=========================== Appartient Scenario Pack =========================================
+
+    /**
+     * Ajoute un pack et un composant dans AppartientSP.
+     *
+     * @param idScenario l'id du pack.
+     * @param  idPack l'id composant
+     */
+    public void ajoutAppartientSP(int idScenario, int idPack, int quantite) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientSP (unScenario, unPack, quantite) values";
+        requete += "(\"" + idScenario + "\", \"" + idPack + "\", \""+ quantite +"\")";
+        this.bd.execSQL(requete);
+    }
+
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> tousLesElementsSP_Scenarios() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSP";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idScenario = curseur.getInt(0);
+
+            tousLesElements.add(idScenario);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> tousLesElementsSP_Pack() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSP";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idPack = curseur.getInt(1);
+
+            tousLesElements.add(idPack);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> tousLesElementsSP_Quantite() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSP";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int quantite = curseur.getInt(2);
+
+            tousLesElements.add(quantite);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     *
+     */
+
+    public void supprimerPackSP(int idPack){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientSP WHERE unPack = \"" + idPack + "\"";
+        this.bd.execSQL(requete);
+    }
+
+
+
+    //=========================== Appartient Devis Pack =========================================
+
+    /**
+     * Ajoute un pack et un composant dans AppartientDP.
+     *
+     * @param idDevis l'id du pack.
+     * @param  idPack l'id composant
+     */
+    public void ajoutAppartientDP(int idDevis, int idPack, int quantite) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientDP (unDevis, unPack, quantite) values";
+        requete += "(\"" + idDevis + "\", \"" + idPack + "\", \""+ quantite +"\")";
+        this.bd.execSQL(requete);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> tousLesElementsDP_Devis() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientDP";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idDevis = curseur.getInt(0);
+
+            tousLesElements.add(idDevis);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> tousLesElementsDP_Pack() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientDP";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idPack = curseur.getInt(1);
+
+            tousLesElements.add(idPack);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Integer> tousLesElementsDP_Quantite() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientDP";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int quantite = curseur.getInt(2);
+
+            tousLesElements.add(quantite);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     *
+     * @param idPack
+     */
+    public void supprimerPackDP(int idPack){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientDP WHERE unPack = \"" + idPack + "\"";
+        this.bd.execSQL(requete);
+    }
+
 }

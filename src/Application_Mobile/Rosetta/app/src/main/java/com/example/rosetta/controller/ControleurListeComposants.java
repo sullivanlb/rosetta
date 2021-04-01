@@ -3,19 +3,12 @@ package com.example.rosetta.controller;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.example.rosetta.R;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
-import com.example.rosetta.ui.main.AjoutPackFragment;
-import com.example.rosetta.ui.main.ClientFragment;
 import com.example.rosetta.ui.main.ComposantPackFragment;
 import com.example.rosetta.ui.main.NouveauDevisFragment;
-import com.example.rosetta.ui.main.NouveauModifierScenarioFragment;
-import com.example.rosetta.ui.main.ScenarioFragment;
-
-import java.util.ArrayList;
+import com.example.rosetta.ui.main.NouveauScenarioFragment;
 
 /**
  * Cette classe permet d'afficher les informations du composant sélectionné dans le formulaire.
@@ -27,7 +20,7 @@ import java.util.ArrayList;
 public class ControleurListeComposants implements AdapterView.OnItemClickListener  {
 
     private ComposantPackFragment composantPackFragment;
-    private NouveauModifierScenarioFragment nouveauModifierScenarioFragment;
+    private NouveauScenarioFragment nouveauScenarioFragment;
     private  NouveauDevisFragment nouveauDevisFragment;
 
     /**
@@ -41,17 +34,6 @@ public class ControleurListeComposants implements AdapterView.OnItemClickListene
         }
     }
 
-    /**
-     * Le constructeur crée une nouvelle forme de ControleurListeComposants
-     *
-     * @param nmSf le contexte {@link NouveauModifierScenarioFragment}
-     */
-
-    public  ControleurListeComposants(NouveauModifierScenarioFragment nmSf) {
-        if(nmSf != null){
-            this.nouveauModifierScenarioFragment = nmSf;
-        }
-    }
 
     /**
      * Le constructeur crée une nouvelle forme de ControleurListeComposants

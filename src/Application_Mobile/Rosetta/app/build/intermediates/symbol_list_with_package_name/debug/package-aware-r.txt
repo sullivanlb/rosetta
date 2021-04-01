@@ -1765,6 +1765,7 @@ id center_horizontal
 id center_vertical
 id chain
 id chains
+id checkBoxPack
 id checkDevisButton
 id checkbox
 id checked
@@ -1922,6 +1923,9 @@ id modif_nomPrixEditText
 id modif_nomPrixTextView
 id modif_nomUniteEditText
 id modif_nomUniteTextView
+id modif_quantitePackEditText
+id modif_quantitePackTextView
+id modif_quantitePackTextView3
 id modifierScenarioButton
 id month_grid
 id month_navigation_bar
@@ -1979,7 +1983,6 @@ id nouveaudevisRetourButton
 id nouveaudevisSupprimerButton
 id nouveauscenarioAnnulerButton
 id nouveauscenarioEnregistrerButton
-id nouveauscenarioSupprimerButton
 id off
 id on
 id outline
@@ -2001,7 +2004,8 @@ id postLayout
 id prixComposantPack_nouveau_devisTextView
 id progress_circular
 id progress_horizontal
-id questionTextView
+id quantiteEditTextScenario
+id questionScenarioTextView
 id question_textView
 id question_textView2
 id radio
@@ -2233,9 +2237,9 @@ layout fragment_client_layout
 layout fragment_composantpack_layout
 layout fragment_devis_layout
 layout fragment_devis_question_layout
+layout fragment_nouveau_scenario_layout
 layout fragment_nouveaudevis_client_scenario
 layout fragment_nouveaudevis_final_layout
-layout fragment_nouveaumodifier_scenario_layout
 layout fragment_scenario_layout
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2281,6 +2285,7 @@ layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout pack_item
+layout question_item
 layout question_item_devis
 layout scenario2_item
 layout scenario_item

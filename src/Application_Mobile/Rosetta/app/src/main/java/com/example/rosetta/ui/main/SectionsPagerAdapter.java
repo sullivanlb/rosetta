@@ -7,7 +7,6 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
 
@@ -87,7 +86,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             scenarioFragment =  new AjoutComposantFragment();
         }
         else if (texte.equals("NouveauModifierScenarioFragment")) {
-            scenarioFragment = new NouveauModifierScenarioFragment();
+            scenarioFragment = new NouveauScenarioFragment();
         }
         else if (texte.equals("InfoScenarioFragment")) {
             scenarioFragment = new InfoScenarioFragment();

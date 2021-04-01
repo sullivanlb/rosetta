@@ -65,7 +65,7 @@ public class QuestionAdapter extends BaseAdapter {
         }
 
         // Initialisation des vues du layout
-        TextView nomQuestion = (TextView) view.findViewById(R.id.questionTextView);
+        TextView nomQuestion = (TextView) view.findViewById(R.id.questionScenarioTextView);
 
         // Modification des vues
         nomQuestion.setText(listQuestion.get(position).getNomQuestion());

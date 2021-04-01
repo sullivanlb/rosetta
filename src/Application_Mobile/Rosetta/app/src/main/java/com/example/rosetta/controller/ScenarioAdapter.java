@@ -7,15 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.example.rosetta.R;
 import com.example.rosetta.model.Scenario;
-import com.example.rosetta.ui.main.NouveauModifierScenarioFragment;
 import com.example.rosetta.ui.main.ScenarioFragment;
-import com.example.rosetta.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
