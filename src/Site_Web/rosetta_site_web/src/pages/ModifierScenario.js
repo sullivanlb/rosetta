@@ -5,7 +5,6 @@ import {
   Container,
   FormLabel,
   FormControl,
-  Form,
   Button,
 } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
@@ -56,7 +55,7 @@ export default class ModifierScenario extends Component {
         var quantite = 0;
         this.props.location.params.scenarios[0].composants.forEach(
           (composant2) => {
-            if (composant.idComposant == composant2.idComposant) {
+            if (composant.idComposant === composant2.idComposant) {
               estAjoute = true;
               quantite = composant2.quantite;
             }
@@ -96,7 +95,7 @@ export default class ModifierScenario extends Component {
         var estAjoute = false;
         var quantite = 0;
         this.props.location.params.scenarios[0].packs.forEach((pack2) => {
-          if (pack.idPack == pack2.idPack) {
+          if (pack.idPack === pack2.idPack) {
             estAjoute = true;
             quantite = pack2.quantite;
           }
@@ -130,18 +129,18 @@ export default class ModifierScenario extends Component {
       var composants = this.state.composants;
 
       this.state.composants.map((composant) => {
-        if (composant.idComposant == id) {
+        if (composant.idComposant === id) {
           if (composant.ajoute) {
             // Enlève le composant du nouveau scénario
             composants.map((composant) => {
-              if (composant.idComposant == id) {
+              if (composant.idComposant === id) {
                 composant.ajoute = false;
               }
             });
           } else {
             var quantite = -1;
             while (quantite < 0) {
-              var quantite = prompt("Combien en voulez-vous ?");
+              quantite = prompt("Combien en voulez-vous ?");
             }
 
             // Ajoute le composant au nouveau scénario
@@ -160,23 +159,23 @@ export default class ModifierScenario extends Component {
       var packs = this.state.packs;
 
       this.state.packs.map((pack) => {
-        if (pack.idPack == id) {
+        if (pack.idPack === id) {
           if (pack.ajoute) {
             // Enlève le pack du nouveau scénario
             packs.map((pack) => {
-              if (pack.idPack == id) {
+              if (pack.idPack === id) {
                 pack.ajoute = false;
               }
             });
           } else {
             var quantite = -1;
             while (quantite < 0) {
-              var quantite = prompt("Combien en voulez-vous ?");
+              quantite = prompt("Combien en voulez-vous ?");
             }
 
             // Ajoute le pack au nouveau scénario
             packs.map((pack) => {
-              if (pack.idPack == id) {
+              if (pack.idPack === id) {
                 pack.ajoute = true;
                 pack.quantite = quantite;
               }
@@ -240,7 +239,7 @@ export default class ModifierScenario extends Component {
       this.setState({ packsRecherches: packs });
     });
 
-    if (document.getElementById("search-input").value.length != 0) {
+    if (document.getElementById("search-input").value.length !== 0) {
       // Mise à jour de la liste des composants
       var composants_liste = [];
 

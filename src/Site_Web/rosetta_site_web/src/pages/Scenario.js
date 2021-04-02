@@ -268,9 +268,9 @@ export default class Scenario extends Component {
 
     this.setState({ scenarios: tousLesScenarios });
 
-    if (document.getElementById("search-input").value.length != 0) {
+    if (document.getElementById("search-input").value.length !== 0) {
       // Mise à jour de la liste des scénarios
-      var scenarios_liste = [];
+      scenarios_liste = [];
 
       this.state.scenarios.map((scenario) => {
         var wordFound = false;

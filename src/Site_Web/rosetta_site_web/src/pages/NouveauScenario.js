@@ -173,7 +173,7 @@ export default class NouveauScenario extends Component {
       this.setState({ packsRecherches: packs });
     });
 
-    if (document.getElementById("search-input").value.length != 0) {
+    if (document.getElementById("search-input").value.length !== 0) {
       // Mise à jour de la liste des composants
       var composants_liste = [];
 

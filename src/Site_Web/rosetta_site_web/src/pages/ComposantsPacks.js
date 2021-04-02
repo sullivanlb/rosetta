@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Row, Col, Container, Form, Button } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import Supprimer from "../composants/SupprimerComposantPack";
 import "../style/ComposantsPacks.css";
@@ -81,10 +81,10 @@ export default class ComposantsPacks extends Component {
 
       // Récupération de ses questions
       appartientPC_liste.map((liaison) => {
-        if (liaison.unPack == pack.idPack) {
+        if (liaison.unPack === pack.idPack) {
           composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
-              if (liaison.quantite != undefined) {
+            if (composant.idComposant === liaison.unComposant) {
+              if (liaison.quantite !== undefined) {
                 composantsPack.push({
                   idComposant: composant.idComposant,
                   nomComposant: composant.nomComposant,
@@ -233,7 +233,7 @@ export default class ComposantsPacks extends Component {
     if (document.getElementById("search-input").value.length != 0) {
       // Mise à jour de la liste des composants
       var stateTmp = this.state.state1;
-      var composants_liste = [];
+      composants_liste = [];
 
       this.state.state1.composants.map((composant) => {
         var wordFound = false;
@@ -259,7 +259,7 @@ export default class ComposantsPacks extends Component {
       this.setState({ state1: stateTmp });
 
       // Mise à jour de la liste des packs
-      var stateTmp = this.state.state2;
+      stateTmp = this.state.state2;
       var pack_liste = [];
 
       this.state.state2.packs.map((pack) => {
