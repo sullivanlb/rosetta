@@ -71,7 +71,7 @@ public class ScenarioAdapter extends BaseAdapter {
         // Modification des vues
         nomScenario.setText(listScenario.get(position).getNomScenario());
 
-
+        //Bouton pour afficher les informations d'un scénario
         FloatingActionButton voirScenarioButton = (FloatingActionButton) view.findViewById(R.id.voirScenarioButton);
 
         voirScenarioButton.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +79,16 @@ public class ScenarioAdapter extends BaseAdapter {
             public void onClick(View v) {
                 ScenarioFragment scenarioFragment = ScenarioFragment.getInstance();
                 scenarioFragment.actionVoir();
+            }
+        });
+
+        //Bouton pour supprimer un scénario
+        FloatingActionButton supprimerScenario = (FloatingActionButton) view.findViewById(R.id.supprimerScenarioButton);
+        supprimerScenario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ControleurScenarioSupprimer controleurScenarioSupprimer = new ControleurScenarioSupprimer(ScenarioFragment.getInstance());
+                supprimerScenario.setOnClickListener(controleurScenarioSupprimer);
             }
         });
 

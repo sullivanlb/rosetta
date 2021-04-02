@@ -31,6 +31,7 @@ import com.example.rosetta.model.Scenario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
@@ -77,10 +78,6 @@ public class ScenarioFragment extends Fragment {
 
         //======================= Boutons ==========================================================
 
-        //Bouton pour supprimer un scénario
-        //FloatingActionButton supprimerScenario = (FloatingActionButton) rootView.findViewById(R.id.supprimerScenarioButton);
-        //ControleurScenarioSupprimer controleurScenarioSupprimer = new ControleurScenarioSupprimer(this);
-        //supprimerScenario.setOnClickListener(controleurScenarioSupprimer);
 
         //Bouton pour ajouter des composants ou des packs
         Button composantPackButton = (Button) rootView.findViewById(R.id.composantsPacksButton);

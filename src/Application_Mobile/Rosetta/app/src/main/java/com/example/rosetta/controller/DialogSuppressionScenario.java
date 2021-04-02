@@ -45,8 +45,20 @@ public class DialogSuppressionScenario extends AppCompatDialogFragment {
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        //suppression dans la table scénario
+                        System.out.println("id selectionné : "  + scenarioFragment.getIdSelectionnnerScenario());
                         Controleur.getInstance(scenarioFragment.getContext()).supprimerScenario(scenarioFragment.getIdSelectionnnerScenario());
+
+                        //suppression dans la table scénario question
+                        Controleur.getInstance(scenarioFragment.getContext()).supprimerScenarioSQ(scenarioFragment.getIdSelectionnnerScenario());
+
+                        //suppression dans la table scénario pack
+                        Controleur.getInstance(scenarioFragment.getContext()).supprimerScenarioSP(scenarioFragment.getIdSelectionnnerScenario());
+
+                        //suppression dans la table scénario composant
+                        Controleur.getInstance(scenarioFragment.getContext()).supprimerScenarioSC(scenarioFragment.getIdSelectionnnerScenario());
+
+
                         scenarioFragment.actualiserListeScenarios();
 
                         Toast.makeText(scenarioFragment.getContext(), "Scénario supprimé.", Toast.LENGTH_LONG).show();

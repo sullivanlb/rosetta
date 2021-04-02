@@ -31,7 +31,6 @@ public class ControleurScenarioSupprimer implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
         //Demande la confirmation de supprimer la question.
         openDialog();
     }

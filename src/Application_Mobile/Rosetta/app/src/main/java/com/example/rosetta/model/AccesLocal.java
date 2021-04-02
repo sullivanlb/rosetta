@@ -749,12 +749,12 @@ public class AccesLocal {
     }
 
     /**
-     *
+     * Détruit toutes les liaisons correspondant à l'id du scénario passé en paramètre dans la table AppartientSP
+     * @param idScenario
      */
-
-    public void supprimerPackSP(int idPack){
+    public void supprimerScenarioSP(int idScenario){
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "DELETE FROM AppartientSP WHERE unPack = \"" + idPack + "\"";
+        String requete = "DELETE FROM AppartientSP WHERE unScenario = \"" + idScenario + "\"";
         this.bd.execSQL(requete);
     }
 
@@ -775,6 +775,16 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
+    /**
+     * Détruit toutes les liaisons correspondant à l'id du scénario passé en paramètre dans la table AppartientSC
+     * @param idScenario
+     */
+    public void supprimerScenarioSC(int idScenario){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientSC WHERE unScenario = \"" + idScenario + "\"";
+        this.bd.execSQL(requete);
+    }
+
     //========================== Appartient Scenario Question ====================================
     /**
      * Ajoute un scenario et une question dans AppartientSQ.
@@ -789,6 +799,15 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
+    /**
+     * Détruit toutes les liaisons correspondant à l'id du scénario passé en paramètre dans la table AppartientSQ
+     * @param idScenario
+     */
+    public void supprimerScenarioSQ(int idScenario){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientSQ WHERE unScenario = \"" + idScenario + "\"";
+        this.bd.execSQL(requete);
+    }
 
 
     //=========================== Appartient Devis Pack =========================================

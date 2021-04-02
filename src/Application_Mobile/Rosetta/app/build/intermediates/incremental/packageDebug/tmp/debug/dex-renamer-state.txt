@@ -1,7 +1,7 @@
-#Fri Apr 02 01:01:05 CEST 2021
-base.0=C\:\\Users\\lucy\\AndroidStudioProjects\\Rosetta\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Fri Apr 02 11:11:38 CEST 2021
+base.0=C\:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\lucy\\AndroidStudioProjects\\Rosetta\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.1=C\:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex

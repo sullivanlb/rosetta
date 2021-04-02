@@ -486,6 +486,15 @@ public class Controleur {
         }
     }
 
+    /**
+     *
+     * @param
+     */
+
+    public void supprimerScenarioSC(int idScenario){
+        Controleur.accesLocal.supprimerScenarioSC(idScenario);
+    }
+
     //=============================== Appartient Scénario Pack ======================================
 
     /**
@@ -530,8 +539,8 @@ public class Controleur {
      * @param
      */
 
-    public void supprimerPackSP(int idPack){
-        Controleur.accesLocal.supprimerPackSP(idPack);
+    public void supprimerScenarioSP(int idScenario){
+        Controleur.accesLocal.supprimerScenarioSP(idScenario);
     }
 
 
@@ -547,6 +556,15 @@ public class Controleur {
         if (scenario!= null && question != null) {
             Controleur.accesLocal.ajoutAppartientSQ(scenario, question);
         }
+    }
+
+    /**
+     *
+     * @param
+     */
+
+    public void supprimerScenarioSQ(int idScenario){
+        Controleur.accesLocal.supprimerScenarioSQ(idScenario);
     }
 
     //================================== Appartient Devis Pack ==================================
