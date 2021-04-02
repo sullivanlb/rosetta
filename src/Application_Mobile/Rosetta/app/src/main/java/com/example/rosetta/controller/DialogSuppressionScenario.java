@@ -41,7 +41,7 @@ public class DialogSuppressionScenario extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Suppression d'un scénario")
-                .setMessage("Voulez-vous supprimer ce scénarios ? ")
+                .setMessage("Voulez-vous supprimer ce scénario ? ")
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

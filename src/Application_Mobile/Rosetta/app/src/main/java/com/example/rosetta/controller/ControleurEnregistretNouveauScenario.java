@@ -50,7 +50,7 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
 
         String nomScenario = editNom.getText().toString();
 
-        if(nomScenario != null & nomScenario.length() > 0){
+        if(nomScenario != null && nomScenario.length() > 0){
 
             // Vérification de l'Arrayliste Question != vide
             if(this.nouveauScenarioFragment.getListeQuestionTemporaire().size() > 0) {
@@ -68,21 +68,25 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
                     ArrayList<Object> listObject = this.nouveauScenarioFragment.getListeObjectPackComposant();
 
                     for(int i = 0; i < listObject.size(); i++){
-
                         if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Pack")){
                             Pack pack = (Pack) listObject.get(i);
                             int quantite = this.nouveauScenarioFragment.getHashmapIdPackQuantite().get(pack.getIdPack());
 
                             Controleur.getInstance(this.nouveauScenarioFragment.getContext())
-                                    .creerAppartientSP(scenario, pack, quantite);
+                                    .creerAppartientSP(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeScenarios()
+                                            .get(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeScenarios().size() -1), pack, quantite);
 
                         }
-                        else if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Composant")){
+                    }
+
+                    for (int i = 0; i < listObject.size(); i++){
+                        if(listObject.get(i).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Composant")){
                             Composant composant = (Composant) listObject.get(i);
                             int quantite = this.nouveauScenarioFragment.getHashmapIdComposantQuantite().get(composant.getIdComposant());
 
                             Controleur.getInstance(this.nouveauScenarioFragment.getContext())
-                                    .creerAppartientSC(scenario, composant, quantite);
+                                    .creerAppartientSC(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeScenarios()
+                                            .get(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeScenarios().size() -1), composant, quantite);
 
                         }
                     }
@@ -93,7 +97,9 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
                         Question question = this.nouveauScenarioFragment.getListeQuestionTemporaire().get(i);
                         this.nouveauScenarioFragment.getListeQuestions().add(question);
                         Controleur.getInstance(this.nouveauScenarioFragment.getContext()).creerQuestion(question);
-                        Controleur.getInstance(this.nouveauScenarioFragment.getContext()).creerAppartientSQ(scenario, question);
+                        Controleur.getInstance(this.nouveauScenarioFragment.getContext()).creerAppartientSQ(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeScenarios()
+                                .get(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeScenarios().size() -1), Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeQuestions()
+                                .get(Controleur.getInstance(this.nouveauScenarioFragment.getContext()).getListeQuestions().size() -1));
                     }
 
 
