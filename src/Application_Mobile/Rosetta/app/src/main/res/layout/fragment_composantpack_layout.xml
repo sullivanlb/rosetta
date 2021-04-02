@@ -233,7 +233,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/modif_nomComposantEditText"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
                     android:layout_toRightOf="@+id/modif_nomPackTextView"
                     android:ems="10"
@@ -243,6 +243,43 @@
                     android:textColorLink="@color/black"
                     android:textCursorDrawable="@color/black"
                     android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/modif_quantitePackEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/modif_nomPackEditText"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@+id/modif_nomPackTextView"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/modif_quantitePackTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/modif_nomPackTextView"
+                    android:layout_alignStart="@id/modif_nomPackEditText"
+                    android:layout_marginTop="25dp"
+                    android:text="Quantite"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxPack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/modif_nomPackTextView"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toLeftOf="@id/modif_quantitePackTextView"
+                    android:text="Modifier Pack" />
 
             </RelativeLayout>
 
@@ -263,7 +300,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/composantpackAnnulerButton"
+                    android:id="@+id/composantpackRetourButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -271,19 +308,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_fonce"
-                    android:text="Annuler"
+                    android:text="Retour"
                     android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/composantpackSupprimerButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/orange_fonce"
-                    android:text="Supprimer" />
 
                 <Button
                     android:id="@+id/composantpackEnregistrerButton"

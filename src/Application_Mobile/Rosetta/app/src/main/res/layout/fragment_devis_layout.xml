@@ -70,12 +70,12 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/editerDevisButton"
+            android:id="@+id/supprimerDevisButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/orange_fonce"
-            android:text="Editer" />
+            android:text="Supprimer" />
 
         <Space
             android:layout_width="0dp"

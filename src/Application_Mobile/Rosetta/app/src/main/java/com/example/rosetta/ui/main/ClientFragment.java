@@ -42,7 +42,7 @@ public class ClientFragment extends Fragment {
     private ClientAdapter adapteur;
     private ListView liste;
     private Button enregistrerBouton;
-    private int indiceSelectionner;
+    private int indiceSelectionner = -1;
     private int idClient;
 
     @Nullable
@@ -63,7 +63,6 @@ public class ClientFragment extends Fragment {
 
         // Le bouton Nouveau Client qui vide les champs
         Button nouveauClientBouton = (Button) rootView.findViewById(R.id.nouveauClientButton);
-        //ControleurClientNouveauClient controleurClientNouveauClient = new ControleurClientNouveauClient(this);
         nouveauClientBouton.setOnClickListener(controleurEnregistrerClient);
 
         //bouton pour supprimer un client
@@ -125,6 +124,7 @@ public class ClientFragment extends Fragment {
 
         this.adapteur = new ClientAdapter(this.getActivity(), listeClients);
         this.liste.setAdapter(this.adapteur);
+        this.setIndiceSelectionner(-1);
 
         return rootView;
     }

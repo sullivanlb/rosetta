@@ -88,12 +88,20 @@
         "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\drawable\\ic_launcher_foreground.xml"
     },
     {
+        "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_nouveau_scenario_layout.xml.flat",
+        "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\layout\\fragment_nouveau_scenario_layout.xml"
+    },
+    {
         "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\navigation_nav_graph.xml.flat",
         "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\navigation\\nav_graph.xml"
     },
     {
         "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_devis_question_layout.xml.flat",
         "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\layout\\fragment_devis_question_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\layout_question_item.xml.flat",
+        "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\layout\\question_item.xml"
     },
     {
         "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
@@ -110,10 +118,6 @@
     {
         "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
-    },
-    {
-        "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_nouveaumodifier_scenario_layout.xml.flat",
-        "source": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\src\\main\\res\\layout\\fragment_nouveaumodifier_scenario_layout.xml"
     },
     {
         "merged": "C:\\Users\\Utilisateur\\AndroidStudioProjects\\Interfaces_projet_synthese\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_background.png.flat",

@@ -30,7 +30,7 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
 
 
     /**
-     * Le constructeur crée une nouvelle forme de ControleurClientEnregistrer.
+     * Le constructeur crée une nouvelle forme de ControleurEnregistrerNouveauClient.
      *
      * @param cf le contexte {@link ClientFragment}
      */
@@ -75,36 +75,42 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
             autreButton.setChecked(false);
         }
         else {
-            //Bouton Enregistrer
 
+            //Bouton Enregistrer
+            this.clientFragment.actualiserListeClients();
             ArrayList<Client> list = Controleur.getInstance(this.clientFragment.getContext()).getListeClients();
 
             //Modifier un Client
-            if(this.clientFragment.getIndiceSelectionner()>=0 ){
+            if (this.clientFragment.getIndiceSelectionner() >= 0) {
 
-                int id = this.clientFragment.getIndiceSelectionner();
+                Client client = null;
 
-                Client client = list.get(this.clientFragment.getIndiceSelectionner());
-                client.setNomClient(nom);
-                client.setPrenomClient(prenom);
-                client.setAdresseClient(adresse);
-                client.setEmailClient(email);
-                client.setTelClient(tel);
-
-                if (hommeButton.isChecked()) {
-                    client.setSexeClient(Sexe.HOMME);
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).getIdClient() == this.clientFragment.getIdClient()) {
+                        client = list.get(i);
+                    }
                 }
-                else if (femmeButton.isChecked()) {
-                    client.setSexeClient(Sexe.FEMME);
-                }
-                else {
-                    client.setSexeClient(Sexe.AUTRE);
+                if (client != null) {
+                    client.setNomClient(nom);
+                    client.setPrenomClient(prenom);
+                    client.setAdresseClient(adresse);
+                    client.setEmailClient(email);
+                    client.setTelClient(tel);
+
+                    if (hommeButton.isChecked()) {
+                        client.setSexeClient(Sexe.HOMME);
+                    } else if (femmeButton.isChecked()) {
+                        client.setSexeClient(Sexe.FEMME);
+                    } else {
+                        client.setSexeClient(Sexe.AUTRE);
+                    }
                 }
 
                 Controleur.getInstance(this.clientFragment.getContext()).modifierClient(client);
                 this.clientFragment.actualiserListeClients();
-            }
-            else{
+
+            } else {
+
                 //Ajouter un Client
 
                 // Si le nom, le prénom, l'adresse, le sexe sont bien renseignés, ainsi que l'email ou le
@@ -126,6 +132,7 @@ public class ControleurEnregistrerNouveauClient implements View.OnClickListener 
                     femmeButton.setChecked(false);
                     hommeButton.setChecked(false);
                     autreButton.setChecked(false);
+
                 } else {
 
                     // Une information est envoyée à l'utilisateur lorsqu'il n'a pas saisi correctement

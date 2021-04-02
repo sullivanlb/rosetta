@@ -103,7 +103,7 @@
                     android:layout_toRightOf="@id/ajoutPrixTextView"
                     android:ems="10"
                     android:hint="ex : 2.50"
-                    android:inputType="numberDecimal"
+                    android:inputType="number|numberDecimal"
                     android:textColor="#434343"
                     android:textColorHighlight="@color/orange_clair"
                     android:textColorLink="@color/black"
