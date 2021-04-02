@@ -25,7 +25,14 @@ export default class ListeClient extends Component {
     return (
       <Fragment>
         <ListGroup>
-          {this.props.state.clients.map((client) => (
+          {this.props.state.clients.filter((client) => {
+            
+            if (this.props.state.search == null) 
+              return client;
+            else if (client.nomClient.toLowerCase().includes(this.props.state.search.toLowerCase()) || client.prenomClient.toLowerCase().includes(this.props.state.search.toLowerCase())) {
+              return client;
+            }
+          }).map((client) => (
             <ListGroupItem
               key={client.idClient}
               href={client.idClient}

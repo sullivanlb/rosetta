@@ -22,6 +22,7 @@ export default class Client extends Component {
     this.state = {
       idToDisplay: 1,
       clients: [],
+      search: null,
     };
 
     this.affichageInfoClient = this.affichageInfoClient.bind(this);
@@ -58,6 +59,14 @@ export default class Client extends Component {
   }
 
   /**
+   * Mettre à jour la liste des scénarios à afficher, suivant la recherche de l'utilisateur
+   */
+  onChangeSearchInput(e) {
+    let motcle = e.target.value;
+    this.setState({ search: motcle })
+  }
+
+  /**
    * Méthode permettant l'affichage des composants
    */
   render() {
@@ -77,10 +86,12 @@ export default class Client extends Component {
                   <form className="form-inline mt-4 mb-4">
                     <MDBIcon icon="search" />
                     <input
+                      id="search-input"
                       className="form-control form-control-sm ml-3 w-75"
                       type="text"
                       placeholder="Rechercher un client"
                       aria-label="Rechercher"
+                      onChange={(e) => this.onChangeSearchInput(e)}
                     />
                   </form>
                 </MDBCol>
