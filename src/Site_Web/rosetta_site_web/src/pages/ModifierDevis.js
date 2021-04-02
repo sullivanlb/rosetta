@@ -83,7 +83,7 @@ export default class NouveauDevis extends Component {
 
     // Mise en place des composants
     var composantsPacks = [];
-    composants_liste.map((composant) => {
+    composants_liste.forEach((composant) => {
       composantsPacks.push({
         id: composant.idComposant,
         ref: composant.nomComposant,
@@ -99,11 +99,11 @@ export default class NouveauDevis extends Component {
     });
 
     // Mise en place des packs (avec le calcul de leur prix)
-    packs_liste.map((pack) => {
+    packs_liste.forEach((pack) => {
       var prixPack = 0;
-      appartientPC_liste.map((liaison) => {
+      appartientPC_liste.forEach((liaison) => {
         if (liaison.unPack === pack.idPack) {
-          composants_liste.map((composant) => {
+          composants_liste.forEach((composant) => {
             if (composant.idComposant === liaison.unComposant) {
               prixPack =
                 prixPack +
@@ -154,7 +154,7 @@ export default class NouveauDevis extends Component {
    */
   handlePrix(id, type) {
     var rows = this.state.composantsPacks;
-    rows.map((row) => {
+    rows.forEach((row) => {
       if (row.id === id && row.type === type) {
         row.prix = parseFloat(row.prixUnitaire) * parseFloat(row.quantite);
       }
@@ -192,7 +192,7 @@ export default class NouveauDevis extends Component {
    * @param {*} e
    */
   handleClick(e, idRow) {
-    this.state.idRowModifiable = idRow;
+    this.setState({ idRowModifiable: idRow })
   }
 
   /**
@@ -207,7 +207,7 @@ export default class NouveauDevis extends Component {
     var nom = myArray[1].substring(id.length);
     var type = "";
 
-    composantsPacks.map((composantPack) => {
+    composantsPacks.forEach((composantPack) => {
       if (composantPack.idRow === this.state.idRowModifiable) {
         composantPack.garde = false;
         composantPack.idRow = 0;
@@ -215,7 +215,7 @@ export default class NouveauDevis extends Component {
       }
     });
 
-    composantsPacks.map((composantPack) => {
+    composantsPacks.forEach((composantPack) => {
       if (composantPack.id === id && composantPack.ref === nom) {
         composantPack.garde = true;
         composantPack.idRow = this.state.idRowModifiable;
@@ -225,7 +225,7 @@ export default class NouveauDevis extends Component {
     });
 
     var i = 0;
-    composantsPacks.map((composantPack) => {
+    composantsPacks.forEach((composantPack) => {
       if (composantPack.ref === "") {
         composantsPacks.splice(i, 1);
       }
@@ -355,10 +355,10 @@ export default class NouveauDevis extends Component {
       var idRow = 0;
 
       // Insertion des lignes de composants suivant le scénario
-      composants_liste.map((composant) => {
+      composants_liste.forEach((composant) => {
         var appartient = false;
 
-        appartientSC_liste.map((liaison) => {
+        appartientSC_liste.forEach((liaison) => {
           // Si le composant appartient au scénario
           if (
             liaison.unScenario === idScenario &&
@@ -401,15 +401,15 @@ export default class NouveauDevis extends Component {
       });
 
       // Insertion des lignes de packs suivant le scénario
-      packs_liste.map((pack) => {
+      packs_liste.forEach((pack) => {
         var appartient = false;
 
         // Comptage du prix du pack
         var prixPack = 0;
-        appartientPC_liste.map((liaison) => {
+        appartientPC_liste.forEach((liaison) => {
           if (liaison.unPack === pack.idPack) {
-            composants_liste.map((composant) => {
-              if (composant.idComposant == liaison.unComposant) {
+            composants_liste.forEach((composant) => {
+              if (composant.idComposant === liaison.unComposant) {
                 prixPack =
                   prixPack +
                   parseFloat(composant.prixComposant) * liaison.quantite;
@@ -418,7 +418,7 @@ export default class NouveauDevis extends Component {
           }
         });
 
-        appartientSP_liste.map((liaison) => {
+        appartientSP_liste.forEach((liaison) => {
           // Si le pack appartient au scénario
           if (
             liaison.unScenario === idScenario &&
@@ -535,7 +535,7 @@ export default class NouveauDevis extends Component {
       this.setState({ idRow: idRow });
 
       var composantsPacksGardes = [];
-      this.state.composantsPacks.map((cp) => {
+      this.state.composantsPacks.forEach((cp) => {
         if (cp.garde) {
           composantsPacksGardes.push({
             id: cp.id,
@@ -555,7 +555,7 @@ export default class NouveauDevis extends Component {
         composantsPacksGardes[composantsPacksGardes.length - 1].idRow;
 
       var tousLesComposantsPacks = [];
-      this.state.composantsPacks.map((cp) => {
+      this.state.composantsPacks.forEach((cp) => {
         if (cp.idRow === idRowLigneASupprimer) {
           tousLesComposantsPacks.push({
             id: cp.id,
@@ -728,7 +728,7 @@ export default class NouveauDevis extends Component {
                         onChange={(e) => this.handleSelect(e, row.idRow)}
                       >
                         <option>Composant/Pack</option>
-                        {this.state.composantsPacks.map((composantPack) => {
+                        {this.state.composantsPacks.forEach((composantPack) => {
                           if (
                             composantPack.ref !== "" &&
                             !composantPack.garde

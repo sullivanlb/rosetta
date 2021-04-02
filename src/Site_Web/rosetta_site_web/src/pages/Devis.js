@@ -86,16 +86,16 @@ export default class Devis extends Component {
     });
 
     // Recréation des devis
-    devis_liste.map((devis) => {
+    devis_liste.forEach((devis) => {
       var nomDuClient = "";
       var prenomDuClient = "";
       var prixDevis = 0;
 
       // Récupération du nom du client
-      appartientCD_liste.map((liaison) => {
-        if (liaison.unDevis == devis.idDevis) {
-          clients_liste.map((client) => {
-            if (client.idClient == liaison.unClient) {
+      appartientCD_liste.forEach((liaison) => {
+        if (liaison.unDevis === devis.idDevis) {
+          clients_liste.forEach((client) => {
+            if (client.idClient === liaison.unClient) {
               nomDuClient = client.nomClient;
               prenomDuClient = client.prenomClient;
             }
@@ -104,10 +104,10 @@ export default class Devis extends Component {
       });
 
       // Comptage du prix des composants
-      appartientDC_liste.map((liaison) => {
-        if (liaison.unDevis == devis.idDevis) {
-          composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
+      appartientDC_liste.forEach((liaison) => {
+        if (liaison.unDevis === devis.idDevis) {
+          composants_liste.forEach((composant) => {
+            if (composant.idComposant === liaison.unComposant) {
               prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison.quantite);
             }
           });
@@ -115,14 +115,14 @@ export default class Devis extends Component {
       });
 
       // Comptage du prix des packs
-      appartientDP_liste.map((liaison) => {
-        if (liaison.unDevis == devis.idDevis) {
-          packs_liste.map((pack) => {
-            if (pack.idPack == liaison.unPack) {
-              appartientPC_liste.map((liaison2) => {
-                if (liaison2.unPack == pack.idPack) {
-                  composants_liste.map((composant) => {
-                    if (composant.idComposant == liaison2.unComposant) {
+      appartientDP_liste.forEach((liaison) => {
+        if (liaison.unDevis === devis.idDevis) {
+          packs_liste.forEach((pack) => {
+            if (pack.idPack === liaison.unPack) {
+              appartientPC_liste.forEach((liaison2) => {
+                if (liaison2.unPack === pack.idPack) {
+                  composants_liste.forEach((composant) => {
+                    if (composant.idComposant === liaison2.unComposant) {
                       prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison2.quantite * liaison.quantite);
                     }
                   });
@@ -159,7 +159,7 @@ export default class Devis extends Component {
         console.log(res.data);
       });
 
-    // window.location.reload();
+    window.location.reload();
   }
 
   /**
@@ -226,16 +226,16 @@ export default class Devis extends Component {
     });
 
     // Recréation des devis
-    devis_liste.map((devis) => {
+    devis_liste.forEach((devis) => {
       var nomDuClient = "";
       var prenomDuClient = "";
       var prixDevis = 0;
 
       // Récupération du nom du client
-      appartientCD_liste.map((liaison) => {
-        if (liaison.unDevis == devis.idDevis) {
-          clients_liste.map((client) => {
-            if (client.idClient == liaison.unClient) {
+      appartientCD_liste.forEach((liaison) => {
+        if (liaison.unDevis === devis.idDevis) {
+          clients_liste.forEach((client) => {
+            if (client.idClient === liaison.unClient) {
               nomDuClient = client.nomClient;
               prenomDuClient = client.prenomClient;
             }
@@ -244,10 +244,10 @@ export default class Devis extends Component {
       });
 
       // Comptage du prix des composants
-      appartientDC_liste.map((liaison) => {
-        if (liaison.unDevis == devis.idDevis) {
-          composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
+      appartientDC_liste.forEach((liaison) => {
+        if (liaison.unDevis === devis.idDevis) {
+          composants_liste.forEach((composant) => {
+            if (composant.idComposant === liaison.unComposant) {
               prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison.quantite);
             }
           });
@@ -255,14 +255,14 @@ export default class Devis extends Component {
       });
 
       // Comptage du prix des packs
-      appartientDP_liste.map((liaison) => {
-        if (liaison.unDevis == devis.idDevis) {
-          packs_liste.map((pack) => {
-            if (pack.idPack == liaison.unPack) {
-              appartientPC_liste.map((liaison2) => {
-                if (liaison2.unPack == pack.idPack) {
-                  composants_liste.map((composant) => {
-                    if (composant.idComposant == liaison2.unComposant) {
+      appartientDP_liste.forEach((liaison) => {
+        if (liaison.unDevis === devis.idDevis) {
+          packs_liste.forEach((pack) => {
+            if (pack.idPack === liaison.unPack) {
+              appartientPC_liste.forEach((liaison2) => {
+                if (liaison2.unPack === pack.idPack) {
+                  composants_liste.forEach((composant) => {
+                    if (composant.idComposant === liaison2.unComposant) {
                       prixDevis = prixDevis + (parseFloat(composant.prixComposant) * liaison2.quantite * liaison.quantite);
                     }
                   });
@@ -288,10 +288,10 @@ export default class Devis extends Component {
 
     this.setState({ devis: tousLesDevis });
 
-    if (document.getElementById("search-input").value.length != 0) {
-      var devis_liste = [];
+    if (document.getElementById("search-input").value.length !== 0) {
+      devis_liste = [];
 
-      this.state.devis.map((devis) => {
+      this.state.devis.forEach((devis) => {
         var wordFound = false;
 
         if ((devis.nomDevis != null && devis.nomDevis.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))

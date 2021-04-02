@@ -41,7 +41,7 @@ export default class NouveauScenario extends Component {
     axios.get(`http://api/composant/tousLesComposants`).then((res) => {
       var composantsBDD = res.data;
       var composants = [];
-      composantsBDD.map((composant) => {
+      composantsBDD.forEach((composant) => {
         composants.push({
           idComposant: composant.idComposant,
           nomComposant: composant.nomComposant,
@@ -59,7 +59,7 @@ export default class NouveauScenario extends Component {
     axios.get(`http://api/pack/tousLesPacks`).then((res) => {
       var packsBDD = res.data;
       var packs = [];
-      packsBDD.map((pack) => {
+      packsBDD.forEach((pack) => {
         packs.push({
           idPack: pack.idPack,
           nomPack: pack.nomPack,
@@ -77,11 +77,11 @@ export default class NouveauScenario extends Component {
     if (type === "composant") {
       var composants = this.state.composants;
 
-      this.state.composants.map((composant) => {
+      this.state.composants.forEach((composant) => {
         if (composant.idComposant === id) {
           if (composant.ajoute) {
             // Enlève le composant du nouveau scénario
-            composants.map((composant) => {
+            composants.forEach((composant) => {
               if (composant.idComposant === id) {
                 composant.ajoute = false;
               }
@@ -93,7 +93,7 @@ export default class NouveauScenario extends Component {
             }
 
             // Ajoute le composant au nouveau scénario
-            composants.map((composant) => {
+            composants.forEach((composant) => {
               if (composant.idComposant === id) {
                 composant.ajoute = true;
                 composant.quantite = quantite;
@@ -107,12 +107,12 @@ export default class NouveauScenario extends Component {
     } else {
       var packs = this.state.packs;
 
-      this.state.packs.map((pack) => {
-        if (pack.idPack == id) {
+      this.state.packs.forEach((pack) => {
+        if (pack.idPack === id) {
           if (pack.ajoute) {
             // Enlève le pack du nouveau scénario
-            packs.map((pack) => {
-              if (pack.idPack == id) {
+            packs.forEach((pack) => {
+              if (pack.idPack === id) {
                 pack.ajoute = false;
               }
             });
@@ -123,7 +123,7 @@ export default class NouveauScenario extends Component {
             }
 
             // Ajoute le pack au nouveau scénario
-            packs.map((pack) => {
+            packs.forEach((pack) => {
               if (pack.idPack === id) {
                 pack.ajoute = true;
                 pack.quantite = quantite;
@@ -144,7 +144,7 @@ export default class NouveauScenario extends Component {
     await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
       var composantsBDD = res.data;
       var composants = [];
-      composantsBDD.map((composant) => {
+      composantsBDD.forEach((composant) => {
         composants.push({
           idComposant: composant.idComposant,
           nomComposant: composant.nomComposant,
@@ -161,7 +161,7 @@ export default class NouveauScenario extends Component {
     await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
       var packsBDD = res.data;
       var packs = [];
-      packsBDD.map((pack) => {
+      packsBDD.forEach((pack) => {
         packs.push({
           idPack: pack.idPack,
           nomPack: pack.nomPack,
@@ -177,7 +177,7 @@ export default class NouveauScenario extends Component {
       // Mise à jour de la liste des composants
       var composants_liste = [];
 
-      this.state.composantsRecherches.map((composant) => {
+      this.state.composantsRecherches.forEach((composant) => {
         if (
           composant.nomComposant != null &&
           composant.nomComposant
@@ -203,7 +203,7 @@ export default class NouveauScenario extends Component {
       // Mise à jour de la liste des packs
       var packs_liste = [];
 
-      this.state.packsRecherches.map((pack) => {
+      this.state.packsRecherches.forEach((pack) => {
         if (
           pack.nomPack != null &&
           pack.nomPack
@@ -256,14 +256,14 @@ export default class NouveauScenario extends Component {
     // Les questions du scénario
     formData.append("questionsTaille", this.state.scenario.questions.length);
     var i = 0;
-    this.state.scenario.questions.map((question) => {
+    this.state.scenario.questions.forEach((question) => {
       formData.append("question" + i + "_nom", question.nomQuestion);
       i = i + 1;
     });
 
     // Les composants du scénario
-    var i = 0;
-    this.state.composants.map((composant) => {
+    i = 0;
+    this.state.composants.forEach((composant) => {
       if (composant.ajoute) {
         formData.append("composant" + i + "_id", composant.idComposant);
         formData.append("composant" + i + "_quantite", composant.quantite);
@@ -273,7 +273,7 @@ export default class NouveauScenario extends Component {
     formData.append("composantsTaille", i);
 
     // Les packs du scénario
-    this.state.packs.map((pack) => {
+    this.state.packs.forEach((pack) => {
       if (pack.ajoute) {
         formData.append("pack" + i + "_id", pack.idPack);
         formData.append("pack" + i + "_quantite", pack.quantite);

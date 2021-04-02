@@ -64,7 +64,7 @@ export default class ComposantsPacks extends Component {
 
     // Recréation des composants
     var composants = [];
-    composants_liste.map((composant) => {
+    composants_liste.forEach((composant) => {
       composants.push({
         idComposant: composant.idComposant,
         nomComposant: composant.nomComposant,
@@ -76,13 +76,13 @@ export default class ComposantsPacks extends Component {
 
     // Recréation des packs
     var packs = [];
-    packs_liste.map((pack) => {
+    packs_liste.forEach((pack) => {
       var composantsPack = [];
 
       // Récupération de ses questions
-      appartientPC_liste.map((liaison) => {
+      appartientPC_liste.forEach((liaison) => {
         if (liaison.unPack === pack.idPack) {
-          composants_liste.map((composant) => {
+          composants_liste.forEach((composant) => {
             if (composant.idComposant === liaison.unComposant) {
               if (liaison.quantite !== undefined) {
                 composantsPack.push({
@@ -136,7 +136,7 @@ export default class ComposantsPacks extends Component {
       this.typeSelectionne = "composant";
     } else {
       this.setState({ stateX: 2 });
-      var stateTmp = this.state.state2;
+      stateTmp = this.state.state2;
       stateTmp.idToDisplay = id;
       this.setState({ state2: stateTmp });
       this.tab = this.state.state2.packs;
@@ -170,7 +170,7 @@ export default class ComposantsPacks extends Component {
 
     // Recréation des composants
     var composants = [];
-    composants_liste.map((composant) => {
+    composants_liste.forEach((composant) => {
       composants.push({
         idComposant: composant.idComposant,
         nomComposant: composant.nomComposant,
@@ -182,15 +182,15 @@ export default class ComposantsPacks extends Component {
 
     // Recréation des packs
     var packs = [];
-    packs_liste.map((pack) => {
+    packs_liste.forEach((pack) => {
       var composantsPack = [];
 
       // Récupération de ses questions
-      appartientPC_liste.map((liaison) => {
-        if (liaison.unPack == pack.idPack) {
-          composants_liste.map((composant) => {
-            if (composant.idComposant == liaison.unComposant) {
-              if (liaison.quantite != undefined) {
+      appartientPC_liste.forEach((liaison) => {
+        if (liaison.unPack === pack.idPack) {
+          composants_liste.forEach((composant) => {
+            if (composant.idComposant === liaison.unComposant) {
+              if (liaison.quantite !== undefined) {
                 composantsPack.push({
                   idComposant: composant.idComposant,
                   nomComposant: composant.nomComposant,
@@ -230,12 +230,12 @@ export default class ComposantsPacks extends Component {
     this.setState({ state1: state1_tmp });
     this.setState({ state2: state2_tmp });
 
-    if (document.getElementById("search-input").value.length != 0) {
+    if (document.getElementById("search-input").value.length !== 0) {
       // Mise à jour de la liste des composants
       var stateTmp = this.state.state1;
       composants_liste = [];
 
-      this.state.state1.composants.map((composant) => {
+      this.state.state1.composants.forEach((composant) => {
         var wordFound = false;
 
         if ((composant.nomComposant != null && composant.nomComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
@@ -262,14 +262,14 @@ export default class ComposantsPacks extends Component {
       stateTmp = this.state.state2;
       var pack_liste = [];
 
-      this.state.state2.packs.map((pack) => {
+      this.state.state2.packs.forEach((pack) => {
         var wordFound = false;
 
         if ((pack.nomPack != null && pack.nomPack.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {
           wordFound = true;
         }
 
-        pack.composants.map((composant) => {
+        pack.composants.forEach((composant) => {
           if ((composant.nomComposant != null && composant.nomComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
               || (composant.uniteComposant != null && composant.uniteComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
               || (composant.prixComposant != null && composant.prixComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {

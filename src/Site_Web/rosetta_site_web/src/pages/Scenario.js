@@ -77,15 +77,15 @@ export default class Scenario extends Component {
     });
 
     // Recréation des scénarios
-    scenarios_liste.map((scenario) => {
+    scenarios_liste.forEach((scenario) => {
       var questionsScenario = [];
       var composantsScenario = [];
       var packsScenario = [];
 
       // Récupération de ses questions
-      appartientSQ_liste.map((liaison) => {
+      appartientSQ_liste.forEach((liaison) => {
         if (liaison.unScenario === scenario.idScenario) {
-          questions_liste.map((question) => {
+          questions_liste.forEach((question) => {
             if (question.idQuestion === liaison.uneQuestion) {
               questionsScenario.push({
                 idQuestion: question.idQuestion,
@@ -97,9 +97,9 @@ export default class Scenario extends Component {
       });
 
       // Récupération de ses composants
-      appartientSC_liste.map((liaison) => {
+      appartientSC_liste.forEach((liaison) => {
         if (liaison.unScenario === scenario.idScenario) {
-          composants_liste.map((composant) => {
+          composants_liste.forEach((composant) => {
             if (composant.idComposant === liaison.unComposant) {
               composantsScenario.push({
                 idComposant: composant.idComposant,
@@ -114,9 +114,9 @@ export default class Scenario extends Component {
       });
 
       // Récupération de ses packs
-      appartientSP_liste.map((liaison) => {
+      appartientSP_liste.forEach((liaison) => {
         if (liaison.unScenario === scenario.idScenario) {
-          packs_liste.map((pack) => {
+          packs_liste.forEach((pack) => {
             if (pack.idPack === liaison.unPack) {
               packsScenario.push({
                 idPack: pack.idPack,
@@ -206,15 +206,15 @@ export default class Scenario extends Component {
     });
 
     // Recréation des scénarios
-    scenarios_liste.map((scenario) => {
+    scenarios_liste.forEach((scenario) => {
       var questionsScenario = [];
       var composantsScenario = [];
       var packsScenario = [];
 
       // Récupération de ses questions
-      appartientSQ_liste.map((liaison) => {
+      appartientSQ_liste.forEach((liaison) => {
         if (liaison.unScenario === scenario.idScenario) {
-          questions_liste.map((question) => {
+          questions_liste.forEach((question) => {
             if (question.idQuestion === liaison.uneQuestion) {
               questionsScenario.push({
                 idQuestion: question.idQuestion,
@@ -226,9 +226,9 @@ export default class Scenario extends Component {
       });
 
       // Récupération de ses composants
-      appartientSC_liste.map((liaison) => {
+      appartientSC_liste.forEach((liaison) => {
         if (liaison.unScenario === scenario.idScenario) {
-          composants_liste.map((composant) => {
+          composants_liste.forEach((composant) => {
             if (composant.idComposant === liaison.unComposant) {
               composantsScenario.push({
                 idComposant: composant.idComposant,
@@ -243,9 +243,9 @@ export default class Scenario extends Component {
       });
 
       // Récupération de ses packs
-      appartientSP_liste.map((liaison) => {
+      appartientSP_liste.forEach((liaison) => {
         if (liaison.unScenario === scenario.idScenario) {
-          packs_liste.map((pack) => {
+          packs_liste.forEach((pack) => {
             if (pack.idPack === liaison.unPack) {
               packsScenario.push({
                 idPack: pack.idPack,
@@ -272,7 +272,7 @@ export default class Scenario extends Component {
       // Mise à jour de la liste des scénarios
       scenarios_liste = [];
 
-      this.state.scenarios.map((scenario) => {
+      this.state.scenarios.forEach((scenario) => {
         var wordFound = false;
 
         if (
@@ -285,7 +285,7 @@ export default class Scenario extends Component {
         ) {
           wordFound = true;
         } else {
-          scenario.questions.map((question) => {
+          scenario.questions.forEach((question) => {
             if (
               question.nomQuestion != null &&
               question.nomQuestion
@@ -299,7 +299,7 @@ export default class Scenario extends Component {
           });
 
           if (!wordFound) {
-            scenario.composants.map((composant) => {
+            scenario.composants.forEach((composant) => {
               if (
                 (composant.nomComposant != null &&
                   composant.nomComposant
@@ -332,7 +332,7 @@ export default class Scenario extends Component {
           }
 
           if (!wordFound) {
-            scenario.packs.map((pack) => {
+            scenario.packs.forEach((pack) => {
               if (
                 pack.nomPack != null &&
                 pack.nomPack
@@ -349,7 +349,7 @@ export default class Scenario extends Component {
 
         if (wordFound) {
           var questions_liste = [];
-          scenario.questions.map((question) => {
+          scenario.questions.forEach((question) => {
             questions_liste.push({
               idQuestion: question.idQuestion,
               nomQuestion: question.nomQuestion,
@@ -357,7 +357,7 @@ export default class Scenario extends Component {
           });
 
           var composants_liste = [];
-          scenario.composants.map((composant) => {
+          scenario.composants.forEach((composant) => {
             composants_liste.push({
               idComposant: composant.idComposant,
               nomComposant: composant.nomComposant,
@@ -365,7 +365,7 @@ export default class Scenario extends Component {
           });
 
           var packs_liste = [];
-          scenario.packs.map((pack) => {
+          scenario.packs.forEach((pack) => {
             packs_liste.push({
               idPack: pack.idPack,
               nomPack: pack.nomPack,
