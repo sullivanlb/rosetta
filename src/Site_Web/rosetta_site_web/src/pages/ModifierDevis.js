@@ -10,6 +10,7 @@ import {
   Table,
 } from "react-bootstrap";
 import "../style/NouveauDevis.css";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -33,7 +34,8 @@ export default class NouveauDevis extends Component {
         descriptionDevis: this.props.location.params.devis[0].descriptionDevis,
         dureeDevis: this.props.location.params.devis[0].dureeDevis,
         dateEditionDevis: this.props.location.params.devis[0].dateEditionDevis,
-        dateDebutTravauxDevis: this.props.location.params.devis[0].dateTravauxDevis,
+        dateDebutTravauxDevis: this.props.location.params.devis[0]
+          .dateTravauxDevis,
         leClient: this.props.location.params.devis[0].leClient,
         leScenario: this.props.location.params.devis[0].leScenario,
       },
@@ -55,7 +57,6 @@ export default class NouveauDevis extends Component {
       this.setState({ clients: clients });
     });
 
-    
     // Récupération de tous les scénarios
     await axios.get(`http://api/scenario/tousLesScenarios`).then((res) => {
       const scenarios = res.data;
@@ -474,9 +475,9 @@ export default class NouveauDevis extends Component {
 
     var regExp = /\(([^)]+)\)/;
     var matches = regExp.exec(this.state.inputs.leClient);
-    var leClient =  matches[1];
+    var leClient = matches[1];
     matches = regExp.exec(this.state.inputs.leScenario);
-    var leScenario =  matches[1];
+    var leScenario = matches[1];
 
     await axios
       .delete(`http://api/devis/supprimerDevis/${this.state.inputs.idDevis}`)
@@ -496,8 +497,6 @@ export default class NouveauDevis extends Component {
     await axios.post("http://api/devis/ajoutDevis", formData).then((res) => {
       console.log(res.data);
     });
-
-
 
     window.location = "/devis";
   }
@@ -592,245 +591,253 @@ export default class NouveauDevis extends Component {
 
   render() {
     return (
-      <Container className="nouveau_devis_form">
-        <Row>
-          <Col>
-            <br></br>
-          </Col>
-        </Row>
+      <Fragment>
+        <Navigation />
+        <Container className="nouveau_devis_form">
+          <Row>
+            <Col>
+              <br></br>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col md="4">
-            <img className="logo ml-4 mt-2" src="/img/logo.jpg" alt="" />
-          </Col>
-        </Row>
+          <Row>
+            <Col md="4">
+              <img className="logo ml-4 mt-2" src="/img/logo.jpg" alt="" />
+            </Col>
+          </Row>
 
-        <Row>
-          <FormLabel> Allô Dépanne Service </FormLabel>
-        </Row>
+          <Row>
+            <FormLabel> Allô Dépanne Service </FormLabel>
+          </Row>
 
-        <Row>
-          <FormLabel> Thierry Hourdier </FormLabel>
-        </Row>
+          <Row>
+            <FormLabel> Thierry Hourdier </FormLabel>
+          </Row>
 
-        <Row>
-          <Col>
-            <br></br>
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <br></br>
+            </Col>
+          </Row>
 
-        <Form.Group>
-          <FormLabel>Nom du devis : </FormLabel>
+          <Form.Group>
+            <FormLabel>Nom du devis : </FormLabel>
+            <FormControl
+              onChange={(e) => this.handleNom(e)}
+              placeholder={this.state.inputs.nomDevis}
+            />
+          </Form.Group>
+
+          <Row>
+            <Col md="2">
+              <FormLabel>Edité le </FormLabel>
+              <FormControl
+                onChange={(e) => this.handleDateEdition(e)}
+                placeholder={this.state.inputs.dateEditionDevis}
+              />
+            </Col>
+
+            <Col md="6"></Col>
+
+            <Col md="4">
+              <select onChange={(e) => this.handleClient(e)}>
+                <option>Sélectionner un client </option>
+                {this.state.clients.map((client) => (
+                  <option key={client.idClient}>
+                    {client.nomClient} ({client.idClient})
+                  </option>
+                ))}
+              </select>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="2">
+              <FormLabel>Début des travaux le </FormLabel>
+              <FormControl
+                onChange={(e) => this.handleDebutTravaux(e)}
+                placeholder={this.state.inputs.dateDebutTravauxDevis}
+              />
+            </Col>
+
+            <Col md="6"></Col>
+
+            <Col md="4">
+              <select onChange={(e) => this.handleScenario(e)}>
+                <option>Sélectionner un scénario</option>
+                {this.state.scenarios.map((scenario) => (
+                  <option key={scenario.idScenario}>
+                    {scenario.nomScenario} ({scenario.idScenario})
+                  </option>
+                ))}
+              </select>
+            </Col>
+
+            <Col md="4">
+              <FormLabel>Durée estimée des travaux </FormLabel>
+              <FormControl
+                onChange={(e) => this.handleDuree(e)}
+                placeholder={this.state.inputs.dureeDevis}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <br></br>
+            </Col>
+          </Row>
+
+          <FormLabel>Description : </FormLabel>
           <FormControl
-            onChange={(e) => this.handleNom(e)}
-            placeholder={this.state.inputs.nomDevis}
+            onChange={(e) => this.handleDescription(e)}
+            placeholder={this.state.inputs.descriptionDevis}
           />
-        </Form.Group>
 
-        <Row>
-          <Col md="2">
-            <FormLabel>Edité le </FormLabel>
-            <FormControl
-              onChange={(e) => this.handleDateEdition(e)}
-              placeholder={this.state.inputs.dateEditionDevis}
-            />
-          </Col>
+          <Row>
+            <Col>
+              <br></br>
+            </Col>
+          </Row>
 
-          <Col md="6"></Col>
+          <div className="alert alert-secondary" role="alert">
+            DETAIL DES PIECES
+          </div>
 
-          <Col md="4">
-            <select onChange={(e) => this.handleClient(e)}>
-              <option>Sélectionner un client </option>
-              {this.state.clients.map((client) => (
-                <option key={client.idClient}>
-                  {client.nomClient} ({client.idClient})
-                </option>
-              ))}
-            </select>
-          </Col>
-        </Row>
+          <Table>
+            <thead>
+              <tr>
+                <th> Référence </th>
+                <th> Description </th>
+                <th> Quantité </th>
+                <th> Unité </th>
+                <th> Prix (€) </th>
+              </tr>
+            </thead>
+          </Table>
 
-        <Row>
-          <Col md="2">
-            <FormLabel>Début des travaux le </FormLabel>
-            <FormControl
-              onChange={(e) => this.handleDebutTravaux(e)}
-              placeholder={this.state.inputs.dateDebutTravauxDevis}
-            />
-          </Col>
-
-          <Col md="6"></Col>
-
-          <Col md="4">
-            <select onChange={(e) => this.handleScenario(e)}>
-              <option>Sélectionner un scénario</option>
-              {this.state.scenarios.map((scenario) => (
-                <option key={scenario.idScenario}>
-                  {scenario.nomScenario} ({scenario.idScenario})
-                </option>
-              ))}
-            </select>
-          </Col>
-
-          <Col md="4">
-            <FormLabel>Durée estimée des travaux </FormLabel>
-            <FormControl
-              onChange={(e) => this.handleDuree(e)}
-              placeholder={this.state.inputs.dureeDevis}
-            />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <br></br>
-          </Col>
-        </Row>
-
-        <FormLabel>Description : </FormLabel>
-        <FormControl
-          onChange={(e) => this.handleDescription(e)}
-          placeholder={this.state.inputs.descriptionDevis}
-        />
-
-        <Row>
-          <Col>
-            <br></br>
-          </Col>
-        </Row>
-
-        <div className="alert alert-secondary" role="alert">
-          DETAIL DES PIECES
-        </div>
-
-        <Table>
-          <thead>
-            <tr>
-              <th> Référence </th>
-              <th> Description </th>
-              <th> Quantité </th>
-              <th> Unité </th>
-              <th> Prix (€) </th>
-            </tr>
-          </thead>
-        </Table>
-
-        {this.state.composantsPacks.map((row) => {
-          if (row.garde) {
-            return (
-              <Fragment>
-                <Row>
-                  <Col md="3">
-                    <FormControl
-                      as="select"
-                      onClick={(e) => this.handleClick(e, row.idRow)}
-                      onChange={(e) => this.handleSelect(e, row.idRow)}
-                    >
-                      <option>Composant/Pack</option>
-                      {this.state.composantsPacks.map((composantPack) => {
-                        if (composantPack.ref !== "" && !composantPack.garde) {
-                          return (
-                            <option>
-                              {composantPack.id} - {composantPack.ref}
-                            </option>
-                          );
+          {this.state.composantsPacks.map((row) => {
+            if (row.garde) {
+              return (
+                <Fragment>
+                  <Row>
+                    <Col md="3">
+                      <FormControl
+                        as="select"
+                        onClick={(e) => this.handleClick(e, row.idRow)}
+                        onChange={(e) => this.handleSelect(e, row.idRow)}
+                      >
+                        <option>Composant/Pack</option>
+                        {this.state.composantsPacks.map((composantPack) => {
+                          if (
+                            composantPack.ref !== "" &&
+                            !composantPack.garde
+                          ) {
+                            return (
+                              <option>
+                                {composantPack.id} - {composantPack.ref}
+                              </option>
+                            );
+                          }
+                        })}
+                      </FormControl>
+                    </Col>
+                    <Col md="3">
+                      <FormControl readOnly value={row.ref} />
+                    </Col>
+                    <Col md="2">
+                      <FormControl
+                        onChange={(e) =>
+                          this.handleQuantite(row.id, row.type, e)
                         }
-                      })}
-                    </FormControl>
-                  </Col>
-                  <Col md="3">
-                    <FormControl readOnly value={row.ref} />
-                  </Col>
-                  <Col md="2">
-                    <FormControl
-                      onChange={(e) => this.handleQuantite(row.id, row.type, e)}
-                      type="number"
-                      defaultValue={row.quantite}
-                    />
-                  </Col>
-                  <Col md="2">
-                    <FormControl
-                      readOnly
-                      // onChange={(e) => this.handleUnite(row.id, e)}
-                      value={row.unite}
-                    />
-                  </Col>
-                  <Col md="2">
-                    <FormControl readOnly value={row.prix} />
-                  </Col>
-                </Row>
-                <br></br>
-              </Fragment>
-            );
-          }
-        })}
-
-        <Row>
-          <Col>
-            <br></br>
-          </Col>
-        </Row>
-
-        <div className="alert alert-secondary" role="alert">
-          TOTAL
-        </div>
-
-        <Row></Row>
-        <Col md="4">
-          <FormLabel> Prix Hors Taxe </FormLabel>
-          <FormControl readOnly value={this.state.prixTotal} />
-        </Col>
-        <Col md="4">
-          <FormLabel> TVA (%) </FormLabel>
-          <FormControl onChange={this.handleTVA} defaultValue={20} />
-        </Col>
-        <Col md="4">
-          <FormLabel> Prix </FormLabel>
-          <FormControl
-            readOnly
-            value={
-              Math.round(
-                parseFloat(this.state.prixTotal) *
-                  (1 + this.state.tva / 100) *
-                  100
-              ) / 100
+                        type="number"
+                        defaultValue={row.quantite}
+                      />
+                    </Col>
+                    <Col md="2">
+                      <FormControl
+                        readOnly
+                        // onChange={(e) => this.handleUnite(row.id, e)}
+                        value={row.unite}
+                      />
+                    </Col>
+                    <Col md="2">
+                      <FormControl readOnly value={row.prix} />
+                    </Col>
+                  </Row>
+                  <br></br>
+                </Fragment>
+              );
             }
-          />
-        </Col>
+          })}
 
-        <Row>
-          <Col>
-            <br></br>
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <br></br>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col md="3">
-            <Button variant="ligth" type="submit" onClick={this.handleSubmit}>
-              Enregistrer
-            </Button>
+          <div className="alert alert-secondary" role="alert">
+            TOTAL
+          </div>
+
+          <Row></Row>
+          <Col md="4">
+            <FormLabel> Prix Hors Taxe </FormLabel>
+            <FormControl readOnly value={this.state.prixTotal} />
           </Col>
-          <Col md="3">
-            <Button variant="ligth" type="submit">
-              Générer le devis en PDF
-            </Button>
+          <Col md="4">
+            <FormLabel> TVA (%) </FormLabel>
+            <FormControl onChange={this.handleTVA} defaultValue={20} />
           </Col>
-          <Col md="3">
-            <Button variant="ligth" type="submit" onClick={this.ajouterLigne}>
-              Ajouter une ligne
-            </Button>
+          <Col md="4">
+            <FormLabel> Prix </FormLabel>
+            <FormControl
+              readOnly
+              value={
+                Math.round(
+                  parseFloat(this.state.prixTotal) *
+                    (1 + this.state.tva / 100) *
+                    100
+                ) / 100
+              }
+            />
           </Col>
-          <Col md="3">
-            <Button
-              variant="danger"
-              type="submit"
-              onClick={this.supprimerLigne}
-            >
-              Supprimer une ligne
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+
+          <Row>
+            <Col>
+              <br></br>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="3">
+              <Button variant="ligth" type="submit" onClick={this.handleSubmit}>
+                Enregistrer
+              </Button>
+            </Col>
+            <Col md="3">
+              <Button variant="ligth" type="submit">
+                Générer le devis en PDF
+              </Button>
+            </Col>
+            <Col md="3">
+              <Button variant="ligth" type="submit" onClick={this.ajouterLigne}>
+                Ajouter une ligne
+              </Button>
+            </Col>
+            <Col md="3">
+              <Button
+                variant="danger"
+                type="submit"
+                onClick={this.supprimerLigne}
+              >
+                Supprimer une ligne
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </Fragment>
     );
   }
 }

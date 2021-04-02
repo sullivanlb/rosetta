@@ -6,6 +6,7 @@ import "../style/ComposantsPacks.css";
 import ListeComposants from "../composants/ListeComposants";
 import ListePacks from "../composants/ListePacks";
 import AffichageComposantsPacks from "../composants/AffichageComposantsPacks";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -317,6 +318,7 @@ export default class ComposantsPacks extends Component {
   render() {
     return (
       <Fragment>
+        <Navigation/>
         <h3>Composants/Packs</h3>
         <img
           class="ImagelogoPlombier ml-3"

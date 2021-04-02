@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Row, Col, Container,FormLabel,FormControl, Form, Button } from "react-bootstrap";
+import { Row, Col, Container, FormLabel, FormControl } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import Supprimer from "../composants/SupprimerScenario";
 import "../style/Scenario.css";
@@ -8,6 +8,7 @@ import ListePacksNouveauScenario from "../composants/ListePacksNouveauScenario";
 import AffichageQuestions from "../composants/AffichageQuestions";
 import AffichageNomScenario from "../composants/AffichageNomScenario";
 import AffichageComposantsPacksNouveauScenario from "../composants/AffichageComposantsPacksNouveauScenario";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -37,41 +38,39 @@ export default class NouveauScenario extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://api/composant/tousLesComposants`)
-      .then((res) => {
-        var composantsBDD = res.data;
-        var composants = [];
-        composantsBDD.map((composant) => {
-          composants.push({
-            idComposant: composant.idComposant,
-            nomComposant: composant.nomComposant,
-            uniteComposant: composant.uniteComposant,
-            prixComposant: composant.prixComposant,
-            type: "composant",
-            quantite: 0,
-            ajoute: false,
-          });
+    axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      var composantsBDD = res.data;
+      var composants = [];
+      composantsBDD.map((composant) => {
+        composants.push({
+          idComposant: composant.idComposant,
+          nomComposant: composant.nomComposant,
+          uniteComposant: composant.uniteComposant,
+          prixComposant: composant.prixComposant,
+          type: "composant",
+          quantite: 0,
+          ajoute: false,
         });
-        this.setState({ composants: composants });
-        this.setState({ composantsRecherches: composants });
       });
+      this.setState({ composants: composants });
+      this.setState({ composantsRecherches: composants });
+    });
 
-    axios.get(`http://api/pack/tousLesPacks`)
-      .then((res) => {
-        var packsBDD = res.data;
-        var packs = [];
-        packsBDD.map((pack) => {
-          packs.push({
-            idPack: pack.idPack,
-            nomPack: pack.nomPack,
-            type: "pack",
-            quantite: 0,
-            ajoute: false,
-          });
+    axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      var packsBDD = res.data;
+      var packs = [];
+      packsBDD.map((pack) => {
+        packs.push({
+          idPack: pack.idPack,
+          nomPack: pack.nomPack,
+          type: "pack",
+          quantite: 0,
+          ajoute: false,
         });
-        this.setState({ packs: packs });
-        this.setState({ packsRecherches: packs });
       });
+      this.setState({ packs: packs });
+      this.setState({ packsRecherches: packs });
+    });
   }
 
   addComposantPack(type, id) {
@@ -79,24 +78,23 @@ export default class NouveauScenario extends Component {
       var composants = this.state.composants;
 
       this.state.composants.map((composant) => {
-        if (composant.idComposant == id) {
+        if (composant.idComposant === id) {
           if (composant.ajoute) {
-
             // Enlève le composant du nouveau scénario
             composants.map((composant) => {
-              if (composant.idComposant == id) {
+              if (composant.idComposant === id) {
                 composant.ajoute = false;
               }
             });
           } else {
             var quantite = -1;
             while (quantite < 0) {
-              var quantite = prompt("Combien en voulez-vous ?");
+              quantite = prompt("Combien en voulez-vous ?");
             }
-            
+
             // Ajoute le composant au nouveau scénario
             composants.map((composant) => {
-              if (composant.idComposant == id) {
+              if (composant.idComposant === id) {
                 composant.ajoute = true;
                 composant.quantite = quantite;
               }
@@ -112,7 +110,6 @@ export default class NouveauScenario extends Component {
       this.state.packs.map((pack) => {
         if (pack.idPack == id) {
           if (pack.ajoute) {
-
             // Enlève le pack du nouveau scénario
             packs.map((pack) => {
               if (pack.idPack == id) {
@@ -122,12 +119,12 @@ export default class NouveauScenario extends Component {
           } else {
             var quantite = -1;
             while (quantite < 0) {
-              var quantite = prompt("Combien en voulez-vous ?");
+              quantite = prompt("Combien en voulez-vous ?");
             }
-            
+
             // Ajoute le pack au nouveau scénario
             packs.map((pack) => {
-              if (pack.idPack == id) {
+              if (pack.idPack === id) {
                 pack.ajoute = true;
                 pack.quantite = quantite;
               }
@@ -143,47 +140,52 @@ export default class NouveauScenario extends Component {
   /**
    * Mettre à jour la liste des composants et packs à afficher, suivant la recherche de l'utilisateur
    */
-   async onChangeSearchInput() {
-    await axios.get(`http://api/composant/tousLesComposants`)
-      .then((res) => {
-        var composantsBDD = res.data;
-        var composants = [];
-        composantsBDD.map((composant) => {
-          composants.push({
-            idComposant: composant.idComposant,
-            nomComposant: composant.nomComposant,
-            uniteComposant: composant.uniteComposant,
-            prixComposant: composant.prixComposant,
-            type: "composant",
-            quantite: 0,
-            ajoute: false,
-          });
+  async onChangeSearchInput() {
+    await axios.get(`http://api/composant/tousLesComposants`).then((res) => {
+      var composantsBDD = res.data;
+      var composants = [];
+      composantsBDD.map((composant) => {
+        composants.push({
+          idComposant: composant.idComposant,
+          nomComposant: composant.nomComposant,
+          uniteComposant: composant.uniteComposant,
+          prixComposant: composant.prixComposant,
+          type: "composant",
+          quantite: 0,
+          ajoute: false,
         });
-        this.setState({ composantsRecherches: composants });
       });
+      this.setState({ composantsRecherches: composants });
+    });
 
-    await axios.get(`http://api/pack/tousLesPacks`)
-      .then((res) => {
-        var packsBDD = res.data;
-        var packs = [];
-        packsBDD.map((pack) => {
-          packs.push({
-            idPack: pack.idPack,
-            nomPack: pack.nomPack,
-            type: "pack",
-            quantite: 0,
-            ajoute: false,
-          });
+    await axios.get(`http://api/pack/tousLesPacks`).then((res) => {
+      var packsBDD = res.data;
+      var packs = [];
+      packsBDD.map((pack) => {
+        packs.push({
+          idPack: pack.idPack,
+          nomPack: pack.nomPack,
+          type: "pack",
+          quantite: 0,
+          ajoute: false,
         });
-        this.setState({ packsRecherches: packs });
       });
+      this.setState({ packsRecherches: packs });
+    });
 
     if (document.getElementById("search-input").value.length != 0) {
       // Mise à jour de la liste des composants
       var composants_liste = [];
 
       this.state.composantsRecherches.map((composant) => {
-        if (composant.nomComposant != null && composant.nomComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+        if (
+          composant.nomComposant != null &&
+          composant.nomComposant
+            .toUpperCase()
+            .includes(
+              document.getElementById("search-input").value.toUpperCase()
+            )
+        ) {
           composants_liste.push({
             idComposant: composant.idComposant,
             nomComposant: composant.nomComposant,
@@ -202,7 +204,14 @@ export default class NouveauScenario extends Component {
       var packs_liste = [];
 
       this.state.packsRecherches.map((pack) => {
-        if (pack.nomPack != null && pack.nomPack.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+        if (
+          pack.nomPack != null &&
+          pack.nomPack
+            .toUpperCase()
+            .includes(
+              document.getElementById("search-input").value.toUpperCase()
+            )
+        ) {
           packs_liste.push({
             idPack: pack.idPack,
             nomPack: pack.nomPack,
@@ -221,7 +230,7 @@ export default class NouveauScenario extends Component {
     // Quand la touche ENTRER est tapée lorsqu'on écrit une nouvelle question
     if (event.charCode === 13) {
       var scenarioTmp = this.state.scenario;
-      scenarioTmp.questions.push({nomQuestion: event.target.value});
+      scenarioTmp.questions.push({ nomQuestion: event.target.value });
       this.setState({ scenario: scenarioTmp });
       document.getElementById("form-question").value = "";
     }
@@ -240,7 +249,7 @@ export default class NouveauScenario extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
-    
+
     // Nom du scénario
     formData.append("nom", this.state.scenario.nomScenario);
 
@@ -275,7 +284,7 @@ export default class NouveauScenario extends Component {
 
     await axios
       .post("http://api/scenario/ajoutScenario", formData)
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
       });
 
@@ -286,9 +295,8 @@ export default class NouveauScenario extends Component {
   render() {
     return (
       <Fragment>
-        <AffichageNomScenario
-          nom={this.state.scenario.nomScenario}
-        />
+        <Navigation />
+        <AffichageNomScenario nom={this.state.scenario.nomScenario} />
         <img
           class="ImagelogoPlombier ml-3"
           src="/img/logo-plombiers.png"
@@ -316,7 +324,12 @@ export default class NouveauScenario extends Component {
                 state={this.state}
                 action={this.addComposantPack}
               />
-              <Row><Col> <br></br>  <br></br> </Col></Row>
+              <Row>
+                <Col>
+                  {" "}
+                  <br></br> <br></br>{" "}
+                </Col>
+              </Row>
               <ListePacksNouveauScenario
                 state={this.state}
                 action={this.addComposantPack}
@@ -331,7 +344,10 @@ export default class NouveauScenario extends Component {
                   onKeyPress={this.handleKeyPressNom}
                 />
               </Row>
-              <Row><br></br><br></br></Row>
+              <Row>
+                <br></br>
+                <br></br>
+              </Row>
               <Row>
                 <FormLabel>Questions : </FormLabel>
                 <FormControl
@@ -341,32 +357,31 @@ export default class NouveauScenario extends Component {
                 />
               </Row>
               <Row>
-                <AffichageQuestions
-                  scenario={this.state.scenario}
-                />
+                <AffichageQuestions scenario={this.state.scenario} />
               </Row>
-              <Row><br></br><br></br></Row>
               <Row>
-                <AffichageComposantsPacksNouveauScenario
-                  state={this.state}
-                />
+                <br></br>
+                <br></br>
+              </Row>
+              <Row>
+                <AffichageComposantsPacksNouveauScenario state={this.state} />
               </Row>
             </Col>
 
             <Col className="col3-button" md={2}>
-            <button
-              type="button"
-              class="btn btn-light"
-              onClick={this.handleSubmit.bind(this)}
-            >
-              Enregistrer
-            </button>
-              <Supprimer />
               <button
                 type="button"
                 class="btn btn-light"
+                onClick={this.handleSubmit.bind(this)}
               >
-                <a style={{"color":"black","text-decoration":"none"}} href="/scenario">
+                Enregistrer
+              </button>
+              <Supprimer />
+              <button type="button" class="btn btn-light">
+                <a
+                  style={{ color: "black", "text-decoration": "none" }}
+                  href="/scenario"
+                >
                   Annuler
                 </a>
               </button>

@@ -6,6 +6,7 @@ import Supprimer from "../composants/SupprimerClient";
 import "../style/Client.css";
 import ListeClient from "../composants/ListeClient";
 import AffichageClient from "../composants/AffichageClient";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -72,6 +73,7 @@ export default class Client extends Component {
   render() {
     return (
       <Fragment>
+        <Navigation/>
         <h3>Client</h3>
         <img
           className="ImagelogoPlombier ml-3"

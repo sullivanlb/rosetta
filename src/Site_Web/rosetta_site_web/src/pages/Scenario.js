@@ -1,4 +1,4 @@
-import React, {Component, Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { MDBCol, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import Supprimer from "../composants/SupprimerScenario";
 import "../style/Scenario.css";
 import ListeScenario from "../composants/ListeScenario";
 import AffichageScenario from "../composants/AffichageScenario";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -130,7 +131,7 @@ export default class Scenario extends Component {
       tousLesScenarios.push({
         idScenario: scenario.idScenario,
         nomScenario: scenario.nomScenario,
-        questions : questionsScenario,
+        questions: questionsScenario,
         composants: composantsScenario,
         packs: packsScenario,
       });
@@ -146,7 +147,7 @@ export default class Scenario extends Component {
   /**
    * Envoi une requête de suppression au serveur
    */
-   async supprimerScenario() {
+  async supprimerScenario() {
     await axios
       .delete(`http://api/scenario/supprimerScenario/${this.state.idToDisplay}`)
       .then((res) => {
@@ -259,7 +260,7 @@ export default class Scenario extends Component {
       tousLesScenarios.push({
         idScenario: scenario.idScenario,
         nomScenario: scenario.nomScenario,
-        questions : questionsScenario,
+        questions: questionsScenario,
         composants: composantsScenario,
         packs: packsScenario,
       });
@@ -274,20 +275,57 @@ export default class Scenario extends Component {
       this.state.scenarios.map((scenario) => {
         var wordFound = false;
 
-        if (scenario.nomScenario != null && scenario.nomScenario.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+        if (
+          scenario.nomScenario != null &&
+          scenario.nomScenario
+            .toUpperCase()
+            .includes(
+              document.getElementById("search-input").value.toUpperCase()
+            )
+        ) {
           wordFound = true;
         } else {
           scenario.questions.map((question) => {
-            if (question.nomQuestion != null && question.nomQuestion.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+            if (
+              question.nomQuestion != null &&
+              question.nomQuestion
+                .toUpperCase()
+                .includes(
+                  document.getElementById("search-input").value.toUpperCase()
+                )
+            ) {
               wordFound = true;
             }
           });
 
           if (!wordFound) {
             scenario.composants.map((composant) => {
-              if ((composant.nomComposant != null && composant.nomComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-                  || (composant.uniteComposant != null && composant.uniteComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))
-                  || (composant.prixComposant != null && composant.prixComposant.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase()))) {
+              if (
+                (composant.nomComposant != null &&
+                  composant.nomComposant
+                    .toUpperCase()
+                    .includes(
+                      document
+                        .getElementById("search-input")
+                        .value.toUpperCase()
+                    )) ||
+                (composant.uniteComposant != null &&
+                  composant.uniteComposant
+                    .toUpperCase()
+                    .includes(
+                      document
+                        .getElementById("search-input")
+                        .value.toUpperCase()
+                    )) ||
+                (composant.prixComposant != null &&
+                  composant.prixComposant
+                    .toUpperCase()
+                    .includes(
+                      document
+                        .getElementById("search-input")
+                        .value.toUpperCase()
+                    ))
+              ) {
                 wordFound = true;
               }
             });
@@ -295,7 +333,14 @@ export default class Scenario extends Component {
 
           if (!wordFound) {
             scenario.packs.map((pack) => {
-              if (pack.nomPack != null && pack.nomPack.toUpperCase().includes(document.getElementById("search-input").value.toUpperCase())) {
+              if (
+                pack.nomPack != null &&
+                pack.nomPack
+                  .toUpperCase()
+                  .includes(
+                    document.getElementById("search-input").value.toUpperCase()
+                  )
+              ) {
                 wordFound = true;
               }
             });
@@ -344,6 +389,7 @@ export default class Scenario extends Component {
   render() {
     return (
       <Fragment>
+        <Navigation />
         <h3>Scénario</h3>
         <img
           class="ImagelogoPlombier ml-3"
@@ -354,19 +400,19 @@ export default class Scenario extends Component {
           <Row>
             <Col className="col1-liste" md={4}>
               <Row>
-              <MDBCol md="12">
-                <form className="form-inline mt-4 mb-4">
-                  <MDBIcon icon="search" />
-                  <input
-                    id="search-input"
-                    className="form-control form-control-sm ml-3 w-75"
-                    type="text"
-                    placeholder="Rechercher un scénario"
-                    aria-label="Rechercher"
-                    onChange={this.onChangeSearchInput}
-                  />
-                </form>
-              </MDBCol>
+                <MDBCol md="12">
+                  <form className="form-inline mt-4 mb-4">
+                    <MDBIcon icon="search" />
+                    <input
+                      id="search-input"
+                      className="form-control form-control-sm ml-3 w-75"
+                      type="text"
+                      placeholder="Rechercher un scénario"
+                      aria-label="Rechercher"
+                      onChange={this.onChangeSearchInput}
+                    />
+                  </form>
+                </MDBCol>
               </Row>
               <ListeScenario
                 state={this.state}
@@ -376,7 +422,10 @@ export default class Scenario extends Component {
             <Col className="col2-affichage" md={6}>
               <MDBCol md="12">
                 <form className="form-inline mt-4 mb-4">
-                  <AffichageScenario key={this.state.idToDisplay} state={this.state} />
+                  <AffichageScenario
+                    key={this.state.idToDisplay}
+                    state={this.state}
+                  />
                 </form>
               </MDBCol>
             </Col>
@@ -390,22 +439,27 @@ export default class Scenario extends Component {
                   pathname: "/scenario/modifier",
                   params: {
                     idToDisplay: this.state.idToDisplay,
-                    scenarios: this.state.scenarios.filter((scenario => 
-                      scenario.idScenario === this.state.idToDisplay
-                    ))
-                  }
+                    scenarios: this.state.scenarios.filter(
+                      (scenario) =>
+                        scenario.idScenario === this.state.idToDisplay
+                    ),
+                  },
                 }}
               >
                 Modifier scénario
               </Link>
-              <Supprimer
-                action={this.supprimerScenario}/>
+              <Supprimer action={this.supprimerScenario} />
               <Link class="btn btn-light" to="/scenario/composantspacks">
                 Composants/Packs
               </Link>
             </Col>
           </Row>
-          <Row><Col> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> </Col></Row>
+          <Row>
+            <Col>
+              {" "}
+              <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>{" "}
+            </Col>
+          </Row>
         </Container>
       </Fragment>
     );

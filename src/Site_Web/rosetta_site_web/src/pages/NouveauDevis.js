@@ -10,6 +10,7 @@ import {
   Table,
 } from "react-bootstrap";
 import "../style/NouveauDevis.css";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -579,6 +580,8 @@ export default class NouveauDevis extends Component {
 
   render() {
     return (
+      <Fragment>
+      <Navigation/>
       <Container className="nouveau_devis_form">
         <Row>
           <Col>
@@ -818,6 +821,7 @@ export default class NouveauDevis extends Component {
           </Col>
         </Row>
       </Container>
+      </Fragment>
     );
   }
 }

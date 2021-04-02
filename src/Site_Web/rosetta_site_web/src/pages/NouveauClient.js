@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Col, Form, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../style/NouveauClient.css";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -87,6 +88,8 @@ export default class NouveauClient extends Component {
 
   render() {
     return (
+      <Fragment>
+      <Navigation/>
       <Container className="create_client_form">
         <Row>
           <Col>
@@ -173,6 +176,7 @@ export default class NouveauClient extends Component {
           </Button>
         </Form>
       </Container>
+      </Fragment>
     );
   }
 }

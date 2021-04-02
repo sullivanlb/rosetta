@@ -6,6 +6,7 @@ import Supprimer from "../composants/SupprimerDevis";
 import "../style/Devis.css";
 import ListeDevis from "../composants/ListeDevis";
 import AffichageDevis from "../composants/AffichageDevis";
+import Navigation from "../composants/Navigation";
 import axios from "axios";
 
 /**
@@ -329,6 +330,7 @@ export default class Devis extends Component {
   render() {
     return (
       <Fragment>
+        <Navigation/>
         <h3>Devis</h3>
         <img className="ImagelogoPlombier" src="/img/logo-plombiers.png" alt="" />
         <Container fluid>
