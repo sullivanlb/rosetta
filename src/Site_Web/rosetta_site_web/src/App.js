@@ -23,11 +23,6 @@ function App() {
   return (
     <Fragment>
       <BrowserRouter>
-        <Navigation />
-
-        {/*<NavbarPage/>
-        **/}
-
         <Switch>
           <Route exact path="/" component={Accueil} />
           <Route exact path="/client" component={Client} />
