@@ -1890,11 +1890,11 @@ int id linear_layout_gauche_client 0x7f080105
 int id listMode 0x7f080106
 int id listView_clients 0x7f080107
 int id listView_clients_nouveauDevis 0x7f080108
-int id listView_composants_affichage 0x7f080109
-int id listView_composants_ajoutPack 0x7f08010a
-int id listView_composants_composantspacks 0x7f08010b
-int id listView_composants_nouveaudevis 0x7f08010c
-int id listView_composants_nouveauscenario 0x7f08010d
+int id listView_composants_ajoutPack 0x7f080109
+int id listView_composants_composantspacks 0x7f08010a
+int id listView_composants_nouveaudevis 0x7f08010b
+int id listView_composants_nouveauscenario 0x7f08010c
+int id listView_composants_packs_affichage 0x7f08010d
 int id listView_devis 0x7f08010e
 int id listView_devis_question 0x7f08010f
 int id listView_packDeComposant 0x7f080110

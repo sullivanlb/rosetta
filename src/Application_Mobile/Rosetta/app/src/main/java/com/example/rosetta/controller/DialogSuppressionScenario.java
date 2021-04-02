@@ -46,7 +46,6 @@ public class DialogSuppressionScenario extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //suppression dans la table scénario
-                        System.out.println("id selectionné : "  + scenarioFragment.getIdSelectionnnerScenario());
                         Controleur.getInstance(scenarioFragment.getContext()).supprimerScenario(scenarioFragment.getIdSelectionnnerScenario());
 
                         //suppression dans la table scénario question

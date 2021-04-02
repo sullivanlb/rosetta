@@ -3,7 +3,6 @@ package com.example.rosetta.controller;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Question;
 import com.example.rosetta.ui.main.NouveauScenarioFragment;
 
@@ -42,6 +41,9 @@ public class ControleurListeQuestionScenario implements AdapterView.OnItemClickL
 
     }
 
+    /**
+     * Cette méthode lance la boite de dialogue permettant de supprimer une question
+     */
     public void openDialog(){
 
         DialogQuestionScenario dialogQuestionScenario = new DialogQuestionScenario(this.nouveauScenarioFragment);

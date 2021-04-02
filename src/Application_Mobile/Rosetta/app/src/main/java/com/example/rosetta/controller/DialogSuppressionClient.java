@@ -10,9 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.example.rosetta.model.Client;
 import com.example.rosetta.ui.main.ClientFragment;
-import com.example.rosetta.ui.main.NouveauScenarioFragment;
 
 /**
  * Cette classe permet d'afficher une boîte de dialog pour demander la confirmation de la suppression d'un client.

@@ -14,6 +14,11 @@ import com.example.rosetta.ui.main.AjoutComposantFragment;
 import com.example.rosetta.ui.main.ComposantPackFragment;
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
+/**
+ * Cette classe permet d'ajouter un composant et d'enregistrer les informations d'un composant, lorsque ce bouton Enregistrer est appuyé.
+ *
+ * @version 2.0
+ */
 
 public class ControleurEnregistrerNouveauComposant implements View.OnClickListener {
 

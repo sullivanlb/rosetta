@@ -5,10 +5,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.rosetta.R;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.ui.main.ClientFragment;
-
-import java.util.ArrayList;
 
 /**
  * Cette classe permet de supprimer un client lorsque celui-ci est sélectionné.
@@ -62,6 +59,9 @@ public class ControleurClientSupprimer implements View.OnClickListener {
 
     }
 
+    /**
+     * Cette méthode appelle la boite de dialogue pour supprimer un client
+     */
     public void  openDialog(){
 
         DialogSuppressionClient dialogSuppressionClient = new DialogSuppressionClient(this.clientFragment);

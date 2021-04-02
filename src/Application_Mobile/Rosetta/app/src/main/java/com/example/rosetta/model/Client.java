@@ -16,6 +16,11 @@ public class Client {
     private int idClient;
 
     /**
+     * L'état de synchronisation du client dans la base de données externe (0 = réussi, 1 = raté).
+     */
+    private int syncStatus;
+
+    /**
      * Le nom du client.
      */
     private String nomClient;
@@ -61,8 +66,9 @@ public class Client {
      * @param tel     le numéro de téléphone du client
      * @param sexe    le sexe du client
      */
-    public Client(int id, String nom, String prenom, String adresse, String email, String tel, Sexe sexe) {
+    public Client(int id, int ss, String nom, String prenom, String adresse, String email, String tel, Sexe sexe) {
         this.setIdClient(id);
+        this.setSyncStatus(ss);
         this.setNomClient(nom);
         this.setPrenomClient(prenom);
         this.setAdresseClient(adresse);
@@ -88,6 +94,22 @@ public class Client {
      */
     public void setIdClient(int id) {
         this.idClient = id;
+    }
+
+    /** Permet d'accéder à l'état de synchronisation du client.
+     *
+     * @return l'état de synchronisation du client
+     */
+    public int getSyncStatus() {
+        return this.syncStatus;
+    }
+
+    /** Renseigne l'état de synchronisation du client.
+     *
+     * @param ss l'état de synchronisation du client
+     */
+    public void setSyncStatus(int ss) {
+        this.syncStatus = ss;
     }
 
     /**

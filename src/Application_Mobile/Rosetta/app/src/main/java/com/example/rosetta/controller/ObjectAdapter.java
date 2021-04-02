@@ -16,13 +16,14 @@ import java.util.ArrayList;
 /**
  * Cette classe permet de contrôler l'affichage de la liste des Objects.
  *
- * @author Lucy
+ * @author Lucy, Christophe, Alice
  * @version 2.0
  */
 
 public class ObjectAdapter extends BaseAdapter {
 
     private ArrayList<Object> listObject;
+    private ArrayList<Integer> quantites;
     private Context context;
     private LayoutInflater inflater;
 
@@ -32,9 +33,10 @@ public class ObjectAdapter extends BaseAdapter {
      * @param context le contexte
      * @param list la liste des objects (composant + pasck)
      */
-    public ObjectAdapter(Context context, ArrayList<Object> list){
+    public ObjectAdapter(Context context, ArrayList<Object> list, ArrayList<Integer> quantites){
         this.context = context;
         this.listObject = list;
+        this.quantites = quantites;
         inflater = LayoutInflater.from(context);
     }
 
@@ -69,13 +71,13 @@ public class ObjectAdapter extends BaseAdapter {
         TextView nom = (TextView) view.findViewById(R.id.nomPackTextView);
 
         // Modification des vues
-        if(listObject.get(position).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Composant")){
+        if(listObject.get(position) instanceof Composant){
             Composant composant = (Composant) listObject.get(position);
-            nom.setText(composant.getNomComposant());
+            nom.setText("Composant : " + composant.getNomComposant());
         }
-        else if(listObject.get(position).getClass().getName().equalsIgnoreCase("com.example.rosetta.model.Pack")){
+        else if(listObject.get(position) instanceof Pack){
             Pack pack = (Pack) listObject.get(position);
-            nom.setText(pack.getNomPack());
+            nom.setText("Pack : " + pack.getNomPack());
         }
 
 

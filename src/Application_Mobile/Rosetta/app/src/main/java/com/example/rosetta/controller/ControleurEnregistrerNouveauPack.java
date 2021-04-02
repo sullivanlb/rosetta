@@ -12,7 +12,6 @@ import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
 import com.example.rosetta.ui.main.AjoutPackFragment;
-import com.example.rosetta.ui.main.ClientFragment;
 import com.example.rosetta.ui.main.ComposantPackFragment;
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
@@ -75,8 +74,6 @@ public class ControleurEnregistrerNouveauPack implements View.OnClickListener {
         }
 
     }
-
-    public void quantiteComposant(ArrayList<Composant> list){ }
 }
 
 

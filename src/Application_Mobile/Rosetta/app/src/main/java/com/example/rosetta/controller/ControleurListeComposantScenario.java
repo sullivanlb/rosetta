@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
-import com.example.rosetta.model.Pack;
 import com.example.rosetta.ui.main.NouveauScenarioFragment;
 
 /**
@@ -66,7 +65,7 @@ public class ControleurListeComposantScenario  implements AdapterView.OnItemClic
                 this.nouveauScenarioFragment.getListeObjectPackComposant().add(composant);
                 this.nouveauScenarioFragment.getHashmapIdComposantQuantite().put(idComposant, quantite);
 
-                ObjectAdapter adapter = new ObjectAdapter(this.nouveauScenarioFragment.getActivity(), nouveauScenarioFragment.getListeObjectPackComposant());
+                ObjectAdapter adapter = new ObjectAdapter(this.nouveauScenarioFragment.getActivity(), nouveauScenarioFragment.getListeObjectPackComposant(), null);
                 this.nouveauScenarioFragment.getListViewObject().setAdapter(adapter);
 
                 // Vider le champ de la quantité
@@ -91,7 +90,7 @@ public class ControleurListeComposantScenario  implements AdapterView.OnItemClic
                 j++;
             }
 
-            ObjectAdapter adapter = new ObjectAdapter(this.nouveauScenarioFragment.getActivity(), nouveauScenarioFragment.getListeObjectPackComposant());
+            ObjectAdapter adapter = new ObjectAdapter(this.nouveauScenarioFragment.getActivity(), nouveauScenarioFragment.getListeObjectPackComposant(),null);
             this.nouveauScenarioFragment.getListViewObject().setAdapter(adapter);
 
             // Vider le champ de la quantité

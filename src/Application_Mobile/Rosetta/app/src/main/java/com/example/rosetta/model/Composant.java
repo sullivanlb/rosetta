@@ -117,6 +117,7 @@ public class Composant {
 
     /**
      * Représente textuellement les données du composant.
+     * @return une chaine de caractères
      */
     public String toString() {
         String composant = "COMPOSANT : " + this.idComposant;

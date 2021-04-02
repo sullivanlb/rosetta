@@ -16,16 +16,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
-import com.example.rosetta.controller.ClientAdapter;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurListeComposants;
 import com.example.rosetta.controller.ControleurListePack;
 import com.example.rosetta.controller.PackAdapter;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
-import com.example.rosetta.model.Sexe;
 
 import java.util.ArrayList;
 
@@ -34,7 +31,7 @@ import java.util.ArrayList;
  * associée : l'interface de fragment_nouveaudevis_final_layout.
  * Elle est accessible depuis le bouton nouveau Devis/suivant le  de l'interface Devis.
  *
- * @author ALice, Lucy
+ * @author Lucy
  * @version 2.0
  */
 

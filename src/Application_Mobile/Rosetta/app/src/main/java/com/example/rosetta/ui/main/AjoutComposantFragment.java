@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,12 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
-import com.example.rosetta.controller.ComposantAdapter;
-import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurEnregistrerNouveauComposant;
-import com.example.rosetta.model.Composant;
-
-import java.util.ArrayList;
 
 /**
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue

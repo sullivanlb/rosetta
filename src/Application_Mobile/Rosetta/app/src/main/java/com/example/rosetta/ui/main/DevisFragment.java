@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
  * associée : l'interface de Devis.
  *
- * @author Alice ~ Lucy
+ * @author Lucy
  * @version 2.0
  */
 public class DevisFragment extends Fragment {

@@ -1891,11 +1891,11 @@ id linear_layout_gauche_client
 id listMode
 id listView_clients
 id listView_clients_nouveauDevis
-id listView_composants_affichage
 id listView_composants_ajoutPack
 id listView_composants_composantspacks
 id listView_composants_nouveaudevis
 id listView_composants_nouveauscenario
+id listView_composants_packs_affichage
 id listView_devis
 id listView_devis_question
 id listView_packDeComposant

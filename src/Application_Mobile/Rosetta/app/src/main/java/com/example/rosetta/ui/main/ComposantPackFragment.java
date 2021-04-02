@@ -16,29 +16,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
-import com.example.rosetta.controller.ClientAdapter;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurEnregistrerModificationComposantPack;
-import com.example.rosetta.controller.ControleurListeComposants;
 import com.example.rosetta.controller.ControleurListeComposantsComposantPack;
 import com.example.rosetta.controller.ControleurListePack;
 import com.example.rosetta.controller.PackAdapter;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
  * associée : l'interface de fragment_composantpack_layout.
  * Elle est accessible depuis le bouton composant/pack de l'interface Scénario .
  *
- * @author Alice
+ * @author Alice, lucy
  * @version 2.0
  */
 
@@ -213,7 +209,7 @@ public class ComposantPackFragment extends Fragment {
 
     /**
      * Getter
-     * @return
+     * @return la liste des packs
      */
     public ArrayList<Pack> getListePacks() {
         return listePacks;
@@ -247,7 +243,7 @@ public class ComposantPackFragment extends Fragment {
 
     /**
      * Getter
-     * @return l'indice selectionné
+     * @return l'indice selectionné du composant
      */
     public int getIndiceSelectionnerComposant() {
         return indiceSelectionnerComposant;
@@ -255,7 +251,7 @@ public class ComposantPackFragment extends Fragment {
 
     /**
      * Getter
-     * @return l'indice selectionné
+     * @return l'indice selectionné du pack
      */
     public int getIndiceSelectionnerPack() {
         return indiceSelectionnerPack;
@@ -270,8 +266,8 @@ public class ComposantPackFragment extends Fragment {
     }
 
     /**
-     *
-     * @return
+     * Getter
+     * @return l'identifiant du pack selectionne
      */
     public int getIdSelectionnnerPack() {
         return idSelectionnnerPack;

@@ -8,7 +8,7 @@ package com.example.rosetta.model;
  */
 public class Question {
 
-    /*
+    /**
      * Le numéro d'identification de la question.
      */
     private int idQuestion;

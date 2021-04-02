@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.rosetta.R;
 import com.example.rosetta.model.Client;
-import com.example.rosetta.ui.main.ClientFragment;
 
 import java.util.ArrayList;
 

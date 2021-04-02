@@ -1,23 +1,14 @@
 package com.example.rosetta.controller;
 
-import android.service.controls.Control;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.example.rosetta.R;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
-import com.example.rosetta.model.Pack;
 import com.example.rosetta.ui.main.ComposantPackFragment;
-import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 

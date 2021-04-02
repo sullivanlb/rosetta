@@ -11,7 +11,6 @@ import com.example.rosetta.model.Question;
 import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Cette classe permet de faire la différence proprement entre l'ensemble des contrôleurs et l'accès
@@ -30,6 +29,8 @@ public class Controleur {
     private static ArrayList<Pack> listePacks;
     private static  ArrayList<Question> listeQuestions;
     private static ArrayList<Devis> listeDevis;
+
+    private ControleurEnregistrerNouveauClient controleurEnregistrerNouveauClient;
 
     /**
      * Le constructeur crée une nouvelle forme de Controleur.
@@ -127,6 +128,22 @@ public class Controleur {
      */
     public static ArrayList<Client> getListeClients() {
         return listeClients;
+    }
+
+    /**
+     *  Met à jour la liste des clients
+     */
+    public void updateLesClients() {
+        Controleur.accesLocal.synchroniserClients(this.controleurEnregistrerNouveauClient);
+    }
+
+    /**
+     * Met à jour le controleurEnregistrerNouveauClient
+     *
+     * @param controleurEnregistrerNouveauClient l'attribut à mettre à jour
+     */
+    public void setControleurEnregistrerNouveauClient(ControleurEnregistrerNouveauClient controleurEnregistrerNouveauClient) {
+        this.controleurEnregistrerNouveauClient = controleurEnregistrerNouveauClient;
     }
 
     //====================================== Scénario ===================================================
@@ -300,14 +317,6 @@ public class Controleur {
         return listePacks;
     }
 
-    /**
-     *
-     * @param
-     */
-
-    public void supprimerPack(int idPack){
-        Controleur.accesLocal.supprimerPack(idPack);
-    }
 
     // ===================================Devis ===========================================================
 
@@ -464,10 +473,9 @@ public class Controleur {
     }
 
     /**
-     *
-     * @param
+     * Supprime toutes les liaisons correspondant au pack passé en paramètre
+     * @param idPack l'identifiant du pack
      */
-
     public void supprimerPackPC(int idPack){
         Controleur.accesLocal.supprimerPackPC(idPack);
     }
@@ -487,12 +495,32 @@ public class Controleur {
     }
 
     /**
-     *
-     * @param
+     * Supprime toutes les liaisons correspondant au scénario passé en paramètre
+     * @param idScenario l'identifiant du scenario
      */
-
     public void supprimerScenarioSC(int idScenario){
         Controleur.accesLocal.supprimerScenarioSC(idScenario);
+    }
+
+    /**
+     * @return tous les composant de la table appartient SC
+     */
+    public ArrayList<Integer> getTousLesElementsSC_composant(){
+        return Controleur.accesLocal.tousLesElementsSC_Composant();
+    }
+
+    /**
+     * @return toutes les quantites de la table appartient SC
+     */
+    public ArrayList<Integer> getTousLesElementsSC_quantite(){
+        return Controleur.accesLocal.tousLesElementsSC_Quantite();
+    }
+
+    /**
+     * @return tous les scenarios de la table appartient SC
+     */
+    public ArrayList<Integer> getTousLesElementsSC_scenarios(){
+        return Controleur.accesLocal.tousLesElementsSC_Scenarios();
     }
 
     //=============================== Appartient Scénario Pack ======================================
@@ -511,32 +539,29 @@ public class Controleur {
     }
 
     /**
-     * Getter
-     * @return
+     * @return tous les scenarios de la table appartient SP
      */
     public ArrayList<Integer> getTousLesElementsSP_scenarios(){
         return Controleur.accesLocal.tousLesElementsSP_Scenarios();
     }
 
     /**
-     * Getter
-     * @return
+     * @return tous les packs de la table appartient SP
      */
     public ArrayList<Integer> getTousLesElementsSP_pack(){
         return Controleur.accesLocal.tousLesElementsSP_Pack();
     }
 
     /**
-     * Getter
-     * @return
+     * @return toutes les quantites de la table appartient SP
      */
     public ArrayList<Integer> getTousLesElementsSP_quantite(){
         return Controleur.accesLocal.tousLesElementsSP_Quantite();
     }
 
     /**
-     *
-     * @param
+     * Supprime toutes les liaisons correspondant au scénario passé en paramètre
+     * @param idScenario l'identifiant du scenario
      */
 
     public void supprimerScenarioSP(int idScenario){
@@ -559,12 +584,26 @@ public class Controleur {
     }
 
     /**
-     *
-     * @param
+     * Supprime toutes les liaisons correspondant au scénario passé en paramètre
+     * @param idScenario l'identifiant du scenario
      */
 
     public void supprimerScenarioSQ(int idScenario){
         Controleur.accesLocal.supprimerScenarioSQ(idScenario);
+    }
+
+    /**
+     * @return toutes les questions de la table appartient SQ
+     */
+    public ArrayList<Integer> getTousLesElementsSQ_question(){
+        return Controleur.accesLocal.tousLesElementsSQ_Question();
+    }
+
+    /**
+     * @return tous les scenarios de la table appartient SQ
+     */
+    public ArrayList<Integer> getTousLesElementsSQ_scenario(){
+        return Controleur.accesLocal.tousLesElementsSQ_Scenario();
     }
 
     //================================== Appartient Devis Pack ==================================
@@ -580,8 +619,8 @@ public class Controleur {
     }
 
     /**
-     *
-     * @param
+     * Supprime toutes les liaisons correspondant au pack passé en paramètre
+     * @param idPack l'identifiant du scenario
      */
 
     public void supprimerPackDP(int idPack){
@@ -589,8 +628,7 @@ public class Controleur {
     }
 
     /**
-     * Getter
-     * @return
+     * @return tous les devis de la table appartient DP
      */
     public ArrayList<Integer> getTousLesElementsDP_devis(){
         return Controleur.accesLocal.tousLesElementsDP_Devis();
@@ -598,16 +636,14 @@ public class Controleur {
 
 
     /**
-     * Getter
-     * @return
+     * @return tous les devis de la table appartient DP
      */
     public ArrayList<Integer> getTousLesElementsDP_pack(){
         return Controleur.accesLocal.tousLesElementsDP_Pack();
     }
 
     /**
-     * Getter
-     * @return
+     * @return toutes les quantites de la table appartient DP
      */
     public ArrayList<Integer> getTousLesElementsDP_quantite(){
         return Controleur.accesLocal.tousLesElementsDP_Quantite();

@@ -19,12 +19,11 @@ import com.example.rosetta.ui.main.ScenarioFragment;
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Cette classe permet d'ajouter un scenario et d'enregistrer les informations de celui-ci
  *
- * @author Lucy
+ * @author Lucy, Alice, Christophe
  * @version 2.0
  */
 

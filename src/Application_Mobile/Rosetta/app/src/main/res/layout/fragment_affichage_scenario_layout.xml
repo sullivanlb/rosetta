@@ -62,13 +62,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Composants :"
+            android:text="Composants / Packs :"
             android:textColor="#050505"
             android:textSize="14sp"
             android:textStyle="italic" />
 
         <ListView
-            android:id="@+id/listView_composants_affichage"
+            android:id="@+id/listView_composants_packs_affichage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1" />

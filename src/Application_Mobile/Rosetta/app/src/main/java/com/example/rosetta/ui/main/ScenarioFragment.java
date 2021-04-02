@@ -1,15 +1,11 @@
 package com.example.rosetta.ui.main;
 
-import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,20 +14,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.rosetta.R;
-import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
-import com.example.rosetta.controller.ControleurListeComposantScenario;
 import com.example.rosetta.controller.ControleurListeScenario;
-import com.example.rosetta.controller.ControleurScenarioSupprimer;
-import com.example.rosetta.controller.DevisAdapter;
 import com.example.rosetta.controller.ScenarioAdapter;
-import com.example.rosetta.model.Client;
-import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Scenario;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Cette classe permet de mettre en place l'ensemble des controleurs correspondants à la vue
@@ -112,8 +100,6 @@ public class ScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la liste des Scénarios
      */
 
@@ -122,8 +108,6 @@ public class ScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return l'indice selectionné
      */
 
@@ -133,7 +117,6 @@ public class ScenarioFragment extends Fragment {
 
     /**
      * Setter
-     *
      * @param indiceSelectionnerScenario à modifier
      */
 
@@ -142,8 +125,6 @@ public class ScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return l'id selectionné
      */
 
@@ -153,7 +134,6 @@ public class ScenarioFragment extends Fragment {
 
     /**
      * Setter
-     *
      * @param idSelectionnnerScenario à modifier
      */
 
@@ -179,14 +159,17 @@ public class ScenarioFragment extends Fragment {
         SectionsPagerAdapter.setScenarioFragment("InfoScenarioFragment");
         FragmentManager frman = getFragmentManager();
         FragmentTransaction ftran = frman.beginTransaction();
-        Fragment leFrag = new InfoScenarioFragment();
+        Fragment leFrag = InfoScenarioFragment.getInstance();
+        ((InfoScenarioFragment) leFrag).setScenarioAffiche(listeScenarios.get(indiceSelectionnerScenario));
+        ((InfoScenarioFragment) leFrag).setScenarioFragment(this);
         ftran.replace(R.id.view_pager, leFrag);
         ftran.commit();
+
+
     }
 
     /**
      * Cette méthode permet de donner l'accès à une instance de ScenarioFragement.
-     *
      * @return une instance de ScenarioFragment
      */
     public static ScenarioFragment getInstance(){

@@ -15,10 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
-import com.example.rosetta.controller.ControleurEnregistrerNouveauComposant;
 import com.example.rosetta.controller.ControleurEnregistrerNouveauPack;
 import com.example.rosetta.controller.ControleurListeComposantDePack;
-import com.example.rosetta.controller.ControleurListeComposants;
 import com.example.rosetta.model.Composant;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ import java.util.HashMap;
  * associée : l'interface de ajout_pack.
  * Elle est accessible depuis le bouton ajout pack .
  *
- * @author Alice
+ * @author Alice, Christophe
  * @version 2.0
  */
 

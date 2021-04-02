@@ -1,6 +1,5 @@
 package com.example.rosetta.controller;
 
-import android.service.controls.Control;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -12,8 +11,6 @@ import com.example.rosetta.ui.main.ComposantPackFragment;
 import com.example.rosetta.ui.main.NouveauDevisFragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Cette classe permet d'afficher les informations du pack sélectionné dans le formulaire pour le modifie.

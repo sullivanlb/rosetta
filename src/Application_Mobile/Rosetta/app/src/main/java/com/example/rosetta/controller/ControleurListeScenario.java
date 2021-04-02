@@ -4,10 +4,15 @@ package com.example.rosetta.controller;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.example.rosetta.model.Pack;
 import com.example.rosetta.model.Scenario;
-import com.example.rosetta.ui.main.NouveauScenarioFragment;
 import com.example.rosetta.ui.main.ScenarioFragment;
+
+/**
+ * Cette classe permet d'afficher la liste de tous les scénarios
+ *
+ * @author Lucy
+ * @version 2.0
+ */
 
 public class ControleurListeScenario implements AdapterView.OnItemClickListener {
 

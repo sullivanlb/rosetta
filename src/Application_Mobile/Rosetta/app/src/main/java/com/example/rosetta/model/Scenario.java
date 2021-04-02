@@ -10,12 +10,12 @@ import java.util.ArrayList;
  */
 public class Scenario {
 
-    /*
+    /**
      * Le numéro d'identification du scénario.
      */
     private int idScenario;
 
-    /*
+    /**
      * Le nom du scénario.
      */
     private String nomScenario;

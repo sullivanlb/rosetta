@@ -1,14 +1,26 @@
 package com.example.rosetta.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.rosetta.controller.Controleur;
+import com.example.rosetta.controller.ControleurEnregistrerNouveauClient;
 import com.example.rosetta.utils.MySQLiteOpenHelper;
-import com.google.android.material.badge.BadgeDrawable;
+import com.example.rosetta.utils.MySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Cette classe permet la liaison propre entre le {@link com.example.rosetta.controller.Controleur}
@@ -23,6 +35,7 @@ public class AccesLocal {
     private int version;
     private MySQLiteOpenHelper accesBD;
     private SQLiteDatabase bd;
+    private Context context;
 
     /**
      * Le constructeur crée une nouvelle forme de AccesLocal.
@@ -33,6 +46,7 @@ public class AccesLocal {
         this.name = "RosettaInterne.sqlite";
         this.version = 1;
         this.accesBD = new MySQLiteOpenHelper(context, this.name, null, this.version);
+        this.context = context;
     }
 //=================================== Client ===============================================================================
     /**
@@ -42,11 +56,12 @@ public class AccesLocal {
      */
     public void ajoutClient(Client client) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "INSERT INTO Client (nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) values";
-        requete += "(\"" + client.getNomClient() + "\", \"" + client.getPrenomClient() + "\", \"" + client.getAdresseClient() + "\", \"" +
-                client.getEmailClient() + "\", \"" + client.getTelClient() + "\", \"" + client.getSexeClient() + "\")";
+        String requete = "INSERT INTO Client (syncStatus, nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) values";
+        requete += "(\"" + client.getSyncStatus() + "\", \"" + client.getNomClient() + "\", \"" + client.getPrenomClient() + "\", \"" +
+                client.getAdresseClient() + "\", \"" + client.getEmailClient() + "\", \"" + client.getTelClient() + "\", \"" + client.getSexeClient() + "\")";
         this.bd.execSQL(requete);
     }
+
 
     /**
      * Modifie les données d'un client existant.
@@ -55,7 +70,8 @@ public class AccesLocal {
      */
     public void modifierClient(Client client) {
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "UPDATE Client SET nomClient = \"" + client.getNomClient() + "\", " +
+        String requete = "UPDATE Client SET syncStatus = \"" + client.getSyncStatus() + "\", " +
+                "nomClient = \"" + client.getNomClient() + "\", " +
                 "prenomClient = \"" + client.getPrenomClient() + "\", " +
                 "adresseClient = \"" + client.getAdresseClient() + "\", " +
                 "emailClient = \"" + client.getEmailClient() + "\"," +
@@ -64,6 +80,7 @@ public class AccesLocal {
                 "WHERE idClient = \"" + client.getIdClient() + "\"";
         this.bd.execSQL(requete);
     }
+
 
     /**
      * Supprimer un client.
@@ -90,14 +107,15 @@ public class AccesLocal {
 
         if (!curseur.isAfterLast()) {
             int id = curseur.getInt(0);
-            String nom = curseur.getString(1);
-            String prenom = curseur.getString(2);
-            String adresse = curseur.getString(3);
-            String email = curseur.getString(4);
-            String tel = curseur.getString(5);
-            Sexe sexe = Sexe.valueOf(curseur.getString(6));
+            int syncStatus = curseur.getInt(1);
+            String nom = curseur.getString(2);
+            String prenom = curseur.getString(3);
+            String adresse = curseur.getString(4);
+            String email = curseur.getString(5);
+            String tel = curseur.getString(6);
+            Sexe sexe = Sexe.valueOf(curseur.getString(7));
 
-            client = new Client(id, nom, prenom, adresse, email, tel, sexe);
+            client = new Client(id, syncStatus, nom, prenom, adresse, email, tel, sexe);
         }
 
         curseur.close();
@@ -119,14 +137,15 @@ public class AccesLocal {
 
         while (!curseur.isAfterLast()) {
             int id = curseur.getInt(0);
-            String nom = curseur.getString(1);
-            String prenom = curseur.getString(2);
-            String adresse = curseur.getString(3);
-            String email = curseur.getString(4);
-            String tel = curseur.getString(5);
-            Sexe sexe = Sexe.valueOf(curseur.getString(6));
+            int syncStatus = curseur.getInt(1);
+            String nom = curseur.getString(2);
+            String prenom = curseur.getString(3);
+            String adresse = curseur.getString(4);
+            String email = curseur.getString(5);
+            String tel = curseur.getString(6);
+            Sexe sexe = Sexe.valueOf(curseur.getString(7));
 
-            client = new Client(id, nom, prenom, adresse, email, tel, sexe);
+            client = new Client(id, syncStatus, nom, prenom, adresse, email, tel, sexe);
             listeClients.add(client);
 
             curseur.moveToNext();
@@ -134,6 +153,72 @@ public class AccesLocal {
 
         curseur.close();
         return listeClients;
+    }
+
+    /**
+     * Essaye de synchroniser le client non synchronisé lorsque la tablette est connectée à un réseau
+     * @param cenc
+     */
+    public void synchroniserClients(ControleurEnregistrerNouveauClient cenc) {
+        this.bd = this.accesBD.getReadableDatabase();
+        String requete = "SELECT * FROM Client";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while(curseur.moveToNext()) {
+            int syncStatus = curseur.getInt(curseur.getColumnIndex("syncStatus"));
+            if (syncStatus == 1) {
+                int id = curseur.getInt(0);
+                String nom = curseur.getString(2);
+                String prenom = curseur.getString(3);
+                String adresse = curseur.getString(4);
+                String email = curseur.getString(5);
+                String tel = curseur.getString(6);
+                Sexe sexe = Sexe.valueOf(curseur.getString(7));
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.1.49/api/client/ajoutClient",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String theResponse = jsonObject.getString("response");
+
+                                    // Si le client a bien été enregistré dans la base de données externe
+                                    if (theResponse.equalsIgnoreCase("OK")) {
+                                        Client client = new Client(id, 0, nom, prenom, adresse, ((email != null) ? email : ""), ((tel != null) ? tel : ""), sexe);
+                                        Controleur.getInstance(context).modifierClient(client);
+                                        cenc.getClientFragment().actualiserListeClients();
+                                        context.sendBroadcast(new Intent(".utils.NetworkMonitor"));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("nom", nom);
+                        params.put("prenom", prenom);
+                        params.put("adresse", adresse);
+                        params.put("email", ((email != null) ? email : ""));
+                        params.put("tel", ((tel != null) ? tel : ""));
+                        params.put("sexe", String.valueOf(sexe));
+
+                        return params;
+                    }
+                };
+
+                MySingleton.getInstance(context).addToRequestQueue(stringRequest);
+            }
+        }
+        curseur.close();
     }
     // ============================================ Scénario ==================================================================
 
@@ -383,15 +468,6 @@ public class AccesLocal {
         return listePacks;
     }
 
-    /**
-     *
-     * @param idPack
-     */
-    public void supprimerPack(int idPack){
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "DELETE FROM Pack WHERE idPack = \"" + idPack + "\"";
-        this.bd.execSQL(requete);
-    }
 
     //============================== Devis =============================================================
 
@@ -654,7 +730,7 @@ public class AccesLocal {
 
 
     /**
-     *
+     * Supprime toutes les liaisons dans la table AppartientPC correspondant à l'id du pack
      * @param idPack
      */
     public void supprimerPackPC(int idPack){
@@ -681,8 +757,7 @@ public class AccesLocal {
 
 
     /**
-     *
-     * @return
+     * @return tous les scénarios de la table AppartientSP
      */
     public ArrayList<Integer> tousLesElementsSP_Scenarios() {
         this.bd = this.accesBD.getReadableDatabase();
@@ -704,8 +779,7 @@ public class AccesLocal {
 
 
     /**
-     *
-     * @return
+     * @return tous les packs de la table AppartientSP
      */
     public ArrayList<Integer> tousLesElementsSP_Pack() {
         this.bd = this.accesBD.getReadableDatabase();
@@ -727,8 +801,7 @@ public class AccesLocal {
 
 
     /**
-     *
-     * @return
+     * @return toutes les quantites de la table AppartientSP
      */
     public ArrayList<Integer> tousLesElementsSP_Quantite() {
         this.bd = this.accesBD.getReadableDatabase();
@@ -770,7 +843,6 @@ public class AccesLocal {
     public void ajoutAppartientSC(Scenario scenario, Composant composant, int quantite) {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "INSERT INTO AppartientSC (unScenario, unComposant, quantite) values";
-        System.out.println("idscenario : " + scenario.getIdScenario() + " idcomposant : " +composant.getIdComposant());
         requete += "(\"" + scenario.getIdScenario() + "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
         this.bd.execSQL(requete);
     }
@@ -783,6 +855,69 @@ public class AccesLocal {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "DELETE FROM AppartientSC WHERE unScenario = \"" + idScenario + "\"";
         this.bd.execSQL(requete);
+    }
+
+    /**
+     * @return tous les composants de la table AppartientSC
+     */
+    public ArrayList<Integer> tousLesElementsSC_Composant() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSC";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idComposant = curseur.getInt(1);
+
+            tousLesElements.add(idComposant);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     * @return tous les scenarios de la table AppartientSC
+     */
+    public ArrayList<Integer> tousLesElementsSC_Scenarios() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSC";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idScenario = curseur.getInt(0);
+
+            tousLesElements.add(idScenario);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     * @return toutes les quantites de la table AppartientSC
+     */
+    public ArrayList<Integer> tousLesElementsSC_Quantite() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSC";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int quantite = curseur.getInt(2);
+
+            tousLesElements.add(quantite);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
     }
 
     //========================== Appartient Scenario Question ====================================
@@ -809,6 +944,48 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
+    /**
+     * @return toutes les questions de la table AppartientSQ
+     */
+    public ArrayList<Integer> tousLesElementsSQ_Question() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSQ";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idQuestion = curseur.getInt(1);
+
+            tousLesElements.add(idQuestion);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     * @return tous les scenarios de la table AppartientSQ
+     */
+    public ArrayList<Integer> tousLesElementsSQ_Scenario() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientSQ";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idScenario = curseur.getInt(0);
+
+            tousLesElements.add(idScenario);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
 
     //=========================== Appartient Devis Pack =========================================
 
@@ -826,8 +1003,7 @@ public class AccesLocal {
     }
 
     /**
-     *
-     * @return
+     * @return tous les devis de la table AppartientDP
      */
     public ArrayList<Integer> tousLesElementsDP_Devis() {
         this.bd = this.accesBD.getReadableDatabase();
@@ -848,8 +1024,7 @@ public class AccesLocal {
     }
 
     /**
-     *
-     * @return
+     * @return tous les packs de la table AppartientDP
      */
     public ArrayList<Integer> tousLesElementsDP_Pack() {
         this.bd = this.accesBD.getReadableDatabase();
@@ -870,8 +1045,7 @@ public class AccesLocal {
     }
 
     /**
-     *
-     * @return
+     * @return toutes les quantites de la table AppartientDP
      */
     public ArrayList<Integer> tousLesElementsDP_Quantite() {
         this.bd = this.accesBD.getReadableDatabase();
@@ -892,7 +1066,7 @@ public class AccesLocal {
     }
 
     /**
-     *
+     * Supprime toutes les liaisons dans la table AppartientDP correspondant à l'id du pack passé en paramètre
      * @param idPack
      */
     public void supprimerPackDP(int idPack){

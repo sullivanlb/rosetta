@@ -1,5 +1,10 @@
 package com.example.rosetta.ui.main;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,6 +50,8 @@ public class ClientFragment extends Fragment {
     private int indiceSelectionner = -1;
     private int idClient;
 
+    private BroadcastReceiver broadcastReceiver;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +76,14 @@ public class ClientFragment extends Fragment {
         Button supprimerClientBouton  = (Button) rootView.findViewById(R.id.SupprimerClientButton);
         ControleurClientSupprimer controleurClientSupprimer = new ControleurClientSupprimer(this);
         supprimerClientBouton.setOnClickListener(controleurClientSupprimer);
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ClientFragment.this.controleur.updateLesClients();
+                ClientFragment.this.listeClients = new ArrayList<Client>(ClientFragment.this.controleur.getListeClients());
+            }
+        };
 
 
         // Les cases à cocher pour spécifier le sexe du client
@@ -198,5 +213,19 @@ public class ClientFragment extends Fragment {
         listeClients = rechercheListClient;
         adapteur = new ClientAdapter(getActivity(), listeClients);
         liste.setAdapter(adapteur);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        getContext().registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        getContext().unregisterReceiver(broadcastReceiver);
     }
 }

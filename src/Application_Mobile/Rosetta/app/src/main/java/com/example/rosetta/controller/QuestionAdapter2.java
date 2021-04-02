@@ -4,15 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.rosetta.R;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Question;
-import com.example.rosetta.model.Scenario;
-import com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment;
 
 import java.util.ArrayList;
 

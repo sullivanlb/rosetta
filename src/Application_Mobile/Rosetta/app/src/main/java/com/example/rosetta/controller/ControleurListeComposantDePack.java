@@ -9,6 +9,12 @@ import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.ui.main.AjoutPackFragment;
 
+/**
+ * Cette classe permet de gérer tout ce qui se déroule dans la listView d'ajout de composant dans un pack
+ *
+ * @version 2.0
+ */
+
 public class ControleurListeComposantDePack implements AdapterView.OnItemClickListener {
 
     private AjoutPackFragment ajoutPackFragment;

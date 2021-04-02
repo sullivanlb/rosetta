@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Pack {
 
-    /*
+    /**
      * Le numéro d'identification du devis.
      */
     private int idPack;

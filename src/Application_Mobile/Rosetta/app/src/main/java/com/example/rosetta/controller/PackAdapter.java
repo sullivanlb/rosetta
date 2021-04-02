@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.rosetta.R;
-import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
 
 import java.util.ArrayList;

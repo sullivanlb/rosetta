@@ -21,12 +21,9 @@ import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurAjoutQuestionScenario;
 import com.example.rosetta.controller.ControleurEnregistretNouveauScenario;
 import com.example.rosetta.controller.ControleurListeComposantScenario;
-import com.example.rosetta.controller.ControleurListeComposants;
 import com.example.rosetta.controller.ControleurListeObject;
-import com.example.rosetta.controller.ControleurListePack;
 import com.example.rosetta.controller.ControleurListePackScenario;
 import com.example.rosetta.controller.ControleurListeQuestionScenario;
-import com.example.rosetta.controller.DialogQuestionScenario;
 import com.example.rosetta.controller.ObjectAdapter;
 import com.example.rosetta.controller.PackAdapter;
 import com.example.rosetta.controller.QuestionAdapter2;
@@ -42,7 +39,7 @@ import java.util.HashMap;
  * associée : l'interface de fragment_nouveaumodifier_scenario_layout.
  * Elle est accessible depuis le bouton nouveau Scénario de l'interface Scénario .
  *
- * @author Alice, Lucy
+ * @author Alice, Lucy, Christophe
  * @version 2.0
  */
 
@@ -73,8 +70,6 @@ public class NouveauScenarioFragment extends Fragment {
     private ArrayList<Object> listeObjectPackComposant = new ArrayList<Object>();
     private ListView listViewObject;
     private ObjectAdapter adapteurObject;
-    private int indiceSelectionnerObject;
-    private int idSelectionnnerObject;
 
     private HashMap<Integer, Integer> hashmapIdComposantQuantite;
     private HashMap<Integer, Integer> hashmapIdPackQuantite;
@@ -143,7 +138,7 @@ public class NouveauScenarioFragment extends Fragment {
         ControleurListeObject controleurListeObject = new ControleurListeObject(this);
         this.listViewObject.setOnItemClickListener(controleurListeObject);
 
-        this.adapteurObject = new ObjectAdapter(this.getActivity(), listeObjectPackComposant);
+        this.adapteurObject = new ObjectAdapter(this.getActivity(), listeObjectPackComposant, null);
         this.listViewObject.setAdapter(this.adapteurObject);
 
         // =============================== Boutons =================================================
@@ -225,8 +220,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la liste des composants
      */
     public ArrayList<Composant> getListeComposants() {
@@ -234,8 +227,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la liste des packs
      */
     public ArrayList<Pack> getListePacks() {
@@ -243,8 +234,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la liste des questions
      */
     public ArrayList<Question> getListeQuestions() {
@@ -252,8 +241,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la liste des temporaire
      */
     public ArrayList<Question> getListeQuestionTemporaire() {
@@ -261,8 +248,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la liste des objects (composant et pack)
      */
     public ArrayList<Object> getListeObjectPackComposant() {
@@ -270,8 +255,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la hashMap (idComposant et quantité)
      */
     public HashMap<Integer, Integer> getHashmapIdComposantQuantite() {
@@ -279,8 +262,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la hashMap (idPack et quantité)
      */
     public HashMap<Integer, Integer> getHashmapIdPackQuantite() {
@@ -288,7 +269,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
      * @return l'indice selectionné
      */
     public int getIndiceSelectionnerComposant() {
@@ -296,7 +276,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
      * @return l'identifiant du composant selectionne
      */
     public int getIdSelectionnnerComposant() {
@@ -336,7 +315,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
      * @return l'indice selectionné d'une question
      */
 
@@ -346,7 +324,6 @@ public class NouveauScenarioFragment extends Fragment {
 
     /**
      * Setter
-     *
      * @param indiceSelectionnerQuestion à modifier
      */
 
@@ -355,8 +332,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return l'identifiant d'une question selectionnee
      */
 
@@ -366,7 +341,6 @@ public class NouveauScenarioFragment extends Fragment {
 
     /**
      * Setter
-     *
      * @param idSelectionnnerQuestion à modifier
      */
 
@@ -375,8 +349,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la listeView de Question
      */
 
@@ -385,8 +357,6 @@ public class NouveauScenarioFragment extends Fragment {
     }
 
     /**
-     * Getter
-     *
      * @return la listeView d'Object
      */
     public ListView getListViewObject() {

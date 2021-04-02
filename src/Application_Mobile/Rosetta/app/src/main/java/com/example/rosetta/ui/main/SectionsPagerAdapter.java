@@ -74,6 +74,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return 3;
     }
 
+    /**
+     * Cette méthode permet de changer de fragment dans l'onglet scénario
+     * @param texte le nom du fragment à envoyer
+     */
     public static void setScenarioFragment(String texte) {
 
         if (texte.equals("ComposantPackFragment")) {
@@ -89,14 +93,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             scenarioFragment = new NouveauScenarioFragment();
         }
         else if (texte.equals("InfoScenarioFragment")) {
-            scenarioFragment = new InfoScenarioFragment();
+            scenarioFragment = InfoScenarioFragment.getInstance();
         }
         else {
             scenarioFragment = new ScenarioFragment();
         }
     }
 
-
+    /**
+     * Cette méthode permet de changer de fragment dans l'onglet devis
+     * @param texte le nom du fragment à envoyer
+     */
     public static void setDevisFragment(String texte) {
 
         if (texte.equals("NouveauDevisClientScenarioFragment")) {

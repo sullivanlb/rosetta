@@ -2,8 +2,6 @@ package com.example.rosetta.controller;
 
 import android.view.View;
 
-import com.example.rosetta.model.Pack;
-import com.example.rosetta.model.Scenario;
 import com.example.rosetta.ui.main.ScenarioFragment;
 
 /**
@@ -38,6 +36,9 @@ public class ControleurScenarioSupprimer implements View.OnClickListener {
         openDialog();
     }
 
+    /**
+     * Cette méthode permet d'ouvrir la boite de dialogue permettant la suppression d'un scénario
+     */
     public void  openDialog(){
 
         DialogSuppressionScenario  dialogSuppressionScenario = new DialogSuppressionScenario(this.scenarioFragment);

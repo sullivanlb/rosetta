@@ -54,8 +54,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
         //Script de création des tables
 
-        String tableClient = "CREATE TABLE " + TABLE1 + "(idClient INTEGER PRIMARY KEY autoincrement, nomClient TEXT(100) CONSTRAINT nn_nomClient NOT NULL, " +
-              "prenomClient TEXT(100) CONSTRAINT nn_prenomClient NOT NULL, adresseClient TEXT(100), emailClient TEXT(100), telClient TEXT(20), sexeClient TEXT(100) CONSTRAINT nn_sexeClient NOT NULL )" ;
+        String tableClient = "CREATE TABLE " + TABLE1 + "(idClient INTEGER PRIMARY KEY autoincrement, syncStatus INTEGER, nomClient TEXT(100) CONSTRAINT nn_nomClient NOT NULL, " +
+                "prenomClient TEXT(100) CONSTRAINT nn_prenomClient NOT NULL, adresseClient TEXT(100), emailClient TEXT(100), telClient TEXT(20), sexeClient TEXT(100) CONSTRAINT nn_sexeClient NOT NULL )" ;
 
         String tableScenario = "CREATE TABLE " + TABLE2 + "(idScenario INTEGER PRIMARY KEY autoincrement, nomScenario TEXT(100) CONSTRAINT nn_Scenario NOT NULL )";
 
