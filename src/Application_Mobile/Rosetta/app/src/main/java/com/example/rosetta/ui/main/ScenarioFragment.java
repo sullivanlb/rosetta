@@ -72,7 +72,7 @@ public class ScenarioFragment extends Fragment {
         ControleurListeScenario controleurListeScenario = new ControleurListeScenario(this);
         this.listeViewScenarios.setOnItemClickListener(controleurListeScenario);
 
-        this.adapteurScenarios = new ScenarioAdapter(this.getActivity(),listeScenarios);
+        this.adapteurScenarios = new ScenarioAdapter(this.getActivity(),listeScenarios, this);
         this.listeViewScenarios.setAdapter(this.adapteurScenarios);
 
 
@@ -166,7 +166,7 @@ public class ScenarioFragment extends Fragment {
      */
     public void actualiserListeScenarios() {
         listeScenarios = new ArrayList<Scenario>(controleur.getListeScenarios());
-        adapteurScenarios = new ScenarioAdapter(getActivity(), listeScenarios);
+        adapteurScenarios = new ScenarioAdapter(getActivity(), listeScenarios, this);
         listeViewScenarios.setAdapter(adapteurScenarios);
     }
 

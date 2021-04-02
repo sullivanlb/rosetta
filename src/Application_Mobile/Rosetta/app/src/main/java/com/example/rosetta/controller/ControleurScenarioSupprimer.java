@@ -16,6 +16,7 @@ import com.example.rosetta.ui.main.ScenarioFragment;
 public class ControleurScenarioSupprimer implements View.OnClickListener {
 
     private ScenarioFragment scenarioFragment;
+    private int idASupprimer;
 
     /**
      * Le constructeur crée une nouvelle forme de ControleurListeComposants
@@ -23,15 +24,17 @@ public class ControleurScenarioSupprimer implements View.OnClickListener {
      * @param sf le contexte {@link ScenarioFragment}
      */
 
-    public ControleurScenarioSupprimer(ScenarioFragment sf) {
+    public ControleurScenarioSupprimer(ScenarioFragment sf, int id) {
         if(sf != null){
             this.scenarioFragment = sf;
+            this.idASupprimer = id;
         }
     }
 
     @Override
     public void onClick(View v) {
         //Demande la confirmation de supprimer la question.
+        this.scenarioFragment.setIdSelectionnnerScenario(idASupprimer);
         openDialog();
     }
 

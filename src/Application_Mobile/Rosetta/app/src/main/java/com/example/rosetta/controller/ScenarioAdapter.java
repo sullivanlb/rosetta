@@ -26,6 +26,7 @@ public class ScenarioAdapter extends BaseAdapter {
     private ArrayList<Scenario> listScenario;
     private Context context;
     private LayoutInflater inflater;
+    private ScenarioFragment scenarioFragment;
 
     /**
      * Le constructeur crée une nouvelle forme de ScenarioAdapter.
@@ -33,10 +34,11 @@ public class ScenarioAdapter extends BaseAdapter {
      * @param context la contexte
      * @param list la liste des scénarios
      */
-    public ScenarioAdapter(Context context, ArrayList<Scenario> list){
+    public ScenarioAdapter(Context context, ArrayList<Scenario> list, ScenarioFragment sf){
         this.context = context;
         this.listScenario = list;
         inflater = LayoutInflater.from(context);
+        this.scenarioFragment = sf;
     }
 
     @Override
@@ -84,13 +86,16 @@ public class ScenarioAdapter extends BaseAdapter {
 
         //Bouton pour supprimer un scénario
         FloatingActionButton supprimerScenario = (FloatingActionButton) view.findViewById(R.id.supprimerScenarioButton);
-        supprimerScenario.setOnClickListener(new View.OnClickListener() {
+        ControleurScenarioSupprimer controleurScenarioSupprimer = new ControleurScenarioSupprimer(ScenarioFragment.getInstance(), listScenario.get(position).getIdScenario());
+        supprimerScenario.setOnClickListener(controleurScenarioSupprimer);
+        //this.scenarioFragment.setIdSelectionnnerScenario(listScenario.get(position).getIdScenario());
+
+        /*supprimerScenario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ControleurScenarioSupprimer controleurScenarioSupprimer = new ControleurScenarioSupprimer(ScenarioFragment.getInstance());
-                supprimerScenario.setOnClickListener(controleurScenarioSupprimer);
+                ScenarioAdapter.
             }
-        });
+        });*/
 
         // On retourne la vue créée
         return view;
