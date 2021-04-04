@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="30dp"
                     android:layout_toRightOf="@+id/ajout_nomDevisTextView"
                     android:ems="10"
@@ -141,13 +141,40 @@
                     android:id="@+id/explication_list_composants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ajout_nomDevisTextView"
-                    android:layout_alignStart="@id/ajout_nomDevisTextView"
+                    android:layout_below="@id/nomQuantiteTextViewDevis"
+                    android:layout_alignStart="@id/nomQuantiteTextViewDevis"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Nom du composant ou pack, son unité et son prix "
                     android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/nomQuantiteTextViewDevis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajout_nomDevisTextView"
+                    android:layout_alignStart="@id/ajout_nomDevisTextView"
+                    android:layout_marginTop="25dp"
+                    android:text="Quantité"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/quantiteEditTextDevis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ajout_nomDevisEditText"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="200dp"
+                    android:layout_toRightOf="@id/ajout_nomDevisTextView"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textColor="#434343"
+                    android:textColorHighlight="@color/orange_clair"
+                    android:textColorLink="@color/black"
+                    android:textCursorDrawable="@color/black"
                     android:textSize="14sp" />
 
             </RelativeLayout>
@@ -157,9 +184,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
                 android:layout_weight="0.7"
-                android:background="@drawable/rectangle_noir" >
+                android:background="@drawable/rectangle_noir">
 
             </ListView>
 
@@ -171,7 +199,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/nouveaudevisEnregistrerListeButton"
+                    android:id="@+id/nouveaudevisRetourButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -179,7 +207,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/orange_fonce"
-                    android:text="Enregistrer dans liste" />
+                    android:text="Retour" />
 
                 <Button
                     android:id="@+id/nouveaudevisEnregistrerDevisButton"
@@ -192,16 +220,6 @@
                     android:backgroundTint="@color/orange_fonce"
                     android:text="Enregistrer devis" />
 
-                <Button
-                    android:id="@+id/nouveaudevisRetourButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/orange_fonce"
-                    android:text="Retour" />
             </LinearLayout>
 
         </LinearLayout>

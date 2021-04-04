@@ -1964,6 +1964,7 @@ id nomComposantPack_nouveau_devisTextView
 id nomComposantTextView
 id nomDevisTextView
 id nomPackTextView
+id nomQuantiteTextViewDevis
 id nomscenario_affichage_textView
 id none
 id normal
@@ -1976,7 +1977,6 @@ id nouveauDevisCSRetourButton
 id nouveauDevisCSSuivantButton
 id nouveauScenarioButton
 id nouveaudevisEnregistrerDevisButton
-id nouveaudevisEnregistrerListeButton
 id nouveaudevisRetourButton
 id nouveauscenarioAnnulerButton
 id nouveauscenarioEnregistrerButton
@@ -2001,6 +2001,7 @@ id postLayout
 id prixComposantPack_nouveau_devisTextView
 id progress_circular
 id progress_horizontal
+id quantiteEditTextDevis
 id quantiteEditTextScenario
 id questionScenarioTextView
 id question_textView

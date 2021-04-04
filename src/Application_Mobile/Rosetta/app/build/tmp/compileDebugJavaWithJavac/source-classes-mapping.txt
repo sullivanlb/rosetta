@@ -1,138 +1,161 @@
-com/example/rosetta/model/Question.java
- com.example.rosetta.model.Question
+com/example/rosetta/controller/ControleurListeComposantScenario.java
+ com.example.rosetta.controller.ControleurListeComposantScenario
+com/example/rosetta/controller/Controleur.java
+ com.example.rosetta.controller.Controleur
 com/example/rosetta/controller/ScenarioAdapter2.java
  com.example.rosetta.controller.ScenarioAdapter2
-com/example/rosetta/ui/main/NouveauDevisClientScenarioFragment.java
- com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment
- com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$1
- com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$2
+com/example/rosetta/controller/ControleurEnregistrerNouveauComposant.java
+ com.example.rosetta.controller.ControleurEnregistrerNouveauComposant
+com/example/rosetta/controller/ControleurSuivantDevis1.java
+ com.example.rosetta.controller.ControleurSuivantDevis1
 com/example/rosetta/model/Scenario.java
  com.example.rosetta.model.Scenario
 com/example/rosetta/controller/PackAdapter.java
  com.example.rosetta.controller.PackAdapter
+com/example/rosetta/controller/DevisAdapterObject.java
+ com.example.rosetta.controller.DevisAdapterObject
 com/example/rosetta/model/Pack.java
  com.example.rosetta.model.Pack
-com/example/rosetta/BuildConfig.java
- com.example.rosetta.BuildConfig
-com/example/rosetta/model/Sexe.java
- com.example.rosetta.model.Sexe
-com/example/rosetta/ui/main/AjoutComposantFragment.java
- com.example.rosetta.ui.main.AjoutComposantFragment
- com.example.rosetta.ui.main.AjoutComposantFragment$1
-com/example/rosetta/controller/ControleurListeQuestionScenario.java
- com.example.rosetta.controller.ControleurListeQuestionScenario
-com/example/rosetta/controller/ControleurListeScenario.java
- com.example.rosetta.controller.ControleurListeScenario
-com/example/rosetta/controller/QuestionAdapter.java
- com.example.rosetta.controller.QuestionAdapter
-com/example/rosetta/controller/ControleurScenarioSupprimer.java
- com.example.rosetta.controller.ControleurScenarioSupprimer
-com/example/rosetta/model/Composant.java
- com.example.rosetta.model.Composant
-com/example/rosetta/controller/QuestionAdapter2.java
- com.example.rosetta.controller.QuestionAdapter2
-com/example/rosetta/model/Client.java
- com.example.rosetta.model.Client
-com/example/rosetta/controller/ObjectAdapter.java
- com.example.rosetta.controller.ObjectAdapter
-com/example/rosetta/controller/ControleurListeComposantDePack.java
- com.example.rosetta.controller.ControleurListeComposantDePack
-com/example/rosetta/ui/main/DevisQuestionFragment.java
- com.example.rosetta.ui.main.DevisQuestionFragment
- com.example.rosetta.ui.main.DevisQuestionFragment$1
- com.example.rosetta.ui.main.DevisQuestionFragment$2
-com/example/rosetta/controller/ControleurClientCheckSexe.java
- com.example.rosetta.controller.ControleurClientCheckSexe
-com/example/rosetta/controller/ComposantAdapter.java
- com.example.rosetta.controller.ComposantAdapter
-com/example/rosetta/MainActivity.java
- com.example.rosetta.MainActivity
-com/example/rosetta/controller/DevisAdapter.java
- com.example.rosetta.controller.DevisAdapter
-com/example/rosetta/utils/MySQLiteOpenHelper.java
- com.example.rosetta.utils.MySQLiteOpenHelper
-com/example/rosetta/model/Devis.java
- com.example.rosetta.model.Devis
-com/example/rosetta/controller/ClientAdapter.java
- com.example.rosetta.controller.ClientAdapter
-com/example/rosetta/controller/ControleurListeComposants.java
- com.example.rosetta.controller.ControleurListeComposants
-com/example/rosetta/ui/main/SectionsPagerAdapter.java
- com.example.rosetta.ui.main.SectionsPagerAdapter
-com/example/rosetta/controller/Controleur.java
- com.example.rosetta.controller.Controleur
-com/example/rosetta/model/AccesLocal.java
- com.example.rosetta.model.AccesLocal
-com/example/rosetta/controller/ControleurEnregistrerNouveauComposant.java
- com.example.rosetta.controller.ControleurEnregistrerNouveauComposant
 com/example/rosetta/controller/ControleurEnregistrerModificationComposantPack.java
  com.example.rosetta.controller.ControleurEnregistrerModificationComposantPack
+com/example/rosetta/model/Sexe.java
+ com.example.rosetta.model.Sexe
 com/example/rosetta/ui/main/NouveauScenarioFragment.java
  com.example.rosetta.ui.main.NouveauScenarioFragment
  com.example.rosetta.ui.main.NouveauScenarioFragment$1
  com.example.rosetta.ui.main.NouveauScenarioFragment$2
+com/example/rosetta/controller/ControleurListeQuestionScenario.java
+ com.example.rosetta.controller.ControleurListeQuestionScenario
 com/example/rosetta/controller/ControleurEnregistrerNouveauPack.java
  com.example.rosetta.controller.ControleurEnregistrerNouveauPack
-com/example/rosetta/ui/main/AjoutPackFragment.java
- com.example.rosetta.ui.main.AjoutPackFragment
- com.example.rosetta.ui.main.AjoutPackFragment$1
-com/example/rosetta/ui/main/InfoScenarioFragment.java
- com.example.rosetta.ui.main.InfoScenarioFragment
- com.example.rosetta.ui.main.InfoScenarioFragment$1
 com/example/rosetta/controller/ControleurClientSupprimer.java
  com.example.rosetta.controller.ControleurClientSupprimer
-com/example/rosetta/controller/ControleurListeClients.java
- com.example.rosetta.controller.ControleurListeClients
-com/example/rosetta/controller/ControleurEnregistretNouveauScenario.java
- com.example.rosetta.controller.ControleurEnregistretNouveauScenario
-com/example/rosetta/controller/ControleurListeObject.java
- com.example.rosetta.controller.ControleurListeObject
-com/example/rosetta/controller/ControleurAjoutQuestionScenario.java
- com.example.rosetta.controller.ControleurAjoutQuestionScenario
+com/example/rosetta/controller/QuestionAdapter.java
+ com.example.rosetta.controller.QuestionAdapter
+com/example/rosetta/controller/ControleurListeScenarioDevis.java
+ com.example.rosetta.controller.ControleurListeScenarioDevis
+com/example/rosetta/ui/main/ScenarioFragment.java
+ com.example.rosetta.ui.main.ScenarioFragment
+ com.example.rosetta.ui.main.ScenarioFragment$1
+ com.example.rosetta.ui.main.ScenarioFragment$2
 com/example/rosetta/controller/ControleurEnregistrerNouveauClient.java
  com.example.rosetta.controller.ControleurEnregistrerNouveauClient
-com/example/rosetta/controller/ControleurListePackScenario.java
- com.example.rosetta.controller.ControleurListePackScenario
-com/example/rosetta/controller/ControleurListePack.java
- com.example.rosetta.controller.ControleurListePack
+ com.example.rosetta.controller.ControleurEnregistrerNouveauClient$1
+ com.example.rosetta.controller.ControleurEnregistrerNouveauClient$2
+ com.example.rosetta.controller.ControleurEnregistrerNouveauClient$3
+com/example/rosetta/controller/ControleurListeObject.java
+ com.example.rosetta.controller.ControleurListeObject
 com/example/rosetta/controller/DialogSuppressionScenario.java
  com.example.rosetta.controller.DialogSuppressionScenario
  com.example.rosetta.controller.DialogSuppressionScenario$1
  com.example.rosetta.controller.DialogSuppressionScenario$2
+com/example/rosetta/controller/ObjectAdapter.java
+ com.example.rosetta.controller.ObjectAdapter
 com/example/rosetta/controller/DialogQuestionScenario.java
  com.example.rosetta.controller.DialogQuestionScenario
  com.example.rosetta.controller.DialogQuestionScenario$1
  com.example.rosetta.controller.DialogQuestionScenario$2
-com/example/rosetta/controller/DialogSuppressionClient.java
- com.example.rosetta.controller.DialogSuppressionClient
- com.example.rosetta.controller.DialogSuppressionClient$1
- com.example.rosetta.controller.DialogSuppressionClient$2
-com/example/rosetta/ui/main/DevisFragment.java
- com.example.rosetta.ui.main.DevisFragment
- com.example.rosetta.ui.main.DevisFragment$1
+com/example/rosetta/controller/ScenarioAdapter.java
+ com.example.rosetta.controller.ScenarioAdapter
+ com.example.rosetta.controller.ScenarioAdapter$1
+com/example/rosetta/controller/ControleurClientCheckSexe.java
+ com.example.rosetta.controller.ControleurClientCheckSexe
 com/example/rosetta/ui/main/ComposantPackFragment.java
  com.example.rosetta.ui.main.ComposantPackFragment
  com.example.rosetta.ui.main.ComposantPackFragment$1
  com.example.rosetta.ui.main.ComposantPackFragment$2
  com.example.rosetta.ui.main.ComposantPackFragment$3
  com.example.rosetta.ui.main.ComposantPackFragment$4
+com/example/rosetta/controller/ComposantAdapter.java
+ com.example.rosetta.controller.ComposantAdapter
+com/example/rosetta/controller/ControleurListeComposantsComposantPack.java
+ com.example.rosetta.controller.ControleurListeComposantsComposantPack
+com/example/rosetta/utils/NetworkMonitor.java
+ com.example.rosetta.utils.NetworkMonitor
+com/example/rosetta/utils/MySQLiteOpenHelper.java
+ com.example.rosetta.utils.MySQLiteOpenHelper
+com/example/rosetta/model/Devis.java
+ com.example.rosetta.model.Devis
+com/example/rosetta/BuildConfig.java
+ com.example.rosetta.BuildConfig
+com/example/rosetta/controller/ControleurScenarioSupprimer.java
+ com.example.rosetta.controller.ControleurScenarioSupprimer
+com/example/rosetta/ui/main/NouveauDevisClientScenarioFragment.java
+ com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment
+ com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$1
+ com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment$2
+com/example/rosetta/model/AccesLocal.java
+ com.example.rosetta.model.AccesLocal
+ com.example.rosetta.model.AccesLocal$1
+ com.example.rosetta.model.AccesLocal$2
+ com.example.rosetta.model.AccesLocal$3
+com/example/rosetta/controller/DevisAdapter.java
+ com.example.rosetta.controller.DevisAdapter
+com/example/rosetta/ui/main/AjoutComposantFragment.java
+ com.example.rosetta.ui.main.AjoutComposantFragment
+ com.example.rosetta.ui.main.AjoutComposantFragment$1
+com/example/rosetta/utils/MySingleton.java
+ com.example.rosetta.utils.MySingleton
+com/example/rosetta/MainActivity.java
+ com.example.rosetta.MainActivity
+com/example/rosetta/ui/main/AjoutPackFragment.java
+ com.example.rosetta.ui.main.AjoutPackFragment
+ com.example.rosetta.ui.main.AjoutPackFragment$1
+com/example/rosetta/ui/main/InfoScenarioFragment.java
+ com.example.rosetta.ui.main.InfoScenarioFragment
+ com.example.rosetta.ui.main.InfoScenarioFragment$1
+com/example/rosetta/controller/QuestionAdapter2.java
+ com.example.rosetta.controller.QuestionAdapter2
+com/example/rosetta/model/Composant.java
+ com.example.rosetta.model.Composant
+com/example/rosetta/controller/ControleurListeComposantDePack.java
+ com.example.rosetta.controller.ControleurListeComposantDePack
+com/example/rosetta/controller/ControleurListeClients.java
+ com.example.rosetta.controller.ControleurListeClients
+com/example/rosetta/controller/ControleurEnregistretNouveauScenario.java
+ com.example.rosetta.controller.ControleurEnregistretNouveauScenario
+com/example/rosetta/controller/ControleurAjoutQuestionScenario.java
+ com.example.rosetta.controller.ControleurAjoutQuestionScenario
+com/example/rosetta/controller/ControleurListePackScenario.java
+ com.example.rosetta.controller.ControleurListePackScenario
+com/example/rosetta/controller/DialogSuppressionClient.java
+ com.example.rosetta.controller.DialogSuppressionClient
+ com.example.rosetta.controller.DialogSuppressionClient$1
+ com.example.rosetta.controller.DialogSuppressionClient$2
+com/example/rosetta/controller/ClientAdapter.java
+ com.example.rosetta.controller.ClientAdapter
+com/example/rosetta/ui/main/DevisFragment.java
+ com.example.rosetta.ui.main.DevisFragment
+ com.example.rosetta.ui.main.DevisFragment$1
+com/example/rosetta/model/Client.java
+ com.example.rosetta.model.Client
+com/example/rosetta/controller/ControleurListeScenario.java
+ com.example.rosetta.controller.ControleurListeScenario
+com/example/rosetta/model/Question.java
+ com.example.rosetta.model.Question
+com/example/rosetta/controller/ControleurListeClientDevis.java
+ com.example.rosetta.controller.ControleurListeClientDevis
+com/example/rosetta/ui/main/ClientFragment.java
+ com.example.rosetta.ui.main.ClientFragment
+ com.example.rosetta.ui.main.ClientFragment$1
+ com.example.rosetta.ui.main.ClientFragment$2
+com/example/rosetta/controller/ControleurListeComposants.java
+ com.example.rosetta.controller.ControleurListeComposants
 com/example/rosetta/ui/main/NouveauDevisFragment.java
  com.example.rosetta.ui.main.NouveauDevisFragment
  com.example.rosetta.ui.main.NouveauDevisFragment$1
  com.example.rosetta.ui.main.NouveauDevisFragment$2
- com.example.rosetta.ui.main.NouveauDevisFragment$3
- com.example.rosetta.ui.main.NouveauDevisFragment$4
-com/example/rosetta/ui/main/ClientFragment.java
- com.example.rosetta.ui.main.ClientFragment
- com.example.rosetta.ui.main.ClientFragment$1
-com/example/rosetta/controller/ControleurListeComposantsComposantPack.java
- com.example.rosetta.controller.ControleurListeComposantsComposantPack
-com/example/rosetta/controller/ControleurListeComposantScenario.java
- com.example.rosetta.controller.ControleurListeComposantScenario
-com/example/rosetta/controller/ScenarioAdapter.java
- com.example.rosetta.controller.ScenarioAdapter
- com.example.rosetta.controller.ScenarioAdapter$1
-com/example/rosetta/ui/main/ScenarioFragment.java
- com.example.rosetta.ui.main.ScenarioFragment
- com.example.rosetta.ui.main.ScenarioFragment$1
- com.example.rosetta.ui.main.ScenarioFragment$2
+com/example/rosetta/controller/ControleurEnregistrerNouveauDevis.java
+ com.example.rosetta.controller.ControleurEnregistrerNouveauDevis
+com/example/rosetta/controller/ControleurListePack.java
+ com.example.rosetta.controller.ControleurListePack
+com/example/rosetta/controller/ControleurListePackDevis.java
+ com.example.rosetta.controller.ControleurListePackDevis
+com/example/rosetta/ui/main/SectionsPagerAdapter.java
+ com.example.rosetta.ui.main.SectionsPagerAdapter
+com/example/rosetta/controller/ControleurListeComposantDevis.java
+ com.example.rosetta.controller.ControleurListeComposantDevis
+com/example/rosetta/ui/main/DevisQuestionFragment.java
+ com.example.rosetta.ui.main.DevisQuestionFragment
+ com.example.rosetta.ui.main.DevisQuestionFragment$1
+ com.example.rosetta.ui.main.DevisQuestionFragment$2
