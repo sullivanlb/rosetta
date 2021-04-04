@@ -31,15 +31,10 @@ public class ControleurClientSupprimer implements View.OnClickListener {
 
         // Récupération des informations du formulaire du client
         EditText editNom = (EditText) this.clientFragment.getView().findViewById(R.id.NomEditText);
-        String nom = editNom.getText().toString();
         EditText editPrenom = (EditText) this.clientFragment.getView().findViewById(R.id.PrenomEditText);
-        String prenom = editPrenom.getText().toString();
         EditText editAdresse = (EditText) this.clientFragment.getView().findViewById(R.id.AdresseEditText);
-        String adresse = editAdresse.getText().toString();
         EditText editEmail = (EditText) this.clientFragment.getView().findViewById(R.id.EmailEditText);
-        String email = editEmail.getText().toString();
         EditText editTelephone = (EditText) this.clientFragment.getView().findViewById(R.id.TelephoneEditText);
-        String tel = editTelephone.getText().toString();
         CheckBox femmeButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.femmeCheckbox);
         CheckBox hommeButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.hommeCheckbox);
         CheckBox autreButton = (CheckBox) this.clientFragment.getView().findViewById(R.id.autreCheckbox);

@@ -235,17 +235,6 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
-    /**
-     * Modifie les données d'un scenario existant.
-     *
-     * @param scenario le scenario comportant les nouvelles données
-     */
-    public void modifierScenario(Scenario scenario) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "UPDATE Scenario SET nomScenario = \"" + scenario.getNomScenario() + "\"" +
-                "WHERE idClient = \"" + scenario.getIdScenario()+ "\"";
-        this.bd.execSQL(requete);
-    }
 
     /**
      * Supprimer un scenario.
@@ -484,20 +473,7 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
-    /**
-     * Modifie les données d'un devis existant.
-     *
-     * @param devis le devis comportant les nouvelles données.
-     */
-    public void modifierDevis(Devis devis) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "UPDATE Devis SET nomDevis = \"" + devis.getNomDevis() + "\", " +
-                "descriptionDevis = \"" + devis.getDescriptionDevis() + "\", " +
-                "dureeDevis = \"" + devis.getDureeDevis() + "\", " +
-                "dateEditionDevis = \"" + devis.getDateEditionDevis() + "\"," +
-                "dateTravauxDevis = \"" + devis.getDateTravauxDevis() + "\"";
-        this.bd.execSQL(requete);
-    }
+
 
     /**
      * Supprimer un devis.
@@ -582,16 +558,6 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
-    /**
-     * Supprimer une question.
-     *
-     * @param id le numéro d'identification de la question à supprimer
-     */
-    public void supprimerQuetion(int id) {
-        this.bd = this.accesBD.getWritableDatabase();
-        String requete = "DELETE FROM Question WHERE idQuestion = \"" + id + "\"";
-        this.bd.execSQL(requete);
-    }
 
     /**
      * Récupère la dernière question ajoutée.
@@ -1003,76 +969,14 @@ public class AccesLocal {
         this.bd.execSQL(requete);
     }
 
-    /**
-     * @return tous les devis de la table AppartientDP
-     */
-    public ArrayList<Integer> tousLesElementsDP_Devis() {
-        this.bd = this.accesBD.getReadableDatabase();
-        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
-        String requete = "SELECT * FROM AppartientDP";
-        Cursor curseur = this.bd.rawQuery(requete, null);
-        curseur.moveToFirst();
-
-        while (!curseur.isAfterLast()) {
-            int idDevis = curseur.getInt(0);
-
-            tousLesElements.add(idDevis);
-            curseur.moveToNext();
-        }
-
-        curseur.close();
-        return tousLesElements;
-    }
 
     /**
-     * @return tous les packs de la table AppartientDP
+     * Supprime toutes les liaisons dans la table AppartientDP correspondant à l'id du devis passé en paramètre
+     * @param idDevis
      */
-    public ArrayList<Integer> tousLesElementsDP_Pack() {
-        this.bd = this.accesBD.getReadableDatabase();
-        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
-        String requete = "SELECT * FROM AppartientDP";
-        Cursor curseur = this.bd.rawQuery(requete, null);
-        curseur.moveToFirst();
-
-        while (!curseur.isAfterLast()) {
-            int idPack = curseur.getInt(1);
-
-            tousLesElements.add(idPack);
-            curseur.moveToNext();
-        }
-
-        curseur.close();
-        return tousLesElements;
-    }
-
-    /**
-     * @return toutes les quantites de la table AppartientDP
-     */
-    public ArrayList<Integer> tousLesElementsDP_Quantite() {
-        this.bd = this.accesBD.getReadableDatabase();
-        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
-        String requete = "SELECT * FROM AppartientDP";
-        Cursor curseur = this.bd.rawQuery(requete, null);
-        curseur.moveToFirst();
-
-        while (!curseur.isAfterLast()) {
-            int quantite = curseur.getInt(2);
-
-            tousLesElements.add(quantite);
-            curseur.moveToNext();
-        }
-
-        curseur.close();
-        return tousLesElements;
-    }
-
-    /**
-     * Supprime toutes les liaisons dans la table AppartientDP correspondant à l'id du pack passé en paramètre
-     * @param idPack
-     */
-    public void supprimerPackDP(int idPack){
+    public void supprimerDevisDP(int idDevis){
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "DELETE FROM AppartientDP WHERE unPack = \"" + idPack + "\"";
+        String requete = "DELETE FROM AppartientDP WHERE unDevis = \"" + idDevis + "\"";
         this.bd.execSQL(requete);
     }
 
@@ -1089,6 +993,16 @@ public class AccesLocal {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "INSERT INTO AppartientDC (unDevis, unComposant, quantite) values";
         requete += "(\"" + devis.getIdDevis() + "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
+        this.bd.execSQL(requete);
+    }
+
+    /**
+     * Supprime toutes les liaisons dans la table AppartientDC correspondant à l'id du devis passé en paramètre
+     * @param idDevis
+     */
+    public void supprimerDevisDC(int idDevis){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientDC WHERE unDevis = \"" + idDevis + "\"";
         this.bd.execSQL(requete);
     }
 
@@ -1109,13 +1023,55 @@ public class AccesLocal {
 
 
     /**
-     * Supprime toutes les liaisons dans la table AppartientCD correspondant à l'id du client passé en paramètre
-     * @param idClient
+     * Supprime toutes les liaisons dans la table AppartientCD correspondant à l'id du devis passé en paramètre
+     * @param idDevis
      */
-    public void supprimerClientCD(int idClient){
+    public void supprimerDevisCD(int idDevis){
         this.bd = this.accesBD.getWritableDatabase();
-        String requete = "DELETE FROM AppartientCD WHERE unClient = \"" + idClient + "\"";
+        String requete = "DELETE FROM AppartientCD WHERE unDevis = \"" + idDevis + "\"";
         this.bd.execSQL(requete);
+    }
+
+    /**
+     * @return tous les clients de la table AppartientCD
+     */
+    public ArrayList<Integer> tousLesElementsCD_client() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientCD";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idclient = curseur.getInt(0);
+
+            tousLesElements.add(idclient);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
+    }
+
+    /**
+     * @return tous les devis de la table AppartientCD
+     */
+    public ArrayList<Integer> tousLesElementsCD_devis() {
+        this.bd = this.accesBD.getReadableDatabase();
+        ArrayList<Integer> tousLesElements = new ArrayList<Integer>();
+        String requete = "SELECT * FROM AppartientCD";
+        Cursor curseur = this.bd.rawQuery(requete, null);
+        curseur.moveToFirst();
+
+        while (!curseur.isAfterLast()) {
+            int idDevis = curseur.getInt(1);
+
+            tousLesElements.add(idDevis);
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        return tousLesElements;
     }
 
 }

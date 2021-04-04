@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.model.Client;
 import com.example.rosetta.ui.main.DevisQuestionFragment;
@@ -60,6 +61,7 @@ public class ControleurSuivantDevis1 implements View.OnClickListener {
                 ((DevisQuestionFragment) leFrag).setNouveauDevisClientScenarioFragment(this.nouveauDevisClientScenarioFragment);
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
 
             }
             else{

@@ -13,17 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
-import com.example.rosetta.controller.ClientAdapter;
 import com.example.rosetta.controller.Controleur;
-import com.example.rosetta.controller.ControleurListeScenarioDevis;
 import com.example.rosetta.controller.QuestionAdapter;
-import com.example.rosetta.controller.QuestionAdapter2;
-import com.example.rosetta.controller.ScenarioAdapter2;
-import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Question;
 import com.example.rosetta.model.Scenario;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -60,10 +55,10 @@ public class DevisQuestionFragment extends Fragment {
         //========================= Questions =====================================================
 
         //Affichage des questions
-        ArrayList<Scenario> ScenarioChoisi = this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire();
-        ArrayList<Question> toutesLesQuestions = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getListeQuestions();
-        ArrayList<Integer> tousIdQuestionsSQ = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSQ_question();
-        ArrayList<Integer> tousIdScenariosSQ = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSQ_scenario();
+        ArrayList<Scenario> ScenarioChoisi = this.nouveauDevisClientScenarioFragment.getInstance().getListScenarioTemporaire();
+        ArrayList<Question> toutesLesQuestions = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getListeQuestions();
+        ArrayList<Integer> tousIdQuestionsSQ = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSQ_question();
+        ArrayList<Integer> tousIdScenariosSQ = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSQ_scenario();
         listeQuestionTemporaire = new ArrayList<Question>();
 
 
@@ -100,9 +95,10 @@ public class DevisQuestionFragment extends Fragment {
                 FragmentManager frman = getFragmentManager();
                 FragmentTransaction ftran = frman.beginTransaction();
                 Fragment leFrag = NouveauDevisFragment.getInstance();
-                ((NouveauDevisFragment) leFrag).setNouveauDevisClientScenarioFragment(DevisQuestionFragment.this.nouveauDevisClientScenarioFragment);
+                ((NouveauDevisFragment) leFrag).setDevisQuestionFragment(DevisQuestionFragment.this);
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -117,12 +113,10 @@ public class DevisQuestionFragment extends Fragment {
                 Fragment leFrag = new NouveauDevisClientScenarioFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
-        // ============================== Check Question ===========================================
-        FloatingActionButton fabCheck = (FloatingActionButton) rootView.findViewById(R.id.checkDevisButton);
-        FloatingActionButton fabCroix = (FloatingActionButton) rootView.findViewById(R.id.crossDevisButton);
 
         return this.rootView;
     }

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
-import com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment;
 
 import java.util.ArrayList;
 

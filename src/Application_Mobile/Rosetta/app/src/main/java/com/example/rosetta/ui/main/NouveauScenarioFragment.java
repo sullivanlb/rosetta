@@ -15,13 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurAjoutQuestionScenario;
 import com.example.rosetta.controller.ControleurEnregistretNouveauScenario;
 import com.example.rosetta.controller.ControleurListeComposantScenario;
-import com.example.rosetta.controller.ControleurListeObject;
 import com.example.rosetta.controller.ControleurListePackScenario;
 import com.example.rosetta.controller.ControleurListeQuestionScenario;
 import com.example.rosetta.controller.ObjectAdapter;
@@ -65,7 +65,6 @@ public class NouveauScenarioFragment extends Fragment {
     private ListView listeViewQuestion;
     private QuestionAdapter2 adapteurQuestion;
     private int indiceSelectionnerQuestion;
-    private int idSelectionnnerQuestion;
 
     private ArrayList<Object> listeObjectPackComposant = new ArrayList<Object>();
     private ListView listViewObject;
@@ -135,8 +134,6 @@ public class NouveauScenarioFragment extends Fragment {
 
         // Initialisation de l'adapter pour les objects
         this.listViewObject = (ListView) rootView.findViewById(R.id.listView_pack_avec_composants_packs);
-        ControleurListeObject controleurListeObject = new ControleurListeObject(this);
-        this.listViewObject.setOnItemClickListener(controleurListeObject);
 
         this.adapteurObject = new ObjectAdapter(this.getActivity(), listeObjectPackComposant, null);
         this.listViewObject.setAdapter(this.adapteurObject);
@@ -164,6 +161,7 @@ public class NouveauScenarioFragment extends Fragment {
                 Fragment leFrag = new ScenarioFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -268,19 +266,6 @@ public class NouveauScenarioFragment extends Fragment {
         return hashmapIdPackQuantite;
     }
 
-    /**
-     * @return l'indice selectionné
-     */
-    public int getIndiceSelectionnerComposant() {
-        return indiceSelectionnerComposant;
-    }
-
-    /**
-     * @return l'identifiant du composant selectionne
-     */
-    public int getIdSelectionnnerComposant() {
-        return idSelectionnnerComposant;
-    }
 
     /**
      * Setter
@@ -331,22 +316,6 @@ public class NouveauScenarioFragment extends Fragment {
         this.indiceSelectionnerQuestion = indiceSelectionnerQuestion;
     }
 
-    /**
-     * @return l'identifiant d'une question selectionnee
-     */
-
-    public int getIdSelectionnnerQuestion() {
-        return idSelectionnnerQuestion;
-    }
-
-    /**
-     * Setter
-     * @param idSelectionnnerQuestion à modifier
-     */
-
-    public void setIdSelectionnnerQuestion(int idSelectionnnerQuestion) {
-        this.idSelectionnnerQuestion = idSelectionnnerQuestion;
-    }
 
     /**
      * @return la listeView de Question
@@ -363,54 +332,4 @@ public class NouveauScenarioFragment extends Fragment {
         return listViewObject;
     }
 
-    /**
-     * Permet d'actualiser la liste affichée des composants lorsqu'un composant est ajouté, ou
-     * ses informations ont été modifiées.
-     */
-    public void actualiserListeComposants() {
-        listeComposants = new ArrayList<Composant>(controleur.getListeComposants());
-        adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
-        listeViewComposant.setAdapter(adapteurComposant);
-        rechercher();
-    }
-
-    /**
-     * Permet d'actualiser la liste affichée des composants lorsqu'un pack est ajouté, ou
-     * ses informations ont été modifiées.
-     */
-    public void actualiserListePacks(){
-        listePacks = new ArrayList<Pack>(controleur.getListePacks());
-        adapteurPack = new PackAdapter(getActivity(), listePacks);
-        listeViewPack.setAdapter(adapteurPack);
-        rechercher();
-    }
-
-    /**
-     * Cette méthode permet de mettre à jour la recherche, et d'afficher les composant et les packs recherchés.
-     */
-    public void rechercher() {
-
-        EditText recherche = (EditText) rootView.findViewById(R.id.rechercher_composants_packs);
-        String input = recherche.getText().toString();
-
-        ArrayList<Composant> rechercheListComposant= new ArrayList<Composant>();
-        ArrayList<Pack> rechercheListPack = new ArrayList<Pack>();
-        for (Composant c : listeComposants) {
-            if (c.getNomComposant().contains(input)) {
-                rechercheListComposant.add(c);
-            }
-        }
-        listeComposants = rechercheListComposant;
-        adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
-        listeViewComposant.setAdapter(adapteurComposant);
-
-        for(Pack p : listePacks){
-            if(p.getNomPack().contains(input)){
-                rechercheListPack.add(p);
-            }
-        }
-        listePacks = rechercheListPack;
-        adapteurPack = new PackAdapter(getActivity(), listePacks);
-        listeViewPack.setAdapter(adapteurPack);
-    }
 }

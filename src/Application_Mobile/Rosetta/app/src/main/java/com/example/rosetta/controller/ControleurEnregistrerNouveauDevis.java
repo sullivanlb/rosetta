@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Devis;
 import com.example.rosetta.model.Pack;
-import com.example.rosetta.ui.main.AjoutComposantFragment;
 import com.example.rosetta.ui.main.DevisFragment;
 import com.example.rosetta.ui.main.NouveauDevisFragment;
 import com.example.rosetta.ui.main.SectionsPagerAdapter;
@@ -66,7 +66,7 @@ public class ControleurEnregistrerNouveauDevis implements View.OnClickListener {
 
                 // Ajout aux tables AppartientDC(devis, composant, quantite) et  AppartientDP(devis, pack, quantite) = Ok
 
-                //!\\ Ajout des nouveaux composants et des nouveaux pack + ceux des scénarios choisis = A faire
+                //Ajout des nouveaux composants et des nouveaux pack + ceux des scénarios choisis = ok
                 ArrayList<Object> listObject = this.nouveauDevisFragment.getListObject();
 
                 //Composant
@@ -95,6 +95,8 @@ public class ControleurEnregistrerNouveauDevis implements View.OnClickListener {
                     }
                 }
 
+                //vider les champs
+                editNom.setText(" ");
 
                 //Permet de changer de framgment
                 SectionsPagerAdapter.setDevisFragment("DevisFragment");
@@ -103,6 +105,7 @@ public class ControleurEnregistrerNouveauDevis implements View.OnClickListener {
                 Fragment leFrag = new DevisFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
             else{
                 Toast.makeText(this.nouveauDevisFragment.getView().getContext(), "Veuillez saisir au moins un composant/pack ", Toast.LENGTH_LONG).show();

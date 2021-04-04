@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
@@ -83,6 +84,7 @@ public class AjoutPackFragment extends Fragment {
                 Fragment leFrag = new ComposantPackFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 

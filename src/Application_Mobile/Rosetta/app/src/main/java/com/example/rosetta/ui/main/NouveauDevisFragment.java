@@ -15,25 +15,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
-import com.example.rosetta.controller.ClientAdapter;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurEnregistrerNouveauDevis;
 import com.example.rosetta.controller.ControleurListeComposantDevis;
-import com.example.rosetta.controller.ControleurListeComposants;
-import com.example.rosetta.controller.ControleurListePack;
 import com.example.rosetta.controller.ControleurListePackDevis;
 import com.example.rosetta.controller.DevisAdapterObject;
-import com.example.rosetta.controller.ObjectAdapter;
 import com.example.rosetta.controller.PackAdapter;
-import com.example.rosetta.controller.QuestionAdapter;
 import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
-import com.example.rosetta.model.Question;
 import com.example.rosetta.model.Scenario;
-import com.example.rosetta.model.Sexe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +47,7 @@ public class NouveauDevisFragment extends Fragment {
     private Controleur controleur;
 
     private NouveauDevisClientScenarioFragment nouveauDevisClientScenarioFragment;
+    private DevisQuestionFragment devisQuestionFragment;
     private static NouveauDevisFragment instance;
     private Client clientChoisi;
 
@@ -119,19 +114,18 @@ public class NouveauDevisFragment extends Fragment {
         this.listObject = new ArrayList<Object>();
 
         //Récupèration des données (Client + Scénarios)
-        this.setClientChoisi(this.nouveauDevisClientScenarioFragment.getClientChoisi());
+        this.setClientChoisi(this.nouveauDevisClientScenarioFragment.getInstance().getClientChoisi());
 
         //Affichage Composant et Pack
-        ArrayList<Scenario> ScenarioChoisi =  this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire();
-        ArrayList<Integer> toutesLesQuantites = new ArrayList<>();
-        ArrayList<Integer> tousIdComposantSC= Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSC_composant();
-        ArrayList<Integer> tousIdScenarioSC= Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSC_scenarios();
-        ArrayList<Integer> tousIdQuantiteSC = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSC_quantite();
-        ArrayList<Integer> tousIdPackSP = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSP_pack();
-        ArrayList<Integer> tousIdScenarioSP = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSP_scenarios();
-        ArrayList<Integer> tousIdQuantiteSP = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSP_quantite();
-        ArrayList<Composant> touslesComposants = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getListeComposants();
-        ArrayList<Pack> touslesPacks = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getListePacks();
+        ArrayList<Scenario> ScenarioChoisi =  this.nouveauDevisClientScenarioFragment.getInstance().getListScenarioTemporaire();
+        ArrayList<Integer> tousIdComposantSC= Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSC_composant();
+        ArrayList<Integer> tousIdScenarioSC= Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSC_scenarios();
+        ArrayList<Integer> tousIdQuantiteSC = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSC_quantite();
+        ArrayList<Integer> tousIdPackSP = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSP_pack();
+        ArrayList<Integer> tousIdScenarioSP = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSP_scenarios();
+        ArrayList<Integer> tousIdQuantiteSP = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getTousLesElementsSP_quantite();
+        ArrayList<Composant> touslesComposants = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getListeComposants();
+        ArrayList<Pack> touslesPacks = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getInstance().getContext()).getListePacks();
 
 
         for (Composant composant : touslesComposants) {
@@ -207,9 +201,10 @@ public class NouveauDevisFragment extends Fragment {
                 SectionsPagerAdapter.setDevisFragment("DevisQuestionFragment");
                 FragmentManager frman = getFragmentManager();
                 FragmentTransaction ftran = frman.beginTransaction();
-                Fragment leFrag = new DevisQuestionFragment();
+                Fragment leFrag = DevisQuestionFragment.getInstance();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -328,23 +323,6 @@ public class NouveauDevisFragment extends Fragment {
         return hashmapIdPackQuantite;
     }
 
-    /**
-     * Getter
-     *
-     * @return l'indice selectionné
-     */
-    public int getIndiceSelectionnerComposant() {
-        return indiceSelectionnerComposant;
-    }
-
-    /**
-     * Getter
-     *
-     * @return l'identifiant du composant selectionne
-     */
-    public int getIdSelectionnnerComposant() {
-        return idSelectionnnerComposant;
-    }
 
     /**
      * Setter
@@ -391,63 +369,13 @@ public class NouveauDevisFragment extends Fragment {
         return listeViewObject;
     }
 
-    /**
-     * Permet d'actualiser la liste affichée des composants lorsqu'un composant est ajouté, ou
-     * ses informations ont été modifiées.
-     */
-    public void actualiserListeComposants() {
-        listeComposants = new ArrayList<Composant>(controleur.getListeComposants());
-        adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
-        listeViewComposant.setAdapter(adapteurComposant);
-        rechercher();
-    }
-
-    /**
-     * Permet d'actualiser la liste affichée des composants lorsqu'un pack est ajouté, ou
-     * ses informations ont été modifiées.
-     */
-    public void actualiserListePacks(){
-        listePacks = new ArrayList<Pack>(controleur.getListePacks());
-        adapteurPack = new PackAdapter(getActivity(), listePacks);
-        listeViewPack.setAdapter(adapteurPack);
-        rechercher();
-    }
-
-    /**
-     * Cette méthode permet de mettre à jour la recherche, et d'afficher les composant et les packs recherchés.
-     */
-    public void rechercher() {
-
-        EditText recherche = (EditText) rootView.findViewById(R.id.rechercher_composants_packs);
-        String input = recherche.getText().toString();
-
-        ArrayList<Composant> rechercheListComposant= new ArrayList<Composant>();
-        ArrayList<Pack> rechercheListPack = new ArrayList<Pack>();
-        for (Composant c : listeComposants) {
-            if (c.getNomComposant().contains(input)) {
-                rechercheListComposant.add(c);
-            }
-        }
-        listeComposants = rechercheListComposant;
-        adapteurComposant = new ComposantAdapter(getActivity(), listeComposants);
-        listeViewComposant.setAdapter(adapteurComposant);
-
-        for(Pack p : listePacks){
-            if(p.getNomPack().contains(input)){
-                rechercheListPack.add(p);
-            }
-        }
-        listePacks = rechercheListPack;
-        adapteurPack = new PackAdapter(getActivity(), listePacks);
-        listeViewPack.setAdapter(adapteurPack);
-    }
 
     /**
      * Récupère l'Instance et les données (client + scénarios)
-     * @param nDCSF la nouvelle instance
+     * @param dQF la nouvelle instance
      */
-    public void setNouveauDevisClientScenarioFragment(NouveauDevisClientScenarioFragment nDCSF) {
-        this.nouveauDevisClientScenarioFragment = nDCSF;
+    public void setDevisQuestionFragment(DevisQuestionFragment dQF) {
+        this.devisQuestionFragment = dQF;
     }
 
     /**

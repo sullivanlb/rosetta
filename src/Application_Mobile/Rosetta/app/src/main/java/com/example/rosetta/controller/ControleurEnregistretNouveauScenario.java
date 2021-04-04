@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
@@ -109,6 +110,7 @@ public class ControleurEnregistretNouveauScenario implements View.OnClickListene
                     Fragment leFrag = new ScenarioFragment();
                     ftran.replace(R.id.view_pager, leFrag);
                     ftran.commit();
+                    MainActivity.refreshFrag();
 
                     //Vider les Arrayliste et les HashMap
                     this.nouveauScenarioFragment.getListeObjectPackComposant().clear();

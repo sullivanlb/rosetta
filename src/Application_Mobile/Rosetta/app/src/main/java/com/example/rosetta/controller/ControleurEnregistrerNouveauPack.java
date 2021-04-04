@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
@@ -66,6 +67,7 @@ public class ControleurEnregistrerNouveauPack implements View.OnClickListener {
             Fragment leFrag = new ComposantPackFragment();
             ftran.replace(R.id.view_pager, leFrag);
             ftran.commit();
+            MainActivity.refreshFrag();
 
             this.listeComposantDePack.clear();
         }

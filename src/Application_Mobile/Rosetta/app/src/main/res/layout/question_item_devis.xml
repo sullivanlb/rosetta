@@ -38,7 +38,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#C4F689"
                 android:clickable="true"
                 app:srcCompat="?android:attr/textCheckMark" />
 
@@ -53,8 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#070707"
-                android:backgroundTint="#F1837B"
                 android:clickable="true"
                 android:foregroundGravity="center_vertical"
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />

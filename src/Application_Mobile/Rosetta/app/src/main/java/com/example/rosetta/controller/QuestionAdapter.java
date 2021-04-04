@@ -1,6 +1,7 @@
 package com.example.rosetta.controller;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.rosetta.R;
 import com.example.rosetta.model.Question;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 import java.util.ArrayList;
@@ -69,6 +71,26 @@ public class QuestionAdapter extends BaseAdapter {
 
         // Modification des vues
         nomQuestion.setText(listQuestion.get(position).getNomQuestion());
+
+        //Bouton pour valider et change en vert
+        FloatingActionButton okButton = (FloatingActionButton) view.findViewById(R.id.checkDevisButton);
+        //Bouton pour Refuser et change en rouge
+        FloatingActionButton nonOKButton = (FloatingActionButton) view.findViewById(R.id.crossDevisButton);
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                okButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.vert)));
+            }
+        });
+
+
+        nonOKButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nonOKButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.rouge)));
+            }
+        });
 
         // On retourne la vue créée
         return view;

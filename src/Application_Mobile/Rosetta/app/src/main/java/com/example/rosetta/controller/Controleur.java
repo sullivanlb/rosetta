@@ -138,14 +138,6 @@ public class Controleur {
         Controleur.accesLocal.synchroniserClients(this.controleurEnregistrerNouveauClient);
     }
 
-    /**
-     * Met à jour le controleurEnregistrerNouveauClient
-     *
-     * @param controleurEnregistrerNouveauClient l'attribut à mettre à jour
-     */
-    public void setControleurEnregistrerNouveauClient(ControleurEnregistrerNouveauClient controleurEnregistrerNouveauClient) {
-        this.controleurEnregistrerNouveauClient = controleurEnregistrerNouveauClient;
-    }
 
     //====================================== Scénario ===================================================
 
@@ -162,31 +154,6 @@ public class Controleur {
         }
     }
 
-    /**
-     * Demande à la classe accesLocal de modifier un scenario.
-     *
-     * @param scenario le scenario à modifier
-     */
-
-    public void modifierScenario(Scenario scenario){
-        if(scenario != null){
-            Controleur.accesLocal.modifierScenario(scenario);
-
-            int position = 0;
-            boolean trouve = false;
-
-            //Permet de retrouver la position dans l'ArrayList
-            while (position < this.listeScenarios.size() && !trouve) {
-                if (this.listeScenarios.get(position).getIdScenario() == scenario.getIdScenario()) {
-                    trouve = true;
-                }
-                else position++;
-            }
-            if (trouve) {
-                this.listeScenarios.set(position,scenario);
-            }
-        }
-    }
 
     /**
      * Demande à la classe accesLocal de supprimer un scenario.
@@ -283,31 +250,6 @@ public class Controleur {
         }
     }
 
-    /**
-     * Demande à la classe accesLocal de modifier un pack.
-     *
-     * @param pack le pack à modifier
-     */
-
-    public void modifierPack(Pack pack){
-        if(pack != null){
-            Controleur.accesLocal.modifierPack(pack);
-
-            int position = 0;
-            boolean trouve = false;
-
-            //Permet de retrouver la position dans l'ArrayList
-            while (position < this.listePacks.size() && !trouve) {
-                if (this.listePacks.get(position).getIdPack() == pack.getIdPack()) {
-                    trouve = true;
-                }
-                else position++;
-            }
-            if (trouve) {
-                this.listePacks.set(position,pack);
-            }
-        }
-    }
 
     /**
      * Retourne la liste de tous les packs.
@@ -333,31 +275,6 @@ public class Controleur {
         }
     }
 
-    /**
-     * Demande à la classe accesLocal de modifier un devis.
-     *
-     * @param devis le devis à modifier
-     */
-
-    public void modifierDevis(Devis devis){
-        if(devis != null){
-            Controleur.accesLocal.modifierDevis(devis);
-
-            int position = 0;
-            boolean trouve = false;
-
-            //Permet de retrouver la position dans l'ArrayList
-            while (position < this.listeDevis.size() && !trouve) {
-                if (this.listeDevis.get(position).getIdDevis() == devis.getIdDevis()) {
-                    trouve = true;
-                }
-                else position++;
-            }
-            if (trouve) {
-                this.listeDevis.set(position,devis);
-            }
-        }
-    }
 
     /**
      * Demande à la classe accesLocal de supprimer un devis.
@@ -405,28 +322,6 @@ public class Controleur {
         }
     }
 
-    /**
-     * Demande à la classe accesLocal de supprimer une question.
-     *
-     * @param id l'identifiant de la question à supprimer
-     */
-    public void supprimerQuestion(int id) {
-        Controleur.accesLocal.supprimerQuetion(id);
-
-        int position = 0;
-        boolean trouve = false;
-
-        //En fonction de id, on retrouve la position du client dans l'ArrayList
-        while (position < this.listeQuestions.size() && !trouve) {
-            if (this.listeQuestions.get(position).getIdQuestion() == id) {
-                trouve = true;
-            }
-            else position++;
-        }
-        if (trouve) {
-            this.listeQuestions.remove(position);
-        }
-    }
 
     /**
      * Retourne la liste de tous les questions.
@@ -621,35 +516,14 @@ public class Controleur {
     }
 
     /**
-     * Supprime toutes les liaisons correspondant au pack passé en paramètre
-     * @param idPack l'identifiant du scenario
+     * Supprime toutes les liaisons correspondant au devis passé en paramètre
+     * @param idDevis l'identifiant du devis
      */
 
-    public void supprimerPackDP(int idPack){
-        Controleur.accesLocal.supprimerPackDP(idPack);
+    public void supprimerDevisDP(int idDevis){
+        Controleur.accesLocal.supprimerDevisDP(idDevis);
     }
 
-    /**
-     * @return tous les devis de la table appartient DP
-     */
-    public ArrayList<Integer> getTousLesElementsDP_devis(){
-        return Controleur.accesLocal.tousLesElementsDP_Devis();
-    }
-
-
-    /**
-     * @return tous les devis de la table appartient DP
-     */
-    public ArrayList<Integer> getTousLesElementsDP_pack(){
-        return Controleur.accesLocal.tousLesElementsDP_Pack();
-    }
-
-    /**
-     * @return toutes les quantites de la table appartient DP
-     */
-    public ArrayList<Integer> getTousLesElementsDP_quantite(){
-        return Controleur.accesLocal.tousLesElementsDP_Quantite();
-    }
 
     //================================== Appartient Devis Composant ==================================
 
@@ -661,6 +535,15 @@ public class Controleur {
      */
     public void creerAppartientDC(Devis devis, Composant composant, int quantite) {
         Controleur.accesLocal.ajoutAppartientDC(devis, composant, quantite);
+    }
+
+    /**
+     * Supprime toutes les liaisons correspondant au devis passé en paramètre
+     * @param idDevis l'identifiant du devis
+     */
+
+    public void supprimerDevisDC(int idDevis){
+        Controleur.accesLocal.supprimerDevisDC(idDevis);
     }
 
     //================================== Appartient Client Devis ==================================
@@ -676,11 +559,25 @@ public class Controleur {
     }
 
     /**
-     * Supprime toutes les liaisons correspondant au client passé en paramètre
-     * @param  idClient l'identifiant du client
+     * Supprime toutes les liaisons correspondant au devis passé en paramètre
+     * @param idDevis l'identifiant du devis
      */
 
-    public void supprimerClientCD(int idClient){
-        Controleur.accesLocal.supprimerClientCD(idClient);
+    public void supprimerDevisCD(int idDevis){
+        Controleur.accesLocal.supprimerDevisCD(idDevis);
+    }
+
+    /**
+     * @return tous les clients de la table appartientCD
+     */
+    public ArrayList<Integer> getTousLesElementsCD_client(){
+        return Controleur.accesLocal.tousLesElementsCD_client();
+    }
+
+    /**
+     * @return tous les devis de la table appartientCD
+     */
+    public ArrayList<Integer> getTousLesElementsCD_devis(){
+        return Controleur.accesLocal.tousLesElementsCD_devis();
     }
 }

@@ -107,7 +107,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public static void setDevisFragment(String texte) {
 
         if (texte.equals("NouveauDevisClientScenarioFragment")) {
-            devisFragment = new NouveauDevisClientScenarioFragment();
+            devisFragment = NouveauDevisClientScenarioFragment.getInstance();
         }
         else if (texte.equals("DevisQuestionFragment")) {
             devisFragment = DevisQuestionFragment.getInstance();

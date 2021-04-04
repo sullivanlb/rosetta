@@ -32,6 +32,7 @@ public class ObjectAdapter extends BaseAdapter {
      *
      * @param context le contexte
      * @param list la liste des objects (composant + pasck)
+     * @param quantites la liste des quantites correspondants
      */
     public ObjectAdapter(Context context, ArrayList<Object> list, ArrayList<Integer> quantites){
         this.context = context;

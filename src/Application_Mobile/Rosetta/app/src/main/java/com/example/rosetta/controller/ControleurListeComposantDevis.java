@@ -7,8 +7,13 @@ import android.widget.Toast;
 
 import com.example.rosetta.R;
 import com.example.rosetta.model.Composant;
-import com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment;
 import com.example.rosetta.ui.main.NouveauDevisFragment;
+
+/**
+ * Cette classe permet de gérer La liste des composants dans Devis
+ *
+ * @version 2.0
+ */
 
 public class ControleurListeComposantDevis implements AdapterView.OnItemClickListener{
 

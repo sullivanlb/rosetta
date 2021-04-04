@@ -6,10 +6,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rosetta.R;
-import com.example.rosetta.model.Composant;
 import com.example.rosetta.model.Pack;
-import com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment;
 import com.example.rosetta.ui.main.NouveauDevisFragment;
+
+/**
+ * Cette classe permet d'afficher la liste des packs dans Devis.
+ *
+ * @author Lucy, Alice
+ * @version 2.0
+ */
 
 public class ControleurListePackDevis implements AdapterView.OnItemClickListener{
 

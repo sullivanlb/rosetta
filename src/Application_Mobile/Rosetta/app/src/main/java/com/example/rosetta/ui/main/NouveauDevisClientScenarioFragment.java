@@ -15,16 +15,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ClientAdapter;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurListeClientDevis;
 import com.example.rosetta.controller.ControleurListeScenarioDevis;
 import com.example.rosetta.controller.ControleurSuivantDevis1;
-import com.example.rosetta.controller.QuestionAdapter2;
 import com.example.rosetta.controller.ScenarioAdapter2;
 import com.example.rosetta.model.Client;
-import com.example.rosetta.model.Question;
 import com.example.rosetta.model.Scenario;
 
 import java.util.ArrayList;
@@ -42,6 +41,8 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
 
     private View rootView;
     private Controleur controleur;
+
+    private static NouveauDevisClientScenarioFragment instance;
 
     private ArrayList<Client> listeClients;
     private ClientAdapter adapteurClient;
@@ -124,6 +125,7 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
                 Fragment leFrag = new DevisFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -232,14 +234,6 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
         this.clientChoisi = clientChoisi;
     }
 
-    /**
-     * Getter
-     *
-     * @return l'indeice sélectionné dans la liste des Clients
-     */
-    public int getIndiceSelectionnerClient() {
-        return indiceSelectionnerClient;
-    }
 
     /**
      * Setter
@@ -251,15 +245,6 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
         this.indiceSelectionnerClient = indiceSelectionnerClient;
     }
 
-    /**
-     * Getter
-     *
-     * @return l'id du client sélectionné
-     */
-
-    public int getIdSelectionnnerClient() {
-        return idSelectionnnerClient;
-    }
 
     /**
      * Setter
@@ -271,14 +256,6 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
         this.idSelectionnnerClient = idSelectionnnerClient;
     }
 
-    /**
-     * Getter
-     *
-     * @return l'indeice sélectionné dans la liste des scénarios
-     */
-    public int getIndiceSelectionnerScenario() {
-        return indiceSelectionnerScenario;
-    }
 
     /**
      * Setter
@@ -289,14 +266,6 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
         this.indiceSelectionnerScenario = indiceSelectionnerScenario;
     }
 
-    /**
-     * Getter
-     *
-     * @return l'id du scénario sélectionné
-     */
-    public int getIdSelectionnnerScenario() {
-        return idSelectionnnerScenario;
-    }
 
     /**
      * Setter
@@ -308,55 +277,12 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
     }
 
     /**
-     * Permet d'actualiser la liste affichée des clients lorsqu'un client est ajouté, supprimé ou
-     * ses informations ont été modifiées.
-     * Met à jour la liste en fonction de la recherche.
+     * @return donne l'accès à une instance de NouveauDevisClientScenariosFragment
      */
-    public void actualiserListeClients() {
-        listeClients = new ArrayList<Client>(controleur.getListeClients());
-        adapteurClient = new ClientAdapter(getActivity(), listeClients);
-        listeViewClient.setAdapter(adapteurClient);
-        this.rechercher();
-    }
-
-    /**
-     * Permet d'actualiser la liste affichée des clients lorsqu'un client est ajouté, supprimé ou
-     * ses informations ont été modifiées.
-     * Met à jour la liste en fonction de la recherche.
-     */
-    public void actualiserListeScenarios() {
-        listeScenarios = new ArrayList<Scenario>(controleur.getListeScenarios());
-        adapteurScenarios = new ScenarioAdapter2(getActivity(), listeScenarios);
-        listeViewScenarios.setAdapter(adapteurScenarios);
-        this.rechercher();
-    }
-
-    /**
-     * Cette méthode permet de mettre à jour la recherche, et d'afficher les clients et les scénarios recherchés.
-     */
-    public void rechercher() {
-
-        EditText recherche = (EditText) rootView.findViewById(R.id.rechercher_client);
-        String input = recherche.getText().toString();
-
-        ArrayList<Client> rechercheListClient = new ArrayList<Client>();
-        for (Client c : listeClients) {
-            if (c.getNomClient().contains(input) || c.getPrenomClient().contains(input)) {
-                rechercheListClient.add(c);
-            }
+    public static NouveauDevisClientScenarioFragment getInstance(){
+        if (instance == null){
+            instance = new NouveauDevisClientScenarioFragment();
         }
-        listeClients = rechercheListClient;
-        adapteurClient = new ClientAdapter(getActivity(), listeClients);
-        listeViewClient.setAdapter(adapteurClient);
-
-        ArrayList<Scenario> rechercherListScenario = new ArrayList<Scenario>();
-        for(Scenario scenario : listeScenarios){
-            if(scenario.getNomScenario().contains(input)){
-                rechercherListScenario.add(scenario);
-            }
-        }
-        listeScenarios = rechercherListScenario;
-        adapteurScenarios = new ScenarioAdapter2(getActivity(), listeScenarios);
-        listeViewScenarios.setAdapter(adapteurScenarios);
+        return instance;
     }
 }

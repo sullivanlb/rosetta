@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.ControleurListeScenario;
@@ -78,6 +79,7 @@ public class ScenarioFragment extends Fragment {
                 Fragment leFrag = new ComposantPackFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -92,6 +94,7 @@ public class ScenarioFragment extends Fragment {
                 Fragment leFrag = new NouveauScenarioFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -107,13 +110,6 @@ public class ScenarioFragment extends Fragment {
         return listeScenarios;
     }
 
-    /**
-     * @return l'indice selectionné
-     */
-
-    public int getIndiceSelectionnerScenario() {
-        return indiceSelectionnerScenario;
-    }
 
     /**
      * Setter
@@ -164,6 +160,7 @@ public class ScenarioFragment extends Fragment {
         ((InfoScenarioFragment) leFrag).setScenarioFragment(this);
         ftran.replace(R.id.view_pager, leFrag);
         ftran.commit();
+        MainActivity.refreshFrag();
 
 
     }

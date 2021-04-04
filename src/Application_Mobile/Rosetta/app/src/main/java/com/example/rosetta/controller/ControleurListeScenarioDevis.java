@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import com.example.rosetta.model.Scenario;
 import com.example.rosetta.ui.main.NouveauDevisClientScenarioFragment;
 
-import java.util.ArrayList;
 
 /**
  * Cette classe permet d'afficher les informations du scénario sélectionné dans le formulaire Devis.

@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.rosetta.MainActivity;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.ComposantAdapter;
 import com.example.rosetta.controller.Controleur;
@@ -115,6 +116,7 @@ public class ComposantPackFragment extends Fragment {
                 Fragment leFrag = new ScenarioFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -130,6 +132,7 @@ public class ComposantPackFragment extends Fragment {
                 Fragment leFrag = new AjoutComposantFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -144,6 +147,7 @@ public class ComposantPackFragment extends Fragment {
                 Fragment leFrag = new AjoutPackFragment();
                 ftran.replace(R.id.view_pager, leFrag);
                 ftran.commit();
+                MainActivity.refreshFrag();
             }
         });
 
@@ -316,16 +320,6 @@ public class ComposantPackFragment extends Fragment {
         rechercher();
     }
 
-    /**
-     * Permet d'actualiser la liste affichée des composants lorsqu'un pack est ajouté, ou
-     * ses informations ont été modifiées.
-     */
-    public void actualiserListePacks(){
-        listePacks = new ArrayList<Pack>(controleur.getListePacks());
-        adapteurPack = new PackAdapter(getActivity(), listePacks);
-        listeViewPack.setAdapter(adapteurPack);
-        rechercher();
-    }
 
     /**
      * Cette méthode permet de mettre à jour la recherche, et d'afficher les composant et les packs recherchés.

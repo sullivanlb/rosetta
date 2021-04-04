@@ -12,7 +12,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Rosetta">
+        android:theme="@style/Theme.Rosetta"
+
+        android:screenOrientation="landscape">
 
         <activity
             android:name=".MainActivity"

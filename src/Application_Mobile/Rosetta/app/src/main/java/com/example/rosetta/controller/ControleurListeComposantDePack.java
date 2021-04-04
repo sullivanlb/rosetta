@@ -19,6 +19,10 @@ public class ControleurListeComposantDePack implements AdapterView.OnItemClickLi
 
     private AjoutPackFragment ajoutPackFragment;
 
+    /**
+     * Le constructeur crée une nouvelle forme de ControleurListeComposantsDePacks
+     * @param apf le contexte
+     */
     public ControleurListeComposantDePack(AjoutPackFragment apf) {
         if (apf != null) {
             this.ajoutPackFragment = apf;

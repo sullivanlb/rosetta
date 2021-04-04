@@ -36,18 +36,6 @@ public class ControleurListePack implements AdapterView.OnItemClickListener{
     }
 
 
-    /**
-     * Le constructeur crée une nouvelle forme de ControleurListeComposants
-     *
-     * @param nDf le contexte {@link NouveauDevisFragment}
-     */
-
-    public ControleurListePack(NouveauDevisFragment nDf) {
-        if(nDf != null){
-            this.nouveauDevisFragment= nDf;
-        }
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // === Affichage du nom du pack sélectionné
