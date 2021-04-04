@@ -138,8 +138,21 @@ public class NouveauDevisFragment extends Fragment {
             for (int i = 0; i < tousIdComposantSC.size(); i++){
                 if (composant.getIdComposant() == tousIdComposantSC.get(i)){
                     for(int j = 0; j < ScenarioChoisi.size(); j++){
-                        if(tousIdScenarioSC.get(i) == ScenarioChoisi.get(j).getIdScenario()){
-                            this.listObject.add(composant);
+                        if(tousIdScenarioSC.get(i) == ScenarioChoisi.get(j).getIdScenario()) {
+
+                            // Vérifie que le composant n'est pas déjà ajouté
+                            boolean estDejaAjoute = false;
+                            for (Object object : this.listObject)
+                                // Si l'objet est un composant
+                                if (object instanceof Composant)
+                                    // S'il est déjà ajouté, on met le boolean à 'true'
+                                    if (((Composant) object).getIdComposant() == composant.getIdComposant())
+                                        estDejaAjoute = true;
+
+                            // On ajoute le composant s'il n'est pas déjà dans la liste
+                            if(!estDejaAjoute)
+                                this.listObject.add(composant);
+
                             //toutesLesQuantites.add(tousIdQuantiteSC.get(i));
                             hashmapIdComposantQuantite.put(composant.getIdComposant(),tousIdQuantiteSC.get(i));
                         }
@@ -152,7 +165,20 @@ public class NouveauDevisFragment extends Fragment {
                 if (pack.getIdPack() == tousIdPackSP.get(i)){
                     for(int j = 0; j < ScenarioChoisi.size(); j++) {
                         if(tousIdScenarioSP.get(i) == ScenarioChoisi.get(j).getIdScenario()){
-                            this.listObject.add(pack);
+
+                            // Vérifie que le pack n'est pas déjà ajouté
+                            boolean estDejaAjoute = false;
+                            for (Object object : this.listObject)
+                                // Si l'objet est un pack
+                                if (object instanceof Pack)
+                                    // S'il est déjà ajouté, on met le boolean à 'true'
+                                    if (((Pack) object).getIdPack() == pack.getIdPack())
+                                        estDejaAjoute = true;
+
+                            // On ajoute le pack s'il n'est pas déjà dans la liste
+                            if(!estDejaAjoute)
+                                this.listObject.add(pack);
+                            
                             //toutesLesQuantites.add(tousIdQuantiteSP.get(i));
                             hashmapIdPackQuantite.put(pack.getIdPack(), tousIdQuantiteSP.get(i));
                         }
