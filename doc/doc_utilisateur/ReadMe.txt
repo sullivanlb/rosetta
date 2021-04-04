@@ -1,10 +1,12 @@
 Bonjour M. Hourdier !
 
-Voici l'avancement de votre projet.
+Voici votre projet : ROSETTA !
 
 ==============================================================
 
-Dans le dossier que vous venez de décompresser, vous trouverez une vidéo qui vous présente tout ce qui a déjà été réalisé pour votre projet, ainsi que les divers documents liés aux diverses étapes passées.
+Dans le dossier que vous venez de récupérer, vous trouverez un manuel d'installation qui vous expliquera toute la procédure d'installation de votre application web et mobile, ainsi que le manuel d'utilisation. Les différents documents liés au projet se trouvent également dans ce dossier.
+
+Ravi d'avoir pu collaborer avec vous.
 
 Passez une excellente journée,
 
