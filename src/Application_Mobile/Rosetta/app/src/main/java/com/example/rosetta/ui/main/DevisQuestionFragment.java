@@ -60,7 +60,7 @@ public class DevisQuestionFragment extends Fragment {
         //========================= Questions =====================================================
 
         //Affichage des questions
-        ArrayList<Scenario> ScenarioChoisi =  this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire();
+        ArrayList<Scenario> ScenarioChoisi = this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire();
         ArrayList<Question> toutesLesQuestions = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getListeQuestions();
         ArrayList<Integer> tousIdQuestionsSQ = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSQ_question();
         ArrayList<Integer> tousIdScenariosSQ = Controleur.getInstance(this.nouveauDevisClientScenarioFragment.getContext()).getTousLesElementsSQ_scenario();

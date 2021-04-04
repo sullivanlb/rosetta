@@ -990,15 +990,16 @@ public class AccesLocal {
     //=========================== Appartient Devis Pack =========================================
 
     /**
-     * Ajoute un pack et un composant dans AppartientDP.
+     * Ajoute un devis et un pack dans AppartientDP.
      *
-     * @param idDevis l'id du pack.
-     * @param  idPack l'id composant
+     * @param devis le devis.
+     * @param  pack le pack
+     * @param quantite la quantite
      */
-    public void ajoutAppartientDP(int idDevis, int idPack, int quantite) {
+    public void ajoutAppartientDP(Devis devis, Pack pack, int quantite) {
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "INSERT INTO AppartientDP (unDevis, unPack, quantite) values";
-        requete += "(\"" + idDevis + "\", \"" + idPack + "\", \""+ quantite +"\")";
+        requete += "(\"" + devis.getIdDevis() + "\", \"" + pack.getIdPack() + "\", \""+ quantite +"\")";
         this.bd.execSQL(requete);
     }
 
@@ -1072,6 +1073,48 @@ public class AccesLocal {
     public void supprimerPackDP(int idPack){
         this.bd = this.accesBD.getWritableDatabase();
         String requete = "DELETE FROM AppartientDP WHERE unPack = \"" + idPack + "\"";
+        this.bd.execSQL(requete);
+    }
+
+    // =========================== Appartient Devis Composant ====================================
+
+    /**
+     * Ajoute un devis et un composant dans AppartientDC.
+     *
+     * @param devis le devis.
+     * @param  composant le composant
+     * @param quantite la quantite
+     */
+    public void ajoutAppartientDC(Devis devis, Composant composant, int quantite) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientDC (unDevis, unComposant, quantite) values";
+        requete += "(\"" + devis.getIdDevis() + "\", \"" + composant.getIdComposant() + "\", \""+ quantite +"\")";
+        this.bd.execSQL(requete);
+    }
+
+    //=========================== Appartient Client Devis =========================================
+
+    /**
+     * Ajoute un client et un devis dans AppartientCD.
+     *
+     * @param client le client.
+     * @param  devis le composant
+     */
+    public void ajoutAppartientCD(Client client, Devis devis) {
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "INSERT INTO AppartientCD (unClient, unDevis) values";
+        requete += "(\"" + client.getIdClient() + "\", \"" + devis.getIdDevis() +"\")";
+        this.bd.execSQL(requete);
+    }
+
+
+    /**
+     * Supprime toutes les liaisons dans la table AppartientCD correspondant à l'id du client passé en paramètre
+     * @param idClient
+     */
+    public void supprimerClientCD(int idClient){
+        this.bd = this.accesBD.getWritableDatabase();
+        String requete = "DELETE FROM AppartientCD WHERE unClient = \"" + idClient + "\"";
         this.bd.execSQL(requete);
     }
 

@@ -18,8 +18,11 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.rosetta.R;
 import com.example.rosetta.controller.Controleur;
 import com.example.rosetta.controller.DevisAdapter;
+import com.example.rosetta.controller.QuestionAdapter;
 import com.example.rosetta.model.Client;
 import com.example.rosetta.model.Devis;
+import com.example.rosetta.model.Pack;
+import com.example.rosetta.model.Question;
 
 import java.util.ArrayList;
 
@@ -32,46 +35,24 @@ import java.util.ArrayList;
  */
 public class DevisFragment extends Fragment {
 
+    private View rootView;
+    private Controleur controleur;
+
+    private ArrayList<Devis> listeDevis;
+    private ArrayList<Devis> listeDevisPourCeClient;
+    private DevisAdapter adapteurDevis;
+    private ListView listeViewDevis;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_devis_layout, container, false);
+        this.rootView = inflater.inflate(R.layout.fragment_devis_layout, container, false);
 
-        // Temporaire : les données sont brutes. Elles seront ensuite récupérées depuis la base de
-        // données
-        ArrayList<Devis> listeDevis = new ArrayList<Devis>();
-        Devis devis1 = new Devis(1,"Devis 1 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis2 = new Devis(2, "Devis 2 ok", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis3 = new Devis(3, "Devis 3 qui a un nom tres tres tres loooong pour voir si ça passe, comme cela nous testons plusieurs cas possibles, afin d'etre le plus exhaustifs que possible", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis4 = new Devis(4, "Devis 4 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis5 = new Devis(5, "Devis 5 qui est ok", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis6= new Devis(6, "Devis 6 a aussi un nom qui va etre tres tres tres loooong", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis7 = new Devis(7, "Devis 7 est ok", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis8 = new Devis(8, "Devis 8 normal", null, null, null, null);
-        Devis devis9 = new Devis(9, "Devis 9 est ok","description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis10 = new Devis(10, "Devis 10 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis11 = new Devis(11, "Devis 11 est aussi tres tres looong", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis12 = new Devis(12, "Devis 12", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis13 = new Devis(13, "Devis 13", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis14 = new Devis(14, "Devis 14 est assez long quand meme aussi", "description", "5 semaines", "29/03/2021", "25/04/2021");
-        Devis devis15 = new Devis(15, "Devis 15 normal", "description", "5 semaines", "29/03/2021", "25/04/2021");
+        // Le controleur principal (accès à la base de données interne)
+        this.controleur = Controleur.getInstance(this.getContext());
 
-        // On ajoute les devis à la liste de devis
-        listeDevis.add(devis1);
-        listeDevis.add(devis2);
-        listeDevis.add(devis3);
-        listeDevis.add(devis4);
-        listeDevis.add(devis5);
-        listeDevis.add(devis6);
-        listeDevis.add(devis7);
-        listeDevis.add(devis8);
-        listeDevis.add(devis9);
-        listeDevis.add(devis10);
-        listeDevis.add(devis11);
-        listeDevis.add(devis12);
-        listeDevis.add(devis13);
-        listeDevis.add(devis14);
-        listeDevis.add(devis15);
+        //========================== Liste des Devis selon le Client affiché ========================
+        this.listeDevis = new ArrayList<Devis>(this.controleur.getListeDevis());
 
         // La liste déroulante des clients
         Spinner spinnerDevisClients = (Spinner) rootView.findViewById(R.id.spinner_devisClients);
@@ -79,14 +60,14 @@ public class DevisFragment extends Fragment {
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDevisClients.setAdapter(adapterSpinner);
 
+
         // Initialisation de l'adapter pour devis
-        DevisAdapter adapter = new DevisAdapter(this.getActivity(), listeDevis);
-        ListView list = (ListView) rootView.findViewById(R.id.listView_devis);
-        list.setAdapter(adapter);
+        this.listeViewDevis = (ListView) rootView.findViewById(R.id.listView_devis);
+        this.adapteurDevis= new DevisAdapter(this.getActivity(), this.listeDevis);
+        this.listeViewDevis.setAdapter(this.adapteurDevis);
 
+        // ========================== Boutons ======================================================
         Button nouveauDevisButton = (Button) rootView.findViewById(R.id.nouveauDevisButton);
-
-
         nouveauDevisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +80,6 @@ public class DevisFragment extends Fragment {
             }
         });
 
-        return rootView;
+        return this.rootView;
     }
 }

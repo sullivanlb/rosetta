@@ -52,7 +52,11 @@ public class ControleurListeScenarioDevis implements AdapterView.OnItemClickList
             this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire().add(scenario);
         }
         else{
-            this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire().remove(position);
+            for(int i = 0; i < this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire().size(); i++){
+                if(this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire().get(i).getIdScenario() == idScenario){
+                    this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire().remove(i);
+                }
+            }
         }
 
         ScenarioAdapter2 adapter2 = new ScenarioAdapter2(this.nouveauDevisClientScenarioFragment.getActivity(), this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire());

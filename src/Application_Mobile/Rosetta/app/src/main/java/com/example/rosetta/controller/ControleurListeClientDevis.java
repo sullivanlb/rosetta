@@ -38,6 +38,7 @@ public class ControleurListeClientDevis implements AdapterView.OnItemClickListen
         Client client = this.nouveauDevisClientScenarioFragment.getListeClients().get(position);
         this.nouveauDevisClientScenarioFragment.setIdSelectionnnerClient(client.getIdClient());
         this.nouveauDevisClientScenarioFragment.setIndiceSelectionnerClient(position);
+        this.nouveauDevisClientScenarioFragment.setClientChoisi(client);
 
         //Récupération des informations du formulaire du devis
         EditText editNom = (EditText) this.nouveauDevisClientScenarioFragment.getView().findViewById(R.id.choix_clientEditText);

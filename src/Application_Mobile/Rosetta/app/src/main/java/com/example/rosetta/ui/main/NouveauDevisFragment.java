@@ -54,6 +54,7 @@ public class NouveauDevisFragment extends Fragment {
 
     private NouveauDevisClientScenarioFragment nouveauDevisClientScenarioFragment;
     private static NouveauDevisFragment instance;
+    private Client clientChoisi;
 
     private ArrayList<Composant> listeComposants;
     private ListView listeViewComposant;
@@ -118,6 +119,7 @@ public class NouveauDevisFragment extends Fragment {
         this.listObject = new ArrayList<Object>();
 
         //Récupèration des données (Client + Scénarios)
+        this.setClientChoisi(this.nouveauDevisClientScenarioFragment.getClientChoisi());
 
         //Affichage Composant et Pack
         ArrayList<Scenario> ScenarioChoisi =  this.nouveauDevisClientScenarioFragment.getListScenarioTemporaire();
@@ -138,24 +140,26 @@ public class NouveauDevisFragment extends Fragment {
                     for(int j = 0; j < ScenarioChoisi.size(); j++){
                         if(tousIdScenarioSC.get(i) == ScenarioChoisi.get(j).getIdScenario()){
                             this.listObject.add(composant);
-                            toutesLesQuantites.add(tousIdQuantiteSC.get(i));
+                            //toutesLesQuantites.add(tousIdQuantiteSC.get(i));
+                            hashmapIdComposantQuantite.put(composant.getIdComposant(),tousIdQuantiteSC.get(i));
                         }
                     }
                 }
             }
         }
-       /*for (Pack pack : touslesPacks) {
+       for (Pack pack : touslesPacks) {
             for (int i = 0; i < tousIdPackSP.size(); i++){
                 if (pack.getIdPack() == tousIdPackSP.get(i)){
-                    for(int j = 0; j < tousIdPackSP.size(); j++) {
+                    for(int j = 0; j < ScenarioChoisi.size(); j++) {
                         if(tousIdScenarioSP.get(i) == ScenarioChoisi.get(j).getIdScenario()){
                             this.listObject.add(pack);
-                            toutesLesQuantites.add(tousIdQuantiteSP.get(i));
+                            //toutesLesQuantites.add(tousIdQuantiteSP.get(i));
+                            hashmapIdPackQuantite.put(pack.getIdPack(), tousIdQuantiteSP.get(i));
                         }
                     }
                 }
             }
-        }*/
+        }
 
         this.listeViewObject = (ListView) rootView.findViewById(R.id.listView_pack_avec_composants_packs);
 
@@ -260,6 +264,24 @@ public class NouveauDevisFragment extends Fragment {
      */
     public ArrayList<Object> getListObject() {
         return listObject;
+    }
+
+    /**
+     * Getter
+     *
+     * @return le client choisi
+     */
+    public Client getClientChoisi() {
+        return clientChoisi;
+    }
+
+    /**
+     * Setter
+     *
+     * @param clientChoisi à modifier
+     */
+    public void setClientChoisi(Client clientChoisi) {
+        this.clientChoisi = clientChoisi;
     }
 
     /**

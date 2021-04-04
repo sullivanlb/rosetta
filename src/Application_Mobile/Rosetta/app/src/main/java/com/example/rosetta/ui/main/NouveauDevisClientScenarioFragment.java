@@ -48,6 +48,7 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
     private ListView listeViewClient;
     private int indiceSelectionnerClient;
     private int idSelectionnnerClient;
+    private Client clientChoisi;
 
     private ArrayList<Scenario> listeScenarios;
     private ListView listeViewScenarios;
@@ -211,6 +212,24 @@ public class NouveauDevisClientScenarioFragment extends Fragment {
      */
     public ListView getListViewScenarioTemp() {
         return listViewScenarioTemp;
+    }
+
+    /**
+     * Getter
+     *
+     * @return le client sélectionner
+     */
+    public Client getClientChoisi() {
+        return clientChoisi;
+    }
+
+    /**
+     * Setter
+     *
+     * @param  clientChoisi à modifier
+     */
+    public void setClientChoisi(Client clientChoisi) {
+        this.clientChoisi = clientChoisi;
     }
 
     /**

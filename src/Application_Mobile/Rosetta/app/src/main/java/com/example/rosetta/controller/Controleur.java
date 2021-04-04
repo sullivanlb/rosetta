@@ -42,6 +42,7 @@ public class Controleur {
         this.listePacks = Controleur.accesLocal.tousLesPacks();
         this.listeQuestions = Controleur.accesLocal.tousLesQuestions();
         this.listeScenarios = Controleur.accesLocal.tousLesScenarios();
+        this.listeDevis = Controleur.accesLocal.tousLesDevis();
     }
 
     /**
@@ -609,13 +610,14 @@ public class Controleur {
     //================================== Appartient Devis Pack ==================================
 
     /**
-     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientPC.
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientDP.
      *
-     * @param idDevis le pack à ajouter
-     * @param idPack le composant à ajouter
+     * @param devis le devis à ajouter
+     * @param pack le pack à ajouter
+     * @param  quantite la quantite
      */
-    public void creerAppartientDP(int idDevis, int idPack, int quantite) {
-        Controleur.accesLocal.ajoutAppartientDP(idDevis, idPack, quantite);
+    public void creerAppartientDP(Devis devis, Pack pack, int quantite) {
+        Controleur.accesLocal.ajoutAppartientDP(devis, pack, quantite);
     }
 
     /**
@@ -647,5 +649,38 @@ public class Controleur {
      */
     public ArrayList<Integer> getTousLesElementsDP_quantite(){
         return Controleur.accesLocal.tousLesElementsDP_Quantite();
+    }
+
+    //================================== Appartient Devis Composant ==================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientDC.
+     *
+     * @param devis le devis à ajouter
+     * @param composant le composant à ajouter
+     */
+    public void creerAppartientDC(Devis devis, Composant composant, int quantite) {
+        Controleur.accesLocal.ajoutAppartientDC(devis, composant, quantite);
+    }
+
+    //================================== Appartient Client Devis ==================================
+
+    /**
+     * Demande à la classe accesLocal d'ajouter un élèment dans la table AppartientCD.
+     *
+     * @param client le pack à ajouter
+     * @param devis le composant à ajouter
+     */
+    public void creerAppartientCD(Client client, Devis devis) {
+        Controleur.accesLocal.ajoutAppartientCD(client, devis);
+    }
+
+    /**
+     * Supprime toutes les liaisons correspondant au client passé en paramètre
+     * @param  idClient l'identifiant du client
+     */
+
+    public void supprimerClientCD(int idClient){
+        Controleur.accesLocal.supprimerClientCD(idClient);
     }
 }
