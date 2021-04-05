@@ -10,6 +10,10 @@ Les fichiers sources se trouvent sur notre GitLab : https://gitlab.com/G.Christo
 Vous trouverez dans le dossier "src" le code de l'application mobile, de l'API, du site web ainsi que de la base de données.
 Le fichier .apk de l'application, le fichier .db de la base de données externe et l'API complète se trouvent dans le dossier "delivrables".
 
+Voici les logins du site web pour tester le système de connexion (bien que le changement d'url permet d'éviter la connexion) : 
+	• utilisateur : thierry.hourdierads@gmail.com
+	• mot de passe : Rosetta!56
+
 Ravi d'avoir réalisé ce projet,
 
 Passez une excellente journée,
