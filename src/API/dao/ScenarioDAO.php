@@ -53,7 +53,7 @@ class ScenarioDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Scenario";
+        $query = "SELECT * FROM scenario";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Scenario');
         return $results;
@@ -68,7 +68,7 @@ class ScenarioDAO {
      */
     public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Scenario WHERE idScenario = '" . $id . "'";
+        $query = "SELECT * FROM scenario WHERE idScenario = '" . $id . "'";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Scenario');
         return $results;
@@ -86,7 +86,7 @@ class ScenarioDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO Scenario(idScenario, nomScenario) VALUES (:id, :nom)";
+            $query = "INSERT INTO scenario(idScenario, nomScenario) VALUES (:id, :nom)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
@@ -117,7 +117,7 @@ class ScenarioDAO {
             $idScenario = $scenario->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM Scenario WHERE idScenario = '" . $idScenario . "'";
+            $query = "DELETE FROM scenario WHERE idScenario = '" . $idScenario . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -140,7 +140,7 @@ class ScenarioDAO {
             $idScenario = $scenario->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Scenario SET nomScenario=:nom WHERE idScenario = '" . $idScenario . "'";
+            $query = "UPDATE scenario SET nomScenario=:nom WHERE idScenario = '" . $idScenario . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

@@ -10,7 +10,7 @@
  * @version $Revision: 1.0 $
  * @access public
  */
-class AppartientSQ {
+class AppartientSQ implements JsonSerializable {
     
     /**
      * Identifiant de la liaison
@@ -98,6 +98,11 @@ class AppartientSQ {
         return "Scenario : " . $this->unScenario . "\r\n" .
             "Question : " . $this->uneQuestion . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

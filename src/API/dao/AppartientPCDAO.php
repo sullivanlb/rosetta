@@ -53,7 +53,7 @@ class AppartientPCDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM AppartientPC";
+        $query = "SELECT * FROM appartientpc";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'AppartientPC');
         return $results;
@@ -71,9 +71,9 @@ class AppartientPCDAO {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
         if ($cle instanceof Pack) {
-            $query = "SELECT * FROM AppartientPC WHERE unPack = '" . $cle . "'";
+            $query = "SELECT * FROM appartientpc WHERE unPack = '" . $cle . "'";
         } else if ($cle instanceof Composant) {
-            $query = "SELECT * FROM AppartientPC WHERE unComposant = '" . $cle . "'";
+            $query = "SELECT * FROM appartientpc WHERE unComposant = '" . $cle . "'";
         } else {
             throw new Exception('AppartientPCDAO: unElement(): parametre invalide.');
         }
@@ -95,12 +95,12 @@ class AppartientPCDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO AppartientPC(unPack, unComposant, quantite) VALUES (:unPack, :unComposant, :quantite)";
+            $query = "INSERT INTO appartientpc(unPack, unComposant, quantite) VALUES (:unPack, :unComposant, :quantite)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':unPack', $liaison->__get("unPack"), PDO::PARAM_STR);
-            $stmt->bindValue(':unComposant', $liaison->__get("unComposant"), PDO::PARAM_STR);
+            $stmt->bindValue(':unPack', $liaison->__get("unPack")->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':unComposant', $liaison->__get("unComposant")->__get("id"), PDO::PARAM_STR);
             $stmt->bindValue(':quantite', $liaison->__get("quantite"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
@@ -120,12 +120,12 @@ class AppartientPCDAO {
     public function suppression($liaison) { 
         if ($liaison instanceof AppartientPC) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $unPack = $liaison->__get("unPack");
-            $unComposant = $liaison->__get("unComposant");
+            $unPack = $liaison->__get("unPack")->__get("id");
+            $unComposant = $liaison->__get("unComposant")->__get("id");
             $quantite = $liaison->__get("quantite");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM AppartientPC WHERE unPack = '" . $unPack . "' AND unComposant = '" . $unComposant . "' AND quantite = '" . $quantite . "'";
+            $query = "DELETE FROM appartientpc WHERE unPack = '" . $unPack . "' AND unComposant = '" . $unComposant . "' AND quantite = '" . $quantite . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -145,11 +145,11 @@ class AppartientPCDAO {
     public function modification($liaison) {
         if ($liaison instanceof AppartientPC) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $unPack = $liaison->__get("unPack");
-            $unComposant = $liaison->__get("unComposant");
+            $unPack = $liaison->__get("unPack")->__get("id");
+            $unComposant = $liaison->__get("unComposant")->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE AppartientPC SET quantite=:quantite WHERE unPack = '" . $unPack . "' AND unComposant = '" . $unComposant . "'";
+            $query = "UPDATE appartientpc SET quantite=:quantite WHERE unPack = '" . $unPack . "' AND unComposant = '" . $unComposant . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

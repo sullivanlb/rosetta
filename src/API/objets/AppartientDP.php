@@ -10,7 +10,7 @@
  * @version $Revision: 1.0 $
  * @access public
  */
-class AppartientDP {
+class AppartientDP implements JsonSerializable {
     
     /**
      * Premiere cle
@@ -125,6 +125,11 @@ class AppartientDP {
             "Pack : " . $this->unPack .
             "Quantite : " . $this->quantite . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

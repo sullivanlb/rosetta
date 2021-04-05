@@ -53,7 +53,7 @@ class ClientDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Client";
+        $query = "SELECT * FROM client";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Client');
         return $results;
@@ -68,7 +68,7 @@ class ClientDAO {
      */
     public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Client WHERE idClient = '" . $id . "'";
+        $query = "SELECT * FROM client WHERE idClient = '" . $id . "'";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Client');
         return $results;
@@ -86,7 +86,7 @@ class ClientDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO Client(idClient, nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) VALUES (:id, :nom, :prenom, :adresse, :email, :tel, :sexe)";
+            $query = "INSERT INTO client(idClient, nomClient, prenomClient, adresseClient, emailClient, telClient, sexeClient) VALUES (:id, :nom, :prenom, :adresse, :email, :tel, :sexe)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
@@ -122,7 +122,7 @@ class ClientDAO {
             $idClient = $client->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM Client WHERE idClient = '" . $idClient . "'";
+            $query = "DELETE FROM client WHERE idClient = '" . $idClient . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -145,7 +145,7 @@ class ClientDAO {
             $idClient = $client->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Client SET nomClient=:nom, prenomClient=:prenom, adresseClient=:adresse, emailClient=:email, telClient=:tel, sexeClient=:sexe WHERE idClient = '" . $idClient . "'";
+            $query = "UPDATE client SET nomClient=:nom, prenomClient=:prenom, adresseClient=:adresse, emailClient=:email, telClient=:tel, sexeClient=:sexe WHERE idClient = '" . $idClient . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

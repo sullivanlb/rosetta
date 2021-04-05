@@ -10,7 +10,7 @@
  * @version $Revision: 1.2 $
  * @access public
  */
-class Pack {
+class Pack implements JsonSerializable {
     
     /**
      * Identifiant du pack
@@ -97,6 +97,11 @@ class Pack {
 	public function __toString() {
         return "Nom : " . $this->nomPack . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

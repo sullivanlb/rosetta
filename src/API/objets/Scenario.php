@@ -10,7 +10,7 @@
  * @version $Revision: 1.2 $
  * @access public
  */
-class Scenario {
+class Scenario implements JsonSerializable {
     
     /**
      * Identifiant du scenario
@@ -97,6 +97,11 @@ class Scenario {
 	public function __toString() {
         return "Nom : " . $this->nomScenario . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

@@ -53,7 +53,7 @@ class AppartientSQDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM AppartientSQ";
+        $query = "SELECT * FROM appartientsq";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'AppartientSQ');
         return $results;
@@ -69,11 +69,12 @@ class AppartientSQDAO {
      */
     public final function unElement($cle) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $id = $cle->__get("id");
 
         if ($cle instanceof Scenario) {
-            $query = "SELECT * FROM AppartientSQ WHERE unScenario = '" . $cle . "'";
+            $query = "SELECT * FROM appartientsq WHERE unScenario = '" . $id . "'";
         } else if ($cle instanceof Question) {
-            $query = "SELECT * FROM AppartientSQ WHERE uneQuestion = '" . $cle . "'";
+            $query = "SELECT * FROM appartientsq WHERE uneQuestion = '" . $id . "'";
         } else {
             throw new Exception('AppartientSQDAO: unElement(): parametre invalide.');
         }
@@ -95,12 +96,12 @@ class AppartientSQDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO AppartientSQ(unScenario, uneQuestion) VALUES (:unScenario, :uneQuestion)";
+            $query = "INSERT INTO appartientsq(unScenario, uneQuestion) VALUES (:unScenario, :uneQuestion)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':unScenario', $liaison->__get("unScenario"), PDO::PARAM_STR);
-            $stmt->bindValue(':uneQuestion', $liaison->__get("uneQuestion"), PDO::PARAM_STR);
+            $stmt->bindValue(':unScenario', $liaison->__get("unScenario")->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':uneQuestion', $liaison->__get("uneQuestion")->__get("id"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
@@ -123,7 +124,7 @@ class AppartientSQDAO {
             $uneQuestion = $liaison->__get("uneQuestion");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM AppartientSQ WHERE unScenario = '" . $unScenario . "' AND uneQuestion = '" . $uneQuestion . "'";
+            $query = "DELETE FROM appartientsq WHERE unScenario = '" . $unScenario . "' AND uneQuestion = '" . $uneQuestion . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL

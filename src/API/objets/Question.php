@@ -10,7 +10,7 @@
  * @version $Revision: 1.2 $
  * @access public
  */
-class Question {
+class Question implements JsonSerializable {
     
     /**
      * Identifiant de la question
@@ -97,6 +97,11 @@ class Question {
 	public function __toString() {
         return "Nom : " . $this->nomQuestion . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

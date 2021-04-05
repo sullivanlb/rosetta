@@ -10,7 +10,7 @@
  * @version $Revision: 1.2 $
  * @access public
  */
-class Composant {
+class Composant implements JsonSerializable {
     
     /**
      * Identifiant du composant
@@ -127,6 +127,11 @@ class Composant {
             "Unite : " . $this->uniteComposant . "\r\n" .
             "Prix : " . $this->prixComposant . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

@@ -10,7 +10,7 @@
  * @version $Revision: 1.2 $
  * @access public
  */
-class Client {
+class Client implements JsonSerializable {
     
     /**
      * Identifiant du client
@@ -174,9 +174,9 @@ class Client {
         return $str;
 	}
 
-
-    public function getJSONEncode() {
-        return json_encode(get_object_vars());
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
     }
 
 }

@@ -1,4 +1,7 @@
-<?php header('Access-Control-Allow-Origin: *');
+<?php 
+	header('Access-Control-Allow-Origin: *');
+	header('Content-Type: application/json');
+
 	include_once("BDD_Externe_Connexion.php");
 	
 	include("objets/Question.php");
@@ -30,11 +33,13 @@
 	include("dao/AppartientSQDAO.php");
 	
 	$connexion = new BDD_Externe_Connexion();
+	
+	$daoClient = new ClientDAO();
+	$result = $daoClient->tousLesElements();
 
-	//echo ($_POST["nom"]);
-
+	echo "insert";
+	
 	// Ajout d'un nouveau client dans la base de données depuis le formulaire du site
-	/*
 	if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["adresse"]) && isset($_POST["email"]) && isset($_POST["tel"]) && isset($_POST["sexe"])) {
 		$nomNouveauClient = $_POST["nom"];
 		$prenomNouveauClient = $_POST["prenom"];
@@ -47,6 +52,10 @@
 		$client = new Client();
 		$client->init(null, $nomNouveauClient, $prenomNouveauClient, $adresseNouveauClient, $emailNouveauClient, $telNouveauClient, $sexeNouveauClient);
 		$daoClient->insertion($client);
+
+		foreach($daoClient->tousLesElements() as $client) {
+			echo $client;
+		}
 	}
-	*/
+
 ?>

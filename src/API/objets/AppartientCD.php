@@ -10,7 +10,7 @@
  * @version $Revision: 1.0 $
  * @access public
  */
-class AppartientCD {
+class AppartientCD implements JsonSerializable {
     
     /**
      * Premiere cle
@@ -98,6 +98,11 @@ class AppartientCD {
         return "Client : " . $this->unClient . "\r\n" .
             "Devis : " . $this->unDevis . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

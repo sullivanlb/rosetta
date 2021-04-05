@@ -53,7 +53,7 @@ class AppartientSCDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM AppartientSC";
+        $query = "SELECT * FROM appartientsc";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'AppartientSC');
         return $results;
@@ -69,11 +69,12 @@ class AppartientSCDAO {
      */
     public final function unElement($cle) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $id = $cle->__get("id");
 
         if ($cle instanceof Scenario) {
-            $query = "SELECT * FROM AppartientSC WHERE unScenario = '" . $cle . "'";
+            $query = "SELECT * FROM appartientsc WHERE unScenario = '" . $id . "'";
         } else if ($cle instanceof Composant) {
-            $query = "SELECT * FROM AppartientSC WHERE unComposant = '" . $cle . "'";
+            $query = "SELECT * FROM appartientsc WHERE unComposant = '" . $id . "'";
         } else {
             throw new Exception('AppartientSCDAO: unElement(): parametre invalide.');
         }
@@ -95,12 +96,12 @@ class AppartientSCDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO AppartientSC(unScenario, unComposant, quantite) VALUES (:unScenario, :unComposant, :quantite)";
+            $query = "INSERT INTO appartientsc(unScenario, unComposant, quantite) VALUES (:unScenario, :unComposant, :quantite)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':unScenario', $liaison->__get("unScenario"), PDO::PARAM_STR);
-            $stmt->bindValue(':unComposant', $liaison->__get("unComposant"), PDO::PARAM_STR);
+            $stmt->bindValue(':unScenario', $liaison->__get("unScenario")->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':unComposant', $liaison->__get("unComposant")->__get("id"), PDO::PARAM_STR);
             $stmt->bindValue(':quantite', $liaison->__get("quantite"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
@@ -125,7 +126,7 @@ class AppartientSCDAO {
             $quantite = $liaison->__get("quantite");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM AppartientSC WHERE unScenario = '" . $unScenario . "' AND unComposant = '" . $unComposant . "' AND quantite = '" . $quantite . "'";
+            $query = "DELETE FROM appartientsc WHERE unScenario = '" . $unScenario . "' AND unComposant = '" . $unComposant . "' AND quantite = '" . $quantite . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -145,11 +146,11 @@ class AppartientSCDAO {
     public function modification($liaison) {
         if ($liaison instanceof AppartientSC) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $unScenario = $liaison->__get("unScenario");
-            $unComposant = $liaison->__get("unComposant");
+            $unScenario = $liaison->__get("unScenario")->__get("id");
+            $unComposant = $liaison->__get("unComposant")->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE AppartientSC SET quantite=:quantite WHERE unScenario = '" . $unScenario . "' AND unComposant = '" . $unComposant . "'";
+            $query = "UPDATE appartientsc SET quantite=:quantite WHERE unScenario = '" . $unScenario . "' AND unComposant = '" . $unComposant . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

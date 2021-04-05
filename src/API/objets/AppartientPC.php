@@ -10,7 +10,7 @@
  * @version $Revision: 1.0 $
  * @access public
  */
-class AppartientPC {
+class AppartientPC implements JsonSerializable {
     
     /**
      * Identifiant de la liaison
@@ -125,6 +125,11 @@ class AppartientPC {
             "Composant : " . $this->unComposant .
             "Quantite : " . $this->quantite . "\r\n";
 	}
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
 }
 

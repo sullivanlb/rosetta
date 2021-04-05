@@ -53,7 +53,7 @@ class AppartientSPDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM AppartientSP";
+        $query = "SELECT * FROM appartientsp";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'AppartientSP');
         return $results;
@@ -69,11 +69,12 @@ class AppartientSPDAO {
      */
     public final function unElement($cle) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $id = $cle->__get("id");
 
         if ($cle instanceof Scenario) {
-            $query = "SELECT * FROM AppartientSP WHERE unScenario = '" . $cle . "'";
+            $query = "SELECT * FROM appartientsp WHERE unScenario = '" . $id . "'";
         } else if ($cle instanceof Pack) {
-            $query = "SELECT * FROM AppartientSP WHERE unPack = '" . $cle . "'";
+            $query = "SELECT * FROM appartientsp WHERE unPack = '" . $id . "'";
         } else {
             throw new Exception('AppartientSPDAO: unElement(): parametre invalide.');
         }
@@ -95,12 +96,12 @@ class AppartientSPDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO AppartientSP(unScenario, unPack, quantite) VALUES (:unScenario, :unPack, :quantite)";
+            $query = "INSERT INTO appartientsp(unScenario, unPack, quantite) VALUES (:unScenario, :unPack, :quantite)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':unScenario', $liaison->__get("unScenario"), PDO::PARAM_STR);
-            $stmt->bindValue(':unPack', $liaison->__get("unPack"), PDO::PARAM_STR);
+            $stmt->bindValue(':unScenario', $liaison->__get("unScenario")->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':unPack', $liaison->__get("unPack")->__get("id"), PDO::PARAM_STR);
             $stmt->bindValue(':quantite', $liaison->__get("quantite"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
@@ -125,7 +126,7 @@ class AppartientSPDAO {
             $quantite = $liaison->__get("quantite");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM AppartientSP WHERE unScenario = '" . $unScenario . "' AND unPack = '" . $unPack . "' AND quantite = '" . $quantite . "'";
+            $query = "DELETE FROM appartientsp WHERE unScenario = '" . $unScenario . "' AND unPack = '" . $unPack . "' AND quantite = '" . $quantite . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -145,11 +146,11 @@ class AppartientSPDAO {
     public function modification($liaison) {
         if ($liaison instanceof AppartientSP) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $unScenario = $liaison->__get("unScenario");
-            $unPack = $liaison->__get("unPack");
+            $unScenario = $liaison->__get("unScenario")->__get("id");
+            $unPack = $liaison->__get("unPack")->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE AppartientSP SET quantite=:quantite WHERE unScenario = '" . $unScenario . "' AND unPack = '" . $unPack . "'";
+            $query = "UPDATE appartientsp SET quantite=:quantite WHERE unScenario = '" . $unScenario . "' AND unPack = '" . $unPack . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

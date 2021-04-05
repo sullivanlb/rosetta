@@ -53,7 +53,7 @@ class AppartientCDDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM AppartientCD";
+        $query = "SELECT * FROM appartientcd";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'AppartientCD');
         return $results;
@@ -69,11 +69,12 @@ class AppartientCDDAO {
      */
     public final function unElement($cle) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
+        $id = $cle->__get("id");
 
         if ($cle instanceof Client) {
-            $query = "SELECT * FROM AppartientCD WHERE unClient = '" . $cle . "'";
+            $query = "SELECT * FROM appartientcd WHERE unClient = '" . $id . "'";
         } else if ($cle instanceof Devis) {
-            $query = "SELECT * FROM AppartientCD WHERE unDevis = '" . $cle . "'";
+            $query = "SELECT * FROM appartientcd WHERE unDevis = '" . $id . "'";
         } else {
             throw new Exception('AppartientCDDAO: unElement(): parametre invalide.');
         }
@@ -95,12 +96,12 @@ class AppartientCDDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO AppartientCD(unClient, unDevis) VALUES (:unClient, :unDevis)";
+            $query = "INSERT INTO appartientcd(unClient, unDevis) VALUES (:unClient, :unDevis)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
-            $stmt->bindValue(':unClient', $liaison->__get("unClient"), PDO::PARAM_STR);
-            $stmt->bindValue(':unDevis', $liaison->__get("unDevis"), PDO::PARAM_STR);
+            $stmt->bindValue(':unClient', $liaison->__get("unClient")->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':unDevis', $liaison->__get("unDevis")->__get("id"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
@@ -123,7 +124,7 @@ class AppartientCDDAO {
             $unDevis = $liaison->__get("unDevis");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM AppartientCD WHERE unClient = '" . $unClient . "' AND unDevis = '" . $unDevis . "'";
+            $query = "DELETE FROM appartientcd WHERE unClient = '" . $unClient . "' AND unDevis = '" . $unDevis . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL

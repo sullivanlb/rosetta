@@ -53,7 +53,7 @@ class ComposantDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Composant";
+        $query = "SELECT * FROM composant";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Composant');
         return $results;
@@ -68,7 +68,7 @@ class ComposantDAO {
      */
     public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Composant WHERE idComposant = '" . $id . "'";
+        $query = "SELECT * FROM composant WHERE idComposant = '" . $id . "'";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Composant');
         return $results;
@@ -86,7 +86,7 @@ class ComposantDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO Composant(idComposant, nomComposant, uniteComposant, prixComposant) VALUES (:id, :nom, :unite, :prix)";
+            $query = "INSERT INTO composant(idComposant, nomComposant, uniteComposant, prixComposant) VALUES (:id, :nom, :unite, :prix)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
@@ -119,7 +119,7 @@ class ComposantDAO {
             $idComposant = $composant->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM Composant WHERE idComposant = '" . $idComposant . "'";
+            $query = "DELETE FROM composant WHERE idComposant = '" . $idComposant . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -142,7 +142,7 @@ class ComposantDAO {
             $idComposant = $composant->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Composant SET nomComposant=:nom, uniteComposant=:unite, prixComposant=:prix WHERE idComposant = '" . $idComposant . "'";
+            $query = "UPDATE composant SET nomComposant=:nom, uniteComposant=:unite, prixComposant=:prix WHERE idComposant = '" . $idComposant . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

@@ -53,7 +53,7 @@ class AppartientDCDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM AppartientDC";
+        $query = "SELECT * FROM appartientdc";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'AppartientDC');
         return $results;
@@ -71,9 +71,9 @@ class AppartientDCDAO {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
         if ($cle instanceof Devis) {
-            $query = "SELECT * FROM AppartientDC WHERE unDevis = '" . $cle . "'";
+            $query = "SELECT * FROM appartientdc WHERE unDevis = '" . $cle . "'";
         } else if ($cle instanceof Composant) {
-            $query = "SELECT * FROM AppartientDC WHERE unComposant = '" . $cle . "'";
+            $query = "SELECT * FROM appartientdc WHERE unComposant = '" . $cle . "'";
         } else {
             throw new Exception('AppartientDCDAO: unElement(): parametre invalide.');
         }
@@ -95,12 +95,12 @@ class AppartientDCDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO AppartientDC(unDevis, unComposant, quantite) VALUES (:unDevis, :unComposant, :quantite)";
+            $query = "INSERT INTO appartientdc(unDevis, unComposant, quantite) VALUES (:unDevis, :unComposant, :quantite)";
             $stmt = $dbc->prepare($query);
-
+            
             // Lie les paramètres
-            $stmt->bindValue(':unDevis', $liaison->__get("unDevis"), PDO::PARAM_STR);
-            $stmt->bindValue(':unComposant', $liaison->__get("unComposant"), PDO::PARAM_STR);
+            $stmt->bindValue(':unDevis', $liaison->__get("unDevis")->__get("id"), PDO::PARAM_STR);
+            $stmt->bindValue(':unComposant', $liaison->__get("unComposant")->__get("id"), PDO::PARAM_STR);
             $stmt->bindValue(':quantite', $liaison->__get("quantite"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
@@ -120,12 +120,12 @@ class AppartientDCDAO {
     public function suppression($liaison) { 
         if ($liaison instanceof AppartientDC) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $unDevis = $liaison->__get("unDevis");
-            $unComposant = $liaison->__get("unComposant");
+            $unDevis = $liaison->__get("unDevis")->__get("id");
+            $unComposant = $liaison->__get("unComposant")->__get("id");
             $quantite = $liaison->__get("quantite");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM AppartientDC WHERE unDevis = '" . $unDevis . "' AND unComposant = '" . $unComposant . "' AND quantite = '" . $quantite . "'";
+            $query = "DELETE FROM appartientdc WHERE unDevis = '" . $unDevis . "' AND unComposant = '" . $unComposant . "' AND quantite = '" . $quantite . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -145,11 +145,11 @@ class AppartientDCDAO {
     public function modification($liaison) {
         if ($liaison instanceof AppartientDC) {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-            $unDevis = $liaison->__get("unDevis");
-            $unComposant = $liaison->__get("unComposant");
+            $unDevis = $liaison->__get("unDevis")->__get("id");
+            $unComposant = $liaison->__get("unComposant")->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE AppartientDC SET quantite=:quantite WHERE unDevis = '" . $unDevis . "' AND unComposant = '" . $unComposant . "'";
+            $query = "UPDATE appartientdc SET quantite=:quantite WHERE unDevis = '" . $unDevis . "' AND unComposant = '" . $unComposant . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

@@ -53,7 +53,7 @@ class QuestionDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Question";
+        $query = "SELECT * FROM question";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Question');
         return $results;
@@ -68,7 +68,7 @@ class QuestionDAO {
      */
     public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Question WHERE idQuestion = '" . $id . "'";
+        $query = "SELECT * FROM question WHERE idQuestion = '" . $id . "'";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Question');
         return $results;
@@ -86,7 +86,7 @@ class QuestionDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO Question(idQuestion, nomQuestion) VALUES (:id, :nom)";
+            $query = "INSERT INTO question(idQuestion, nomQuestion) VALUES (:id, :nom)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
@@ -117,7 +117,7 @@ class QuestionDAO {
             $idQuestion = $question->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM Question WHERE idQuestion = '" . $idQuestion . "'";
+            $query = "DELETE FROM question WHERE idQuestion = '" . $idQuestion . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -140,7 +140,7 @@ class QuestionDAO {
             $idQuestion = $question->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Question SET nomQuestion=:nom WHERE idQuestion = '" . $idQuestion . "'";
+            $query = "UPDATE question SET nomQuestion=:nom WHERE idQuestion = '" . $idQuestion . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres

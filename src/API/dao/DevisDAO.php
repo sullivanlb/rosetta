@@ -53,7 +53,7 @@ class DevisDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Devis";
+        $query = "SELECT * FROM devis";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Devis');
         return $results;
@@ -68,7 +68,7 @@ class DevisDAO {
      */
     public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Devis WHERE idDevis = '" . $id . "'";
+        $query = "SELECT * FROM devis WHERE idDevis = '" . $id . "'";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Devis');
         return $results;
@@ -86,12 +86,16 @@ class DevisDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO Devis(idDevis, nomDevis) VALUES (:id, :nom)";
+            $query = "INSERT INTO devis(idDevis, nomDevis, descriptionDevis, dureeDevis, dateEditionDevis, dateTravauxDevis) VALUES (:id, :nom, :description, :duree, :dateEdition, :dateTravaux)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
             $stmt->bindValue(':id', $devis->__get("id"), PDO::PARAM_STR);
             $stmt->bindValue(':nom', $devis->__get("nom"), PDO::PARAM_STR);
+            $stmt->bindValue(':description', $devis->__get("description"), PDO::PARAM_STR);
+            $stmt->bindValue(':duree', $devis->__get("duree"), PDO::PARAM_STR);
+            $stmt->bindValue(':dateEdition', $devis->__get("dateEdition"), PDO::PARAM_STR);
+            $stmt->bindValue(':dateTravaux', $devis->__get("dateTravaux"), PDO::PARAM_STR);
             
             // Exécute la déclaration SQL
             $stmt->execute();
@@ -117,7 +121,7 @@ class DevisDAO {
             $idDevis = $devis->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM Devis WHERE idDevis = '" . $idDevis . "'";
+            $query = "DELETE FROM devis WHERE idDevis = '" . $idDevis . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -140,11 +144,15 @@ class DevisDAO {
             $idDevis = $devis->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Devis SET nomDevis=:nom WHERE idDevis = '" . $idDevis . "'";
+            $query = "UPDATE devis SET nomDevis=:nom, descriptionDevis=:description, dureeDevis=:duree, dateEditionDevis=:dateEdition, dateTravauxDevis=:dateTravaux WHERE idDevis = '" . $idDevis . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
             $stmt->bindValue(':nom', $devis->__get("nom"), PDO::PARAM_STR);
+            $stmt->bindValue(':description', $devis->__get("description"), PDO::PARAM_STR);
+            $stmt->bindValue(':duree', $devis->__get("duree"), PDO::PARAM_STR);
+            $stmt->bindValue(':dateEdition', $devis->__get("dateEdition"), PDO::PARAM_STR);
+            $stmt->bindValue(':dateTravaux', $devis->__get("dateTravaux"), PDO::PARAM_STR);
           
             // Exécute la déclaration SQL
             $stmt->execute();

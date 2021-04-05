@@ -53,7 +53,7 @@ class PackDAO {
      */
     public final function tousLesElements() {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Pack";
+        $query = "SELECT * FROM pack";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Pack');
         return $results;
@@ -68,7 +68,7 @@ class PackDAO {
      */
     public final function unElement($id) {
         $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
-        $query = "SELECT * FROM Pack WHERE idPack = '" . $id . "'";
+        $query = "SELECT * FROM pack WHERE idPack = '" . $id . "'";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Pack');
         return $results;
@@ -86,7 +86,7 @@ class PackDAO {
             $dbc = BDD_Externe_Connexion::getInstance()->getConnexion();
 
             // Prépare la déclaration SQL
-            $query = "INSERT INTO Pack(idPack, nomPack) VALUES (:id, :nom)";
+            $query = "INSERT INTO pack(idPack, nomPack) VALUES (:id, :nom)";
             $stmt = $dbc->prepare($query);
 
             // Lie les paramètres
@@ -117,7 +117,7 @@ class PackDAO {
             $idPack = $pack->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "DELETE FROM Pack WHERE idPack = '" . $idPack . "'";
+            $query = "DELETE FROM pack WHERE idPack = '" . $idPack . "'";
             $stmt = $dbc->prepare($query);
 
             // Exécute la déclaration SQL
@@ -140,7 +140,7 @@ class PackDAO {
             $idPack = $pack->__get("id");
 
             // Prépare la déclaration SQL
-            $query = "UPDATE Pack SET nomPack=:nom WHERE idPack = '" . $idPack . "'";
+            $query = "UPDATE pack SET nomPack=:nom WHERE idPack = '" . $idPack . "'";
             $stmt = $dbc->prepare($query);
         
             // Lie les paramètres
