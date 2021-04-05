@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql-rosettabdd.alwaysdata.net
--- Généré le :  lun. 29 mars 2021 à 11:02
+-- Généré le :  lun. 05 avr. 2021 à 02:16
 -- Version du serveur :  10.5.8-MariaDB
 -- Version de PHP :  7.2.29
 
@@ -33,10 +33,6 @@ CREATE TABLE `appartientcd` (
   `unDevis` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `appartientcd`
---
-
 -- --------------------------------------------------------
 
 --
@@ -49,10 +45,6 @@ CREATE TABLE `appartientdc` (
   `quantite` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `appartientdc`
---
-
 -- --------------------------------------------------------
 
 --
@@ -64,10 +56,6 @@ CREATE TABLE `appartientdp` (
   `unPack` int(10) NOT NULL,
   `quantite` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `appartientdp`
---
 
 -- --------------------------------------------------------
 
@@ -93,10 +81,6 @@ CREATE TABLE `appartientsc` (
   `quantite` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `appartientsc`
---
-
 -- --------------------------------------------------------
 
 --
@@ -109,10 +93,6 @@ CREATE TABLE `appartientsp` (
   `quantite` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `appartientsp`
---
-
 -- --------------------------------------------------------
 
 --
@@ -123,10 +103,6 @@ CREATE TABLE `appartientsq` (
   `unScenario` int(10) NOT NULL,
   `uneQuestion` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `appartientsq`
---
 
 -- --------------------------------------------------------
 
@@ -144,10 +120,6 @@ CREATE TABLE `client` (
   `sexeClient` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `client`
---
-
 -- --------------------------------------------------------
 
 --
@@ -160,10 +132,6 @@ CREATE TABLE `composant` (
   `uniteComposant` tinytext NOT NULL,
   `prixComposant` decimal(10,2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `composant`
---
 
 -- --------------------------------------------------------
 
@@ -191,10 +159,6 @@ CREATE TABLE `devis` (
   `dateTravauxDevis` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `devis`
---
-
 -- --------------------------------------------------------
 
 --
@@ -205,10 +169,6 @@ CREATE TABLE `pack` (
   `idPack` int(11) NOT NULL,
   `nomPack` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `pack`
---
 
 -- --------------------------------------------------------
 
@@ -221,10 +181,6 @@ CREATE TABLE `question` (
   `nomQuestion` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `question`
---
-
 -- --------------------------------------------------------
 
 --
@@ -235,10 +191,6 @@ CREATE TABLE `scenario` (
   `idScenario` int(11) NOT NULL,
   `nomScenario` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `scenario`
---
 
 --
 -- Index pour les tables déchargées
